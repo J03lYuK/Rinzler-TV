@@ -7,8 +7,8 @@
    <img width="4305" height="2659" alt="splash-background" src="https://rinzler.uk/moonfin_ic_banner.png" />
 </p>
 
-[![License](https://img.shields.io/github/license/Rinzler-Client/AndroidTV-FireTV.svg)](https://github.com/Rinzler-Client/AndroidTV-FireTV)
-[![Release](https://img.shields.io/github/release/Rinzler-Client/AndroidTV-FireTV.svg)](https://github.com/Rinzler-Client/AndroidTV-FireTV/releases)
+[![License](https://img.shields.io/github/license/J03lYuK/Rinzler-TV.svg)](https://github.com/J03lYuK/Rinzler-TV)
+[![Release](https://img.shields.io/github/release/J03lYuK/Rinzler-TV.svg)](https://github.com/J03lYuK/Rinzler-TV/releases)
 
 <a href="https://www.buymeacoffee.com/kylejoel87e" target="_blank"><img src="https://github.com/user-attachments/assets/fe26eaec-147f-496f-8e95-4ebe19f57131" alt="Buy Me A Coffee" ></a>
 
