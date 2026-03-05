@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.util
+package uk.rinzler.tv.ui.settings.util
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -16,10 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.form.RangeControl
-import org.jellyfin.androidtv.ui.base.form.RangeControlDefaults
-import org.jellyfin.androidtv.ui.base.list.ListControl
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.form.RangeControl
+import uk.rinzler.tv.ui.base.form.RangeControlDefaults
+import uk.rinzler.tv.ui.base.list.ListControl
 import org.jellyfin.design.Tokens
 import kotlin.math.roundToInt
 

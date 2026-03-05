@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen.customization.subtitle.composable
+package uk.rinzler.tv.ui.settings.screen.customization.subtitle.composable
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.clickable
@@ -19,7 +19,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
-import org.jellyfin.androidtv.ui.base.form.ColorSwatch
+import uk.rinzler.tv.ui.base.form.ColorSwatch
 import org.jellyfin.design.Tokens
 
 @Composable

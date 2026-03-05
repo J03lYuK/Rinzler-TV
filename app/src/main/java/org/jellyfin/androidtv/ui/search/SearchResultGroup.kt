@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.search
+package uk.rinzler.tv.ui.search
 
 import androidx.annotation.StringRes
 import org.jellyfin.sdk.model.api.BaseItemDto

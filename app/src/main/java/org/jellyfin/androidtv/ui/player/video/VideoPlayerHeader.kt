@@ -1,13 +1,13 @@
-package org.jellyfin.androidtv.ui.player.video
+package uk.rinzler.tv.ui.player.video
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
-import org.jellyfin.androidtv.ui.base.LocalTextStyle
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.player.base.PlayerHeader
+import uk.rinzler.tv.ui.base.LocalTextStyle
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.player.base.PlayerHeader
 import org.jellyfin.sdk.model.api.BaseItemDto
 
 @Composable

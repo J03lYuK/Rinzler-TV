@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -12,11 +12,11 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.model.DataRefreshService
-import org.jellyfin.androidtv.data.repository.ExternalAppRepository
-import org.jellyfin.androidtv.util.componentName
-import org.jellyfin.androidtv.util.sdk.getDisplayName
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.model.DataRefreshService
+import uk.rinzler.tv.data.repository.ExternalAppRepository
+import uk.rinzler.tv.util.componentName
+import uk.rinzler.tv.util.sdk.getDisplayName
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.playStateApi
 import org.jellyfin.sdk.api.client.extensions.subtitleApi

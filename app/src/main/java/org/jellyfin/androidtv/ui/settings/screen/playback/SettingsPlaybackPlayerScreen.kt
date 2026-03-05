@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen.playback
+package uk.rinzler.tv.ui.settings.screen.playback
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.size
@@ -11,17 +11,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil3.compose.rememberAsyncImagePainter
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.repository.ExternalAppRepository
-import org.jellyfin.androidtv.ui.base.LocalShapes
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.form.RadioButton
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListMessage
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.navigation.LocalRouter
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
-import org.jellyfin.androidtv.util.componentName
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.repository.ExternalAppRepository
+import uk.rinzler.tv.ui.base.LocalShapes
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.form.RadioButton
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListMessage
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.navigation.LocalRouter
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.util.componentName
 import org.koin.compose.koinInject
 
 @Composable

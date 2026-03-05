@@ -1,6 +1,6 @@
-package org.jellyfin.androidtv.data.repository
+package uk.rinzler.tv.data.repository
 
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 
 object RatingIconProvider {
 

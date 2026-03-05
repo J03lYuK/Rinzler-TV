@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen.moonfin
+package uk.rinzler.tv.ui.settings.screen.moonfin
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -7,24 +7,24 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.service.pluginsync.PluginSyncService
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.form.Checkbox
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.navigation.LocalRouter
-import org.jellyfin.androidtv.ui.settings.Routes
-import org.jellyfin.androidtv.ui.settings.compat.rememberPreference
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
-import org.jellyfin.androidtv.ui.settings.screen.customization.getBlurLabel
-import org.jellyfin.androidtv.ui.settings.screen.customization.getMediaBarItemCountLabel
-import org.jellyfin.androidtv.ui.settings.screen.customization.getOverlayColorLabel
-import org.jellyfin.androidtv.ui.settings.screen.customization.getSeasonalLabel
-import org.jellyfin.androidtv.ui.settings.screen.customization.getShuffleContentTypeLabel
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.service.pluginsync.PluginSyncService
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.form.Checkbox
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.navigation.LocalRouter
+import uk.rinzler.tv.ui.settings.Routes
+import uk.rinzler.tv.ui.settings.compat.rememberPreference
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.ui.settings.screen.customization.getBlurLabel
+import uk.rinzler.tv.ui.settings.screen.customization.getMediaBarItemCountLabel
+import uk.rinzler.tv.ui.settings.screen.customization.getOverlayColorLabel
+import uk.rinzler.tv.ui.settings.screen.customization.getSeasonalLabel
+import uk.rinzler.tv.ui.settings.screen.customization.getShuffleContentTypeLabel
 import org.koin.compose.koinInject
 
 @Composable
@@ -70,8 +70,8 @@ fun SettingsPluginScreen() {
 		item {
 			val navbarPosition by rememberPreference(userPreferences, UserPreferences.navbarPosition)
 			val navbarLabel = when (navbarPosition) {
-				org.jellyfin.androidtv.preference.constant.NavbarPosition.TOP -> stringResource(R.string.pref_navbar_position_top)
-				org.jellyfin.androidtv.preference.constant.NavbarPosition.LEFT -> stringResource(R.string.pref_navbar_position_left)
+				uk.rinzler.tv.preference.constant.NavbarPosition.TOP -> stringResource(R.string.pref_navbar_position_top)
+				uk.rinzler.tv.preference.constant.NavbarPosition.LEFT -> stringResource(R.string.pref_navbar_position_left)
 			}
 			ListButton(
 				headingContent = { Text(stringResource(R.string.pref_navbar_position)) },

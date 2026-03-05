@@ -1,8 +1,8 @@
-package org.jellyfin.androidtv.di
+package uk.rinzler.tv.di
 
 import android.content.Context
 import androidx.startup.Initializer
-import org.jellyfin.androidtv.LogInitializer
+import uk.rinzler.tv.LogInitializer
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin

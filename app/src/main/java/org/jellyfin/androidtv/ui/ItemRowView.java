@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui;
+package uk.rinzler.tv.ui;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -15,10 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.databinding.ItemRowBinding;
-import org.jellyfin.androidtv.util.TimeUtils;
-import org.jellyfin.androidtv.util.sdk.BaseItemExtensionsKt;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.databinding.ItemRowBinding;
+import uk.rinzler.tv.util.TimeUtils;
+import uk.rinzler.tv.util.sdk.BaseItemExtensionsKt;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 import org.jellyfin.sdk.model.api.MediaType;
 
@@ -185,17 +185,17 @@ public class ItemRowView extends FrameLayout {
 
     private void updateChevronColors(boolean isFocused) {
         if (!reorderingEnabled) return;
-        
+
         boolean canMoveUp = ourIndex > 1; // ourIndex is 1-based
         boolean canMoveDown = ourIndex < totalCount;
-        
+
         int activeColor = Color.WHITE;
         int inactiveColor = Color.GRAY;
-        
+
         int upColor = (canMoveUp && isFocused) ? activeColor : inactiveColor;
         mChevronUp.setColorFilter(upColor, PorterDuff.Mode.SRC_IN);
         mChevronUp.setAlpha(canMoveUp ? 1.0f : 0.3f);
-        
+
         int downColor = (canMoveDown && isFocused) ? activeColor : inactiveColor;
         mChevronDown.setColorFilter(downColor, PorterDuff.Mode.SRC_IN);
         mChevronDown.setAlpha(canMoveDown ? 1.0f : 0.3f);

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen.authentication
+package uk.rinzler.tv.ui.settings.screen.authentication
 
 import android.widget.Toast
 import androidx.compose.runtime.Composable
@@ -8,35 +8,35 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.form.Checkbox
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
-import org.jellyfin.androidtv.ui.startup.PinEntryDialog
-import org.jellyfin.androidtv.util.PinCodeUtil
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.form.Checkbox
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.ui.startup.PinEntryDialog
+import uk.rinzler.tv.util.PinCodeUtil
 import org.koin.compose.koinInject
 
 @Composable
 fun SettingsAuthenticationPinCodeScreen() {
 	val context = LocalContext.current
 	val userRepository = koinInject<UserRepository>()
-	
+
 	// Get user-specific preferences
 	val userId = userRepository.currentUser.value?.id
 	val userSettingPreferences = remember(userId) {
 		UserSettingPreferences(context, userId)
 	}
-	
+
 	var pinEnabled by remember { mutableStateOf(userSettingPreferences[UserSettingPreferences.userPinEnabled]) }
 	var hasPinSet by remember { mutableStateOf(userSettingPreferences[UserSettingPreferences.userPinHash].isNotEmpty()) }
-	
+
 	// Trigger recomposition after dialogs
 	var refreshTrigger by remember { mutableStateOf(0) }
-	
+
 	// Re-read state on refresh
 	if (refreshTrigger > 0) {
 		pinEnabled = userSettingPreferences[UserSettingPreferences.userPinEnabled]

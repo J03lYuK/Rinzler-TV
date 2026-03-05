@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.preference.custom
+package uk.rinzler.tv.ui.preference.custom
 
 import android.app.AlertDialog
 import android.content.Context
@@ -11,7 +11,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.getSystemService
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 
 object PinCodeDialog {
 	enum class Mode {
@@ -63,13 +63,13 @@ object PinCodeDialog {
 				setPadding(20, 20, 20, 20)
 			}
 			container.addView(confirmInput)
-			
+
 			val dialog = AlertDialog.Builder(context)
 				.setView(container)
 				.setPositiveButton(android.R.string.ok) { _, _ ->
 					val pin = pinInput.text.toString()
 					val confirm = confirmInput.text.toString()
-					
+
 					when {
 						pin.isEmpty() -> {
 							android.widget.Toast.makeText(
@@ -100,7 +100,7 @@ object PinCodeDialog {
 				}
 				.setNegativeButton(android.R.string.cancel) { _, _ -> onComplete(null) }
 				.create()
-			
+
 			// First PIN field: move to confirmation, keep keyboard open
 			pinInput.setOnEditorActionListener { _, actionId, _ ->
 				if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT) {
@@ -108,7 +108,7 @@ object PinCodeDialog {
 					true
 				} else false
 			}
-			
+
 			// Confirmation field: hide keyboard and focus OK button
 			confirmInput.setOnEditorActionListener { _, actionId, _ ->
 				if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -122,7 +122,7 @@ object PinCodeDialog {
 					true
 				} else false
 			}
-			
+
 			dialog.show()
 			pinInput.requestFocus()
 		} else {
@@ -143,7 +143,7 @@ object PinCodeDialog {
 				}
 				.setNegativeButton(android.R.string.cancel) { _, _ -> onComplete(null) }
 				.create()
-			
+
 			// Hide keyboard and focus OK button when done pressed
 			pinInput.setOnEditorActionListener { _, actionId, _ ->
 				if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -156,7 +156,7 @@ object PinCodeDialog {
 					true
 				} else false
 			}
-			
+
 			dialog.show()
 			pinInput.requestFocus()
 		}

@@ -1,6 +1,6 @@
-package org.jellyfin.androidtv.preference.constant
+package uk.rinzler.tv.preference.constant
 
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import org.jellyfin.preference.PreferenceEnum
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours

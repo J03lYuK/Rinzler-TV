@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util.profile
+package uk.rinzler.tv.util.profile
 
 import android.content.Context
 import android.media.MediaCodecInfo.CodecProfileLevel

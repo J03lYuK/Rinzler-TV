@@ -1,15 +1,15 @@
-package org.jellyfin.androidtv.di
+package uk.rinzler.tv.di
 
-import org.jellyfin.androidtv.auth.repository.AuthenticationRepository
-import org.jellyfin.androidtv.auth.repository.AuthenticationRepositoryImpl
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.jellyfin.androidtv.auth.repository.ServerRepositoryImpl
-import org.jellyfin.androidtv.auth.repository.ServerUserRepository
-import org.jellyfin.androidtv.auth.repository.ServerUserRepositoryImpl
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.auth.repository.SessionRepositoryImpl
-import org.jellyfin.androidtv.auth.store.AuthenticationPreferences
-import org.jellyfin.androidtv.auth.store.AuthenticationStore
+import uk.rinzler.tv.auth.repository.AuthenticationRepository
+import uk.rinzler.tv.auth.repository.AuthenticationRepositoryImpl
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.tv.auth.repository.ServerRepositoryImpl
+import uk.rinzler.tv.auth.repository.ServerUserRepository
+import uk.rinzler.tv.auth.repository.ServerUserRepositoryImpl
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.auth.repository.SessionRepositoryImpl
+import uk.rinzler.tv.auth.store.AuthenticationPreferences
+import uk.rinzler.tv.auth.store.AuthenticationStore
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.auth.repository
+package uk.rinzler.tv.auth.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -7,30 +7,30 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.auth.model.ApiClientErrorLoginState
-import org.jellyfin.androidtv.auth.model.AuthenticateMethod
-import org.jellyfin.androidtv.auth.model.AuthenticatedState
-import org.jellyfin.androidtv.auth.model.AuthenticatingState
-import org.jellyfin.androidtv.auth.model.AuthenticationStoreUser
-import org.jellyfin.androidtv.auth.model.AutomaticAuthenticateMethod
-import org.jellyfin.androidtv.auth.model.CredentialAuthenticateMethod
-import org.jellyfin.androidtv.auth.model.LoginState
-import org.jellyfin.androidtv.auth.model.PrivateUser
-import org.jellyfin.androidtv.auth.model.QuickConnectAuthenticateMethod
-import org.jellyfin.androidtv.auth.model.RequireSignInState
-import org.jellyfin.androidtv.auth.model.Server
-import org.jellyfin.androidtv.auth.model.ServerUnavailableState
-import org.jellyfin.androidtv.auth.model.ServerVersionNotSupported
-import org.jellyfin.androidtv.auth.model.User
-import org.jellyfin.androidtv.auth.store.AuthenticationPreferences
-import org.jellyfin.androidtv.auth.store.AuthenticationStore
-import org.jellyfin.androidtv.data.repository.JellyseerrRepository
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.util.apiclient.JellyfinImage
-import org.jellyfin.androidtv.util.apiclient.JellyfinImageSource
-import org.jellyfin.androidtv.util.apiclient.getUrl
-import org.jellyfin.androidtv.util.apiclient.primaryImage
-import org.jellyfin.androidtv.util.sdk.forUser
+import uk.rinzler.tv.auth.model.ApiClientErrorLoginState
+import uk.rinzler.tv.auth.model.AuthenticateMethod
+import uk.rinzler.tv.auth.model.AuthenticatedState
+import uk.rinzler.tv.auth.model.AuthenticatingState
+import uk.rinzler.tv.auth.model.AuthenticationStoreUser
+import uk.rinzler.tv.auth.model.AutomaticAuthenticateMethod
+import uk.rinzler.tv.auth.model.CredentialAuthenticateMethod
+import uk.rinzler.tv.auth.model.LoginState
+import uk.rinzler.tv.auth.model.PrivateUser
+import uk.rinzler.tv.auth.model.QuickConnectAuthenticateMethod
+import uk.rinzler.tv.auth.model.RequireSignInState
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.tv.auth.model.ServerUnavailableState
+import uk.rinzler.tv.auth.model.ServerVersionNotSupported
+import uk.rinzler.tv.auth.model.User
+import uk.rinzler.tv.auth.store.AuthenticationPreferences
+import uk.rinzler.tv.auth.store.AuthenticationStore
+import uk.rinzler.tv.data.repository.JellyseerrRepository
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.util.apiclient.JellyfinImage
+import uk.rinzler.tv.util.apiclient.JellyfinImageSource
+import uk.rinzler.tv.util.apiclient.getUrl
+import uk.rinzler.tv.util.apiclient.primaryImage
+import uk.rinzler.tv.util.sdk.forUser
 import org.jellyfin.sdk.Jellyfin
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.ApiClientException
@@ -215,14 +215,14 @@ class AuthenticationRepositoryImpl(
 	/**
 	 * Attempt to automatically login to Jellyseerr using Jellyfin credentials.
 	 * This is called after successful Jellyfin authentication to provide a seamless single sign-on experience.
-	 * 
+	 *
 	 * Note: The password is only held in memory temporarily and never stored on disk.
 	 * The Jellyseerr session is maintained via HTTP cookies stored by Ktor's PersistentCookiesStorage,
 	 * which persists across app restarts and updates. Users only need to login again after:
 	 * - Fresh install/reinstall (cookies cleared)
 	 * - Manual logout
 	 * - Cookie expiration (controlled by Jellyseerr server settings)
-	 * 
+	 *
 	 * IMPORTANT: This method first checks if the session is already valid (using cached result)
 	 * to prevent excessive login attempts that can trigger rate limiting/lockouts on Jellyseerr.
 	 */
@@ -235,7 +235,7 @@ class AuthenticationRepositoryImpl(
 		// Check if Jellyseerr is enabled and configured
 		val enabled = jellyseerrPreferences[JellyseerrPreferences.enabled]
 		val jellyseerrUrl = jellyseerrPreferences[JellyseerrPreferences.serverUrl]
-		
+
 		if (!enabled || jellyseerrUrl.isNullOrBlank()) {
 			Timber.d("Jellyseerr auto-login skipped: not enabled or configured")
 			return
@@ -250,7 +250,7 @@ class AuthenticationRepositoryImpl(
 					Timber.d("Jellyseerr auto-login skipped: session already valid for user: $username")
 					return@launch
 				}
-				
+
 				Timber.d("Attempting Jellyseerr auto-login for user: $username (session invalid or expired)")
 				val result = jellyseerrRepository.loginWithJellyfin(
 					username = username,
@@ -258,7 +258,7 @@ class AuthenticationRepositoryImpl(
 					jellyfinUrl = server.address,
 					jellyseerrUrl = jellyseerrUrl
 				)
-				
+
 				if (result.isSuccess) {
 					val user = result.getOrNull()
 					Timber.i("Jellyseerr auto-login successful for user: ${user?.username ?: username}")

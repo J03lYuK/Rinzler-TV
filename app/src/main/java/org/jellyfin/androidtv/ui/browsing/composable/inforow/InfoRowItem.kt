@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing.composable.inforow
+package uk.rinzler.tv.ui.browsing.composable.inforow
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -17,9 +17,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.LocalTextStyle
-import org.jellyfin.androidtv.ui.base.ProvideTextStyle
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.LocalTextStyle
+import uk.rinzler.tv.ui.base.ProvideTextStyle
 
 /**
  * A single item in the [BaseItemInfoRow].

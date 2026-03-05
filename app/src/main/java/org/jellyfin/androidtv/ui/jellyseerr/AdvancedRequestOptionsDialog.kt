@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.app.Dialog
 import android.content.Context
@@ -17,9 +17,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrQualityProfileDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrRootFolderDto
-import org.jellyfin.androidtv.util.dp
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrQualityProfileDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrRootFolderDto
+import uk.rinzler.tv.util.dp
 import timber.log.Timber
 
 /**
@@ -34,7 +34,7 @@ data class AdvancedRequestOptions(
 /**
  * Dialog for advanced request options (profile and root folder selection)
  * Shown to users with REQUEST_ADVANCED permission
- * 
+ *
  * @param context The context
  * @param title The title of the content being requested
  * @param is4k Whether this is a 4K request
@@ -70,18 +70,18 @@ class AdvancedRequestOptionsDialog(
 	private var serverId: Int? = null
 	private var defaultProfileIdValue: Int? = null
 	private var defaultRootFolderIdValue: Int? = null
-	
+
 	private lateinit var contentContainer: LinearLayout
 	private lateinit var loadingIndicator: ProgressBar
 	private lateinit var confirmButton: TextView
 	private lateinit var cancelButton: TextView
-	
+
 	private var profileButtons = mutableListOf<OptionButtonData>()
 	private var rootFolderButtons = mutableListOf<OptionButtonData>()
-	
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		
+
 		// Create root container
 		val rootContainer = LinearLayout(context).apply {
 			orientation = LinearLayout.VERTICAL
@@ -92,7 +92,7 @@ class AdvancedRequestOptionsDialog(
 				ViewGroup.LayoutParams.WRAP_CONTENT
 			)
 		}
-		
+
 		// Title
 		val titleText = TextView(context).apply {
 			text = "Request Options"
@@ -107,7 +107,7 @@ class AdvancedRequestOptionsDialog(
 			}
 		}
 		rootContainer.addView(titleText)
-		
+
 		// Subtitle with content title and quality
 		val subtitleText = TextView(context).apply {
 			val mediaType = if (isMovie) "Movie" else "TV Show"
@@ -123,7 +123,7 @@ class AdvancedRequestOptionsDialog(
 			}
 		}
 		rootContainer.addView(subtitleText)
-		
+
 		// Loading indicator
 		loadingIndicator = ProgressBar(context).apply {
 			indeterminateTintList = android.content.res.ColorStateList.valueOf(Color.parseColor("#7C3AED"))
@@ -137,7 +137,7 @@ class AdvancedRequestOptionsDialog(
 			}
 		}
 		rootContainer.addView(loadingIndicator)
-		
+
 		// Content container (hidden until data loads)
 		contentContainer = LinearLayout(context).apply {
 			orientation = LinearLayout.VERTICAL
@@ -148,7 +148,7 @@ class AdvancedRequestOptionsDialog(
 			)
 		}
 		rootContainer.addView(contentContainer)
-		
+
 		// Buttons container
 		val buttonsContainer = LinearLayout(context).apply {
 			orientation = LinearLayout.HORIZONTAL
@@ -160,7 +160,7 @@ class AdvancedRequestOptionsDialog(
 				topMargin = 16.dp(context)
 			}
 		}
-		
+
 		// Cancel button
 		cancelButton = TextView(context).apply {
 			text = "Cancel"
@@ -188,7 +188,7 @@ class AdvancedRequestOptionsDialog(
 			}
 		}
 		buttonsContainer.addView(cancelButton)
-		
+
 		// Confirm button
 		confirmButton = TextView(context).apply {
 			text = "Request"
@@ -213,11 +213,11 @@ class AdvancedRequestOptionsDialog(
 			}
 		}
 		buttonsContainer.addView(confirmButton)
-		
+
 		rootContainer.addView(buttonsContainer)
-		
+
 		setContentView(rootContainer)
-		
+
 		// Configure dialog window
 		window?.apply {
 			setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -227,14 +227,14 @@ class AdvancedRequestOptionsDialog(
 			)
 			setGravity(Gravity.CENTER)
 		}
-		
+
 		setCancelable(true)
 		setOnCancelListener { onCancel() }
-		
+
 		// Load data
 		loadServerDetails()
 	}
-	
+
 	private fun loadServerDetails() {
 		coroutineScope.launch {
 			try {
@@ -261,7 +261,7 @@ class AdvancedRequestOptionsDialog(
 			}
 		}
 	}
-	
+
 	private fun showError(message: String) {
 		loadingIndicator.visibility = View.GONE
 		val errorText = TextView(context).apply {
@@ -279,10 +279,10 @@ class AdvancedRequestOptionsDialog(
 		contentContainer.addView(errorText)
 		contentContainer.visibility = View.VISIBLE
 	}
-	
+
 	private fun buildContent(data: ServerDetailsData) {
 		contentContainer.removeAllViews()
-		
+
 		// Scrollable content
 		val scrollView = ScrollView(context).apply {
 			layoutParams = LinearLayout.LayoutParams(
@@ -291,7 +291,7 @@ class AdvancedRequestOptionsDialog(
 			)
 			isVerticalScrollBarEnabled = true
 		}
-		
+
 		val scrollContent = LinearLayout(context).apply {
 			orientation = LinearLayout.VERTICAL
 			layoutParams = LinearLayout.LayoutParams(
@@ -299,11 +299,11 @@ class AdvancedRequestOptionsDialog(
 				LinearLayout.LayoutParams.WRAP_CONTENT
 			)
 		}
-		
+
 		// Quality Profile section
 		val profileSection = createSectionHeader("Quality Profile")
 		scrollContent.addView(profileSection)
-		
+
 		// Server Default option for profiles (id = null represents server default)
 		val defaultProfileButton = createOptionButton(
 			"Server Default",
@@ -315,7 +315,7 @@ class AdvancedRequestOptionsDialog(
 		}
 		profileButtons.add(OptionButtonData(defaultProfileButton, null))
 		scrollContent.addView(defaultProfileButton)
-		
+
 		// Profile options
 		data.profiles.forEach { profile ->
 			val profileButton = createOptionButton(
@@ -329,17 +329,17 @@ class AdvancedRequestOptionsDialog(
 			profileButtons.add(OptionButtonData(profileButton, profile.id))
 			scrollContent.addView(profileButton)
 		}
-		
+
 		// Separator
 		scrollContent.addView(createSeparator())
-		
+
 		// Root Folder section
 		val rootFolderSection = createSectionHeader("Root Folder")
 		scrollContent.addView(rootFolderSection)
-		
+
 		// Find default root folder
 		val defaultRootFolder = data.rootFolders.find { it.path == data.defaultRootFolder }
-		
+
 		// Server Default option for root folders (id = null represents server default)
 		val defaultRootFolderButton = createOptionButton(
 			"Server Default" + (defaultRootFolder?.let { " (${getDisplayPath(it.path)})" } ?: ""),
@@ -351,7 +351,7 @@ class AdvancedRequestOptionsDialog(
 		}
 		rootFolderButtons.add(OptionButtonData(defaultRootFolderButton, null))
 		scrollContent.addView(defaultRootFolderButton)
-		
+
 		// Root folder options
 		data.rootFolders.forEach { folder ->
 			val isDefault = folder.path == data.defaultRootFolder
@@ -368,14 +368,14 @@ class AdvancedRequestOptionsDialog(
 				scrollContent.addView(folderButton)
 			}
 		}
-		
+
 		scrollView.addView(scrollContent)
 		contentContainer.addView(scrollView)
-		
+
 		// Focus on first focusable option
 		profileButtons.firstOrNull()?.view?.requestFocus()
 	}
-	
+
 	private fun createSectionHeader(text: String): TextView {
 		return TextView(context).apply {
 			this.text = text
@@ -391,7 +391,7 @@ class AdvancedRequestOptionsDialog(
 			}
 		}
 	}
-	
+
 	private fun createSeparator(): View {
 		return View(context).apply {
 			setBackgroundColor(Color.parseColor("#374151")) // gray-700
@@ -404,7 +404,7 @@ class AdvancedRequestOptionsDialog(
 			}
 		}
 	}
-	
+
 	private fun createOptionButton(
 		text: String,
 		isSelected: Boolean,
@@ -434,7 +434,7 @@ class AdvancedRequestOptionsDialog(
 			}
 		}
 	}
-	
+
 	private fun updateButtonVisualState(button: TextView, isSelected: Boolean) {
 		val originalText = button.tag as String
 		val displayText = if (isSelected) "● $originalText" else "○ $originalText"
@@ -444,26 +444,26 @@ class AdvancedRequestOptionsDialog(
 			else Color.WHITE
 		)
 	}
-	
+
 	private fun updateProfileSelection(selectedId: Int?) {
 		profileButtons.forEach { buttonData ->
 			val isSelected = buttonData.id == selectedId
 			updateButtonVisualState(buttonData.view, isSelected)
 		}
 	}
-	
+
 	private fun updateRootFolderSelection(selectedId: Int?) {
 		rootFolderButtons.forEach { buttonData ->
 			val isSelected = buttonData.id == selectedId
 			updateButtonVisualState(buttonData.view, isSelected)
 		}
 	}
-	
+
 	private fun getDisplayPath(path: String): String {
 		// Show the full path for better clarity when multiple drives have same endpoint folder names
 		return path.trimEnd('/')
 	}
-	
+
 	private fun submitRequest() {
 		onConfirm(AdvancedRequestOptions(
 			profileId = selectedProfileId,
@@ -472,7 +472,7 @@ class AdvancedRequestOptionsDialog(
 		))
 		dismiss()
 	}
-	
+
 	override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			onCancel()

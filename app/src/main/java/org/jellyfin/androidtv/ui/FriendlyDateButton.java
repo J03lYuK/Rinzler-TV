@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui;
+package uk.rinzler.tv.ui;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.util.DateTimeExtensionsKt;
-import org.jellyfin.androidtv.util.TimeUtils;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.util.DateTimeExtensionsKt;
+import uk.rinzler.tv.util.TimeUtils;
 
 import java.time.LocalDateTime;
 

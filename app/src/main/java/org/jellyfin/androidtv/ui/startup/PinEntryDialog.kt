@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.startup
+package uk.rinzler.tv.ui.startup
 
 import android.app.AlertDialog
 import android.content.Context
@@ -10,8 +10,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.databinding.DialogPinEntryBinding
+import uk.rinzler.tv.R
+import uk.rinzler.tv.databinding.DialogPinEntryBinding
 
 /**
  * TV-friendly PIN entry dialog with numeric keypad
@@ -21,7 +21,7 @@ object PinEntryDialog {
 		SET,      // Setting a new PIN (with confirmation)
 		VERIFY    // Verifying existing PIN
 	}
-	
+
 	/**
 	 * Show PIN entry dialog for setting or verifying a PIN
 	 * @param context Android context
@@ -40,7 +40,7 @@ object PinEntryDialog {
 			Mode.VERIFY -> showVerifyPinDialog(context, onComplete, onForgotPin)
 		}
 	}
-	
+
 	/**
 	 * Simple verification dialog - just enter PIN once
 	 */
@@ -61,7 +61,7 @@ object PinEntryDialog {
 			onForgotPin = onForgotPin
 		)
 	}
-	
+
 	/**
 	 * Set PIN dialog - enter PIN twice for confirmation
 	 */
@@ -70,7 +70,7 @@ object PinEntryDialog {
 		onComplete: (String?) -> Unit
 	) {
 		var firstPin: String? = null
-		
+
 		// First PIN entry
 		showPinDialog(
 			context = context,
@@ -111,7 +111,7 @@ object PinEntryDialog {
 			}
 		)
 	}
-	
+
 	/**
 	 * Low-level PIN dialog display
 	 */
@@ -123,25 +123,25 @@ object PinEntryDialog {
 		onForgotPin: (() -> Unit)? = null
 	) {
 		val binding = DialogPinEntryBinding.inflate(LayoutInflater.from(context))
-		
+
 		// Set custom title if provided
 		if (title != null) {
 			binding.dialogTitle.text = title
 		}
-		
+
 		// Prevent the system keyboard from appearing - multiple approaches for reliability
 		binding.pinInput.showSoftInputOnFocus = false
 		binding.pinInput.isFocusable = true
 		binding.pinInput.isFocusableInTouchMode = false
-		
+
 		val dialog = AlertDialog.Builder(context)
 			.setView(binding.root)
 			.setCancelable(true)
 			.create()
-		
+
 		// Hide keyboard when dialog window is created
 		dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
-		
+
 		// Setup numeric keypad buttons
 		binding.pinButton0.setOnClickListener { appendPinDigit(binding, "0") }
 		binding.pinButton1.setOnClickListener { appendPinDigit(binding, "1") }
@@ -153,7 +153,7 @@ object PinEntryDialog {
 		binding.pinButton7.setOnClickListener { appendPinDigit(binding, "7") }
 		binding.pinButton8.setOnClickListener { appendPinDigit(binding, "8") }
 		binding.pinButton9.setOnClickListener { appendPinDigit(binding, "9") }
-		
+
 		binding.pinButtonClear.setOnClickListener {
 			val text = binding.pinInput.text
 			if (text != null && text.isNotEmpty()) {
@@ -161,7 +161,7 @@ object PinEntryDialog {
 			}
 			binding.pinError.isVisible = false
 		}
-		
+
 		binding.pinButtonSubmit.setOnClickListener {
 			val pin = binding.pinInput.text.toString()
 			if (pin.isNotEmpty()) {
@@ -169,7 +169,7 @@ object PinEntryDialog {
 				onPinEntered(pin)
 			}
 		}
-		
+
 		// Setup forgot PIN button if callback provided
 		if (onForgotPin != null) {
 			binding.forgotPinButton.isVisible = true
@@ -180,7 +180,7 @@ object PinEntryDialog {
 		} else {
 			binding.forgotPinButton.isVisible = false
 		}
-		
+
 		// Submit on Enter/Done key
 		binding.pinInput.setOnEditorActionListener { _, actionId, _ ->
 			if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE) {
@@ -194,7 +194,7 @@ object PinEntryDialog {
 				false
 			}
 		}
-		
+
 		// Create a shared key listener for all PIN entry elements
 		val pinKeyListener = View.OnKeyListener { view, keyCode, event ->
 			if (event.action == KeyEvent.ACTION_DOWN) {
@@ -280,7 +280,7 @@ object PinEntryDialog {
 				false
 			}
 		}
-		
+
 		// Apply key listener to all PIN entry elements
 		binding.pinInput.setOnKeyListener(pinKeyListener)
 		binding.pinButton0.setOnKeyListener(pinKeyListener)
@@ -296,21 +296,21 @@ object PinEntryDialog {
 		binding.pinButtonClear.setOnKeyListener(pinKeyListener)
 		binding.pinButtonSubmit.setOnKeyListener(pinKeyListener)
 		binding.root.setOnKeyListener(pinKeyListener)
-		
+
 		dialog.setOnCancelListener {
 			onCancel()
 		}
-		
+
 		dialog.show()
-		
+
 		// Explicitly hide keyboard and focus on the first button instead of EditText
 		val imm = context.getSystemService<InputMethodManager>()
 		imm?.hideSoftInputFromWindow(binding.pinInput.windowToken, 0)
-		
+
 		// Focus on the first numeric button instead of the EditText to avoid keyboard
 		binding.pinButton1.requestFocus()
 	}
-	
+
 	private fun appendPinDigit(binding: DialogPinEntryBinding, digit: String) {
 		val currentText = binding.pinInput.text?.toString() ?: ""
 		if (currentText.length < 10) {  // Match maxLength from XML
@@ -318,7 +318,7 @@ object PinEntryDialog {
 			binding.pinError.isVisible = false
 		}
 	}
-	
+
 	fun showIncorrectPin(binding: DialogPinEntryBinding) {
 		binding.pinError.isVisible = true
 		binding.pinInput.text?.clear()

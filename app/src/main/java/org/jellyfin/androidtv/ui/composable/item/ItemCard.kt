@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.composable.item
+package uk.rinzler.tv.ui.composable.item
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -12,8 +12,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.base.focusBorderColor
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.focusBorderColor
 
 @Composable
 @Stable

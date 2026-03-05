@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing
+package uk.rinzler.tv.ui.browsing
 
 import android.content.Intent
 import android.content.res.Configuration
@@ -23,26 +23,26 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.auth.repository.SessionRepositoryState
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.data.service.UpdateCheckerService
-import org.jellyfin.androidtv.data.syncplay.SyncPlayManager
-import org.jellyfin.androidtv.databinding.ActivityMainBinding
-import org.jellyfin.androidtv.integration.LeanbackChannelWorker
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.InteractionTrackerViewModel
-import org.jellyfin.androidtv.ui.background.AppBackground
-import org.jellyfin.androidtv.ui.navigation.NavigationAction
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.playback.PlaybackLauncher
-import org.jellyfin.androidtv.ui.playback.ThemeMusicPlayer
-import org.jellyfin.androidtv.ui.screensaver.InAppScreensaver
-import org.jellyfin.androidtv.ui.settings.compat.MainActivitySettings
-import org.jellyfin.androidtv.ui.startup.StartupActivity
-import org.jellyfin.androidtv.util.applyTheme
-import org.jellyfin.androidtv.util.isMediaSessionKeyEvent
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.auth.repository.SessionRepositoryState
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.data.service.UpdateCheckerService
+import uk.rinzler.tv.data.syncplay.SyncPlayManager
+import uk.rinzler.tv.databinding.ActivityMainBinding
+import uk.rinzler.tv.integration.LeanbackChannelWorker
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.InteractionTrackerViewModel
+import uk.rinzler.tv.ui.background.AppBackground
+import uk.rinzler.tv.ui.navigation.NavigationAction
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.playback.PlaybackLauncher
+import uk.rinzler.tv.ui.playback.ThemeMusicPlayer
+import uk.rinzler.tv.ui.screensaver.InAppScreensaver
+import uk.rinzler.tv.ui.settings.compat.MainActivitySettings
+import uk.rinzler.tv.ui.startup.StartupActivity
+import uk.rinzler.tv.util.applyTheme
+import uk.rinzler.tv.util.isMediaSessionKeyEvent
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -86,7 +86,7 @@ class MainActivity : FragmentActivity() {
 				.first()
 
 			if (!validateAuthentication()) return@launch
-			
+
 			setupSyncPlayQueueLauncher()
 			setupActivity(savedInstanceState)
 		}
@@ -126,21 +126,21 @@ class MainActivity : FragmentActivity() {
 		setContentView(binding.root)
 
 		// Check for updates on app launch (libre builds only)
-		if (org.jellyfin.androidtv.BuildConfig.ENABLE_OTA_UPDATES) {
+		if (uk.rinzler.tv.BuildConfig.ENABLE_OTA_UPDATES) {
 			checkForUpdatesOnLaunch()
 		}
 	}
-	
+
 	private fun setupSyncPlayQueueLauncher() {
 		// Set up callback to handle queue loading when no active PlaybackController exists
 		syncPlayManager.queueLaunchCallback = { itemIds, startIndex, startPositionTicks ->
 			lifecycleScope.launch {
-				val queueResult = org.jellyfin.androidtv.data.syncplay.SyncPlayQueueHelper.fetchQueue(
+				val queueResult = uk.rinzler.tv.data.syncplay.SyncPlayQueueHelper.fetchQueue(
 					itemIds = itemIds,
 					startIndex = startIndex,
 					startPositionTicks = startPositionTicks,
 				)
-				
+
 				if (queueResult != null) {
 					playbackLauncher.launch(
 						context = this@MainActivity,

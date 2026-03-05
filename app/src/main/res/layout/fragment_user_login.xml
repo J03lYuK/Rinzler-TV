@@ -78,7 +78,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    tools:name="org.jellyfin.androidtv.ui.startup.fragment.UserLoginCredentialsFragment" />
+                    tools:name="uk.rinzler.tv.ui.startup.fragment.UserLoginCredentialsFragment" />
 
                 <LinearLayout
                     android:id="@+id/actions"

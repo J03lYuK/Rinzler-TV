@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.repository
+package uk.rinzler.tv.data.repository
 
 import android.content.Context
 import kotlinx.coroutines.CoroutineScope
@@ -13,7 +13,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.jellyfin.androidtv.auth.repository.SessionRepository
+import uk.rinzler.tv.auth.repository.SessionRepository
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.filterApi
 import org.jellyfin.sdk.model.api.BaseItemDto
@@ -90,7 +90,7 @@ class ParentalControlsRepositoryImpl(
 
 	// In-memory cache for faster access
 	private var cachedRatings: List<String>? = null
-	
+
 	// Scope for observing session changes
 	private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 	private var currentLoadedUserId: UUID? = null
@@ -107,7 +107,7 @@ class ParentalControlsRepositoryImpl(
 				}
 			}
 			.launchIn(scope)
-		
+
 		// Also try to load immediately if session exists
 		loadBlockedRatings()
 	}
@@ -249,14 +249,14 @@ class ParentalControlsRepositoryImpl(
 		// Fast path - we already have loaded ratings
 		val current = _blockedRatingsFlow.value
 		if (current.isNotEmpty()) return current
-		
+
 		// Try to load from prefs directly if flow is empty (race condition at startup)
 		val userId = getCurrentUserId()
 		if (userId == null) {
 			Timber.d("ParentalControlsRepository: getBlockedRatingsInternal - no userId available")
 			return emptySet()
 		}
-		
+
 		// Always try to load from prefs when flow is empty, regardless of currentLoadedUserId
 		// This handles the case where init ran before session was available
 		val prefs = getPrefsForUser(userId)
@@ -274,7 +274,7 @@ class ParentalControlsRepositoryImpl(
 				Timber.e(e, "ParentalControlsRepository: Failed to parse blocked ratings on-demand")
 			}
 		}
-		
+
 		return emptySet()
 	}
 

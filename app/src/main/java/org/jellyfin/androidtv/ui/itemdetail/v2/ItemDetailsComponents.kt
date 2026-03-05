@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.itemdetail.v2
+package uk.rinzler.tv.ui.itemdetail.v2
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -54,16 +54,16 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.WatchedIndicatorBehavior
-import org.jellyfin.androidtv.ui.base.Badge
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Seekbar
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.button.IconButton
-import org.jellyfin.androidtv.ui.base.button.IconButtonDefaults
-import org.jellyfin.androidtv.ui.base.focusBorderColor
+import uk.rinzler.tv.R
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.WatchedIndicatorBehavior
+import uk.rinzler.tv.ui.base.Badge
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Seekbar
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.button.IconButton
+import uk.rinzler.tv.ui.base.button.IconButtonDefaults
+import uk.rinzler.tv.ui.base.focusBorderColor
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind
 import org.jellyfin.design.Tokens
@@ -1336,7 +1336,7 @@ private fun BoxScope.ItemCardOverlays(
 
 /**
  * Watched/unplayed indicator for detail screen cards.
- * Mirrors the behavior of [org.jellyfin.androidtv.ui.composable.item.ItemCardBaseItemOverlay]'s
+ * Mirrors the behavior of [uk.rinzler.tv.ui.composable.item.ItemCardBaseItemOverlay]'s
  * WatchIndicator, respecting the [WatchedIndicatorBehavior] user preference.
  */
 @Composable

@@ -1,8 +1,8 @@
-package org.jellyfin.androidtv.ui.itemhandling
+package uk.rinzler.tv.ui.itemhandling
 
 import android.content.Context
-import org.jellyfin.androidtv.constant.ImageType
-import org.jellyfin.androidtv.util.apiclient.primaryImage
+import uk.rinzler.tv.constant.ImageType
+import uk.rinzler.tv.util.apiclient.primaryImage
 import org.jellyfin.sdk.model.api.BaseItemPerson
 
 class BaseItemPersonBaseRowItem(

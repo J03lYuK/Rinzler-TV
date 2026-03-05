@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.constant
+package uk.rinzler.tv.constant
 
 /**
  * Default values for API queries and pagination throughout the application.

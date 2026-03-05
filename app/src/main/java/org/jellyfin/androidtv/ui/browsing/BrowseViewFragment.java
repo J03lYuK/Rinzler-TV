@@ -1,22 +1,22 @@
-package org.jellyfin.androidtv.ui.browsing;
+package uk.rinzler.tv.ui.browsing;
 
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.HeaderItem;
 import androidx.leanback.widget.ListRow;
 import androidx.leanback.widget.Row;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.auth.repository.UserRepository;
-import org.jellyfin.androidtv.constant.ChangeTriggerType;
-import org.jellyfin.androidtv.constant.Extras;
-import org.jellyfin.androidtv.constant.LiveTvOption;
-import org.jellyfin.androidtv.constant.QueryType;
-import org.jellyfin.androidtv.data.querying.GetSeriesTimersRequest;
-import org.jellyfin.androidtv.ui.GridButton;
-import org.jellyfin.androidtv.ui.itemhandling.ItemRowAdapter;
-import org.jellyfin.androidtv.ui.presentation.GridButtonPresenter;
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter;
-import org.jellyfin.androidtv.util.Utils;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.auth.repository.UserRepository;
+import uk.rinzler.tv.constant.ChangeTriggerType;
+import uk.rinzler.tv.constant.Extras;
+import uk.rinzler.tv.constant.LiveTvOption;
+import uk.rinzler.tv.constant.QueryType;
+import uk.rinzler.tv.data.querying.GetSeriesTimersRequest;
+import uk.rinzler.tv.ui.GridButton;
+import uk.rinzler.tv.ui.itemhandling.ItemRowAdapter;
+import uk.rinzler.tv.ui.presentation.GridButtonPresenter;
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter;
+import uk.rinzler.tv.util.Utils;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 import org.jellyfin.sdk.model.api.BaseItemKind;
 import org.jellyfin.sdk.model.api.CollectionType;

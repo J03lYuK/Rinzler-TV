@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.repository
+package uk.rinzler.tv.data.repository
 
 import android.content.ComponentName
 import android.content.Context
@@ -6,8 +6,8 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.ResolveInfo
 import androidx.core.net.toUri
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.util.componentName
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.util.componentName
 
 class ExternalAppRepository(
 	private val userPreferences: UserPreferences,

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.livetv;
+package uk.rinzler.tv.ui.livetv;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -12,15 +12,15 @@ import androidx.leanback.widget.ListRow;
 import androidx.leanback.widget.Presenter;
 import androidx.leanback.widget.Row;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.preference.SystemPreferences;
-import org.jellyfin.androidtv.ui.ProgramGridCell;
-import org.jellyfin.androidtv.ui.itemhandling.ItemRowAdapter;
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter;
-import org.jellyfin.androidtv.util.DateTimeExtensionsKt;
-import org.jellyfin.androidtv.util.TimeUtils;
-import org.jellyfin.androidtv.util.Utils;
-import org.jellyfin.androidtv.util.apiclient.EmptyResponse;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.preference.SystemPreferences;
+import uk.rinzler.tv.ui.ProgramGridCell;
+import uk.rinzler.tv.ui.itemhandling.ItemRowAdapter;
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter;
+import uk.rinzler.tv.util.DateTimeExtensionsKt;
+import uk.rinzler.tv.util.TimeUtils;
+import uk.rinzler.tv.util.Utils;
+import uk.rinzler.tv.util.apiclient.EmptyResponse;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 import org.koin.java.KoinJavaComponent;
 

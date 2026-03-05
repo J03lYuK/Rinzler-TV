@@ -1,10 +1,10 @@
-package org.jellyfin.androidtv.ui.playback.overlay
+package uk.rinzler.tv.ui.playback.overlay
 
 import androidx.leanback.app.PlaybackSupportFragment
 import androidx.leanback.app.PlaybackSupportFragmentGlueHost
 import androidx.leanback.widget.Action
 import androidx.leanback.widget.OnActionClickedListener
-import org.jellyfin.androidtv.ui.playback.overlay.action.CustomAction
+import uk.rinzler.tv.ui.playback.overlay.action.CustomAction
 
 class CustomPlaybackFragmentGlueHost(
 	private val fragment: PlaybackSupportFragment,

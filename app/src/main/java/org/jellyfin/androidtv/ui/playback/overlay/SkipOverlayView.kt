@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback.overlay
+package uk.rinzler.tv.ui.playback.overlay
 
 import android.content.Context
 import android.util.AttributeSet
@@ -32,10 +32,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.playback.segment.MediaSegmentRepository
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.playback.segment.MediaSegmentRepository
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -97,7 +97,7 @@ fun SkipOverlayComposable(
 					fontSize = 22.sp,
 					fontWeight = FontWeight.SemiBold,
 				)
-				
+
 				Icon(
 					imageVector = ImageVector.vectorResource(R.drawable.ic_next),
 					contentDescription = null,
@@ -119,7 +119,7 @@ class SkipOverlayView @JvmOverloads constructor(
 	private val _nextEpisodeTitle = MutableStateFlow<String?>(null)
 	private val _episodeEndPosition = MutableStateFlow<Duration?>(null)
 	private val _segmentType = MutableStateFlow<String?>(null)
-	
+
 	var onPlayNext: (() -> Unit)? = null
 
 	var currentPosition: Duration
@@ -151,25 +151,25 @@ class SkipOverlayView @JvmOverloads constructor(
 		set(value) {
 			_skipUiEnabled.value = value
 		}
-	
+
 	var nextEpisodeTitle: String?
 		get() = _nextEpisodeTitle.value
 		set(value) {
 			_nextEpisodeTitle.value = value
 		}
-		
+
 	var episodeEndPosition: Duration?
 		get() = _episodeEndPosition.value
 		set(value) {
 			_episodeEndPosition.value = value
 		}
-	
+
 	var episodeEndPositionMs: Long?
 		get() = _episodeEndPosition.value?.inWholeMilliseconds
 		set(value) {
 			_episodeEndPosition.value = value?.milliseconds
 		}
-	
+
 	var segmentType: String?
 		get() = _segmentType.value
 		set(value) {
@@ -198,7 +198,7 @@ class SkipOverlayView @JvmOverloads constructor(
 		val visible by remember(skipUiEnabled, currentPosition, targetPosition) {
 			derivedStateOf { visible }
 		}
-		
+
 		val timeRemaining by remember(episodeEndPosition, currentPosition, nextEpisodeTitle) {
 			derivedStateOf {
 				val endPos = episodeEndPosition
@@ -218,7 +218,7 @@ class SkipOverlayView @JvmOverloads constructor(
 				_targetPosition.value = null
 			}
 		}
-		
+
 		// Auto-play next episode when timer expires
 		LaunchedEffect(timeRemaining, nextEpisodeTitle) {
 			val remaining = timeRemaining

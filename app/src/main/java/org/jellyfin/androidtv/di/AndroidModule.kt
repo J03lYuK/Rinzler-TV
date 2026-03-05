@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.di
+package uk.rinzler.tv.di
 
 import android.app.UiModeManager
 import android.media.AudioManager

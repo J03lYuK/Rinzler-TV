@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.compat
+package uk.rinzler.tv.data.compat
 
 import org.jellyfin.sdk.model.api.PlaybackErrorCode
 

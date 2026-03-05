@@ -1,12 +1,12 @@
-package org.jellyfin.androidtv.auth.repository
+package uk.rinzler.tv.auth.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.auth.model.PrivateUser
-import org.jellyfin.androidtv.auth.model.PublicUser
-import org.jellyfin.androidtv.auth.model.Server
-import org.jellyfin.androidtv.auth.store.AuthenticationStore
-import org.jellyfin.androidtv.util.sdk.toPublicUser
+import uk.rinzler.tv.auth.model.PrivateUser
+import uk.rinzler.tv.auth.model.PublicUser
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.tv.auth.store.AuthenticationStore
+import uk.rinzler.tv.util.sdk.toPublicUser
 import org.jellyfin.sdk.Jellyfin
 import org.jellyfin.sdk.api.client.exception.ApiClientException
 import org.jellyfin.sdk.api.client.extensions.userApi

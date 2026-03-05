@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.player.photo
+package uk.rinzler.tv.ui.player.photo
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -15,9 +15,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.flow.map
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.ui.ScreensaverLock
-import org.jellyfin.androidtv.ui.player.base.PlayerSurface
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.ui.ScreensaverLock
+import uk.rinzler.tv.ui.player.base.PlayerSurface
 import org.jellyfin.playback.core.PlaybackManager
 import org.jellyfin.playback.core.model.PlayState
 import org.jellyfin.playback.core.queue.queue

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 import android.view.View
 import android.widget.Toast
@@ -7,12 +7,12 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.model.DataRefreshService
-import org.jellyfin.androidtv.data.repository.ItemMutationRepository
-import org.jellyfin.androidtv.ui.GuideChannelHeader
-import org.jellyfin.androidtv.ui.asTimerInfoDto
-import org.jellyfin.androidtv.ui.livetv.TvManager
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.model.DataRefreshService
+import uk.rinzler.tv.data.repository.ItemMutationRepository
+import uk.rinzler.tv.ui.GuideChannelHeader
+import uk.rinzler.tv.ui.asTimerInfoDto
+import uk.rinzler.tv.ui.livetv.TvManager
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.liveTvApi
 import org.jellyfin.sdk.api.client.extensions.userLibraryApi
@@ -194,18 +194,18 @@ fun CustomPlaybackOverlayFragment.askToSkip(position: Duration, segmentType: Med
 	// Post to main thread since this is called from ExoPlayer's playback thread
 	lifecycleScope.launch(Dispatchers.Main) {
 		val playbackController = playbackController
-		
+
 		// Only show "Play Next Episode" for OUTRO segments
 		val isOutro = segmentType == MediaSegmentType.OUTRO
 		val hasNextEpisode = playbackController?.hasNextItem() == true
 		val nextEpisode = playbackController?.nextItem
-		
+
 		if (isOutro && hasNextEpisode && nextEpisode != null) {
 			// Show "Play Next Episode" button for outro segments
 			binding.skipOverlay.targetPosition = position
 			binding.skipOverlay.nextEpisodeTitle = nextEpisode.name
 			binding.skipOverlay.episodeEndPosition = null
-			
+
 			binding.skipOverlay.onPlayNext = {
 				playbackController.next()
 			}

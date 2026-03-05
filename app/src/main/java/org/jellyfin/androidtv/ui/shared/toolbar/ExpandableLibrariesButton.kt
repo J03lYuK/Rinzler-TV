@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.shared.toolbar
+package uk.rinzler.tv.ui.shared.toolbar
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -27,19 +27,19 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.Session
-import org.jellyfin.androidtv.data.model.AggregatedLibrary
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.base.ProvideTextStyle
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.button.Button
-import org.jellyfin.androidtv.ui.base.button.ButtonColors
-import org.jellyfin.androidtv.ui.base.button.IconButton
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncher
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.Session
+import uk.rinzler.tv.data.model.AggregatedLibrary
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.ProvideTextStyle
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.button.Button
+import uk.rinzler.tv.ui.base.button.ButtonColors
+import uk.rinzler.tv.ui.base.button.IconButton
+import uk.rinzler.tv.ui.itemhandling.ItemLauncher
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.CollectionType
 import java.util.UUID
@@ -61,7 +61,7 @@ fun ExpandableLibrariesButton(
 ) {
 	val interactionSource = remember { MutableInteractionSource() }
 	val scope = rememberCoroutineScope()
-	
+
 	// Track focus within the entire group (icon + expanded libraries)
 	var hasFocusInGroup by remember { mutableStateOf(false) }
 
@@ -88,7 +88,7 @@ fun ExpandableLibrariesButton(
 					contentDescription = "Libraries",
 				)
 			}
-			
+
 			AnimatedVisibility(
 				visible = hasFocusInGroup,
 				enter = expandHorizontally(
@@ -105,14 +105,14 @@ fun ExpandableLibrariesButton(
 					verticalAlignment = Alignment.CenterVertically,
 				) {
 					Spacer(modifier = Modifier.width(8.dp))
-					
+
 					ProvideTextStyle(
 						JellyfinTheme.typography.default.copy(fontWeight = FontWeight.Bold)
 					) {
 						if (enableMultiServer && aggregatedLibraries.isNotEmpty()) {
 							aggregatedLibraries.forEach { aggLib ->
 								val isActiveLibrary = activeLibraryId == aggLib.library.id
-								
+
 								Button(
 									onClick = {
 										if (!isActiveLibrary) {
@@ -137,7 +137,7 @@ fun ExpandableLibrariesButton(
 						} else {
 							userViews.forEach { library ->
 								val isActiveLibrary = activeLibraryId == library.id
-								
+
 								Button(
 									onClick = {
 										if (!isActiveLibrary) {
@@ -152,7 +152,7 @@ fun ExpandableLibrariesButton(
 							}
 						}
 					}
-					
+
 					Spacer(modifier = Modifier.width(4.dp))
 				}
 			}

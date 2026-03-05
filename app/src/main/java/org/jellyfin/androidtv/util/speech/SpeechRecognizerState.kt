@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util.speech
+package uk.rinzler.tv.util.speech
 
 import androidx.compose.runtime.Stable
 

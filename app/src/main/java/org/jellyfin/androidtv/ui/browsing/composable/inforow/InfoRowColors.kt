@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing.composable.inforow
+package uk.rinzler.tv.ui.browsing.composable.inforow
 
 import androidx.compose.ui.graphics.Color
 

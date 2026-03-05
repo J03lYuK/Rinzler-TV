@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.service.jellyseerr
+package uk.rinzler.tv.data.service.jellyseerr
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

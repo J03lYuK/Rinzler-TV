@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.service.jellyseerr
+package uk.rinzler.tv.data.service.jellyseerr
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -119,7 +119,7 @@ data class JellyseerrUserDto(
 		const val PERMISSION_REQUEST_MOVIE = 262144
 		const val PERMISSION_REQUEST_TV = 524288
 	}
-	
+
 	/**
 	 * Check if user has specific permission(s)
 	 */
@@ -129,37 +129,37 @@ data class JellyseerrUserDto(
 		if (perms and PERMISSION_ADMIN != 0) return true
 		return perms and permission != 0
 	}
-	
+
 	/**
 	 * Check if user can request 4K content (movies or TV)
 	 */
 	fun canRequest4k(): Boolean {
-		return hasPermission(PERMISSION_REQUEST_4K) || 
-			hasPermission(PERMISSION_REQUEST_4K_MOVIE) || 
+		return hasPermission(PERMISSION_REQUEST_4K) ||
+			hasPermission(PERMISSION_REQUEST_4K_MOVIE) ||
 			hasPermission(PERMISSION_REQUEST_4K_TV)
 	}
-	
+
 	/**
 	 * Check if user can request 4K movies specifically
 	 */
 	fun canRequest4kMovies(): Boolean {
 		return hasPermission(PERMISSION_REQUEST_4K) || hasPermission(PERMISSION_REQUEST_4K_MOVIE)
 	}
-	
+
 	/**
 	 * Check if user can request 4K TV specifically
 	 */
 	fun canRequest4kTv(): Boolean {
 		return hasPermission(PERMISSION_REQUEST_4K) || hasPermission(PERMISSION_REQUEST_4K_TV)
 	}
-	
+
 	/**
 	 * Check if user has advanced request permission (can modify server/profile/folder)
 	 */
 	fun hasAdvancedRequestPermission(): Boolean {
 		return hasPermission(PERMISSION_REQUEST_ADVANCED) || hasPermission(PERMISSION_MANAGE_REQUESTS)
 	}
-	
+
 	/**
 	 * Check if user is admin (has ADMIN permission)
 	 */
@@ -245,12 +245,12 @@ data class JellyseerrDiscoverItemDto(
 	}
 
 	override fun describeContents(): Int = 0
-	
+
 	/**
 	 * Check if this media is already available in the library
 	 */
 	fun isAvailable(): Boolean = mediaInfo?.status == 5 || mediaInfo?.status == 4
-	
+
 	/**
 	 * Check if this media has been blacklisted
 	 * Status 6 = blacklisted
@@ -435,7 +435,7 @@ sealed class Seasons {
 	@Serializable
 	@SerialName("list")
 	data class List(val seasons: kotlin.collections.List<Int>) : Seasons()
-	
+
 	@Serializable
 	@SerialName("all")
 	object All : Seasons()
@@ -444,7 +444,7 @@ sealed class Seasons {
 // Custom serializer to serialize Seasons as either array or string
 class SeasonsSerializer : KSerializer<Seasons> {
 	override val descriptor = buildClassSerialDescriptor("Seasons")
-	
+
 	override fun serialize(encoder: Encoder, value: Seasons) {
 		when (value) {
 			is Seasons.List -> encoder.encodeSerializableValue(
@@ -454,7 +454,7 @@ class SeasonsSerializer : KSerializer<Seasons> {
 			is Seasons.All -> encoder.encodeString("all")
 		}
 	}
-	
+
 	override fun deserialize(decoder: Decoder): Seasons {
 		// Not needed for our use case (we only send, not receive)
 		throw NotImplementedError("Seasons deserialization not implemented")

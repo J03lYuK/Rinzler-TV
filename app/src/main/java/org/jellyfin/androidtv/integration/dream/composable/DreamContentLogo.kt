@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.integration.dream.composable
+package uk.rinzler.tv.integration.dream.composable
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import kotlin.random.Random
 
 @Composable
@@ -30,7 +30,7 @@ fun DreamContentLogo() {
 	val density = LocalDensity.current
 	val logoWidthDp = 400.dp
 	val logoHeightDp = 200.dp
-	
+
 	BoxWithConstraints(
 		modifier = Modifier
 			.fillMaxSize()
@@ -42,24 +42,24 @@ fun DreamContentLogo() {
 		val logoWidth = with(density) { logoWidthDp.toPx() }.toInt()
 		val logoHeight = with(density) { logoHeightDp.toPx() }.toInt()
 		val margin = 20f
-		
+
 		val offsetX = remember { Animatable(((screenWidth - logoWidth) / 2).toFloat()) }
 		val offsetY = remember { Animatable(((screenHeight - logoHeight) / 2).toFloat()) }
-		
+
 		// DVD-style bouncing animation
 		LaunchedEffect(Unit) {
 			var velocityX = if (Random.nextBoolean()) 0.5f else -0.5f
 			var velocityY = if (Random.nextBoolean()) 0.5f else -0.5f
-			
+
 			while (true) {
 				val minX = margin
 				val minY = margin
 				val maxX = (screenWidth - logoWidth - margin)
 				val maxY = (screenHeight - logoHeight - margin)
-				
+
 				var newX = offsetX.value + velocityX
 				var newY = offsetY.value + velocityY
-				
+
 				// Bounce off edges
 				if (newX <= minX) {
 					newX = minX
@@ -68,7 +68,7 @@ fun DreamContentLogo() {
 					newX = maxX
 					velocityX = -velocityX
 				}
-				
+
 				if (newY <= minY) {
 					newY = minY
 					velocityY = -velocityY
@@ -76,14 +76,14 @@ fun DreamContentLogo() {
 					newY = maxY
 					velocityY = -velocityY
 				}
-				
+
 				offsetX.snapTo(newX)
 				offsetY.snapTo(newY)
-				
+
 				delay(16) // ~60 FPS
 			}
 		}
-		
+
 		Image(
 			painter = painterResource(R.drawable.app_logo),
 			contentDescription = stringResource(R.string.app_name),

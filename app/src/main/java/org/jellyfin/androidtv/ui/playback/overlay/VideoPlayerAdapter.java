@@ -1,13 +1,13 @@
-package org.jellyfin.androidtv.ui.playback.overlay;
+package uk.rinzler.tv.ui.playback.overlay;
 
 import androidx.annotation.NonNull;
 import androidx.leanback.media.PlayerAdapter;
 
-import org.jellyfin.androidtv.auth.repository.UserRepository;
-import org.jellyfin.androidtv.ui.playback.CustomPlaybackOverlayFragment;
-import org.jellyfin.androidtv.ui.playback.PlaybackController;
-import org.jellyfin.androidtv.util.Utils;
-import org.jellyfin.androidtv.util.apiclient.StreamHelper;
+import uk.rinzler.tv.auth.repository.UserRepository;
+import uk.rinzler.tv.ui.playback.CustomPlaybackOverlayFragment;
+import uk.rinzler.tv.ui.playback.PlaybackController;
+import uk.rinzler.tv.util.Utils;
+import uk.rinzler.tv.util.apiclient.StreamHelper;
 import org.jellyfin.sdk.model.api.ChapterInfo;
 import org.jellyfin.sdk.model.api.MediaSourceInfo;
 import org.koin.java.KoinJavaComponent;
@@ -181,16 +181,16 @@ public class VideoPlayerAdapter extends PlayerAdapter {
     boolean hasCast() {
         org.jellyfin.sdk.model.api.BaseItemDto item = getCurrentlyPlayingItem();
         if (item == null) return false;
-        
+
         java.util.List<org.jellyfin.sdk.model.api.BaseItemPerson> people = item.getPeople();
         if (people != null && !people.isEmpty()) {
             return true;
         }
-        
+
         if (item.getType() == org.jellyfin.sdk.model.api.BaseItemKind.EPISODE && item.getSeriesId() != null) {
             return true;
         }
-        
+
         return false;
     }
 }

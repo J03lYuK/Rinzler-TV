@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv
+package uk.rinzler.tv
 
 import android.content.Context
 import androidx.lifecycle.ProcessLifecycleOwner
@@ -7,8 +7,8 @@ import androidx.startup.AppInitializer
 import androidx.startup.Initializer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.di.KoinInitializer
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.di.KoinInitializer
 
 @Suppress("unused")
 class SessionInitializer : Initializer<Unit> {

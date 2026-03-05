@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.player.photo
+package uk.rinzler.tv.ui.player.photo
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.focusGroup
@@ -17,9 +17,9 @@ import androidx.compose.ui.layout.onVisibilityChanged
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.button.IconButton
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.button.IconButton
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

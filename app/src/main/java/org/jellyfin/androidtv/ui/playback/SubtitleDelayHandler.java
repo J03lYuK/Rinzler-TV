@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback;
+package uk.rinzler.tv.ui.playback;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -28,17 +28,17 @@ public class SubtitleDelayHandler implements Player.Listener {
     private final Queue<DelayedCue> delayedCues = new LinkedList<>();
     private long offsetMs = 0;
     private Runnable checkRunnable;
-    
+
     private static class DelayedCue {
         final List<Cue> cues;
         final long showTimeMs;
-        
+
         DelayedCue(List<Cue> cues, long showTimeMs) {
             this.cues = cues;
             this.showTimeMs = showTimeMs;
         }
     }
-    
+
     public SubtitleDelayHandler(@NonNull SubtitleView subtitleView) {
         this.subtitleView = subtitleView;
         this.handler = new Handler(Looper.getMainLooper());
@@ -53,13 +53,13 @@ public class SubtitleDelayHandler implements Player.Listener {
     public void setOffsetMs(long offsetMs) {
         Timber.d("SubtitleDelayHandler: Setting offset to %d ms", offsetMs);
         this.offsetMs = offsetMs;
-        
+
         delayedCues.clear();
         if (checkRunnable != null) {
             handler.removeCallbacks(checkRunnable);
             checkRunnable = null;
         }
-        
+
         subtitleView.setCues(Collections.emptyList());
     }
 
@@ -73,17 +73,17 @@ public class SubtitleDelayHandler implements Player.Listener {
     @Override
     public void onCues(@NonNull CueGroup cueGroup) {
         Timber.d("SubtitleDelayHandler.onCues() called with %d cues, offsetMs=%d", cueGroup.cues.size(), offsetMs);
-        
+
         if (offsetMs == 0) {
             Timber.d("SubtitleDelayHandler: No offset, showing %d cues immediately", cueGroup.cues.size());
             subtitleView.setCues(cueGroup.cues);
         } else if (offsetMs > 0) {
             long showTime = System.currentTimeMillis() + offsetMs;
             delayedCues.offer(new DelayedCue(cueGroup.cues, showTime));
-            
+
             Timber.d("SubtitleDelayHandler: Delaying %d cues by %d ms", cueGroup.cues.size(), offsetMs);
             subtitleView.setCues(Collections.emptyList());
-            
+
             scheduleCheck();
         } else {
             Timber.d("SubtitleDelayHandler: Negative offset, showing %d cues immediately", cueGroup.cues.size());
@@ -93,13 +93,13 @@ public class SubtitleDelayHandler implements Player.Listener {
 
     private void scheduleCheck() {
         if (checkRunnable != null) return;
-        
+
         checkRunnable = new Runnable() {
             @Override
             public void run() {
                 checkRunnable = null;
                 long now = System.currentTimeMillis();
-                
+
                 while (!delayedCues.isEmpty()) {
                     DelayedCue delayed = delayedCues.peek();
                     if (delayed.showTimeMs <= now) {

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.player.photo
+package uk.rinzler.tv.ui.player.photo
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
@@ -8,9 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalResources
-import org.jellyfin.androidtv.ui.composable.AsyncImage
-import org.jellyfin.androidtv.util.apiclient.getUrl
-import org.jellyfin.androidtv.util.apiclient.itemImages
+import uk.rinzler.tv.ui.composable.AsyncImage
+import uk.rinzler.tv.util.apiclient.getUrl
+import uk.rinzler.tv.util.apiclient.itemImages
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.ImageType

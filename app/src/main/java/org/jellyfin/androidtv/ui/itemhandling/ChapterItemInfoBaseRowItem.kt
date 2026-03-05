@@ -1,9 +1,9 @@
-package org.jellyfin.androidtv.ui.itemhandling
+package uk.rinzler.tv.ui.itemhandling
 
 import android.content.Context
-import org.jellyfin.androidtv.constant.ImageType
-import org.jellyfin.androidtv.data.model.ChapterItemInfo
-import org.jellyfin.androidtv.util.TimeUtils
+import uk.rinzler.tv.constant.ImageType
+import uk.rinzler.tv.data.model.ChapterItemInfo
+import uk.rinzler.tv.util.TimeUtils
 import org.jellyfin.sdk.model.extensions.ticks
 
 class ChapterItemInfoBaseRowItem(

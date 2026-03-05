@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing.v2
+package uk.rinzler.tv.ui.browsing.v2
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.auth.repository
+package uk.rinzler.tv.auth.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.NonCancellable
@@ -8,15 +8,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.auth.model.Server
-import org.jellyfin.androidtv.auth.store.AuthenticationPreferences
-import org.jellyfin.androidtv.auth.store.AuthenticationStore
-import org.jellyfin.androidtv.preference.PreferencesRepository
-import org.jellyfin.androidtv.preference.TelemetryPreferences
-import org.jellyfin.androidtv.preference.constant.UserSelectBehavior.DISABLED
-import org.jellyfin.androidtv.preference.constant.UserSelectBehavior.LAST_USER
-import org.jellyfin.androidtv.preference.constant.UserSelectBehavior.SPECIFIC_USER
-import org.jellyfin.androidtv.util.sdk.forUser
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.tv.auth.store.AuthenticationPreferences
+import uk.rinzler.tv.auth.store.AuthenticationStore
+import uk.rinzler.tv.preference.PreferencesRepository
+import uk.rinzler.tv.preference.TelemetryPreferences
+import uk.rinzler.tv.preference.constant.UserSelectBehavior.DISABLED
+import uk.rinzler.tv.preference.constant.UserSelectBehavior.LAST_USER
+import uk.rinzler.tv.preference.constant.UserSelectBehavior.SPECIFIC_USER
+import uk.rinzler.tv.util.sdk.forUser
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.ApiClientException
 import org.jellyfin.sdk.api.client.extensions.clientLogApi

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui
+package uk.rinzler.tv.ui
 
 import android.content.Context
 import android.graphics.Rect
@@ -31,17 +31,17 @@ import androidx.compose.ui.platform.AbstractComposeView
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.CircularProgressIndicator
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.LocalTextStyle
-import org.jellyfin.androidtv.ui.base.ProvideTextStyle
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.button.ButtonBase
-import org.jellyfin.androidtv.ui.base.button.ButtonDefaults
-import org.jellyfin.androidtv.util.MenuBuilder
-import org.jellyfin.androidtv.util.popupMenu
-import org.jellyfin.androidtv.util.showIfNotEmpty
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.CircularProgressIndicator
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.LocalTextStyle
+import uk.rinzler.tv.ui.base.ProvideTextStyle
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.button.ButtonBase
+import uk.rinzler.tv.ui.base.button.ButtonDefaults
+import uk.rinzler.tv.util.MenuBuilder
+import uk.rinzler.tv.util.popupMenu
+import uk.rinzler.tv.util.showIfNotEmpty
 
 @Composable
 fun ServerButton(

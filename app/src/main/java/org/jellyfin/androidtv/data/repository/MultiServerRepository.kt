@@ -1,18 +1,18 @@
-package org.jellyfin.androidtv.data.repository
+package uk.rinzler.tv.data.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
-import org.jellyfin.androidtv.auth.model.AuthenticationStoreUser
-import org.jellyfin.androidtv.auth.model.Server
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.auth.store.AuthenticationStore
-import org.jellyfin.androidtv.data.model.AggregatedItem
-import org.jellyfin.androidtv.data.model.AggregatedLibrary
-import org.jellyfin.androidtv.util.sdk.forUser
+import uk.rinzler.tv.auth.model.AuthenticationStoreUser
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.auth.store.AuthenticationStore
+import uk.rinzler.tv.data.model.AggregatedItem
+import uk.rinzler.tv.data.model.AggregatedLibrary
+import uk.rinzler.tv.util.sdk.forUser
 import org.jellyfin.sdk.Jellyfin
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.InvalidStatusException
@@ -264,7 +264,7 @@ class MultiServerRepositoryImpl(
 						)
 
 						val response = session.apiClient.itemsApi.getResumeItems(query)
-						
+
 						Timber.d("MultiServerRepository: Got ${response.content.items.size} resume items from ${session.server.name}")
 
 							response.content.items.map { item ->
@@ -321,7 +321,7 @@ class MultiServerRepositoryImpl(
 						)
 
 						val response = session.apiClient.userLibraryApi.getLatestMedia(query)
-						
+
 						Timber.d("MultiServerRepository: Got ${response.content.size} latest items from ${session.server.name}")
 
 							response.content.map { item ->
@@ -375,7 +375,7 @@ class MultiServerRepositoryImpl(
 						)
 
 						val response = session.apiClient.tvShowsApi.getNextUp(query)
-						
+
 						Timber.d("MultiServerRepository: Got ${response.content.items.size} next up items from ${session.server.name}")
 
 							response.content.items.map { item ->

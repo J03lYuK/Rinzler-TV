@@ -1,14 +1,14 @@
-package org.jellyfin.androidtv.ui.player.base
+package uk.rinzler.tv.ui.player.base
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import org.jellyfin.androidtv.ui.base.Seekbar
-import org.jellyfin.androidtv.ui.base.SeekbarColors
-import org.jellyfin.androidtv.ui.base.SeekbarDefaults
-import org.jellyfin.androidtv.ui.composable.rememberPlayerProgress
+import uk.rinzler.tv.ui.base.Seekbar
+import uk.rinzler.tv.ui.base.SeekbarColors
+import uk.rinzler.tv.ui.base.SeekbarDefaults
+import uk.rinzler.tv.ui.composable.rememberPlayerProgress
 import org.jellyfin.playback.core.PlaybackManager
 import org.jellyfin.playback.core.model.PlayState
 import org.koin.compose.koinInject

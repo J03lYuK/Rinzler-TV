@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util.apiclient
+package uk.rinzler.tv.util.apiclient
 
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.imageApi
@@ -32,7 +32,7 @@ fun JellyfinImage.getUrl(
 	if (tag.startsWith("http")) {
 		return tag
 	}
-	
+
 	return when (source) {
 		JellyfinImageSource.USER -> api.imageApi.getUserImageUrl(
 			userId = item,

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui;
+package uk.rinzler.tv.ui;
 
 import static org.koin.java.KoinJavaComponent.inject;
 
@@ -21,13 +21,13 @@ import android.widget.TextView;
 
 import androidx.lifecycle.Lifecycle;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.constant.CustomMessage;
-import org.jellyfin.androidtv.data.repository.CustomMessageRepository;
-import org.jellyfin.androidtv.util.ContextExtensionsKt;
-import org.jellyfin.androidtv.util.DateTimeExtensionsKt;
-import org.jellyfin.androidtv.util.TimeUtils;
-import org.jellyfin.androidtv.util.Utils;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.constant.CustomMessage;
+import uk.rinzler.tv.data.repository.CustomMessageRepository;
+import uk.rinzler.tv.util.ContextExtensionsKt;
+import uk.rinzler.tv.util.DateTimeExtensionsKt;
+import uk.rinzler.tv.util.TimeUtils;
+import uk.rinzler.tv.util.Utils;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 import org.jellyfin.sdk.model.api.SeriesTimerInfoDto;
 import org.jellyfin.sdk.model.api.TimerInfoDto;

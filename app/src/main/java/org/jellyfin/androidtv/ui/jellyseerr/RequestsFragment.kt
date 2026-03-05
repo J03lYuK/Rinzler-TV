@@ -1,13 +1,13 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.databinding.FragmentJellyseerrRequestsBinding
-import org.jellyfin.androidtv.ui.base.BaseFragment
+import uk.rinzler.tv.R
+import uk.rinzler.tv.databinding.FragmentJellyseerrRequestsBinding
+import uk.rinzler.tv.ui.base.BaseFragment
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,17 +21,17 @@ class RequestsFragment : BaseFragment(R.layout.fragment_jellyseerr_requests) {
 
 	override fun setupUI(view: View, savedInstanceState: Bundle?) {
 		_binding = FragmentJellyseerrRequestsBinding.bind(view)
-		
+
 		requestsAdapter = RequestsAdapter()
 		binding.requestsList.apply {
 			adapter = requestsAdapter
 			layoutManager = LinearLayoutManager(requireContext())
 		}
-		
+
 		binding.refreshButton.setOnClickListener {
 			viewModel.loadRequests()
 		}
-		
+
 		lifecycleScope.launch {
 			kotlinx.coroutines.delay(1000)
 			viewModel.loadRequests()

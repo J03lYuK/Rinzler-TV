@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen.library
+package uk.rinzler.tv.ui.settings.screen.library
 
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -10,18 +10,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.data.repository.MultiServerRepository
-import org.jellyfin.androidtv.data.repository.UserViewsRepository
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.navigation.LocalRouter
-import org.jellyfin.androidtv.ui.settings.Routes
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.data.repository.MultiServerRepository
+import uk.rinzler.tv.data.repository.UserViewsRepository
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.navigation.LocalRouter
+import uk.rinzler.tv.ui.settings.Routes
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.CollectionType
 import org.koin.compose.koinInject
@@ -41,14 +41,14 @@ fun SettingsLibrariesScreen() {
 	val multiServerRepository = koinInject<MultiServerRepository>()
 	val sessionRepository = koinInject<SessionRepository>()
 	val userPreferences = koinInject<UserPreferences>()
-	
+
 	var libraries by remember { mutableStateOf<List<LibraryDisplayItem>>(emptyList()) }
 	val currentSession by sessionRepository.currentSession.collectAsState()
-	
+
 	LaunchedEffect(Unit) {
 		val loggedInServers = multiServerRepository.getLoggedInServers()
 		val enableMultiServer = userPreferences[UserPreferences.enableMultiServerLibraries]
-		
+
 		if (enableMultiServer && loggedInServers.size > 1) {
 			val aggregatedLibraries = multiServerRepository.getAggregatedLibraries(includeHidden = true)
 			libraries = aggregatedLibraries.map { aggregated ->

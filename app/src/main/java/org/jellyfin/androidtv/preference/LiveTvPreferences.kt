@@ -1,6 +1,6 @@
-package org.jellyfin.androidtv.preference
+package uk.rinzler.tv.preference
 
-import org.jellyfin.androidtv.preference.store.DisplayPreferencesStore
+import uk.rinzler.tv.preference.store.DisplayPreferencesStore
 import org.jellyfin.preference.booleanPreference
 import org.jellyfin.preference.stringPreference
 import org.jellyfin.sdk.api.client.ApiClient

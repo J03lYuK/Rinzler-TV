@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.querying
+package uk.rinzler.tv.data.querying
 
 import java.util.UUID
 

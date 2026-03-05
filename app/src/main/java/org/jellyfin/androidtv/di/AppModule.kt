@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.di
+package uk.rinzler.tv.di
 
 import android.content.Context
 import android.os.Build
@@ -13,60 +13,60 @@ import coil3.serviceLoaderEnabled
 import coil3.svg.SvgDecoder
 import coil3.util.Logger
 import okio.Path.Companion.toOkioPath
-import org.jellyfin.androidtv.BuildConfig
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.auth.repository.UserRepositoryImpl
-import org.jellyfin.androidtv.data.eventhandling.SocketHandler
-import org.jellyfin.androidtv.data.model.DataRefreshService
-import org.jellyfin.androidtv.data.repository.CustomMessageRepository
-import org.jellyfin.androidtv.data.repository.CustomMessageRepositoryImpl
-import org.jellyfin.androidtv.data.repository.ExternalAppRepository
-import org.jellyfin.androidtv.data.repository.ItemMutationRepository
-import org.jellyfin.androidtv.data.repository.ItemMutationRepositoryImpl
-import org.jellyfin.androidtv.data.repository.JellyseerrRepository
-import org.jellyfin.androidtv.data.repository.JellyseerrRepositoryImpl
-import org.jellyfin.androidtv.data.repository.LocalWatchlistRepository
-import org.jellyfin.androidtv.data.repository.MdbListRepository
-import org.jellyfin.androidtv.data.repository.TmdbRepository
-import org.jellyfin.androidtv.data.repository.NotificationsRepository
-import org.jellyfin.androidtv.data.repository.NotificationsRepositoryImpl
-import org.jellyfin.androidtv.data.repository.UserViewsRepository
-import org.jellyfin.androidtv.data.repository.UserViewsRepositoryImpl
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.data.service.UpdateCheckerService
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.data.syncplay.SyncPlayManager
-import org.jellyfin.androidtv.integration.dream.DreamViewModel
-import org.jellyfin.androidtv.ui.InteractionTrackerViewModel
-import org.jellyfin.androidtv.ui.home.mediabar.MediaBarSlideshowViewModel
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncher
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.navigation.NavigationRepositoryImpl
-import org.jellyfin.androidtv.ui.shuffle.ShuffleManager
-import org.jellyfin.androidtv.ui.playback.PlaybackControllerContainer
-import org.jellyfin.androidtv.ui.playback.nextup.NextUpViewModel
-import org.jellyfin.androidtv.ui.playback.segment.MediaSegmentRepository
-import org.jellyfin.androidtv.ui.playback.segment.MediaSegmentRepositoryImpl
-import org.jellyfin.androidtv.ui.playback.stillwatching.StillWatchingViewModel
-import org.jellyfin.androidtv.ui.player.photo.PhotoPlayerViewModel
-import org.jellyfin.androidtv.ui.search.SearchFragmentDelegate
-import org.jellyfin.androidtv.ui.search.SearchRepository
-import org.jellyfin.androidtv.ui.search.SearchRepositoryImpl
-import org.jellyfin.androidtv.ui.search.SearchViewModel
-import org.jellyfin.androidtv.ui.syncplay.SyncPlayViewModel
-import org.jellyfin.androidtv.ui.settings.compat.SettingsViewModel
-import org.jellyfin.androidtv.ui.startup.ServerAddViewModel
-import org.jellyfin.androidtv.ui.startup.StartupViewModel
-import org.jellyfin.androidtv.ui.startup.UserLoginViewModel
-import org.jellyfin.androidtv.util.KeyProcessor
-import org.jellyfin.androidtv.util.MarkdownRenderer
-import org.jellyfin.androidtv.util.PlaybackHelper
-import org.jellyfin.androidtv.util.apiclient.ReportingHelper
-import org.jellyfin.androidtv.util.coil.CoilTimberLogger
-import org.jellyfin.androidtv.util.coil.createCoilConnectivityChecker
-import org.jellyfin.androidtv.util.sdk.SdkPlaybackHelper
+import uk.rinzler.tv.BuildConfig
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.auth.repository.UserRepositoryImpl
+import uk.rinzler.tv.data.eventhandling.SocketHandler
+import uk.rinzler.tv.data.model.DataRefreshService
+import uk.rinzler.tv.data.repository.CustomMessageRepository
+import uk.rinzler.tv.data.repository.CustomMessageRepositoryImpl
+import uk.rinzler.tv.data.repository.ExternalAppRepository
+import uk.rinzler.tv.data.repository.ItemMutationRepository
+import uk.rinzler.tv.data.repository.ItemMutationRepositoryImpl
+import uk.rinzler.tv.data.repository.JellyseerrRepository
+import uk.rinzler.tv.data.repository.JellyseerrRepositoryImpl
+import uk.rinzler.tv.data.repository.LocalWatchlistRepository
+import uk.rinzler.tv.data.repository.MdbListRepository
+import uk.rinzler.tv.data.repository.TmdbRepository
+import uk.rinzler.tv.data.repository.NotificationsRepository
+import uk.rinzler.tv.data.repository.NotificationsRepositoryImpl
+import uk.rinzler.tv.data.repository.UserViewsRepository
+import uk.rinzler.tv.data.repository.UserViewsRepositoryImpl
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.data.service.UpdateCheckerService
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.data.syncplay.SyncPlayManager
+import uk.rinzler.tv.integration.dream.DreamViewModel
+import uk.rinzler.tv.ui.InteractionTrackerViewModel
+import uk.rinzler.tv.ui.home.mediabar.MediaBarSlideshowViewModel
+import uk.rinzler.tv.ui.itemhandling.ItemLauncher
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.navigation.NavigationRepositoryImpl
+import uk.rinzler.tv.ui.shuffle.ShuffleManager
+import uk.rinzler.tv.ui.playback.PlaybackControllerContainer
+import uk.rinzler.tv.ui.playback.nextup.NextUpViewModel
+import uk.rinzler.tv.ui.playback.segment.MediaSegmentRepository
+import uk.rinzler.tv.ui.playback.segment.MediaSegmentRepositoryImpl
+import uk.rinzler.tv.ui.playback.stillwatching.StillWatchingViewModel
+import uk.rinzler.tv.ui.player.photo.PhotoPlayerViewModel
+import uk.rinzler.tv.ui.search.SearchFragmentDelegate
+import uk.rinzler.tv.ui.search.SearchRepository
+import uk.rinzler.tv.ui.search.SearchRepositoryImpl
+import uk.rinzler.tv.ui.search.SearchViewModel
+import uk.rinzler.tv.ui.syncplay.SyncPlayViewModel
+import uk.rinzler.tv.ui.settings.compat.SettingsViewModel
+import uk.rinzler.tv.ui.startup.ServerAddViewModel
+import uk.rinzler.tv.ui.startup.StartupViewModel
+import uk.rinzler.tv.ui.startup.UserLoginViewModel
+import uk.rinzler.tv.util.KeyProcessor
+import uk.rinzler.tv.util.MarkdownRenderer
+import uk.rinzler.tv.util.PlaybackHelper
+import uk.rinzler.tv.util.apiclient.ReportingHelper
+import uk.rinzler.tv.util.coil.CoilTimberLogger
+import uk.rinzler.tv.util.coil.createCoilConnectivityChecker
+import uk.rinzler.tv.util.sdk.SdkPlaybackHelper
 import org.jellyfin.sdk.android.androidDevice
 import org.jellyfin.sdk.api.client.HttpClientOptions
 import org.jellyfin.sdk.api.okhttp.OkHttpFactory
@@ -174,12 +174,12 @@ val appModule = module {
 	single<MediaSegmentRepository> { MediaSegmentRepositoryImpl(get(), get(), get()) }
 	single<ExternalAppRepository> { ExternalAppRepository(get()) }
 	single { LocalWatchlistRepository(androidContext()) }
-	single<org.jellyfin.androidtv.data.repository.MultiServerRepository> { 
-		org.jellyfin.androidtv.data.repository.MultiServerRepositoryImpl(get(), get(), get(), get(), get(defaultDeviceInfo), get()) 
+	single<uk.rinzler.tv.data.repository.MultiServerRepository> {
+		uk.rinzler.tv.data.repository.MultiServerRepositoryImpl(get(), get(), get(), get(), get(defaultDeviceInfo), get())
 	}
-	single { org.jellyfin.androidtv.util.sdk.ApiClientFactory(get(), get(), get(defaultDeviceInfo), get()) }
-	single<org.jellyfin.androidtv.data.repository.ParentalControlsRepository> {
-		org.jellyfin.androidtv.data.repository.ParentalControlsRepositoryImpl(androidContext(), get(), get())
+	single { uk.rinzler.tv.util.sdk.ApiClientFactory(get(), get(), get(defaultDeviceInfo), get()) }
+	single<uk.rinzler.tv.data.repository.ParentalControlsRepository> {
+		uk.rinzler.tv.data.repository.ParentalControlsRepositoryImpl(androidContext(), get(), get())
 	}
 
 	// Jellyseerr - Global preferences (server URL, UI settings)
@@ -200,15 +200,15 @@ val appModule = module {
 	viewModel { DreamViewModel(get(), get(), get(), get(), get()) }
 	viewModel { SettingsViewModel() }
 	viewModel { SyncPlayViewModel() }
-	viewModel { org.jellyfin.androidtv.ui.jellyseerr.JellyseerrViewModel(get()) }
-	viewModel { org.jellyfin.androidtv.ui.itemdetail.v2.ItemDetailsViewModel(get(), get()) }
-	viewModel { org.jellyfin.androidtv.ui.browsing.v2.LibraryBrowseViewModel(get(), get(), get(), get(), get()) }
-	viewModel { org.jellyfin.androidtv.ui.browsing.v2.GenresGridViewModel(get(), get(), get(), get()) }
-	viewModel { org.jellyfin.androidtv.ui.browsing.v2.MusicBrowseViewModel(get(), get()) }
-	viewModel { org.jellyfin.androidtv.ui.browsing.v2.LiveTvBrowseViewModel(get()) }
-	viewModel { org.jellyfin.androidtv.ui.browsing.v2.RecordingsBrowseViewModel(get()) }
-	viewModel { org.jellyfin.androidtv.ui.browsing.v2.ScheduleBrowseViewModel(get()) }
-	viewModel { org.jellyfin.androidtv.ui.browsing.v2.SeriesRecordingsBrowseViewModel(get()) }
+	viewModel { uk.rinzler.tv.ui.jellyseerr.JellyseerrViewModel(get()) }
+	viewModel { uk.rinzler.tv.ui.itemdetail.v2.ItemDetailsViewModel(get(), get()) }
+	viewModel { uk.rinzler.tv.ui.browsing.v2.LibraryBrowseViewModel(get(), get(), get(), get(), get()) }
+	viewModel { uk.rinzler.tv.ui.browsing.v2.GenresGridViewModel(get(), get(), get(), get()) }
+	viewModel { uk.rinzler.tv.ui.browsing.v2.MusicBrowseViewModel(get(), get()) }
+	viewModel { uk.rinzler.tv.ui.browsing.v2.LiveTvBrowseViewModel(get()) }
+	viewModel { uk.rinzler.tv.ui.browsing.v2.RecordingsBrowseViewModel(get()) }
+	viewModel { uk.rinzler.tv.ui.browsing.v2.ScheduleBrowseViewModel(get()) }
+	viewModel { uk.rinzler.tv.ui.browsing.v2.SeriesRecordingsBrowseViewModel(get()) }
 	single { MediaBarSlideshowViewModel(get(), get(), get(), get(), androidContext(), get(), get(), get(), get()) }
 
 	// SyncPlay
@@ -222,9 +222,9 @@ val appModule = module {
 	single { KeyProcessor() }
 	single { ReportingHelper(get(), get(), get()) }
 	single<PlaybackHelper> { SdkPlaybackHelper(get(), get(), get(), get(), get()) }
-	single { org.jellyfin.androidtv.ui.playback.ThemeMusicPlayer(androidContext()) }
+	single { uk.rinzler.tv.ui.playback.ThemeMusicPlayer(androidContext()) }
 
-	factory { (context: Context) -> 
-		SearchFragmentDelegate(context, get(), get(), get()) 
+	factory { (context: Context) ->
+		SearchFragmentDelegate(context, get(), get(), get())
 	}
 }

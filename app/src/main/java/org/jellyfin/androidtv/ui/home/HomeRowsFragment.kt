@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.os.Bundle
 import android.view.KeyEvent
@@ -30,36 +30,36 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.constant.CustomMessage
-import org.jellyfin.androidtv.constant.HomeSectionType
-import org.jellyfin.androidtv.data.model.DataRefreshService
-import org.jellyfin.androidtv.data.repository.CustomMessageRepository
-import org.jellyfin.androidtv.data.repository.NotificationsRepository
-import org.jellyfin.androidtv.data.repository.UserViewsRepository
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.data.service.BlurContext
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.ui.browsing.CompositeClickedListener
-import org.jellyfin.androidtv.ui.browsing.CompositeSelectedListener
-import org.jellyfin.androidtv.ui.itemhandling.AggregatedItemRowAdapter
-import org.jellyfin.androidtv.ui.itemhandling.BaseRowItem
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncher
-import org.jellyfin.androidtv.ui.itemhandling.ItemRowAdapter
-import org.jellyfin.androidtv.ui.itemhandling.refreshItem
-import org.jellyfin.androidtv.ui.home.mediabar.MediaBarSlideshowViewModel
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.playback.AudioEventListener
-import org.jellyfin.androidtv.ui.playback.MediaManager
-import org.jellyfin.androidtv.ui.playback.PlaybackController
-import org.jellyfin.androidtv.ui.playback.ThemeMusicPlayer
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter
-import org.jellyfin.androidtv.ui.presentation.PositionableListRowPresenter
-import org.jellyfin.androidtv.util.KeyProcessor
-import org.jellyfin.androidtv.util.Debouncer
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.constant.CustomMessage
+import uk.rinzler.tv.constant.HomeSectionType
+import uk.rinzler.tv.data.model.DataRefreshService
+import uk.rinzler.tv.data.repository.CustomMessageRepository
+import uk.rinzler.tv.data.repository.NotificationsRepository
+import uk.rinzler.tv.data.repository.UserViewsRepository
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.data.service.BlurContext
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.ui.browsing.CompositeClickedListener
+import uk.rinzler.tv.ui.browsing.CompositeSelectedListener
+import uk.rinzler.tv.ui.itemhandling.AggregatedItemRowAdapter
+import uk.rinzler.tv.ui.itemhandling.BaseRowItem
+import uk.rinzler.tv.ui.itemhandling.ItemLauncher
+import uk.rinzler.tv.ui.itemhandling.ItemRowAdapter
+import uk.rinzler.tv.ui.itemhandling.refreshItem
+import uk.rinzler.tv.ui.home.mediabar.MediaBarSlideshowViewModel
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.playback.AudioEventListener
+import uk.rinzler.tv.ui.playback.MediaManager
+import uk.rinzler.tv.ui.playback.PlaybackController
+import uk.rinzler.tv.ui.playback.ThemeMusicPlayer
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter
+import uk.rinzler.tv.ui.presentation.PositionableListRowPresenter
+import uk.rinzler.tv.util.KeyProcessor
+import uk.rinzler.tv.util.Debouncer
 import org.jellyfin.playback.core.PlaybackManager
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.liveTvApi
@@ -180,11 +180,11 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 			if (userSettingPreferences[UserSettingPreferences.mediaBarEnabled]) {
 				rows.add(mediaBarRow)
 			}
-			
+
 			// Actually add the sections
 			val mergeContinueWatching = userPreferences[UserPreferences.mergeContinueWatchingNextUp]
 			var mergedRowAdded = false
-			
+
 			for (section in homesections) when (section) {
 				HomeSectionType.MEDIA_BAR -> { /* Now handled by separate toggle above */ }
 				HomeSectionType.LATEST_MEDIA -> rows.add(helper.loadRecentlyAdded(cachedViews ?: userViewsRepository.views.first()))
@@ -293,7 +293,7 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 					.launchIn(this)
 			}
 		}
-		
+
 		// Listen for session/user changes and recreate the fragment with fresh data
 		lifecycleScope.launch {
 			sessionRepository.currentSession
@@ -318,11 +318,11 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		
+
 		verticalGridView?.apply {
 			// Reduce item prefetch distance for faster initial load
 			setItemViewCacheSize(20)
-			
+
 			// Intercept DPAD_LEFT before HorizontalGridView consumes it.
 			// HorizontalGridView eats DPAD_LEFT even at position 0, so the only
 			// way to transfer focus to the sidebar is to intercept first.
@@ -333,7 +333,7 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 					val horizontalGrid = findParentHorizontalGridView(focusedView)
 					if (horizontalGrid != null && horizontalGrid.selectedPosition == 0) {
 						try {
-							val sidebar = requireActivity().findViewById<View?>(org.jellyfin.androidtv.R.id.sidebar)
+							val sidebar = requireActivity().findViewById<View?>(uk.rinzler.tv.R.id.sidebar)
 							if (sidebar != null && sidebar.isVisible) {
 								sidebar.requestFocus()
 								return@setOnKeyInterceptListener true
@@ -343,7 +343,7 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 				}
 				false
 			}
-			
+
 			// Handle upward navigation from first row to toolbar
 			setOnKeyListener { _, keyCode, event ->
 				if (event.action == android.view.KeyEvent.ACTION_DOWN &&
@@ -351,7 +351,7 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 					selectedPosition == 0) {
 					try {
 						val decor = requireActivity().window.decorView
-						val toolbarActions = decor.findViewById<View?>(org.jellyfin.androidtv.R.id.toolbar_actions)
+						val toolbarActions = decor.findViewById<View?>(uk.rinzler.tv.R.id.toolbar_actions)
 						if (toolbarActions != null && toolbarActions.isFocusable) {
 							toolbarActions.requestFocus()
 							return@setOnKeyListener true
@@ -394,7 +394,7 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 			// Re-retrieve rows that have pending change triggers (e.g. Resume, Next Up, Latest)
 			// but don't force-refresh static rows like Views/My Media to avoid resetting selection
 			refreshRows(delayed = true)
-			
+
 			// Reload media bar with fresh random items when returning to home
 			mediaBarViewModel.loadInitialContent()
 		} else {
@@ -406,7 +406,7 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 		// Update audio queue
 		Timber.i("Updating audio queue in HomeFragment (onResume)")
 		nowPlaying.update(requireContext(), adapter as MutableObjectAdapter<Row>)
-		
+
 		// Ensure focus is restored to the grid when returning from other screens (like search)
 		// This prevents the issue where users can't control the media bar after backing out
 		view?.postDelayed({
@@ -418,7 +418,7 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 
 	override fun onPause() {
 		super.onPause()
-		
+
 		// Stop theme music immediately when fragment is paused
 		themeMusicPlayer.stop()
 	}
@@ -463,7 +463,7 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 		super.onDestroy()
 
 		mediaManager.removeAudioEventListener(this)
-		
+
 		// Stop any playing theme music
 		themeMusicPlayer.stop()
 	}
@@ -491,16 +491,16 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 		) {
 			// Update selected position flow immediately (for focus tracking)
 			_selectedPositionFlow.value = selectedPosition
-			
+
 			if (item !is BaseRowItem) {
 				currentItem = null
 				// Clear selected item state immediately
 				selectionDebouncer.cancel()
 				_selectedItemStateFlow.value = SelectedItemState.EMPTY
-				
+
 				// Cancel any pending theme music playback
 				themeMusicPlayer.cancelDelayedPlay()
-				
+
 				// Don't clear background if we're on the media bar row - it has its own backdrop
 				if (row !is MediaBarRow) {
 					backgroundService.clearBackgrounds()
@@ -532,7 +532,7 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 				backgroundDebouncer.debounce {
 					backgroundService.setBackground(item.baseItem, BlurContext.BROWSING)
 				}
-				
+
 				// Play theme music on focus if enabled (with delay)
 				item.baseItem?.let { baseItem ->
 					themeMusicPlayer.playThemeMusicOnFocusDelayed(baseItem)

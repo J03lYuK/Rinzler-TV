@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing
+package uk.rinzler.tv.ui.browsing
 
 import androidx.leanback.widget.HeaderItem
 import androidx.leanback.widget.ListRow
@@ -8,9 +8,9 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.data.repository.ItemRepository
-import org.jellyfin.androidtv.ui.itemhandling.ItemRowAdapter
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
+import uk.rinzler.tv.data.repository.ItemRepository
+import uk.rinzler.tv.ui.itemhandling.ItemRowAdapter
+import uk.rinzler.tv.ui.presentation.CardPresenter
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.itemsApi
 import org.jellyfin.sdk.api.client.extensions.personsApi

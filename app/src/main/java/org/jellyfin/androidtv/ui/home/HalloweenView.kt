@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -12,13 +12,13 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import kotlin.random.Random
 
 /**
  * A custom view that renders Halloween effects with ghosts, pumpkins,
  * spiders, and raining candy.
- * 
+ *
  * Performance optimized for Android TV / Fire TV devices:
  * - Uses cached bitmap rendering from vector drawables
  * - Reduced element count for low-powered devices
@@ -104,14 +104,14 @@ class HalloweenView @JvmOverloads constructor(
 	private val candies = mutableListOf<Candy>()
 
 	private val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
-	
+
 	// Cached bitmaps for efficient drawing
 	private var ghostBitmap: Bitmap? = null
 	private var pumpkinBitmap: Bitmap? = null
 	private var spiderBitmap: Bitmap? = null
 	private var candyBitmap: Bitmap? = null
 	private val bitmapCache = mutableMapOf<Int, Bitmap>()
-	
+
 	// Candy color tints
 	private val candyColors = listOf(
 		0xFFFF6B6B.toInt(),  // Red
@@ -154,7 +154,7 @@ class HalloweenView @JvmOverloads constructor(
 		isFocusable = false
 		loadBitmaps()
 	}
-	
+
 	private fun loadBitmaps() {
 		ContextCompat.getDrawable(context, R.drawable.seasonal_ghost)?.let { drawable ->
 			ghostBitmap = drawable.toBitmap(64, 64)
@@ -169,7 +169,7 @@ class HalloweenView @JvmOverloads constructor(
 			candyBitmap = drawable.toBitmap(32, 32)
 		}
 	}
-	
+
 	private fun getScaledBitmap(source: Bitmap?, size: Int): Bitmap? {
 		source ?: return null
 		return bitmapCache.getOrPut(System.identityHashCode(source) * 1000 + size) {
@@ -231,7 +231,7 @@ class HalloweenView @JvmOverloads constructor(
 		animationRunnable = object : Runnable {
 			override fun run() {
 				if (!isActive) return
-				
+
 				frameCount++
 				updateCandies()
 				// Stagger updates to reduce per-frame work
@@ -243,7 +243,7 @@ class HalloweenView @JvmOverloads constructor(
 					updateSpiders()
 				}
 				invalidate()
-				
+
 				// Target ~30fps
 				handler.postDelayed(this, 33L)
 			}

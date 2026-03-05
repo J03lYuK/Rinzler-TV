@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util.coil
+package uk.rinzler.tv.util.coil
 
 import android.util.Log
 import coil3.util.Logger

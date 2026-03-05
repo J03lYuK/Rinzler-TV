@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing.genre
+package uk.rinzler.tv.ui.browsing.genre
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,7 @@ import coil3.load
 import coil3.request.crossfade
 import coil3.request.error
 import coil3.request.placeholder
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 
 /**
  * Presenter for displaying Jellyfin genre cards with backdrop images.
@@ -31,7 +31,7 @@ class JellyfinGenreCardPresenter : Presenter() {
 		val density = parent.context.resources.displayMetrics.density
 		val widthPx = (cardWidthDp * density).toInt()
 		val heightPx = (cardHeightDp * density).toInt()
-		
+
 		cardView.layoutParams = ViewGroup.MarginLayoutParams(widthPx, heightPx).apply {
 			setMargins(
 				(4 * density).toInt(),
@@ -58,8 +58,8 @@ class JellyfinGenreCardPresenter : Presenter() {
 		if (genre.itemCount > 0) {
 			countView.visibility = View.VISIBLE
 			countView.text = context.resources.getQuantityString(
-				R.plurals.genre_item_count, 
-				genre.itemCount, 
+				R.plurals.genre_item_count,
+				genre.itemCount,
 				genre.itemCount
 			)
 		} else {

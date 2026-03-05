@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.itemhandling;
+package uk.rinzler.tv.ui.itemhandling;
 
 import static org.koin.java.KoinJavaComponent.inject;
 
@@ -12,27 +12,27 @@ import androidx.leanback.widget.Presenter;
 import androidx.leanback.widget.PresenterSelector;
 import androidx.leanback.widget.Row;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.auth.repository.UserRepository;
-import org.jellyfin.androidtv.constant.ChangeTriggerType;
-import org.jellyfin.androidtv.constant.QueryType;
-import org.jellyfin.androidtv.data.model.ChapterItemInfo;
-import org.jellyfin.androidtv.data.model.DataRefreshService;
-import org.jellyfin.androidtv.data.model.FilterOptions;
-import org.jellyfin.androidtv.data.querying.GetAdditionalPartsRequest;
-import org.jellyfin.androidtv.data.querying.GetSeriesTimersRequest;
-import org.jellyfin.androidtv.data.querying.GetSpecialsRequest;
-import org.jellyfin.androidtv.data.querying.GetTrailersRequest;
-import org.jellyfin.androidtv.data.querying.GetUserViewsRequest;
-import org.jellyfin.androidtv.data.repository.UserViewsRepository;
-import org.jellyfin.androidtv.ui.GridButton;
-import org.jellyfin.androidtv.ui.browsing.BrowseGridFragment;
-import org.jellyfin.androidtv.ui.browsing.EnhancedBrowseFragment;
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter;
-import org.jellyfin.androidtv.ui.presentation.TextItemPresenter;
-import org.jellyfin.androidtv.util.Utils;
-import org.jellyfin.androidtv.util.apiclient.EmptyResponse;
-import org.jellyfin.androidtv.util.sdk.compat.JavaCompat;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.auth.repository.UserRepository;
+import uk.rinzler.tv.constant.ChangeTriggerType;
+import uk.rinzler.tv.constant.QueryType;
+import uk.rinzler.tv.data.model.ChapterItemInfo;
+import uk.rinzler.tv.data.model.DataRefreshService;
+import uk.rinzler.tv.data.model.FilterOptions;
+import uk.rinzler.tv.data.querying.GetAdditionalPartsRequest;
+import uk.rinzler.tv.data.querying.GetSeriesTimersRequest;
+import uk.rinzler.tv.data.querying.GetSpecialsRequest;
+import uk.rinzler.tv.data.querying.GetTrailersRequest;
+import uk.rinzler.tv.data.querying.GetUserViewsRequest;
+import uk.rinzler.tv.data.repository.UserViewsRepository;
+import uk.rinzler.tv.ui.GridButton;
+import uk.rinzler.tv.ui.browsing.BrowseGridFragment;
+import uk.rinzler.tv.ui.browsing.EnhancedBrowseFragment;
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter;
+import uk.rinzler.tv.ui.presentation.TextItemPresenter;
+import uk.rinzler.tv.util.Utils;
+import uk.rinzler.tv.util.apiclient.EmptyResponse;
+import uk.rinzler.tv.util.sdk.compat.JavaCompat;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 import org.jellyfin.sdk.model.api.BaseItemPerson;
 import org.jellyfin.sdk.model.api.ItemSortBy;
@@ -133,9 +133,9 @@ public class ItemRowAdapter extends MutableObjectAdapter<Object> {
         return queryType;
     }
 
-    public org.jellyfin.androidtv.ui.presentation.CardPresenter getCardPresenter() {
-        if (mPresenter instanceof org.jellyfin.androidtv.ui.presentation.CardPresenter) {
-            return (org.jellyfin.androidtv.ui.presentation.CardPresenter) mPresenter;
+    public uk.rinzler.tv.ui.presentation.CardPresenter getCardPresenter() {
+        if (mPresenter instanceof uk.rinzler.tv.ui.presentation.CardPresenter) {
+            return (uk.rinzler.tv.ui.presentation.CardPresenter) mPresenter;
         }
         return null;
     }

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 import org.jellyfin.sdk.model.api.BaseItemDto
 import java.util.UUID
@@ -18,7 +18,7 @@ class VideoQueueManager {
 	}
 
 	fun getCurrentVideoQueue(): List<BaseItemDto> = _currentVideoQueue
-	
+
 	fun getServerIdForPosition(position: Int): UUID? {
 		return _serverIds.getOrNull(position)
 	}

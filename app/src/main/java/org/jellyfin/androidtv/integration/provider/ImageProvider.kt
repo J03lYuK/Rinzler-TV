@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.integration.provider
+package uk.rinzler.tv.integration.provider
 
 import android.content.ContentProvider
 import android.content.ContentValues
@@ -13,8 +13,8 @@ import coil3.ImageLoader
 import coil3.asDrawable
 import coil3.request.ImageRequest
 import coil3.request.error
-import org.jellyfin.androidtv.BuildConfig
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.BuildConfig
+import uk.rinzler.tv.R
 import org.koin.android.ext.android.inject
 import java.io.IOException
 

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.os.Bundle
 import android.view.KeyEvent
@@ -20,17 +20,17 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.constant.JellyseerrRowType
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverItemDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrMediaInfoDto
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.itemhandling.JellyseerrMediaBaseRowItem
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.ui.presentation.PositionableListRowPresenter
+import uk.rinzler.tv.R
+import uk.rinzler.tv.constant.JellyseerrRowType
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverItemDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrMediaInfoDto
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.itemhandling.JellyseerrMediaBaseRowItem
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.ui.presentation.PositionableListRowPresenter
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
@@ -43,11 +43,11 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 	private val userPreferences: UserPreferences by inject()
 	private val jellyseerrPreferences: JellyseerrPreferences by inject(named("global"))
 	private var hasSetupRows = false
-	
+
 	// Flow to track selected item for display in parent fragment
 	private val _selectedItemStateFlow = MutableStateFlow<JellyseerrDiscoverItemDto?>(null)
 	val selectedItemStateFlow: StateFlow<JellyseerrDiscoverItemDto?> = _selectedItemStateFlow.asStateFlow()
-	
+
 	// Track focus position for restoration
 	private var lastFocusedPosition = 0
 	private var lastFocusedSubPosition = 0
@@ -61,7 +61,7 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 	private var isLoadingUpcomingMovies = false
 	private var isLoadingTv = false
 	private var isLoadingUpcomingTv = false
-	
+
 	// Map to track which row index corresponds to which row type
 	private val rowTypeToIndex = mutableMapOf<JellyseerrRowType, Int>()
 	private val indexToRowType = mutableMapOf<Int, JellyseerrRowType>()
@@ -74,18 +74,18 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		
+
 		savedInstanceState?.let {
 			lastFocusedPosition = it.getInt(STATE_LAST_FOCUSED_POSITION, 0)
 			lastFocusedSubPosition = it.getInt(STATE_LAST_FOCUSED_SUB_POSITION, 0)
 			isReturningFromDetail = it.getBoolean(STATE_IS_RETURNING_FROM_DETAIL, false)
 			Timber.d("JellyseerrDiscoverRowsFragment: Restored state - position=$lastFocusedPosition, subPosition=$lastFocusedSubPosition, isReturning=$isReturningFromDetail")
 		}
-		
+
 		setupRows()
 		setupObservers()
 	}
-	
+
 	override fun onSaveInstanceState(outState: Bundle) {
 		super.onSaveInstanceState(outState)
 		outState.putInt(STATE_LAST_FOCUSED_POSITION, lastFocusedPosition)
@@ -96,7 +96,7 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		
+
 		verticalGridView?.apply {
 			// Intercept DPAD_LEFT before HorizontalGridView consumes it.
 			// HorizontalGridView eats DPAD_LEFT even at position 0, so the only
@@ -136,34 +136,34 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 
 	override fun onResume() {
 		super.onResume()
-		
+
 		// Refresh content from Jellyseerr server when returning to screen
 		// Skip if data is already loaded (e.g. returning from settings)
 		if (!isReturningFromDetail && !viewModel.hasContent()) {
 			loadContent()
 		}
-		
+
 		// Restore focus position if returning from detail screen
 		if (isReturningFromDetail) {
 			Timber.d("JellyseerrDiscoverRowsFragment: onResume() called with isReturningFromDetail=true")
 			Timber.d("JellyseerrDiscoverRowsFragment: Saved position to restore: row=$lastFocusedPosition, col=$lastFocusedSubPosition")
-			
+
 			view?.postDelayed({
 				if (isResumed && adapter != null && verticalGridView != null) {
 					Timber.d("JellyseerrDiscoverRowsFragment: Starting restoration process")
-					
+
 					// Validate positions are in bounds BEFORE setting any flags
 					val savedPosition = lastFocusedPosition
 					val savedSubPosition = lastFocusedSubPosition
 					val adapterSize = adapter.size()
-					
+
 					Timber.d("JellyseerrDiscoverRowsFragment: Validating - row=$savedPosition (adapter size=$adapterSize), col=$savedSubPosition")
-					
+
 					if (savedPosition >= 0 && savedPosition < adapterSize) {
 						// Set flag to prevent position updates during restoration
 						isRestoringPosition = true
 						Timber.d("JellyseerrDiscoverRowsFragment: isRestoringPosition=true")
-						
+
 						// Use ListRowPresenter.SelectItemViewHolderTask to restore both positions atomically
 						Timber.d("JellyseerrDiscoverRowsFragment: Calling setSelectedPosition($savedPosition, false, SelectItemViewHolderTask($savedSubPosition))")
 						setSelectedPosition(
@@ -171,15 +171,15 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 							false,
 							androidx.leanback.widget.ListRowPresenter.SelectItemViewHolderTask(savedSubPosition)
 						)
-						
+
 						// Request focus
 						if (!verticalGridView!!.hasFocus()) {
 							Timber.d("JellyseerrDiscoverRowsFragment: Requesting focus on grid view")
 							verticalGridView?.requestFocus()
 						}
-						
+
 						Timber.d("JellyseerrDiscoverRowsFragment: Focus restored successfully, clearing flags after delay")
-						
+
 						// Clear the restoration flag after a delay to allow restoration to complete
 						view?.postDelayed({
 							isRestoringPosition = false
@@ -205,7 +205,7 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 				isReturningFromDetail = true
 				Timber.d("JellyseerrDiscoverRowsFragment: Item clicked - capturing position: row=$lastFocusedPosition, col=$lastFocusedSubPosition, currentSelectedPosition=${selectedPosition}")
 				onContentSelected(discoverItem)
-			} else if (item is org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrGenreDto) {
+			} else if (item is uk.rinzler.tv.data.service.jellyseerr.JellyseerrGenreDto) {
 				// Genre card clicked - navigate to browse by genre
 				// Determine media type based on row type
 				val rowType = indexToRowType[lastFocusedPosition]
@@ -216,34 +216,34 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 				}
 				isReturningFromDetail = true
 				onGenreSelected(item, mediaType)
-			} else if (item is org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrStudioDto) {
+			} else if (item is uk.rinzler.tv.data.service.jellyseerr.JellyseerrStudioDto) {
 				// Studio card clicked - navigate to browse by studio
 				isReturningFromDetail = true
 				onStudioSelected(item)
-			} else if (item is org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrNetworkDto) {
+			} else if (item is uk.rinzler.tv.data.service.jellyseerr.JellyseerrNetworkDto) {
 				// Network card clicked - navigate to browse by network
 				isReturningFromDetail = true
 				onNetworkSelected(item)
 			}
 		}
-		
+
 		onItemViewSelectedListener = OnItemViewSelectedListener { itemViewHolder, item, rowViewHolder, row ->
 			val discoverItem = (item as? JellyseerrMediaBaseRowItem)?.item
 			if (discoverItem != null) {
 				_selectedItemStateFlow.value = discoverItem
 			}
-			
+
 			Timber.d("JellyseerrDiscoverRowsFragment: onItemViewSelectedListener - selectedPosition=$selectedPosition, isRestoringPosition=$isRestoringPosition, isReturningFromDetail=$isReturningFromDetail")
-			
+
 			// Only update lastFocusedPosition if we're not in the middle of restoring position
 			// This prevents the position from being overwritten during the restoration process
 			if (!isRestoringPosition) {
 				val newPosition = selectedPosition
 				// Track position continuously as user navigates (same as HomeRowsFragment)
 				lastFocusedPosition = newPosition
-				
+
 				Timber.d("JellyseerrDiscoverRowsFragment: Updated lastFocusedPosition to $newPosition")
-				
+
 				// Store the sub-position within the row (horizontal position)
 				if (row is ListRow && item is JellyseerrMediaBaseRowItem) {
 					// Get the position of this item within its row
@@ -259,7 +259,7 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 								break
 							}
 						}
-						
+
 						// Check if we need to load more items for pagination
 						// Trigger API call when within last 10 items of the row
 						if (itemPosition >= rowAdapter.size() - 10 && itemPosition >= 0 && rowAdapter.size() > 0) {
@@ -316,16 +316,16 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 		// Get active rows from configuration (enabled rows in order)
 		val activeRows = jellyseerrPreferences.activeRows
 		Timber.d("JellyseerrDiscoverRowsFragment: Setting up ${activeRows.size} active rows")
-		
+
 		// Clear the mappings
 		rowTypeToIndex.clear()
 		indexToRowType.clear()
-		
+
 		// Add rows based on configuration
 		activeRows.forEachIndexed { index, rowType ->
 			rowTypeToIndex[rowType] = index
 			indexToRowType[index] = rowType
-			
+
 			val (headerTitle, presenter) = when (rowType) {
 				JellyseerrRowType.RECENT_REQUESTS -> getString(R.string.jellyseerr_row_recent_requests) to CardPresenter()
 				JellyseerrRowType.TRENDING -> getString(R.string.jellyseerr_row_trending) to CardPresenter()
@@ -338,11 +338,11 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 				JellyseerrRowType.UPCOMING_SERIES -> getString(R.string.jellyseerr_row_upcoming_series) to CardPresenter()
 				JellyseerrRowType.NETWORKS -> getString(R.string.jellyseerr_row_networks) to NetworkStudioCardPresenter()
 			}
-			
+
 			val header = HeaderItem(index.toLong(), headerTitle)
 			val rowAdapter = ArrayObjectAdapter(presenter)
 			rowsAdapter.add(ListRow(header, rowAdapter))
-			
+
 			Timber.d("JellyseerrDiscoverRowsFragment: Added row $index: $headerTitle (type=$rowType)")
 		}
 
@@ -378,7 +378,7 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 				}
 			}
 		}
-		
+
 		// Trending
 		lifecycleScope.launch {
 			viewModel.trending.collect { trending ->
@@ -489,7 +489,7 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 			listRow?.adapter?.let { rowAdapter ->
 				if (rowAdapter is ArrayObjectAdapter) {
 					Timber.d("JellyseerrDiscoverRowsFragment: Setting row $index - showing ${items.size} items")
-					
+
 					val wrappedItems = items.map { JellyseerrMediaBaseRowItem(it) }
 					val currentView = view
 					if (currentView != null) {
@@ -591,17 +591,17 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 		navigationRepository.navigate(Destinations.jellyseerrMediaDetails(itemJson))
 	}
 
-	private fun onGenreSelected(genre: org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrGenreDto, mediaType: String) {
+	private fun onGenreSelected(genre: uk.rinzler.tv.data.service.jellyseerr.JellyseerrGenreDto, mediaType: String) {
 		// Navigate to browse by genre fragment
 		navigationRepository.navigate(Destinations.jellyseerrBrowseByGenre(genre.id, genre.name, mediaType))
 	}
 
-	private fun onStudioSelected(studio: org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrStudioDto) {
+	private fun onStudioSelected(studio: uk.rinzler.tv.data.service.jellyseerr.JellyseerrStudioDto) {
 		// Navigate to browse by studio fragment (movies only)
 		navigationRepository.navigate(Destinations.jellyseerrBrowseByStudio(studio.id, studio.name))
 	}
 
-	private fun onNetworkSelected(network: org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrNetworkDto) {
+	private fun onNetworkSelected(network: uk.rinzler.tv.data.service.jellyseerr.JellyseerrNetworkDto) {
 		// Navigate to browse by network fragment (TV only)
 		navigationRepository.navigate(Destinations.jellyseerrBrowseByNetwork(network.id, network.name))
 	}

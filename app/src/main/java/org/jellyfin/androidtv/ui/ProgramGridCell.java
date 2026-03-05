@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui;
+package uk.rinzler.tv.ui;
 
 import static org.koin.java.KoinJavaComponent.get;
 
@@ -14,12 +14,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.preference.LiveTvPreferences;
-import org.jellyfin.androidtv.ui.livetv.LiveTvGuide;
-import org.jellyfin.androidtv.util.DateTimeExtensionsKt;
-import org.jellyfin.androidtv.util.Utils;
-import org.jellyfin.androidtv.util.sdk.BaseItemExtensionsKt;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.preference.LiveTvPreferences;
+import uk.rinzler.tv.ui.livetv.LiveTvGuide;
+import uk.rinzler.tv.util.DateTimeExtensionsKt;
+import uk.rinzler.tv.util.Utils;
+import uk.rinzler.tv.util.sdk.BaseItemExtensionsKt;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 
 import java.time.LocalDateTime;

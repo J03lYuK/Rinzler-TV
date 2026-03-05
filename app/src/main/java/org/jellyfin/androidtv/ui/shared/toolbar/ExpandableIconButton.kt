@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.shared.toolbar
+package uk.rinzler.tv.ui.shared.toolbar
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
@@ -27,12 +27,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.base.ProvideTextStyle
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.button.Button
-import org.jellyfin.androidtv.ui.base.button.ButtonColors
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.ProvideTextStyle
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.button.Button
+import uk.rinzler.tv.ui.base.button.ButtonColors
 
 /**
  * An icon button that expands to show a text label when focused
@@ -52,14 +52,14 @@ fun ExpandableIconButton(
 	val isFocused by interactionSource.collectIsFocusedAsState()
 	val bringIntoViewRequester = remember { BringIntoViewRequester() }
 	val scope = rememberCoroutineScope()
-	
+
 	val scale by animateFloatAsState(
 		targetValue = if (isFocused) 1.05f else 1f,
 		animationSpec = tween(durationMillis = 200),
 		label = "ButtonScale"
 	)
-	
-	
+
+
 	// Bring button into view when focused
 	LaunchedEffect(isFocused) {
 		if (isFocused) {
@@ -94,7 +94,7 @@ fun ExpandableIconButton(
 				imageVector = icon,
 				contentDescription = contentDescription,
 			)
-			
+
 			// Text label that appears when focused
 			if (isFocused) {
 				Spacer(modifier = Modifier.width(8.dp))

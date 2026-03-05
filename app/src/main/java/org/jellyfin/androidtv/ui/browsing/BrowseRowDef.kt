@@ -1,10 +1,10 @@
-package org.jellyfin.androidtv.ui.browsing
+package uk.rinzler.tv.ui.browsing
 
-import org.jellyfin.androidtv.constant.ChangeTriggerType
-import org.jellyfin.androidtv.constant.HomeSectionType
-import org.jellyfin.androidtv.constant.QueryType
-import org.jellyfin.androidtv.data.querying.GetSeriesTimersRequest
-import org.jellyfin.androidtv.data.querying.GetSpecialsRequest
+import uk.rinzler.tv.constant.ChangeTriggerType
+import uk.rinzler.tv.constant.HomeSectionType
+import uk.rinzler.tv.constant.QueryType
+import uk.rinzler.tv.data.querying.GetSeriesTimersRequest
+import uk.rinzler.tv.data.querying.GetSpecialsRequest
 import org.jellyfin.sdk.model.api.request.GetAlbumArtistsRequest
 import org.jellyfin.sdk.model.api.request.GetArtistsRequest
 import org.jellyfin.sdk.model.api.request.GetItemsRequest

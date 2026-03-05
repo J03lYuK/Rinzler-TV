@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home.mediabar
+package uk.rinzler.tv.ui.home.mediabar
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,12 +17,12 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.data.repository.ItemMutationRepository
-import org.jellyfin.androidtv.data.repository.MultiServerRepository
-import org.jellyfin.androidtv.data.repository.ParentalControlsRepository
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.data.repository.ItemMutationRepository
+import uk.rinzler.tv.data.repository.MultiServerRepository
+import uk.rinzler.tv.data.repository.ParentalControlsRepository
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
 import org.jellyfin.sdk.api.client.ApiClient
 import android.content.Context
 import coil3.ImageLoader
@@ -105,7 +105,7 @@ class MediaBarSlideshowViewModel(
 			if (items.isNotEmpty()) {
 				refreshBackgroundItems()
 			}
-			
+
 			// Restart auto-advance if not paused
 			if (!_playbackState.value.isPaused) {
 				resetAutoAdvanceTimer()
@@ -118,10 +118,10 @@ class MediaBarSlideshowViewModel(
 	/**
 	 * Fetch items of a specific type from a server.
 	 * Helper function to avoid code duplication.
-	 * 
+	 *
 	 * Note: TV series are folders (they contain episodes), so we exclude the
 	 * IS_NOT_FOLDER filter for SERIES to properly fetch shows.
-	 * 
+	 *
 	 * @param apiClient The API client to use for this request (supports multi-server)
 	 * @param userId The user ID for authentication on this specific server
 	 * @param itemType The type of item to fetch (MOVIE or SERIES)
@@ -139,7 +139,7 @@ class MediaBarSlideshowViewModel(
 		} else {
 			setOf(ItemFilter.IS_NOT_FOLDER)
 		}
-		
+
 		// Get parent library IDs that match the requested item type
 		// This prevents scanning through unrelated libraries (e.g., music, recordings, live TV)
 		val allLibraries = libraryCache.getOrPut(userId) {
@@ -169,18 +169,18 @@ class MediaBarSlideshowViewModel(
 						else -> false
 					}
 				}
-		
+
 		// If no matching libraries found, return empty list immediately
 		// This prevents slow recursive searches through all libraries
 		if (matchingLibraries.isEmpty()) {
 			Timber.d("MediaBar: No ${itemType.name} libraries found, skipping fetch")
 			return emptyList()
 		}
-		
+
 		// Fetch from ALL matching libraries in parallel and combine results
 		// Distribute the item count across libraries for better variety
 		val itemsPerLibrary = (maxItems * 1.5 / matchingLibraries.size).toInt().coerceAtLeast(5)
-		
+
 		return kotlinx.coroutines.coroutineScope {
 			matchingLibraries.map { library ->
 				async {
@@ -228,7 +228,7 @@ class MediaBarSlideshowViewModel(
 	 *
 	 * Optimized to fetch movies and shows in parallel for faster loading.
 	 * Respects user's content type preference (movies/tv/both).
-	 * 
+	 *
 	 * Multi-server support:
 	 * - If more than one server is logged in, fetches from all servers
 	 * - If only one server, uses current behavior (default API client)
@@ -248,7 +248,7 @@ class MediaBarSlideshowViewModel(
 			val loggedInServers = withContext(Dispatchers.IO) {
 				multiServerRepository.getLoggedInServers()
 			}
-			
+
 			val enableMultiServer = userPreferences[UserPreferences.enableMultiServerLibraries]
 			val useMultiServer = enableMultiServer && loggedInServers.size > 1
 			Timber.d("MediaBar: Loading items from ${loggedInServers.size} server(s), multi-server enabled: $enableMultiServer, using: $useMultiServer")
@@ -259,7 +259,7 @@ class MediaBarSlideshowViewModel(
 				if (useMultiServer) {
 					// Multi-server: fetch from all servers in parallel
 					val itemsPerServer = (config.maxItems / loggedInServers.size).coerceAtLeast(3)
-					
+
 					loggedInServers.map { session ->
 						async {
 							// Add 10 second timeout per server to prevent slow servers from blocking
@@ -488,34 +488,34 @@ class MediaBarSlideshowViewModel(
 	 * Preload images for slides adjacent to the current one.
 	 * This prevents flickering when navigating between slides by ensuring
 	 * images are already cached before they're displayed.
-	 * 
+	 *
 	 * @param currentIndex The index of the currently displayed slide
 	 */
 	private fun preloadAdjacentImages(currentIndex: Int) {
 		if (items.isEmpty()) return
-		
+
 		viewModelScope.launch(Dispatchers.IO) {
 			val indicesToPreload = mutableSetOf<Int>()
-			
+
 			// Preload current slide first (highest priority)
 			indicesToPreload.add(currentIndex)
-			
+
 			// Preload next slide
 			val nextIndex = (currentIndex + 1) % items.size
 			indicesToPreload.add(nextIndex)
-			
+
 			// Preload previous slide
 			val previousIndex = if (currentIndex == 0) items.size - 1 else currentIndex - 1
 			indicesToPreload.add(previousIndex)
-			
+
 			// Optionally preload one more slide ahead for smoother auto-advance
 			val nextNextIndex = (nextIndex + 1) % items.size
 			indicesToPreload.add(nextNextIndex)
-			
+
 			// Preload all the images in parallel
 			indicesToPreload.forEach { index ->
 				val item = items.getOrNull(index) ?: return@forEach
-				
+
 				// Preload backdrop
 				item.backdropUrl?.let { url ->
 					try {
@@ -527,7 +527,7 @@ class MediaBarSlideshowViewModel(
 						Timber.d("Failed to preload backdrop for item ${item.title}: ${e.message}")
 					}
 				}
-				
+
 				// Preload logo
 				item.logoUrl?.let { url ->
 					try {
@@ -547,39 +547,39 @@ class MediaBarSlideshowViewModel(
 	 * Refresh background items (not currently visible or adjacent) with new random selections.
 	 * This provides variety when regaining focus without causing flickering on the current slide.
 	 * Keeps the current item and its adjacent items (previous and next) unchanged.
-	 * 
+	 *
 	 * Multi-server support: fetches from all servers when multiple are logged in.
 	 */
 	private fun refreshBackgroundItems() {
 		if (items.isEmpty()) return
 		if (loadingJob?.isActive == true) return
-		
+
 		viewModelScope.launch(Dispatchers.IO) {
 			try {
 				val currentIndex = _playbackState.value.currentIndex
 				val config = getConfig()
 				val contentType = userSettingPreferences[UserSettingPreferences.mediaBarContentType]
-				
+
 				// Calculate which indices to keep (current, previous, next)
 				val indicesToKeep = mutableSetOf<Int>()
 				indicesToKeep.add(currentIndex)
 				indicesToKeep.add((currentIndex + 1) % items.size)
 				indicesToKeep.add(if (currentIndex == 0) items.size - 1 else currentIndex - 1)
-				
+
 				// Only refresh if we have more than 3 items (otherwise all are adjacent)
 				if (items.size <= 3) return@launch
-				
+
 				// Calculate how many new items we need to fetch
 				val itemsToReplace = items.size - indicesToKeep.size
-				
+
 				// Get logged in servers
 				val loggedInServers = multiServerRepository.getLoggedInServers()
 				val enableMultiServer = userPreferences[UserPreferences.enableMultiServerLibraries]
 				val useMultiServer = enableMultiServer && loggedInServers.size > 1
-				
+
 				// Get current user ID for single-server mode
 				val currentUserId = userRepository.currentUser.value?.id
-				
+
 				// Fetch new random items (with multi-server support)
 				val newItemsWithApiClients: List<ItemWithApiClient> = if (useMultiServer) {
 					val itemsPerServer = (itemsToReplace / loggedInServers.size).coerceAtLeast(2)
@@ -632,7 +632,7 @@ class MediaBarSlideshowViewModel(
 					.filter { it.item.backdropImageTags?.isNotEmpty() == true }
 					.shuffled()
 					.take(itemsToReplace)
-				
+
 				// Convert to MediaBarSlideItem
 				val newSlideItems = newItemsWithApiClients.map { (item, itemApiClient, serverId) ->
 					MediaBarSlideItem(
@@ -668,22 +668,22 @@ class MediaBarSlideshowViewModel(
 						itemType = item.type ?: BaseItemKind.MOVIE,
 					)
 				}
-				
+
 				// Build new items list: keep existing items at protected indices, replace others
 				val updatedItems = items.toMutableList()
 				var newItemIndex = 0
-				
+
 				for (i in items.indices) {
 					if (!indicesToKeep.contains(i) && newItemIndex < newSlideItems.size) {
 						updatedItems[i] = newSlideItems[newItemIndex]
 						newItemIndex++
 					}
 				}
-				
+
 				// Update items list
 				items = updatedItems
 				_state.value = MediaBarState.Ready(items)
-				
+
 				// Preload the newly added items in the background
 				withContext(Dispatchers.IO) {
 					updatedItems.forEachIndexed { index, item ->
@@ -699,7 +699,7 @@ class MediaBarSlideshowViewModel(
 									Timber.d("Failed to preload backdrop for refreshed item ${item.title}: ${e.message}")
 								}
 							}
-							
+
 							// Preload logo
 							item.logoUrl?.let { url ->
 								try {
@@ -714,7 +714,7 @@ class MediaBarSlideshowViewModel(
 						}
 					}
 				}
-				
+
 				Timber.d("Refreshed ${newItemIndex} background items while keeping ${indicesToKeep.size} adjacent items")
 			} catch (e: Exception) {
 				Timber.e(e, "Failed to refresh background items: ${e.message}")

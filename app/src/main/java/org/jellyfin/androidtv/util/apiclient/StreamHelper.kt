@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util.apiclient
+package uk.rinzler.tv.util.apiclient
 
 import org.jellyfin.sdk.model.api.MediaSourceInfo
 import org.jellyfin.sdk.model.api.MediaStream
@@ -15,7 +15,7 @@ object StreamHelper {
 	fun getSubtitleStreams(mediaSource: MediaSourceInfo?): List<MediaStream> {
 		return getStreams(mediaSource, MediaStreamType.SUBTITLE)
 	}
-	
+
 	/**
 	 * Get all audio streams from a media source.
 	 */
@@ -23,7 +23,7 @@ object StreamHelper {
 	fun getAudioStreams(mediaSource: MediaSourceInfo?): List<MediaStream> {
 		return getStreams(mediaSource, MediaStreamType.AUDIO)
 	}
-	
+
 	/**
 	 * Get all streams of a specific type from a media source.
 	 */

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui
+package uk.rinzler.tv.ui
 
 import android.content.Context
 import android.os.Build
@@ -8,8 +8,8 @@ import android.widget.FrameLayout
 import androidx.annotation.DrawableRes
 import androidx.core.view.isVisible
 import androidx.core.view.setPadding
-import org.jellyfin.androidtv.databinding.TextUnderButtonBinding
-import org.jellyfin.androidtv.util.dp
+import uk.rinzler.tv.databinding.TextUnderButtonBinding
+import uk.rinzler.tv.util.dp
 
 class TextUnderButton @JvmOverloads constructor(
 	context: Context,

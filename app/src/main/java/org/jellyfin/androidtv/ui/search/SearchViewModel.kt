@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.search
+package uk.rinzler.tv.ui.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,13 +9,13 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.repository.JellyseerrRepository
-import org.jellyfin.androidtv.data.repository.ParentalControlsRepository
-import org.jellyfin.androidtv.data.service.jellyseerr.toBaseItemDto
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.util.ErrorHandler
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.repository.JellyseerrRepository
+import uk.rinzler.tv.data.repository.ParentalControlsRepository
+import uk.rinzler.tv.data.service.jellyseerr.toBaseItemDto
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.util.ErrorHandler
 import org.jellyfin.sdk.model.api.BaseItemKind
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds

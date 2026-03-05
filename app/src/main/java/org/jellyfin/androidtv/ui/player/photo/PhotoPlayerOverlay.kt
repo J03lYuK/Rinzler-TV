@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.player.photo
+package uk.rinzler.tv.ui.player.photo
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -7,8 +7,8 @@ import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.input.key.type
-import org.jellyfin.androidtv.ui.player.base.PlayerOverlayLayout
-import org.jellyfin.androidtv.ui.player.base.rememberPlayerOverlayVisibility
+import uk.rinzler.tv.ui.player.base.PlayerOverlayLayout
+import uk.rinzler.tv.ui.player.base.rememberPlayerOverlayVisibility
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.koin.androidx.compose.koinViewModel
 

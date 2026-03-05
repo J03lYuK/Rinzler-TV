@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.integration.dream.composable
+package uk.rinzler.tv.integration.dream.composable
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable
@@ -19,8 +19,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
-import org.jellyfin.androidtv.ui.composable.modifier.overscan
-import org.jellyfin.androidtv.ui.shared.toolbar.ToolbarClock
+import uk.rinzler.tv.ui.composable.modifier.overscan
+import uk.rinzler.tv.ui.shared.toolbar.ToolbarClock
 import kotlin.random.Random
 
 @Composable
@@ -31,9 +31,9 @@ fun DreamHeader(
 	val density = LocalDensity.current
 	val clockWidthDp = 150.dp
 	val clockHeightDp = 50.dp
-	
+
 	val clockAlpha = 1f - (dimmingLevel / 100f * 0.7f)
-	
+
 	BoxWithConstraints(
 		modifier = Modifier
 			.fillMaxSize()
@@ -45,25 +45,25 @@ fun DreamHeader(
 		val clockWidth = with(density) { clockWidthDp.toPx() }.toInt()
 		val clockHeight = with(density) { clockHeightDp.toPx() }.toInt()
 		val margin = 20f
-		
+
 		val offsetX = remember { Animatable(((screenWidth - clockWidth) / 2).toFloat()) }
 		val offsetY = remember { Animatable(((screenHeight - clockHeight) / 2).toFloat()) }
-		
+
 		// DVD-style bouncing animation
 		LaunchedEffect(showClock) {
 			if (showClock) {
 				var velocityX = if (Random.nextBoolean()) 0.5f else -0.5f
 				var velocityY = if (Random.nextBoolean()) 0.5f else -0.5f
-				
+
 				while (true) {
 					val minX = margin
 					val minY = margin
 					val maxX = (screenWidth - clockWidth - margin)
 					val maxY = (screenHeight - clockHeight - margin)
-					
+
 					var newX = offsetX.value + velocityX
 					var newY = offsetY.value + velocityY
-					
+
 					// Bounce off edges
 					if (newX <= minX) {
 						newX = minX
@@ -72,7 +72,7 @@ fun DreamHeader(
 						newX = maxX
 						velocityX = -velocityX
 					}
-					
+
 					if (newY <= minY) {
 						newY = minY
 						velocityY = -velocityY
@@ -80,15 +80,15 @@ fun DreamHeader(
 						newY = maxY
 						velocityY = -velocityY
 					}
-					
+
 					offsetX.snapTo(newX)
 					offsetY.snapTo(newY)
-					
+
 					delay(16) // ~60 FPS
 				}
 			}
 		}
-		
+
 		// Clock
 		AnimatedVisibility(
 			visible = showClock,

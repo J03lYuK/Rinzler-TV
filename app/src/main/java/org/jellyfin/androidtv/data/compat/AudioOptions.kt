@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.compat
+package uk.rinzler.tv.data.compat
 
 import org.jellyfin.sdk.model.api.DeviceProfile
 import org.jellyfin.sdk.model.api.MediaSourceInfo
@@ -10,7 +10,7 @@ open class AudioOptions {
 	var itemId: UUID? = null
 	var mediaSources: List<MediaSourceInfo>? = null
 	var profile: DeviceProfile? = null
-	
+
 	/**
 	 * Optional server ID for multi-server support.
 	 * When set, playback will use the API client for this specific server.

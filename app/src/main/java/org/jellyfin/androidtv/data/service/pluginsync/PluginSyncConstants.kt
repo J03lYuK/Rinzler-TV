@@ -1,8 +1,8 @@
-package org.jellyfin.androidtv.data.service.pluginsync
+package uk.rinzler.tv.data.service.pluginsync
 
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
 import org.jellyfin.preference.Preference
 
 /**

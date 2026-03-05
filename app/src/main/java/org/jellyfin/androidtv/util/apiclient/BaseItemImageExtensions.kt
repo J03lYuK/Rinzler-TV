@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util.apiclient
+package uk.rinzler.tv.util.apiclient
 
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.ImageType
@@ -43,7 +43,7 @@ fun BaseItemDto.getBannerImage() = itemImages[ImageType.BANNER]
  * Useful for episodes that might use series artwork.
  * @return The primary image from the item or its parent, or null if neither exists
  */
-fun BaseItemDto.getPrimaryImageWithFallback() = 
+fun BaseItemDto.getPrimaryImageWithFallback() =
 	itemImages[ImageType.PRIMARY] ?: parentImages[ImageType.PRIMARY]
 
 /**
@@ -51,5 +51,5 @@ fun BaseItemDto.getPrimaryImageWithFallback() =
  * Useful for episodes that might use series thumbnails.
  * @return The thumb image from the item or its parent, or null if neither exists
  */
-fun BaseItemDto.getThumbImageWithFallback() = 
+fun BaseItemDto.getThumbImageWithFallback() =
 	itemImages[ImageType.THUMB] ?: parentImages[ImageType.THUMB]

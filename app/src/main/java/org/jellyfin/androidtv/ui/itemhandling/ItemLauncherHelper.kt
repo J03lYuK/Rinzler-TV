@@ -1,12 +1,12 @@
-package org.jellyfin.androidtv.ui.itemhandling
+package uk.rinzler.tv.ui.itemhandling
 
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.util.apiclient.Response
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.util.apiclient.Response
+import uk.rinzler.tv.util.sdk.ApiClientFactory
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.ApiClientException
 import org.jellyfin.sdk.api.client.extensions.userLibraryApi
@@ -18,7 +18,7 @@ import java.util.UUID
 object ItemLauncherHelper {
 	private fun resolveApiClient(serverId: UUID?): ApiClient {
 		val defaultApi by KoinJavaComponent.inject<ApiClient>(ApiClient::class.java)
-		
+
 		return if (serverId != null) {
 			val apiClientFactory by KoinJavaComponent.inject<ApiClientFactory>(ApiClientFactory::class.java)
 			apiClientFactory.getApiClientForServer(serverId) ?: defaultApi
@@ -26,7 +26,7 @@ object ItemLauncherHelper {
 			defaultApi
 		}
 	}
-	
+
 	@JvmStatic
 	fun getItem(itemId: UUID, callback: Response<BaseItemDto>) {
 		getItem(itemId, null, callback)
@@ -47,7 +47,7 @@ object ItemLauncherHelper {
 			}
 		}
 	}
-	
+
 	suspend fun getItemBlocking(itemId: UUID, serverId: UUID? = null): BaseItemDto? {
 		val api = resolveApiClient(serverId)
 

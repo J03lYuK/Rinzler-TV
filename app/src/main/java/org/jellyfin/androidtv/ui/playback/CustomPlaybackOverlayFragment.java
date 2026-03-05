@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback;
+package uk.rinzler.tv.ui.playback;
 
 import static org.koin.java.KoinJavaComponent.inject;
 
@@ -37,44 +37,44 @@ import androidx.leanback.widget.Row;
 import androidx.leanback.widget.RowPresenter;
 import androidx.lifecycle.Lifecycle;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.constant.CustomMessage;
-import org.jellyfin.androidtv.data.repository.CustomMessageRepository;
-import org.jellyfin.androidtv.data.service.BackgroundService;
-import org.jellyfin.androidtv.databinding.OverlayTvGuideBinding;
-import org.jellyfin.androidtv.databinding.VlcPlayerInterfaceBinding;
-import org.jellyfin.androidtv.ui.GuideChannelHeader;
-import org.jellyfin.androidtv.ui.GuidePagingButton;
-import org.jellyfin.androidtv.ui.HorizontalScrollViewListener;
-import org.jellyfin.androidtv.ui.LiveProgramDetailPopup;
-import org.jellyfin.androidtv.ui.ObservableHorizontalScrollView;
-import org.jellyfin.androidtv.ui.ObservableScrollView;
-import org.jellyfin.androidtv.ui.ProgramGridCell;
-import org.jellyfin.androidtv.ui.ScrollViewListener;
-import org.jellyfin.androidtv.ui.itemhandling.BaseItemPersonBaseRowItem;
-import org.jellyfin.androidtv.ui.itemhandling.ChapterItemInfoBaseRowItem;
-import org.jellyfin.androidtv.ui.itemhandling.ItemRowAdapter;
-import org.jellyfin.androidtv.ui.livetv.LiveTvGuide;
-import org.jellyfin.androidtv.ui.livetv.LiveTvGuideFragment;
-import org.jellyfin.androidtv.ui.livetv.LiveTvGuideFragmentHelperKt;
-import org.jellyfin.androidtv.ui.livetv.TvManager;
-import org.jellyfin.androidtv.ui.navigation.Destinations;
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository;
-import org.jellyfin.androidtv.ui.playback.overlay.LeanbackOverlayFragment;
-import org.jellyfin.androidtv.ui.presentation.CardPresenter;
-import org.jellyfin.androidtv.ui.presentation.ChannelCardPresenter;
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter;
-import org.jellyfin.androidtv.ui.presentation.PositionableListRowPresenter;
-import org.jellyfin.androidtv.util.CoroutineUtils;
-import org.jellyfin.androidtv.util.DateTimeExtensionsKt;
-import org.jellyfin.androidtv.util.ImageHelper;
-import org.jellyfin.androidtv.util.InfoLayoutHelper;
-import org.jellyfin.androidtv.preference.UserSettingPreferences;
-import org.jellyfin.androidtv.util.TextUtilsKt;
-import org.jellyfin.androidtv.util.TimeUtils;
-import org.jellyfin.androidtv.util.Utils;
-import org.jellyfin.androidtv.util.apiclient.EmptyResponse;
-import org.jellyfin.androidtv.util.sdk.BaseItemExtensionsKt;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.constant.CustomMessage;
+import uk.rinzler.tv.data.repository.CustomMessageRepository;
+import uk.rinzler.tv.data.service.BackgroundService;
+import uk.rinzler.tv.databinding.OverlayTvGuideBinding;
+import uk.rinzler.tv.databinding.VlcPlayerInterfaceBinding;
+import uk.rinzler.tv.ui.GuideChannelHeader;
+import uk.rinzler.tv.ui.GuidePagingButton;
+import uk.rinzler.tv.ui.HorizontalScrollViewListener;
+import uk.rinzler.tv.ui.LiveProgramDetailPopup;
+import uk.rinzler.tv.ui.ObservableHorizontalScrollView;
+import uk.rinzler.tv.ui.ObservableScrollView;
+import uk.rinzler.tv.ui.ProgramGridCell;
+import uk.rinzler.tv.ui.ScrollViewListener;
+import uk.rinzler.tv.ui.itemhandling.BaseItemPersonBaseRowItem;
+import uk.rinzler.tv.ui.itemhandling.ChapterItemInfoBaseRowItem;
+import uk.rinzler.tv.ui.itemhandling.ItemRowAdapter;
+import uk.rinzler.tv.ui.livetv.LiveTvGuide;
+import uk.rinzler.tv.ui.livetv.LiveTvGuideFragment;
+import uk.rinzler.tv.ui.livetv.LiveTvGuideFragmentHelperKt;
+import uk.rinzler.tv.ui.livetv.TvManager;
+import uk.rinzler.tv.ui.navigation.Destinations;
+import uk.rinzler.tv.ui.navigation.NavigationRepository;
+import uk.rinzler.tv.ui.playback.overlay.LeanbackOverlayFragment;
+import uk.rinzler.tv.ui.presentation.CardPresenter;
+import uk.rinzler.tv.ui.presentation.ChannelCardPresenter;
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter;
+import uk.rinzler.tv.ui.presentation.PositionableListRowPresenter;
+import uk.rinzler.tv.util.CoroutineUtils;
+import uk.rinzler.tv.util.DateTimeExtensionsKt;
+import uk.rinzler.tv.util.ImageHelper;
+import uk.rinzler.tv.util.InfoLayoutHelper;
+import uk.rinzler.tv.preference.UserSettingPreferences;
+import uk.rinzler.tv.util.TextUtilsKt;
+import uk.rinzler.tv.util.TimeUtils;
+import uk.rinzler.tv.util.Utils;
+import uk.rinzler.tv.util.apiclient.EmptyResponse;
+import uk.rinzler.tv.util.sdk.BaseItemExtensionsKt;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 import org.jellyfin.sdk.model.api.BaseItemKind;
 import org.jellyfin.sdk.model.api.ChapterInfo;
@@ -137,7 +137,7 @@ public class CustomPlaybackOverlayFragment extends Fragment implements LiveTvGui
     private final Lazy<NavigationRepository> navigationRepository = inject(NavigationRepository.class);
     private final Lazy<BackgroundService> backgroundService = inject(BackgroundService.class);
     private final Lazy<ImageHelper> imageHelper = inject(ImageHelper.class);
-    private final Lazy<org.jellyfin.androidtv.preference.UserPreferences> userPreferences = inject(org.jellyfin.androidtv.preference.UserPreferences.class);
+    private final Lazy<uk.rinzler.tv.preference.UserPreferences> userPreferences = inject(uk.rinzler.tv.preference.UserPreferences.class);
 
     // Trickplay scrub auto-confirm: when the user stops pressing D-pad left/right
     // during scrub mode, this fires after 1.5s to confirm the seek and restore play state.
@@ -636,7 +636,7 @@ public class CustomPlaybackOverlayFragment extends Fragment implements LiveTvGui
                             boolean isProgressBarFocused = focusedView instanceof androidx.leanback.widget.PlaybackTransportRowView
                                     || (focusedView != null && focusedView.getParent() instanceof androidx.leanback.widget.PlaybackTransportRowView);
                             if (isProgressBarFocused && (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT || keyCode == KeyEvent.KEYCODE_DPAD_LEFT)) {
-                                boolean trickPlayEnabled = userPreferences.getValue().get(org.jellyfin.androidtv.preference.UserPreferences.Companion.getTrickPlayEnabled());
+                                boolean trickPlayEnabled = userPreferences.getValue().get(uk.rinzler.tv.preference.UserPreferences.Companion.getTrickPlayEnabled());
                                 if (trickPlayEnabled) {
                                     // Save play state on first scrub press for restore after auto-confirm
                                     if (!seekAutoConfirmHandler.hasCallbacks(seekAutoConfirmRunnable)) {
@@ -738,7 +738,7 @@ public class CustomPlaybackOverlayFragment extends Fragment implements LiveTvGui
 
             return;
         }
-        
+
         // Notify SyncPlay of app resume
         playbackControllerContainer.getValue().getPlaybackController().onResume();
 
@@ -763,7 +763,7 @@ public class CustomPlaybackOverlayFragment extends Fragment implements LiveTvGui
         if (mItemsToPlay == null || mItemsToPlay.isEmpty()) return;
 
         setPlayPauseActionState(0);
-        
+
         // Notify SyncPlay of app pause
         if (playbackControllerContainer.getValue().getPlaybackController() != null) {
             playbackControllerContainer.getValue().getPlaybackController().onPause();
@@ -1410,7 +1410,7 @@ public class CustomPlaybackOverlayFragment extends Fragment implements LiveTvGui
 
     private void prepareCastAdapter() {
         BaseItemDto item = playbackControllerContainer.getValue().getPlaybackController().getCurrentlyPlayingItem();
-        
+
         CustomPlaybackOverlayFragmentHelperKt.loadCastForItem(this, item, people -> {
             if (people != null && !people.isEmpty()) {
                 ArrayObjectAdapter castAdapter = new ArrayObjectAdapter(new CardPresenter(true, 120));

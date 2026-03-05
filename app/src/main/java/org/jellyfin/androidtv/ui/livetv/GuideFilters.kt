@@ -1,7 +1,7 @@
-package org.jellyfin.androidtv.ui.livetv
+package uk.rinzler.tv.ui.livetv
 
-import org.jellyfin.androidtv.preference.SystemPreferences
-import org.jellyfin.androidtv.util.Utils
+import uk.rinzler.tv.preference.SystemPreferences
+import uk.rinzler.tv.util.Utils
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -12,47 +12,47 @@ import org.koin.core.component.inject
  */
 class GuideFilters : KoinComponent {
 	private val systemPreferences: SystemPreferences by inject()
-	
+
 	var movies: Boolean = false
 		set(value) {
 			field = value
 			systemPreferences[SystemPreferences.liveTvGuideFilterMovies] = value
 		}
-	
+
 	var news: Boolean = false
 		set(value) {
 			field = value
 			systemPreferences[SystemPreferences.liveTvGuideFilterNews] = value
 		}
-	
+
 	var series: Boolean = false
 		set(value) {
 			field = value
 			systemPreferences[SystemPreferences.liveTvGuideFilterSeries] = value
 		}
-	
+
 	var kids: Boolean = false
 		set(value) {
 			field = value
 			systemPreferences[SystemPreferences.liveTvGuideFilterKids] = value
 		}
-	
+
 	var sports: Boolean = false
 		set(value) {
 			field = value
 			systemPreferences[SystemPreferences.liveTvGuideFilterSports] = value
 		}
-	
+
 	var premiere: Boolean = false
 		set(value) {
 			field = value
 			systemPreferences[SystemPreferences.liveTvGuideFilterPremiere] = value
 		}
-	
+
 	init {
 		load()
 	}
-	
+
 	/**
 	 * Load filter settings from preferences.
 	 */
@@ -64,18 +64,18 @@ class GuideFilters : KoinComponent {
 		sports = systemPreferences[SystemPreferences.liveTvGuideFilterSports]
 		premiere = systemPreferences[SystemPreferences.liveTvGuideFilterPremiere]
 	}
-	
+
 	/**
 	 * Check if any filters are active.
 	 */
 	fun any(): Boolean = movies || news || series || kids || sports || premiere
-	
+
 	/**
 	 * Check if a program passes the active filters.
 	 */
 	fun passesFilter(program: BaseItemDto): Boolean {
 		if (!any()) return true
-		
+
 		if (movies && Utils.isTrue(program.isMovie)) {
 			return !premiere || Utils.isTrue(program.isPremiere)
 		}
@@ -92,14 +92,14 @@ class GuideFilters : KoinComponent {
 			return !premiere || Utils.isTrue(program.isPremiere) || Utils.isTrue(program.isLive)
 		}
 		if (!movies && !news && !series && !kids && !sports) {
-			return premiere && (Utils.isTrue(program.isPremiere) || 
-				(Utils.isTrue(program.isSeries) && !Utils.isTrue(program.isRepeat)) || 
+			return premiere && (Utils.isTrue(program.isPremiere) ||
+				(Utils.isTrue(program.isSeries) && !Utils.isTrue(program.isRepeat)) ||
 				(Utils.isTrue(program.isSports) && Utils.isTrue(program.isLive)))
 		}
-		
+
 		return false
 	}
-	
+
 	/**
 	 * Clear all filters.
 	 */
@@ -111,7 +111,7 @@ class GuideFilters : KoinComponent {
 		movies = false
 		premiere = false
 	}
-	
+
 	override fun toString(): String {
 		return if (any()) {
 			"Content filtered. Showing channels with ${getFilterString()}"
@@ -119,7 +119,7 @@ class GuideFilters : KoinComponent {
 			"Showing all programs "
 		}
 	}
-	
+
 	private fun getFilterString(): String {
 		return buildString {
 			if (movies) append("movies")
@@ -130,7 +130,7 @@ class GuideFilters : KoinComponent {
 			if (premiere) append(getSeparator(this), "ONLY new")
 		}
 	}
-	
+
 	private fun getSeparator(current: CharSequence): String {
 		return if (current.isEmpty()) "" else ", "
 	}

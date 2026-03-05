@@ -1,13 +1,13 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.compose.ui.platform.ComposeView
 import androidx.leanback.widget.RowPresenter
-import org.jellyfin.androidtv.ui.home.mediabar.MediaBarSlideshowView
-import org.jellyfin.androidtv.ui.home.mediabar.MediaBarSlideshowViewModel
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.home.mediabar.MediaBarSlideshowView
+import uk.rinzler.tv.ui.home.mediabar.MediaBarSlideshowViewModel
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
 
 /**
  * Presenter for the Media Bar row.
@@ -17,7 +17,7 @@ class MediaBarPresenter(
 	private val viewModel: MediaBarSlideshowViewModel,
 	private val navigationRepository: NavigationRepository
 ) : RowPresenter() {
-	
+
 	override fun createRowViewHolder(parent: ViewGroup): RowPresenter.ViewHolder {
 		parent.clipChildren = false
 		parent.clipToPadding = false
@@ -30,7 +30,7 @@ class MediaBarPresenter(
 				ViewGroup.LayoutParams.WRAP_CONTENT
 			)
 		}
-		
+
 		val composeView = ComposeView(parent.context).apply {
 			clipChildren = false
 			clipToPadding = false
@@ -41,7 +41,7 @@ class MediaBarPresenter(
 				// Add bottom margin to push next row out of frame
 				bottomMargin = 40 // 40dp margin to push Continue Watching further down
 			}
-			
+
 			setContent {
 				MediaBarSlideshowView(
 					viewModel = viewModel,
@@ -52,9 +52,9 @@ class MediaBarPresenter(
 				)
 			}
 		}
-		
+
 		container.addView(composeView)
-		
+
 		var ancestor: android.view.ViewParent? = parent.parent
 		while (ancestor is ViewGroup) {
 			ancestor.clipChildren = false
@@ -64,14 +64,14 @@ class MediaBarPresenter(
 
 		return ViewHolder(container)
 	}
-	
+
 	override fun onBindRowViewHolder(vh: RowPresenter.ViewHolder, item: Any) {
 		// Binding is handled by Compose state
 	}
-	
+
 	override fun onUnbindRowViewHolder(vh: RowPresenter.ViewHolder) {
 		// Cleanup is handled by Compose lifecycle
 	}
-	
+
 	class ViewHolder(view: android.view.View) : RowPresenter.ViewHolder(view)
 }

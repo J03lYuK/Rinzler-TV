@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.auth.model
+package uk.rinzler.tv.auth.model
 
 sealed class AuthenticateMethod
 data class AutomaticAuthenticateMethod(val user: User) : AuthenticateMethod()

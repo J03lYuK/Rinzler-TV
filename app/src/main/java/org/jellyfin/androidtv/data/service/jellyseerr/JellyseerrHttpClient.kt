@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.service.jellyseerr
+package uk.rinzler.tv.data.service.jellyseerr
 
 import android.util.Base64
 import io.ktor.client.HttpClient
@@ -74,10 +74,10 @@ class JellyseerrHttpClient(
 	companion object {
 		private const val REQUEST_TIMEOUT_SECONDS = 30L
 		private const val JELLYSEERR_API_VERSION = "v1"
-		
+
 		private var cookieStorage: DelegatingCookiesStorage? = null
 		private var appContext: android.content.Context? = null
-		
+
 		fun initializeCookieStorage(context: android.content.Context) {
 			appContext = context.applicationContext
 			if (cookieStorage == null) {
@@ -94,7 +94,7 @@ class JellyseerrHttpClient(
 			cookieStorage?.clearAll()
 		}
 	}
-	
+
 	private fun HttpRequestBuilder.addAuthHeader() {
 		val proxy = proxyConfig
 		if (proxy != null) {
@@ -108,24 +108,24 @@ class JellyseerrHttpClient(
 	 * Fetches a fresh CSRF token from the server.
 	 * CSRF tokens must be fetched before each state-changing request (POST, DELETE, PUT)
 	 * when CSRF protection is enabled on the Jellyseerr server.
-	 * 
+	 *
 	 * @param endpoint The API endpoint to fetch the token from (uses GET request)
 	 * @return The CSRF token if found, null otherwise
 	 */
 	private suspend fun fetchCsrfToken(endpoint: String): String? {
 		val url = URLBuilder("$baseUrl$endpoint").build()
 		Timber.d("Jellyseerr: Fetching CSRF token via GET request to $endpoint")
-		
+
 		return try {
 			val csrfResponse = httpClient.get(url) {
 				addAuthHeader()
 			}
 			Timber.d("Jellyseerr: CSRF token fetch response - Status: ${csrfResponse.status.value}")
-			
+
 			// Extract CSRF token from stored cookies (after Ktor's HttpCookies plugin processes Set-Cookie headers)
 			val storedCookies = cookieStorage?.get(url) ?: emptyList()
 			Timber.d("Jellyseerr: Found ${storedCookies.size} stored cookies after GET request")
-			
+
 			var csrfToken: String? = null
 			for (cookie in storedCookies) {
 				Timber.d("Jellyseerr: Stored cookie: ${cookie.name} (domain: ${cookie.domain}, path: ${cookie.path})")
@@ -135,7 +135,7 @@ class JellyseerrHttpClient(
 					break
 				}
 			}
-			
+
 			// Fallback: manually parse Set-Cookie headers if cookie wasn't stored properly
 			if (csrfToken == null) {
 				Timber.d("Jellyseerr: No XSRF-TOKEN cookie in storage, trying to parse from headers")
@@ -156,13 +156,13 @@ class JellyseerrHttpClient(
 					}
 				}
 			}
-			
+
 			if (csrfToken != null) {
 				Timber.d("Jellyseerr: CSRF token ready: ${csrfToken.take(10)}...")
 			} else {
 				Timber.d("Jellyseerr: No XSRF-TOKEN cookie found (CSRF protection may be disabled)")
 			}
-			
+
 			csrfToken
 		} catch (e: Exception) {
 			Timber.w("Jellyseerr: Failed to fetch CSRF token (non-critical): ${e.message}")
@@ -196,7 +196,7 @@ class JellyseerrHttpClient(
 		install(ContentNegotiation) {
 			json(jsonConfig)
 		}
-		
+
 		install(HttpCookies) {
 			storage = cookieStorage!!
 		}
@@ -309,15 +309,15 @@ class JellyseerrHttpClient(
 		serverId: Int? = null,
 	): Result<JellyseerrRequestDto> = runCatching {
 		val url = URLBuilder(apiUrl("request")).build()
-		
+
 		val csrfToken = if (!isProxyMode) fetchCsrfToken("/api/v1/request") else null
-		
+
 		val seasonsValue = if (mediaType == "tv" && seasons == null) {
 			Seasons.All
 		} else {
 			seasons
 		}
-		
+
 		val requestBody = JellyseerrCreateRequestDto(
 			mediaId = mediaId,
 			mediaType = mediaType,
@@ -336,13 +336,13 @@ class JellyseerrHttpClient(
 		}
 
 		Timber.d("Jellyseerr: Created request for $mediaType:$mediaId (4K=$is4k, profileId=$profileId) - Status: ${response.status}")
-		
+
 		if (response.status.value !in 200..299) {
 			val errorBody = response.body<String>()
 			Timber.e("Jellyseerr: Request failed with status ${response.status}: $errorBody")
 			throw Exception("Failed to create request: ${response.status} - $errorBody")
 		}
-		
+
 		response.body<JellyseerrRequestDto>()
 	}.onFailure { error ->
 		Timber.e(error, "Jellyseerr: Failed to create request for $mediaType:$mediaId")
@@ -350,16 +350,16 @@ class JellyseerrHttpClient(
 
 	suspend fun deleteRequest(requestId: Int): Result<Unit> = runCatching {
 		val url = URLBuilder(apiUrl("request/$requestId")).build()
-		
+
 		val csrfToken = if (!isProxyMode) fetchCsrfToken("/api/v1/request/$requestId") else null
-		
+
 		val response = httpClient.delete(url) {
 			addAuthHeader()
 			addCsrfHeaders(csrfToken)
 		}
 
 		Timber.d("Jellyseerr: Deleted request $requestId - Status: ${response.status}")
-		
+
 		if (response.status.value !in 200..299) {
 			val errorBody = response.body<String>()
 			Timber.e("Jellyseerr: Delete request failed with status ${response.status}: $errorBody")
@@ -377,11 +377,11 @@ class JellyseerrHttpClient(
 			parameters.append("page", ((offset / limit) + 1).toString())
 			parameters.append("language", "en")
 		}.build()
-		
+
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
-		
+
 		Timber.d("Jellyseerr: Got trending content - Status: ${response.status}")
 		response.requireSuccessStatus("trending").body<JellyseerrDiscoverPageDto>()
 	}.onFailure { error ->
@@ -396,11 +396,11 @@ class JellyseerrHttpClient(
 			parameters.append("page", ((offset / limit) + 1).toString())
 			parameters.append("language", "en")
 		}.build()
-		
+
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
-		
+
 		Timber.d("Jellyseerr: Got trending movies - Status: ${response.status}")
 		response.requireSuccessStatus("trending movies").body<JellyseerrDiscoverPageDto>()
 	}.onFailure { error ->
@@ -415,11 +415,11 @@ class JellyseerrHttpClient(
 			parameters.append("page", ((offset / limit) + 1).toString())
 			parameters.append("language", "en")
 		}.build()
-		
+
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
-		
+
 		Timber.d("Jellyseerr: Got trending TV - Status: ${response.status}")
 		response.requireSuccessStatus("trending TV").body<JellyseerrDiscoverPageDto>()
 	}.onFailure { error ->
@@ -434,7 +434,7 @@ class JellyseerrHttpClient(
 			parameters.append("limit", limit.toString())
 			parameters.append("offset", offset.toString())
 		}.build()
-		
+
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
@@ -455,7 +455,7 @@ class JellyseerrHttpClient(
 			parameters.append("limit", limit.toString())
 			parameters.append("offset", offset.toString())
 		}.build()
-		
+
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
@@ -474,7 +474,7 @@ class JellyseerrHttpClient(
 	): Result<JellyseerrDiscoverPageDto> = runCatching {
 		val url = URLBuilder(apiUrl("discover/movies/upcoming")).apply {
 		}.build()
-		
+
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
@@ -493,7 +493,7 @@ class JellyseerrHttpClient(
 	): Result<JellyseerrDiscoverPageDto> = runCatching {
 		val url = URLBuilder(apiUrl("discover/tv/upcoming")).apply {
 		}.build()
-		
+
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
@@ -514,7 +514,7 @@ class JellyseerrHttpClient(
 	): Result<JellyseerrDiscoverPageDto> = runCatching {
 		val encodedQuery = URLEncoder.encode(query, "UTF-8").replace("+", "%20")
 		val page = ((offset / limit) + 1).toString()
-		
+
 		val url = buildString {
 			append(apiUrl("search"))
 			append("?query=$encodedQuery")
@@ -524,7 +524,7 @@ class JellyseerrHttpClient(
 				append("&type=$encodedType")
 			}
 		}
-		
+
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
@@ -751,13 +751,13 @@ class JellyseerrHttpClient(
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
-		
+
 		if (response.status.value !in 200..299) {
 			val errorBody = response.body<String>()
 			Timber.e("Jellyseerr: Movie details request failed - Status: ${response.status}, TMDB ID: $tmdbId, Error: $errorBody")
 			throw Exception("Failed to fetch movie details: ${response.status} - $errorBody")
 		}
-		
+
 		Timber.d("Jellyseerr: Got movie details - Status: ${response.status}, TMDB ID: $tmdbId")
 		val details = response.body<JellyseerrMovieDetailsDto>()
 		Timber.d("Jellyseerr: Movie has ${details.credits?.cast?.size ?: 0} cast members")
@@ -774,13 +774,13 @@ class JellyseerrHttpClient(
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
-		
+
 		if (response.status.value !in 200..299) {
 			val errorBody = response.body<String>()
 			Timber.e("Jellyseerr: TV details request failed - Status: ${response.status}, TMDB ID: $tmdbId, Error: $errorBody")
 			throw Exception("Failed to fetch TV details: ${response.status} - $errorBody")
 		}
-		
+
 		Timber.d("Jellyseerr: Got TV details - Status: ${response.status}, TMDB ID: $tmdbId")
 		val details = response.body<JellyseerrTvDetailsDto>()
 		Timber.d("Jellyseerr: TV show has ${details.credits?.cast?.size ?: 0} cast members")
@@ -799,53 +799,53 @@ class JellyseerrHttpClient(
 		// Clear existing cookies before login to prevent stale auth data from causing issues
 		Timber.d("Jellyseerr: Clearing cookies before local login attempt")
 		clearCookies()
-		
+
 		var url = URLBuilder(apiUrl("auth/local")).build()
 		val loginBody = mapOf("email" to email, "password" to password)
-		
+
 		Timber.d("Jellyseerr: Attempting local login to URL: $url")
 		Timber.d("Jellyseerr: Base URL: $baseUrl")
-		
+
 		// Fetch CSRF token before login
 		val csrfToken = fetchCsrfToken("/api/v1/auth/local")
-		
+
 		// Add a small delay to ensure cookies are fully persisted (helps with storage race conditions)
 		kotlinx.coroutines.delay(100)
-		
+
 		var response = httpClient.post(url) {
 			contentType(ContentType.Application.Json)
 			setBody(loginBody)
 			addCsrfHeaders(csrfToken)
 		}
-		
+
 		Timber.d("Jellyseerr: Local login response - Status: ${response.status.value} ${response.status.description}")
 		Timber.d("Jellyseerr: Response headers: ${response.headers.entries().joinToString { "${it.key}: ${it.value}" }}")
-		
+
 		if (response.status.value == 308) {
 			val location = response.headers["Location"]
 			if (location != null && location.startsWith("https://") && baseUrl.startsWith("http://")) {
 				Timber.w("Jellyseerr: Received 308 redirect from HTTP to HTTPS. Retrying with HTTPS URL: $location")
 				url = URLBuilder(location).build()
-				
+
 				response = httpClient.post(url) {
 					contentType(ContentType.Application.Json)
 					setBody(loginBody)
 					addCsrfHeaders(csrfToken)
 				}
-				
+
 				Timber.d("Jellyseerr: HTTPS retry response - Status: ${response.status.value} ${response.status.description}")
 			} else {
 				Timber.e("Jellyseerr: Received 308 but no valid HTTPS redirect location found")
 				throw Exception("Server requires HTTPS but redirect location is invalid. Location: $location")
 			}
 		}
-		
+
 		if (response.status.value !in 200..299) {
 			val errorBody = response.body<String>()
 			Timber.e("Jellyseerr: Login failed with status ${response.status}: $errorBody")
 			throw Exception("Login failed: ${response.status}")
 		}
-		
+
 		val user = response.body<JellyseerrUserDto>()
 		Timber.d("Jellyseerr: Successfully logged in as user: ${user.email}")
 		user
@@ -863,20 +863,20 @@ class JellyseerrHttpClient(
 		// Clear existing cookies before login to prevent stale auth data from causing issues
 		Timber.d("Jellyseerr: Clearing cookies before Jellyfin login attempt")
 		clearCookies()
-		
+
 		var url = URLBuilder(apiUrl("auth/jellyfin")).build()
-		
+
 		Timber.d("Jellyseerr: Attempting Jellyfin login to URL: $url")
 		Timber.d("Jellyseerr: Base URL: $baseUrl")
 		Timber.d("Jellyseerr: Jellyfin URL: $jellyfinUrl")
 		Timber.d("Jellyseerr: Username: $username")
-		
+
 		// Fetch CSRF token before login
 		val csrfToken = fetchCsrfToken("/api/v1/auth/jellyfin")
-		
+
 		// Add a small delay to ensure cookies are fully persisted (helps with storage race conditions)
 		kotlinx.coroutines.delay(100)
-		
+
 		// First attempt: without hostname (standard for already-configured servers)
 		Timber.d("Jellyseerr: Attempting login without hostname parameter")
 		var response = httpClient.post(url) {
@@ -887,17 +887,17 @@ class JellyseerrHttpClient(
 			))
 			addCsrfHeaders(csrfToken)
 		}
-		
+
 		Timber.d("Jellyseerr: Jellyfin login response - Status: ${response.status.value} ${response.status.description}")
 		Timber.d("Jellyseerr: Response headers: ${response.headers.entries().joinToString { "${it.key}: ${it.value}" }}")
-		
+
 		// Handle 308 redirect (HTTP -> HTTPS upgrade)
 		if (response.status.value == 308) {
 			val location = response.headers["Location"]
 			if (location != null && location.startsWith("https://") && baseUrl.startsWith("http://")) {
 				Timber.w("Jellyseerr: Received 308 redirect from HTTP to HTTPS. Retrying with HTTPS URL: $location")
 				url = URLBuilder(location).build()
-				
+
 				response = httpClient.post(url) {
 					contentType(ContentType.Application.Json)
 					setBody(mapOf(
@@ -906,21 +906,21 @@ class JellyseerrHttpClient(
 					))
 					addCsrfHeaders(csrfToken)
 				}
-				
+
 				Timber.d("Jellyseerr: HTTPS retry response - Status: ${response.status.value} ${response.status.description}")
 			} else {
 				Timber.e("Jellyseerr: Received 308 but no valid HTTPS redirect location found")
 				throw Exception("Server requires HTTPS but redirect location is invalid. Location: $location")
 			}
 		}
-		
+
 		// Success - return user
 		if (response.status.value in 200..299) {
 			val user = response.body<JellyseerrUserDto>()
 			Timber.d("Jellyseerr: Successfully logged in as user: ${user.email}")
 			return@runCatching user
 		}
-		
+
 		// 401 - Server not configured yet, retry with hostname
 		if (response.status.value == 401) {
 			Timber.d("Jellyseerr: Received 401, retrying with hostname parameter")
@@ -933,26 +933,26 @@ class JellyseerrHttpClient(
 				))
 				addCsrfHeaders(csrfToken)
 			}
-			
+
 			Timber.d("Jellyseerr: Second attempt response - Status: ${response.status.value} ${response.status.description}")
-			
+
 			if (response.status.value in 200..299) {
 				val user = response.body<JellyseerrUserDto>()
 				Timber.d("Jellyseerr: Successfully logged in as user: ${user.email}")
 				return@runCatching user
 			}
-			
+
 			// Handle errors from second attempt
 			val errorBody = response.body<String>()
 			Timber.e("Jellyseerr: Second login attempt failed: $errorBody")
 			throw Exception("Jellyfin login failed: ${response.status} - $errorBody")
 		}
-		
+
 		// 500 - Server error, likely configuration issue
 		if (response.status.value == 500) {
 			val errorBody = response.body<String>()
 			Timber.e("Jellyseerr: Server error (500): $errorBody")
-			
+
 			val errorMessage = if (errorBody.contains("Something went wrong", ignoreCase = true)) {
 				"Server configuration error. Verify that:\n" +
 				"• Jellyseerr server URL is correct: $baseUrl\n" +
@@ -961,10 +961,10 @@ class JellyseerrHttpClient(
 			} else {
 				"Authentication failed. Verify your username and password are correct, and that the Jellyfin server URL in Jellyseerr settings matches: $jellyfinUrl"
 			}
-			
+
 			throw Exception(errorMessage)
 		}
-		
+
 		// Other errors
 		val errorBody = response.body<String>()
 		Timber.e("Jellyseerr: Unexpected status ${response.status}: $errorBody")
@@ -988,11 +988,11 @@ class JellyseerrHttpClient(
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
-		
+
 		if (response.status.value !in 200..299) {
 			throw Exception("Failed to get current user: ${response.status}")
 		}
-		
+
 		response.body<JellyseerrUserDto>()
 	}.onFailure { error ->
 		Timber.e(error, "Jellyseerr: Failed to get current user")
@@ -1004,9 +1004,9 @@ class JellyseerrHttpClient(
 	 */
 	suspend fun regenerateApiKey(): Result<String> = runCatching {
 		val url = URLBuilder(apiUrl("settings/main/regenerate")).build()
-		
+
 		val csrfToken = if (!isProxyMode) fetchCsrfToken("/api/v1/settings/main/regenerate") else null
-		
+
 		val response = httpClient.post(url) {
 			addAuthHeader()
 			addCsrfHeaders(csrfToken)
@@ -1014,11 +1014,11 @@ class JellyseerrHttpClient(
 			header("Origin", baseUrl)
 			header("Referer", "$baseUrl/")
 		}
-		
+
 		if (response.status.value !in 200..299) {
 			throw Exception("Failed to regenerate API key (requires admin): ${response.status}")
 		}
-		
+
 		response.body<JellyseerrMainSettingsDto>().apiKey
 	}.onFailure { error ->
 		Timber.e(error, "Jellyseerr: Failed to regenerate API key")
@@ -1063,15 +1063,15 @@ class JellyseerrHttpClient(
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
-		
+
 		Timber.d("Jellyseerr: Got Radarr servers - Status: ${response.status}")
-		
+
 		if (response.status.value !in 200..299) {
 			val errorBody = response.body<String>()
 			Timber.e("Jellyseerr: getRadarrServers failed with status ${response.status}: $errorBody")
 			throw Exception("Failed to get Radarr servers: ${response.status}")
 		}
-		
+
 		response.body<List<JellyseerrServiceServerDto>>()
 	}.onFailure { error ->
 		Timber.e(error, "Jellyseerr: Failed to get Radarr servers")
@@ -1086,15 +1086,15 @@ class JellyseerrHttpClient(
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
-		
+
 		Timber.d("Jellyseerr: Got Radarr server details for $serverId - Status: ${response.status}")
-		
+
 		if (response.status.value !in 200..299) {
 			val errorBody = response.body<String>()
 			Timber.e("Jellyseerr: getRadarrServerDetails failed with status ${response.status}: $errorBody")
 			throw Exception("Failed to get Radarr server details: ${response.status}")
 		}
-		
+
 		response.body<JellyseerrServiceServerDetailsDto>()
 	}.onFailure { error ->
 		Timber.e(error, "Jellyseerr: Failed to get Radarr server details")
@@ -1109,15 +1109,15 @@ class JellyseerrHttpClient(
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
-		
+
 		Timber.d("Jellyseerr: Got Sonarr servers - Status: ${response.status}")
-		
+
 		if (response.status.value !in 200..299) {
 			val errorBody = response.body<String>()
 			Timber.e("Jellyseerr: getSonarrServers failed with status ${response.status}: $errorBody")
 			throw Exception("Failed to get Sonarr servers: ${response.status}")
 		}
-		
+
 		response.body<List<JellyseerrServiceServerDto>>()
 	}.onFailure { error ->
 		Timber.e(error, "Jellyseerr: Failed to get Sonarr servers")
@@ -1132,15 +1132,15 @@ class JellyseerrHttpClient(
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
-		
+
 		Timber.d("Jellyseerr: Got Sonarr server details for $serverId - Status: ${response.status}")
-		
+
 		if (response.status.value !in 200..299) {
 			val errorBody = response.body<String>()
 			Timber.e("Jellyseerr: getSonarrServerDetails failed with status ${response.status}: $errorBody")
 			throw Exception("Failed to get Sonarr server details: ${response.status}")
 		}
-		
+
 		response.body<JellyseerrServiceServerDetailsDto>()
 	}.onFailure { error ->
 		Timber.e(error, "Jellyseerr: Failed to get Sonarr server details")
@@ -1155,15 +1155,15 @@ class JellyseerrHttpClient(
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
-		
+
 		Timber.d("Jellyseerr: Got Radarr settings - Status: ${response.status}")
-		
+
 		if (response.status.value !in 200..299) {
 			val errorBody = response.body<String>()
 			Timber.e("Jellyseerr: getRadarrSettings failed with status ${response.status}: $errorBody")
 			throw Exception("Failed to get Radarr settings: ${response.status}")
 		}
-		
+
 		response.body<List<JellyseerrRadarrSettingsDto>>()
 	}.onFailure { error ->
 		Timber.e(error, "Jellyseerr: Failed to get Radarr settings")
@@ -1178,15 +1178,15 @@ class JellyseerrHttpClient(
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
-		
+
 		Timber.d("Jellyseerr: Got Sonarr settings - Status: ${response.status}")
-		
+
 		if (response.status.value !in 200..299) {
 			val errorBody = response.body<String>()
 			Timber.e("Jellyseerr: getSonarrSettings failed with status ${response.status}: $errorBody")
 			throw Exception("Failed to get Sonarr settings: ${response.status}")
 		}
-		
+
 		response.body<List<JellyseerrSonarrSettingsDto>>()
 	}.onFailure { error ->
 		Timber.e(error, "Jellyseerr: Failed to get Sonarr settings")

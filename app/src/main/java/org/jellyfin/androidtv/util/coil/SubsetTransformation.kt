@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util.coil
+package uk.rinzler.tv.util.coil
 
 import android.graphics.Bitmap
 import coil3.size.Size

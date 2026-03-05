@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.itemdetail;
+package uk.rinzler.tv.ui.itemdetail;
 
 import static org.koin.java.KoinJavaComponent.inject;
 
@@ -18,20 +18,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.databinding.FragmentItemListBinding;
-import org.jellyfin.androidtv.databinding.ViewRowDetailsBinding;
-import org.jellyfin.androidtv.ui.ItemListView;
-import org.jellyfin.androidtv.ui.ItemRowView;
-import org.jellyfin.androidtv.ui.TextUnderButton;
-import org.jellyfin.androidtv.ui.itemhandling.BaseItemDtoBaseRowItem;
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncher;
-import org.jellyfin.androidtv.ui.playback.AudioEventListener;
-import org.jellyfin.androidtv.ui.playback.MediaManager;
-import org.jellyfin.androidtv.ui.playback.PlaybackController;
-import org.jellyfin.androidtv.ui.playback.PlaybackLauncher;
-import org.jellyfin.androidtv.util.PlaybackHelper;
-import org.jellyfin.androidtv.util.Utils;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.databinding.FragmentItemListBinding;
+import uk.rinzler.tv.databinding.ViewRowDetailsBinding;
+import uk.rinzler.tv.ui.ItemListView;
+import uk.rinzler.tv.ui.ItemRowView;
+import uk.rinzler.tv.ui.TextUnderButton;
+import uk.rinzler.tv.ui.itemhandling.BaseItemDtoBaseRowItem;
+import uk.rinzler.tv.ui.itemhandling.ItemLauncher;
+import uk.rinzler.tv.ui.playback.AudioEventListener;
+import uk.rinzler.tv.ui.playback.MediaManager;
+import uk.rinzler.tv.ui.playback.PlaybackController;
+import uk.rinzler.tv.ui.playback.PlaybackLauncher;
+import uk.rinzler.tv.util.PlaybackHelper;
+import uk.rinzler.tv.util.Utils;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 import org.jellyfin.sdk.model.api.BaseItemKind;
 import org.jellyfin.sdk.model.serializer.UUIDSerializerKt;

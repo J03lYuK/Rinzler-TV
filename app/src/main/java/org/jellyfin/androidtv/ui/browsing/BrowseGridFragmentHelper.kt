@@ -1,16 +1,16 @@
-package org.jellyfin.androidtv.ui.browsing
+package uk.rinzler.tv.ui.browsing
 
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.ComposeView
 import kotlinx.coroutines.flow.MutableStateFlow
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.navigation.ProvideRouter
-import org.jellyfin.androidtv.ui.settings.Routes
-import org.jellyfin.androidtv.ui.settings.composable.SettingsDialog
-import org.jellyfin.androidtv.ui.settings.composable.SettingsRouterContent
-import org.jellyfin.androidtv.ui.settings.routes
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.navigation.ProvideRouter
+import uk.rinzler.tv.ui.settings.Routes
+import uk.rinzler.tv.ui.settings.composable.SettingsDialog
+import uk.rinzler.tv.ui.settings.composable.SettingsRouterContent
+import uk.rinzler.tv.ui.settings.routes
 import org.koin.core.context.GlobalContext
 import java.util.UUID
 
@@ -24,7 +24,7 @@ fun BrowseGridFragment.addSettings(
 ) {
 	view.setContent {
 		val isVisible by visible.collectAsState(false)
-		
+
 		// Get current session info
 		val sessionRepository = GlobalContext.get().get<SessionRepository>()
 		val currentSession by sessionRepository.currentSession.collectAsState()

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.os.Bundle
 import android.util.Log
@@ -15,17 +15,17 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.data.service.BlurContext
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverItemDto
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.NavbarPosition
-import org.jellyfin.androidtv.ui.shared.toolbar.LeftSidebarNavigation
-import org.jellyfin.androidtv.ui.shared.toolbar.MainToolbar
-import org.jellyfin.androidtv.util.toHtmlSpanned
-import org.jellyfin.androidtv.ui.shared.toolbar.MainToolbarActiveButton
-import org.jellyfin.androidtv.util.Debouncer
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.data.service.BlurContext
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverItemDto
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.NavbarPosition
+import uk.rinzler.tv.ui.shared.toolbar.LeftSidebarNavigation
+import uk.rinzler.tv.ui.shared.toolbar.MainToolbar
+import uk.rinzler.tv.util.toHtmlSpanned
+import uk.rinzler.tv.ui.shared.toolbar.MainToolbarActiveButton
+import uk.rinzler.tv.util.Debouncer
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -35,14 +35,14 @@ class DiscoverFragment : Fragment() {
 	private val viewModel: JellyseerrViewModel by viewModel()
 	private val backgroundService: BackgroundService by inject()
 	private val userPreferences: UserPreferences by inject()
-	
+
 	private var titleTextView: TextView? = null
 	private var summaryTextView: TextView? = null
 	private var yearTextView: TextView? = null
 	private var ratingTextView: TextView? = null
 	private var mediaTypeTextView: TextView? = null
 	private var rowsFragment: JellyseerrDiscoverRowsFragment? = null
-	
+
 	// Debouncers for smooth navigation - only update after user stops moving
 	private val infoDebouncer by lazy { Debouncer(150.milliseconds, lifecycleScope) }
 	private val backdropDebouncer by lazy { Debouncer(200.milliseconds, lifecycleScope) }
@@ -101,7 +101,7 @@ class DiscoverFragment : Fragment() {
 					infoDebouncer.debounce {
 						updateItemInfo(item)
 					}
-					
+
 					// Debounce backdrop loading - only load after user stops navigating for 200ms
 					backdropDebouncer.debounce {
 						loadBackdropImage(item)
@@ -113,7 +113,7 @@ class DiscoverFragment : Fragment() {
 
 	override fun onResume() {
 		super.onResume()
-		
+
 		// Request focus on rows fragment when this fragment becomes visible
 		// This is crucial for when returning from details screen
 		view?.postDelayed({
@@ -129,7 +129,7 @@ class DiscoverFragment : Fragment() {
 		// Cancel any pending debounced actions
 		infoDebouncer.cancel()
 		backdropDebouncer.cancel()
-		
+
 		titleTextView = null
 		summaryTextView = null
 		yearTextView = null

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.integration
+package uk.rinzler.tv.integration
 
 import android.app.SearchManager
 import android.content.ContentProvider
@@ -12,14 +12,14 @@ import android.provider.BaseColumns
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.BuildConfig
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.repository.ItemRepository
-import org.jellyfin.androidtv.integration.provider.ImageProvider
-import org.jellyfin.androidtv.util.ImageHelper
-import org.jellyfin.androidtv.util.apiclient.getUrl
-import org.jellyfin.androidtv.util.apiclient.itemImages
-import org.jellyfin.androidtv.util.sdk.isUsable
+import uk.rinzler.tv.BuildConfig
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.repository.ItemRepository
+import uk.rinzler.tv.integration.provider.ImageProvider
+import uk.rinzler.tv.util.ImageHelper
+import uk.rinzler.tv.util.apiclient.getUrl
+import uk.rinzler.tv.util.apiclient.itemImages
+import uk.rinzler.tv.util.sdk.isUsable
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.ApiClientException
 import org.jellyfin.sdk.api.client.extensions.itemsApi

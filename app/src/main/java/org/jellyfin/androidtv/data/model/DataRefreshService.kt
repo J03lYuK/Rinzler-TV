@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.model
+package uk.rinzler.tv.data.model
 
 import org.jellyfin.sdk.model.api.BaseItemDto
 import java.time.Instant

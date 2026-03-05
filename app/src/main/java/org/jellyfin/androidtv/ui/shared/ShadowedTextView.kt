@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.shared
+package uk.rinzler.tv.ui.shared
 
 import android.content.Context
 import android.graphics.Color

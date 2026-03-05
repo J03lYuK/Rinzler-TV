@@ -1,14 +1,14 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
 import androidx.leanback.widget.HeaderItem
 import androidx.leanback.widget.ListRow
 import androidx.leanback.widget.Row
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.querying.GetUserViewsRequest
-import org.jellyfin.androidtv.ui.itemhandling.ItemRowAdapter
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.querying.GetUserViewsRequest
+import uk.rinzler.tv.ui.itemhandling.ItemRowAdapter
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter
 
 class HomeFragmentViewsRow(
 	val small: Boolean,

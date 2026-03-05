@@ -1,17 +1,17 @@
-package org.jellyfin.androidtv.ui.settings.composable
+package uk.rinzler.tv.ui.settings.composable
 
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.form.RadioButton
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.navigation.LocalRouter
-import org.jellyfin.androidtv.ui.settings.compat.rememberPreference
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.form.RadioButton
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.navigation.LocalRouter
+import uk.rinzler.tv.ui.settings.compat.rememberPreference
 import org.jellyfin.preference.Preference
 import org.koin.compose.koinInject
 

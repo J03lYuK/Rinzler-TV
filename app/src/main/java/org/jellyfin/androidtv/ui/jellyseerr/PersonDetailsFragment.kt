@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.graphics.Color
 import android.graphics.Outline
@@ -26,20 +26,20 @@ import coil3.request.ImageRequest
 import coil3.toBitmap
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverItemDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrPersonDetailsDto
-import org.jellyfin.androidtv.ui.itemhandling.JellyseerrMediaBaseRowItem
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.NavbarPosition
-import org.jellyfin.androidtv.ui.shared.toolbar.LeftSidebarNavigation
-import org.jellyfin.androidtv.ui.shared.toolbar.MainToolbar
-import org.jellyfin.androidtv.ui.shared.toolbar.MainToolbarActiveButton
-import org.jellyfin.androidtv.util.dp
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverItemDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrPersonDetailsDto
+import uk.rinzler.tv.ui.itemhandling.JellyseerrMediaBaseRowItem
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.NavbarPosition
+import uk.rinzler.tv.ui.shared.toolbar.LeftSidebarNavigation
+import uk.rinzler.tv.ui.shared.toolbar.MainToolbar
+import uk.rinzler.tv.ui.shared.toolbar.MainToolbarActiveButton
+import uk.rinzler.tv.util.dp
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -138,7 +138,7 @@ class PersonDetailsFragment : Fragment() {
 		mainContainer.addView(scrollView)
 
 		val navbarPosition = userPreferences[UserPreferences.navbarPosition]
-		
+
 		when (navbarPosition) {
 			NavbarPosition.LEFT -> {
 				val sidebarContainer = FrameLayout(requireContext()).apply {
@@ -150,7 +150,7 @@ class PersonDetailsFragment : Fragment() {
 					}
 					elevation = 8f * resources.displayMetrics.density
 				}
-				
+
 				val sidebarOverlay = ComposeView(requireContext()).apply {
 					id = View.generateViewId()
 					layoutParams = FrameLayout.LayoutParams(
@@ -177,7 +177,7 @@ class PersonDetailsFragment : Fragment() {
 					}
 					elevation = 8f * resources.displayMetrics.density
 				}
-				
+
 				val topToolbarOverlay = ComposeView(requireContext()).apply {
 					id = View.generateViewId()
 					layoutParams = FrameLayout.LayoutParams(

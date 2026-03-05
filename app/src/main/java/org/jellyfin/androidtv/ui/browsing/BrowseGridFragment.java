@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing;
+package uk.rinzler.tv.ui.browsing;
 
 import static org.koin.java.KoinJavaComponent.inject;
 
@@ -29,38 +29,38 @@ import androidx.leanback.widget.RowPresenter;
 import androidx.leanback.widget.VerticalGridPresenter;
 import androidx.lifecycle.Lifecycle;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.constant.ChangeTriggerType;
-import org.jellyfin.androidtv.constant.CustomMessage;
-import org.jellyfin.androidtv.constant.Extras;
-import org.jellyfin.androidtv.constant.GridDirection;
-import org.jellyfin.androidtv.constant.ImageType;
-import org.jellyfin.androidtv.constant.PosterSize;
-import org.jellyfin.androidtv.constant.QueryType;
-import org.jellyfin.androidtv.data.model.FilterOptions;
-import org.jellyfin.androidtv.data.querying.GetUserViewsRequest;
-import org.jellyfin.androidtv.data.repository.CustomMessageRepository;
-import org.jellyfin.androidtv.data.service.BackgroundService;
-import org.jellyfin.androidtv.data.service.BlurContext;
-import org.jellyfin.androidtv.databinding.HorizontalGridBrowseBinding;
-import org.jellyfin.androidtv.databinding.PopupEmptyBinding;
-import org.jellyfin.androidtv.preference.LibraryPreferences;
-import org.jellyfin.androidtv.preference.PreferencesRepository;
-import org.jellyfin.androidtv.ui.AlphaPickerView;
-import org.jellyfin.androidtv.ui.itemhandling.BaseRowItem;
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncher;
-import org.jellyfin.androidtv.ui.itemhandling.ItemRowAdapter;
-import org.jellyfin.androidtv.ui.itemhandling.ItemRowAdapterHelperKt;
-import org.jellyfin.androidtv.ui.presentation.CardPresenter;
-import org.jellyfin.androidtv.ui.presentation.HorizontalGridPresenter;
-import org.jellyfin.androidtv.util.CoroutineUtils;
-import org.jellyfin.androidtv.util.ImageHelper;
-import org.jellyfin.androidtv.util.InfoLayoutHelper;
-import org.jellyfin.androidtv.util.KeyProcessor;
-import org.jellyfin.androidtv.util.Utils;
-import org.jellyfin.androidtv.util.apiclient.EmptyResponse;
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory;
-import org.jellyfin.androidtv.auth.repository.SessionRepository;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.constant.ChangeTriggerType;
+import uk.rinzler.tv.constant.CustomMessage;
+import uk.rinzler.tv.constant.Extras;
+import uk.rinzler.tv.constant.GridDirection;
+import uk.rinzler.tv.constant.ImageType;
+import uk.rinzler.tv.constant.PosterSize;
+import uk.rinzler.tv.constant.QueryType;
+import uk.rinzler.tv.data.model.FilterOptions;
+import uk.rinzler.tv.data.querying.GetUserViewsRequest;
+import uk.rinzler.tv.data.repository.CustomMessageRepository;
+import uk.rinzler.tv.data.service.BackgroundService;
+import uk.rinzler.tv.data.service.BlurContext;
+import uk.rinzler.tv.databinding.HorizontalGridBrowseBinding;
+import uk.rinzler.tv.databinding.PopupEmptyBinding;
+import uk.rinzler.tv.preference.LibraryPreferences;
+import uk.rinzler.tv.preference.PreferencesRepository;
+import uk.rinzler.tv.ui.AlphaPickerView;
+import uk.rinzler.tv.ui.itemhandling.BaseRowItem;
+import uk.rinzler.tv.ui.itemhandling.ItemLauncher;
+import uk.rinzler.tv.ui.itemhandling.ItemRowAdapter;
+import uk.rinzler.tv.ui.itemhandling.ItemRowAdapterHelperKt;
+import uk.rinzler.tv.ui.presentation.CardPresenter;
+import uk.rinzler.tv.ui.presentation.HorizontalGridPresenter;
+import uk.rinzler.tv.util.CoroutineUtils;
+import uk.rinzler.tv.util.ImageHelper;
+import uk.rinzler.tv.util.InfoLayoutHelper;
+import uk.rinzler.tv.util.KeyProcessor;
+import uk.rinzler.tv.util.Utils;
+import uk.rinzler.tv.util.apiclient.EmptyResponse;
+import uk.rinzler.tv.util.sdk.ApiClientFactory;
+import uk.rinzler.tv.auth.repository.SessionRepository;
 import org.jellyfin.sdk.api.client.ApiClient;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 import org.jellyfin.sdk.model.api.BaseItemKind;
@@ -676,14 +676,14 @@ public class BrowseGridFragment extends Fragment implements View.OnKeyListener {
             // Fall back to current session's userId if not provided
             UUID userId = mUserId;
             if (userId == null) {
-                org.jellyfin.androidtv.auth.repository.Session currentSession = sessionRepository.getValue().getCurrentSession().getValue();
+                uk.rinzler.tv.auth.repository.Session currentSession = sessionRepository.getValue().getCurrentSession().getValue();
                 userId = (currentSession != null) ? currentSession.getUserId() : null;
             }
-            
-            ApiClient serverApiClient = (userId != null) 
+
+            ApiClient serverApiClient = (userId != null)
                 ? apiClientFactory.getValue().getApiClient(mServerId, userId)
                 : apiClientFactory.getValue().getApiClientForServer(mServerId);
-                
+
             if (serverApiClient != null) {
                 mAdapter.setApiClient(serverApiClient);
             }
@@ -728,7 +728,7 @@ public class BrowseGridFragment extends Fragment implements View.OnKeyListener {
         }
 
         mAdapter.setSortBy(getSortOption(libraryPreferences.get(LibraryPreferences.Companion.getSortBy())));
-        
+
         // Set up a listener to restore position after retrieval completes
         final int savedPosition = mSelectedPosition;
         mAdapter.setRetrieveFinishedListener(new EmptyResponse(getLifecycle()) {
@@ -737,7 +737,7 @@ public class BrowseGridFragment extends Fragment implements View.OnKeyListener {
                 restorePositionAndUpdateBackground(savedPosition);
             }
         });
-        
+
         mAdapter.Retrieve();
     }
 

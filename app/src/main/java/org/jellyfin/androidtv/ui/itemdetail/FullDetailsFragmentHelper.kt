@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.itemdetail
+package uk.rinzler.tv.ui.itemdetail
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -9,22 +9,22 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.model.DataRefreshService
-import org.jellyfin.androidtv.data.repository.ItemMutationRepository
-import org.jellyfin.androidtv.data.repository.ItemRepository
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.playback.PrePlaybackTrackSelector
-import org.jellyfin.androidtv.util.TimeUtils
-import org.jellyfin.androidtv.util.Utils
-import org.jellyfin.androidtv.util.apiclient.getSeriesOverview
-import org.jellyfin.androidtv.util.popupMenu
-import org.jellyfin.androidtv.util.sdk.TrailerUtils.getExternalTrailerIntent
-import org.jellyfin.androidtv.util.sdk.compat.canResume
-import org.jellyfin.androidtv.util.sdk.compat.copyWithServerId
-import org.jellyfin.androidtv.util.sdk.compat.copyWithUserData
-import org.jellyfin.androidtv.util.showIfNotEmpty
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.model.DataRefreshService
+import uk.rinzler.tv.data.repository.ItemMutationRepository
+import uk.rinzler.tv.data.repository.ItemRepository
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.playback.PrePlaybackTrackSelector
+import uk.rinzler.tv.util.TimeUtils
+import uk.rinzler.tv.util.Utils
+import uk.rinzler.tv.util.apiclient.getSeriesOverview
+import uk.rinzler.tv.util.popupMenu
+import uk.rinzler.tv.util.sdk.TrailerUtils.getExternalTrailerIntent
+import uk.rinzler.tv.util.sdk.compat.canResume
+import uk.rinzler.tv.util.sdk.compat.copyWithServerId
+import uk.rinzler.tv.util.sdk.compat.copyWithUserData
+import uk.rinzler.tv.util.showIfNotEmpty
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.ApiClientException
 import org.jellyfin.sdk.api.client.extensions.libraryApi
@@ -46,13 +46,13 @@ import kotlin.time.Duration.Companion.milliseconds
 
 private fun FullDetailsFragment.getCorrectApiClient(): ApiClient {
 	val api by inject<ApiClient>()
-	val apiClientFactory by inject<org.jellyfin.androidtv.util.sdk.ApiClientFactory>()
-	val sessionRepository by inject<org.jellyfin.androidtv.auth.repository.SessionRepository>()
-	
+	val apiClientFactory by inject<uk.rinzler.tv.util.sdk.ApiClientFactory>()
+	val sessionRepository by inject<uk.rinzler.tv.auth.repository.SessionRepository>()
+
 	val serverIdString: String? = arguments?.getString("ServerId")
 	val serverId = Utils.uuidOrNull(serverIdString)
 	val currentSession = sessionRepository.currentSession.value
-	
+
 	return when {
 		serverId != null -> apiClientFactory.getApiClientForServer(serverId) ?: api
 		currentSession != null -> apiClientFactory.getApiClientForServer(currentSession.serverId) ?: api
@@ -212,7 +212,7 @@ fun FullDetailsFragment.playTrailers() {
 }
 
 fun FullDetailsFragment.getItem(id: UUID, callback: (item: BaseItemDto?) -> Unit) {
-	val sessionRepository by inject<org.jellyfin.androidtv.auth.repository.SessionRepository>()
+	val sessionRepository by inject<uk.rinzler.tv.auth.repository.SessionRepository>()
 	val apiToUse = getCorrectApiClient()
 	val serverIdString: String? = arguments?.getString("ServerId")
 	val serverId = Utils.uuidOrNull(serverIdString) ?: sessionRepository.currentSession.value?.serverId
@@ -436,26 +436,26 @@ fun FullDetailsFragment.showAudioTrackSelector(
 ) {
 	val trackSelector by inject<PrePlaybackTrackSelector>()
 	val audioTracks = trackSelector.getAudioTracks(baseItemDto)
-	
+
 	if (audioTracks.isEmpty()) {
 		Toast.makeText(requireContext(), "No audio tracks available", Toast.LENGTH_SHORT).show()
 		return
 	}
-	
+
 	val selectedIndex = trackSelector.getSelectedAudioTrack(baseItemDto.id.toString())
-	
+
 	popupMenu(requireContext(), view) {
 		audioTracks.forEach { track ->
 			val displayName = trackSelector.getAudioTrackDisplayName(track)
 			val isSelected = track.index == selectedIndex
 			val label = if (isSelected) "✓ $displayName" else displayName
-			
+
 			item(label) {
 				trackSelector.setSelectedAudioTrack(baseItemDto.id.toString(), track.index)
 				Toast.makeText(requireContext(), "Audio: $displayName", Toast.LENGTH_SHORT).show()
 			}
 		}
-		
+
 		// Add "Default" option
 		val isDefault = selectedIndex == null
 		item(if (isDefault) "✓ Default" else "Default") {
@@ -471,9 +471,9 @@ fun FullDetailsFragment.showSubtitleTrackSelector(
 ) {
 	val trackSelector by inject<PrePlaybackTrackSelector>()
 	val subtitleTracks = trackSelector.getSubtitleTracks(baseItemDto)
-	
+
 	val selectedIndex = trackSelector.getSelectedSubtitleTrack(baseItemDto.id.toString())
-	
+
 	popupMenu(requireContext(), view) {
 		// Add "None" option
 		val isNone = selectedIndex == -1
@@ -481,18 +481,18 @@ fun FullDetailsFragment.showSubtitleTrackSelector(
 			trackSelector.setSelectedSubtitleTrack(baseItemDto.id.toString(), -1)
 			Toast.makeText(requireContext(), "Subtitles: None", Toast.LENGTH_SHORT).show()
 		}
-		
+
 		subtitleTracks.forEach { track ->
 			val displayName = trackSelector.getSubtitleTrackDisplayName(track)
 			val isSelected = track.index == selectedIndex
 			val label = if (isSelected) "✓ $displayName" else displayName
-			
+
 			item(label) {
 				trackSelector.setSelectedSubtitleTrack(baseItemDto.id.toString(), track.index)
 				Toast.makeText(requireContext(), "Subtitles: $displayName", Toast.LENGTH_SHORT).show()
 			}
 		}
-		
+
 		// Add "Default" option
 		val isDefault = selectedIndex == null
 		item(if (isDefault) "✓ Default" else "Default") {

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.repository
+package uk.rinzler.tv.data.repository
 
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
@@ -11,8 +11,8 @@ import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.userLibraryApi
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
-import org.jellyfin.androidtv.util.UUIDUtils
+import uk.rinzler.tv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.util.UUIDUtils
 import timber.log.Timber
 import java.util.UUID
 

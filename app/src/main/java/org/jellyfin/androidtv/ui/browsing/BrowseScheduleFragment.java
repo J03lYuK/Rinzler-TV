@@ -1,7 +1,7 @@
-package org.jellyfin.androidtv.ui.browsing;
+package uk.rinzler.tv.ui.browsing;
 
-import org.jellyfin.androidtv.ui.livetv.TvManager;
-import org.jellyfin.androidtv.ui.presentation.CardPresenter;
+import uk.rinzler.tv.ui.livetv.TvManager;
+import uk.rinzler.tv.ui.presentation.CardPresenter;
 
 public class BrowseScheduleFragment extends EnhancedBrowseFragment {
 

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
 import androidx.leanback.widget.HeaderItem
@@ -9,16 +9,16 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.repository.MultiServerRepository
-import org.jellyfin.androidtv.data.repository.ParentalControlsRepository
-import org.jellyfin.androidtv.constant.HomeSectionType
-import org.jellyfin.androidtv.constant.ImageType
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.ui.itemhandling.AggregatedItemRowAdapter
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.repository.MultiServerRepository
+import uk.rinzler.tv.data.repository.ParentalControlsRepository
+import uk.rinzler.tv.constant.HomeSectionType
+import uk.rinzler.tv.constant.ImageType
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.ui.itemhandling.AggregatedItemRowAdapter
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import timber.log.Timber

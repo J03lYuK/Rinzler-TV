@@ -1,6 +1,6 @@
-package org.jellyfin.androidtv.auth.model
+package uk.rinzler.tv.auth.model
 
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import org.jellyfin.preference.PreferenceEnum
 
 enum class AuthenticationSortBy(

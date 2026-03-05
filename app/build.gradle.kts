@@ -12,7 +12,7 @@ import java.util.jar.JarFile
 import java.util.jar.JarOutputStream
 
 android {
-	namespace = "org.jellyfin.androidtv"
+	namespace = "uk.rinzler.tv"
 	compileSdk = libs.versions.android.compileSdk.get().toInt()
 
 	defaultConfig {
@@ -20,7 +20,7 @@ android {
 		targetSdk = libs.versions.android.targetSdk.get().toInt()
 
 		// Release version - custom applicationId to avoid conflict with official Jellyfin
-		applicationId = "org.moonfin.androidtv"
+		applicationId = "uk.rinzler.tv"
 		versionName = project.getVersionName()
 		versionCode = getVersionCode(versionName!!)
 	}
@@ -57,7 +57,7 @@ android {
 			if (keystorePropertiesFile.exists()) {
 				val keystoreProperties = Properties()
 				keystoreProperties.load(FileInputStream(keystorePropertiesFile))
-				
+
 				storeFile = file(keystoreProperties["storeFile"] as String)
 				storePassword = keystoreProperties["storePassword"] as String
 				keyAlias = keystoreProperties["keyAlias"] as String
@@ -95,7 +95,7 @@ android {
 			isMinifyEnabled = true
 			isShrinkResources = true
 			proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-			
+
 			// Set package names used in various XML files (must match applicationId for provider authorities)
 			val debugAppId = defaultConfig.applicationId + applicationIdSuffix
 			resValue("string", "app_id", debugAppId)

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.service.pluginsync
+package uk.rinzler.tv.data.service.pluginsync
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -24,12 +24,12 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.data.repository.JellyseerrRepository
-import org.jellyfin.androidtv.data.service.UpdateCheckerService
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.data.repository.JellyseerrRepository
+import uk.rinzler.tv.data.service.UpdateCheckerService
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
 import org.jellyfin.preference.Preference
 import org.jellyfin.preference.PreferenceEnum
 import org.jellyfin.preference.store.SharedPreferenceStore
@@ -182,7 +182,7 @@ class PluginSyncService(
 		}
 
 		registerChangeListeners()
-		if (org.jellyfin.androidtv.BuildConfig.ENABLE_OTA_UPDATES) {
+		if (uk.rinzler.tv.BuildConfig.ENABLE_OTA_UPDATES) {
 			checkForPluginUpdate(baseUrl, token)
 		}
 	}

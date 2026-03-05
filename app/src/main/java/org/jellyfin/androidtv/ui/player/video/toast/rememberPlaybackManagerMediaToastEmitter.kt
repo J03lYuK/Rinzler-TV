@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.player.video.toast
+package uk.rinzler.tv.ui.player.video.toast
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -6,8 +6,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.player.base.toast.MediaToastRegistry
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.player.base.toast.MediaToastRegistry
 import org.jellyfin.playback.core.PlaybackManager
 import org.jellyfin.playback.core.model.PlayState
 

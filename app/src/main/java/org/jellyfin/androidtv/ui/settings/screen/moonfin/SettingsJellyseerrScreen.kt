@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen.moonfin
+package uk.rinzler.tv.ui.settings.screen.moonfin
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
@@ -24,21 +24,21 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.data.repository.JellyseerrRepository
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrHttpClient
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.form.Checkbox
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.navigation.LocalRouter
-import org.jellyfin.androidtv.ui.settings.Routes
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
-import org.jellyfin.androidtv.ui.settings.compat.rememberPreference
-import org.jellyfin.androidtv.preference.UserPreferences
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.data.repository.JellyseerrRepository
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrHttpClient
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.form.Checkbox
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.navigation.LocalRouter
+import uk.rinzler.tv.ui.settings.Routes
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.ui.settings.compat.rememberPreference
+import uk.rinzler.tv.preference.UserPreferences
 import org.jellyfin.sdk.api.client.ApiClient
 import org.koin.compose.koinInject
 import org.koin.core.qualifier.named
@@ -49,30 +49,30 @@ fun SettingsJellyseerrScreen() {
 	val context = LocalContext.current
 	val router = LocalRouter.current
 	val scope = rememberCoroutineScope()
-	
+
 	val jellyseerrPreferences = koinInject<JellyseerrPreferences>(named("global"))
 	val jellyseerrRepository = koinInject<JellyseerrRepository>()
 	val userPreferences = koinInject<UserPreferences>()
 	val apiClient = koinInject<ApiClient>()
 	val userRepository = koinInject<UserRepository>()
-	
+
 	// Get user-specific preferences (with migration from global if needed)
 	val userId = userRepository.currentUser.value?.id?.toString()
 	val userPrefs = remember(userId) {
 		userId?.let { JellyseerrPreferences.migrateToUserPreferences(context, it) }
 	}
-	
+
 	// State - all preferences are now per-user
 	var enabled by rememberPreference(userPrefs ?: jellyseerrPreferences, JellyseerrPreferences.enabled)
 	var blockNsfw by rememberPreference(userPrefs ?: jellyseerrPreferences, JellyseerrPreferences.blockNsfw)
-	
+
 	// Dialog states
 	var showServerUrlDialog by remember { mutableStateOf(false) }
 	var showJellyfinLoginDialog by remember { mutableStateOf(false) }
 	var showLocalLoginDialog by remember { mutableStateOf(false) }
 	var showApiKeyLoginDialog by remember { mutableStateOf(false) }
 	var showLogoutConfirmDialog by remember { mutableStateOf(false) }
-	
+
 	var apiKey by remember { mutableStateOf(userPrefs?.get(JellyseerrPreferences.apiKey) ?: "") }
 	var authMethod by remember { mutableStateOf(userPrefs?.get(JellyseerrPreferences.authMethod) ?: "") }
 
@@ -81,18 +81,18 @@ fun SettingsJellyseerrScreen() {
 		userPrefs?.get(JellyseerrPreferences.moonfinDisplayName) ?: ""
 	}
 	var showMoonfinDisconnectDialog by remember { mutableStateOf(false) }
-	
+
 	LaunchedEffect(userPrefs) {
 		apiKey = userPrefs?.get(JellyseerrPreferences.apiKey) ?: ""
 		authMethod = userPrefs?.get(JellyseerrPreferences.authMethod) ?: ""
 	}
-	
+
 	val apiKeyStatus = when {
 		apiKey.isNotEmpty() -> "Permanent API key active"
 		authMethod.isNotEmpty() -> "Cookie-based auth (expires ~30 days)"
 		else -> context.getString(R.string.jellyseerr_not_logged_in)
 	}
-	
+
 	val serverUrl = remember { userPrefs?.get(JellyseerrPreferences.serverUrl) ?: "" }
 	var isReconnecting by remember { mutableStateOf(false) }
 
@@ -201,7 +201,7 @@ fun SettingsJellyseerrScreen() {
 					leadingContent = { Icon(painterResource(R.drawable.ic_jellyseerr_jellyfish), contentDescription = null) },
 					headingContent = { Text(stringResource(R.string.jellyseerr_connect_jellyfin)) },
 					captionContent = { Text(stringResource(R.string.jellyseerr_connect_jellyfin_description)) },
-					onClick = { 
+					onClick = {
 						if (enabled) {
 							showJellyfinLoginDialog = true
 						} else {
@@ -216,7 +216,7 @@ fun SettingsJellyseerrScreen() {
 					leadingContent = { Icon(painterResource(R.drawable.ic_user), contentDescription = null) },
 					headingContent = { Text(stringResource(R.string.jellyseerr_login_local)) },
 					captionContent = { Text(stringResource(R.string.jellyseerr_login_local_description)) },
-					onClick = { 
+					onClick = {
 						if (enabled) {
 							showLocalLoginDialog = true
 						} else {
@@ -231,7 +231,7 @@ fun SettingsJellyseerrScreen() {
 					leadingContent = { Icon(painterResource(R.drawable.ic_lightbulb), contentDescription = null) },
 					headingContent = { Text(stringResource(R.string.jellyseerr_login_api_key)) },
 					captionContent = { Text(stringResource(R.string.jellyseerr_login_api_key_description)) },
-					onClick = { 
+					onClick = {
 						if (enabled) {
 							showApiKeyLoginDialog = true
 						} else {
@@ -272,21 +272,21 @@ fun SettingsJellyseerrScreen() {
 				headingContent = { Text(stringResource(R.string.jellyseerr_block_nsfw)) },
 				captionContent = { Text(stringResource(R.string.jellyseerr_block_nsfw_description)) },
 				trailingContent = { Checkbox(checked = blockNsfw) },
-				onClick = { 
+				onClick = {
 					if (enabled) {
 						blockNsfw = !blockNsfw
 					}
 				}
 			)
 		}
-		
+
 		// Discover Rows Configuration
 		item {
 			ListButton(
 				leadingContent = { Icon(painterResource(R.drawable.ic_grid), contentDescription = null) },
 				headingContent = { Text(stringResource(R.string.jellyseerr_rows_title)) },
 				captionContent = { Text(stringResource(R.string.jellyseerr_rows_description)) },
-				onClick = { 
+				onClick = {
 					if (enabled) {
 						router.push(Routes.JELLYSEERR_ROWS)
 					}
@@ -318,7 +318,7 @@ fun SettingsJellyseerrScreen() {
 			val currentUser = userRepository.currentUser.value
 			val username = currentUser?.name ?: ""
 			val jellyfinServerUrl = apiClient.baseUrl ?: ""
-			
+
 			JellyfinLoginDialog(
 				username = username,
 				onDismiss = { showJellyfinLoginDialog = false },
@@ -454,7 +454,7 @@ private fun ServerUrlDialog(
 	onSave: (String) -> Unit
 ) {
 	var url by remember { mutableStateOf(currentUrl) }
-	
+
 	AlertDialog(
 		onDismissRequest = onDismiss,
 		title = { Text(stringResource(R.string.jellyseerr_server_url)) },
@@ -493,7 +493,7 @@ private fun JellyfinLoginDialog(
 	onConnect: (password: String) -> Unit
 ) {
 	var password by remember { mutableStateOf("") }
-	
+
 	AlertDialog(
 		onDismissRequest = onDismiss,
 		title = { Text(stringResource(R.string.jellyseerr_connect_jellyfin)) },
@@ -533,7 +533,7 @@ private fun LocalLoginDialog(
 ) {
 	var email by remember { mutableStateOf("") }
 	var password by remember { mutableStateOf("") }
-	
+
 	AlertDialog(
 		onDismissRequest = onDismiss,
 		title = { Text(stringResource(R.string.jellyseerr_login_local)) },
@@ -565,7 +565,7 @@ private fun LocalLoginDialog(
 		},
 		confirmButton = {
 			TextButton(
-				onClick = { 
+				onClick = {
 					if (email.isNotEmpty() && password.isNotEmpty()) {
 						onLogin(email.trim(), password)
 					}
@@ -588,7 +588,7 @@ private fun ApiKeyLoginDialog(
 	onLogin: (apiKey: String) -> Unit
 ) {
 	var apiKey by remember { mutableStateOf("") }
-	
+
 	AlertDialog(
 		onDismissRequest = onDismiss,
 		title = { Text(stringResource(R.string.jellyseerr_login_api_key)) },
@@ -608,7 +608,7 @@ private fun ApiKeyLoginDialog(
 		},
 		confirmButton = {
 			TextButton(
-				onClick = { 
+				onClick = {
 					if (apiKey.isNotEmpty()) {
 						onLogin(apiKey.trim())
 					}
@@ -640,7 +640,7 @@ private suspend fun performJellyfinLogin(
 		Toast.makeText(context, "All fields are required", Toast.LENGTH_SHORT).show()
 		return
 	}
-	
+
 	try {
 		// Get current Jellyfin user ID and switch cookie storage
 		val currentUser = userRepository.currentUser.value
@@ -648,21 +648,21 @@ private suspend fun performJellyfinLogin(
 		if (userId != null) {
 			JellyseerrHttpClient.switchCookieStorage(userId)
 		}
-		
+
 		// Store current Jellyfin username
 		jellyseerrPreferences[JellyseerrPreferences.lastJellyfinUser] = username
-		
+
 		val result = jellyseerrRepository.loginWithJellyfin(username, password, jellyfinServerUrl, jellyseerrServerUrl)
-		
+
 		result.onSuccess { user ->
 			val apiKey = user.apiKey ?: ""
-			
+
 			val authType = if (apiKey.isNotEmpty()) {
 				"permanent API key"
 			} else {
 				"cookie-based auth (expires ~30 days)"
 			}
-			
+
 			Toast.makeText(context, "Connected successfully using $authType!", Toast.LENGTH_LONG).show()
 			Timber.d("Jellyseerr: Jellyfin authentication successful")
 		}.onFailure { error ->
@@ -694,11 +694,11 @@ private suspend fun performLocalLogin(
 ) {
 	try {
 		val result = jellyseerrRepository.loginLocal(email, password, serverUrl)
-		
+
 		result.onSuccess { user ->
 			jellyseerrPreferences[JellyseerrPreferences.enabled] = true
 			jellyseerrPreferences[JellyseerrPreferences.lastConnectionSuccess] = true
-			
+
 			val message = if (user.apiKey?.isNotEmpty() == true) {
 				"Logged in successfully using permanent API key!"
 			} else {
@@ -724,7 +724,7 @@ private suspend fun performApiKeyLogin(
 ) {
 	try {
 		val result = jellyseerrRepository.loginWithApiKey(apiKey, serverUrl)
-		
+
 		result.onSuccess {
 			jellyseerrPreferences[JellyseerrPreferences.enabled] = true
 			jellyseerrPreferences[JellyseerrPreferences.lastConnectionSuccess] = true

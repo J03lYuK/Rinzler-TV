@@ -1,9 +1,9 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 import android.content.Context
 import android.text.Spanned
 import androidx.core.text.HtmlCompat
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 
 /**
  * Convert string with HTML to a [Spanned]. Uses the [HtmlCompat.FROM_HTML_MODE_COMPACT] flag.

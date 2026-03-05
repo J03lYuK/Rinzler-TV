@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui;
+package uk.rinzler.tv.ui;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,13 +18,13 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewTreeLifecycleOwner;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.auth.repository.UserRepository;
-import org.jellyfin.androidtv.data.model.DataRefreshService;
-import org.jellyfin.androidtv.ui.livetv.LiveTvGuide;
-import org.jellyfin.androidtv.ui.livetv.TvManager;
-import org.jellyfin.androidtv.util.Utils;
-import org.jellyfin.androidtv.util.apiclient.EmptyResponse;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.auth.repository.UserRepository;
+import uk.rinzler.tv.data.model.DataRefreshService;
+import uk.rinzler.tv.ui.livetv.LiveTvGuide;
+import uk.rinzler.tv.ui.livetv.TvManager;
+import uk.rinzler.tv.util.Utils;
+import uk.rinzler.tv.util.apiclient.EmptyResponse;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 import org.koin.java.KoinJavaComponent;
 

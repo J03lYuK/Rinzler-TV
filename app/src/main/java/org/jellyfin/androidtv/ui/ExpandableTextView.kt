@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui
+package uk.rinzler.tv.ui
 
 import android.content.Context
 import android.util.AttributeSet
@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.PopupWindow
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.databinding.PopupExpandableTextViewBinding
+import uk.rinzler.tv.R
+import uk.rinzler.tv.databinding.PopupExpandableTextViewBinding
 
 class ExpandableTextView @JvmOverloads constructor(
 	context: Context,

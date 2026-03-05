@@ -81,13 +81,13 @@
             android:initOrder="1000"
             tools:node="merge">
             <meta-data
-                android:name="org.jellyfin.androidtv.LogInitializer"
+                android:name="uk.rinzler.tv.LogInitializer"
                 android:value="androidx.startup" />
             <meta-data
-                android:name="org.jellyfin.androidtv.di.KoinInitializer"
+                android:name="uk.rinzler.tv.di.KoinInitializer"
                 android:value="androidx.startup" />
             <meta-data
-                android:name="org.jellyfin.androidtv.SessionInitializer"
+                android:name="uk.rinzler.tv.SessionInitializer"
                 android:value="androidx.startup" />
         </provider>
 

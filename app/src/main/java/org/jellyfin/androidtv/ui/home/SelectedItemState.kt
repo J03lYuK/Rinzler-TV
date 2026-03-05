@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import org.jellyfin.sdk.model.api.BaseItemDto
 
@@ -6,7 +6,7 @@ import org.jellyfin.sdk.model.api.BaseItemDto
  * Represents the state of the currently selected item in the home screen.
  * Used to communicate selection data from HomeRowsFragment to HomeFragment
  * for displaying in the top info area.
- * 
+ *
  * This is kept lightweight for performance - only title and summary are shown.
  */
 data class SelectedItemState(

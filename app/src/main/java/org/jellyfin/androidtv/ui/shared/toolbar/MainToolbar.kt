@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.shared.toolbar
+package uk.rinzler.tv.ui.shared.toolbar
 
 import androidx.activity.compose.LocalActivity
 import androidx.compose.animation.core.animateFloatAsState
@@ -41,41 +41,41 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.Session
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.data.model.AggregatedLibrary
-import org.jellyfin.androidtv.data.repository.MultiServerRepository
-import org.jellyfin.androidtv.data.repository.UserViewsRepository
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
-import org.jellyfin.androidtv.ui.NowPlayingComposable
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.base.ProvideTextStyle
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.button.Button
-import org.jellyfin.androidtv.ui.base.button.ButtonDefaults
-import org.jellyfin.androidtv.ui.base.button.IconButton
-import org.jellyfin.androidtv.ui.base.button.IconButtonDefaults
-import org.jellyfin.androidtv.ui.base.focusBorderColor
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncher
-import org.jellyfin.androidtv.ui.navigation.ActivityDestinations
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.playback.MediaManager
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.ClockBehavior
-import org.jellyfin.androidtv.ui.settings.compat.SettingsViewModel
-import org.jellyfin.androidtv.ui.shuffle.ShuffleManager
-import org.jellyfin.androidtv.ui.shuffle.ShuffleOptionsDialog
-import org.jellyfin.androidtv.ui.syncplay.SyncPlayDialog
-import org.jellyfin.androidtv.ui.syncplay.SyncPlayViewModel
-import org.jellyfin.androidtv.data.service.pluginsync.PluginSyncService
-import org.jellyfin.androidtv.util.apiclient.getUrl
-import org.jellyfin.androidtv.util.apiclient.primaryImage
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.Session
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.data.model.AggregatedLibrary
+import uk.rinzler.tv.data.repository.MultiServerRepository
+import uk.rinzler.tv.data.repository.UserViewsRepository
+import uk.rinzler.tv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.ui.NowPlayingComposable
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.ProvideTextStyle
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.button.Button
+import uk.rinzler.tv.ui.base.button.ButtonDefaults
+import uk.rinzler.tv.ui.base.button.IconButton
+import uk.rinzler.tv.ui.base.button.IconButtonDefaults
+import uk.rinzler.tv.ui.base.focusBorderColor
+import uk.rinzler.tv.ui.itemhandling.ItemLauncher
+import uk.rinzler.tv.ui.navigation.ActivityDestinations
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.playback.MediaManager
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.ClockBehavior
+import uk.rinzler.tv.ui.settings.compat.SettingsViewModel
+import uk.rinzler.tv.ui.shuffle.ShuffleManager
+import uk.rinzler.tv.ui.shuffle.ShuffleOptionsDialog
+import uk.rinzler.tv.ui.syncplay.SyncPlayDialog
+import uk.rinzler.tv.ui.syncplay.SyncPlayViewModel
+import uk.rinzler.tv.data.service.pluginsync.PluginSyncService
+import uk.rinzler.tv.util.apiclient.getUrl
+import uk.rinzler.tv.util.apiclient.primaryImage
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.CollectionType
@@ -109,8 +109,8 @@ fun MainToolbar(
 	val syncCompletedCounter by pluginSyncService.syncCompletedCounter.collectAsState()
 	val api = koinInject<ApiClient>()
 	val userViewsRepository = koinInject<UserViewsRepository>()
-	val multiServerRepository = koinInject<org.jellyfin.androidtv.data.repository.MultiServerRepository>()
-	val sessionRepository = koinInject<org.jellyfin.androidtv.auth.repository.SessionRepository>()
+	val multiServerRepository = koinInject<uk.rinzler.tv.data.repository.MultiServerRepository>()
+	val sessionRepository = koinInject<uk.rinzler.tv.auth.repository.SessionRepository>()
 	val jellyseerrPreferences = koinInject<JellyseerrPreferences>(named("global"))
 	val userPreferences = koinInject<UserPreferences>()
 	val imageLoader = koinInject<coil3.ImageLoader>()
@@ -178,10 +178,10 @@ fun MainToolbar(
 			userViews = views.toList()
 		}
 	}
-	
+
 	// Load aggregated libraries from all servers
 	val aggregationScope = rememberCoroutineScope()
-	var aggregatedLibraries by remember { mutableStateOf<List<org.jellyfin.androidtv.data.model.AggregatedLibrary>>(emptyList()) }
+	var aggregatedLibraries by remember { mutableStateOf<List<uk.rinzler.tv.data.model.AggregatedLibrary>>(emptyList()) }
 	LaunchedEffect(enableMultiServer) {
 		if (enableMultiServer) {
 			aggregationScope.launch(Dispatchers.IO) {
@@ -192,7 +192,7 @@ fun MainToolbar(
 			}
 		}
 	}
-	
+
 	// Track current session for server switching
 	val currentSession by sessionRepository.currentSession.collectAsState()
 
@@ -224,7 +224,7 @@ private fun MainToolbar(
 	activeButton: MainToolbarActiveButton,
 	activeLibraryId: UUID? = null,
 	userViews: List<BaseItemDto> = emptyList(),
-	aggregatedLibraries: List<org.jellyfin.androidtv.data.model.AggregatedLibrary> = emptyList(),
+	aggregatedLibraries: List<uk.rinzler.tv.data.model.AggregatedLibrary> = emptyList(),
 	enableMultiServer: Boolean = false,
 	currentSession: Session? = null,
 	jellyseerrEnabled: Boolean = false,
@@ -451,7 +451,7 @@ private fun MainToolbar(
 						colors = toolbarButtonColors,
 					)
 				}
-				
+
 				if (syncPlayEnabled) {
 					ExpandableIconButton(
 						icon = ImageVector.vectorResource(R.drawable.ic_syncplay),

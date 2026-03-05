@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.player.base
+package uk.rinzler.tv.ui.player.base
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

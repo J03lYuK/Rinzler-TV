@@ -1,10 +1,10 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import org.jellyfin.androidtv.databinding.ViewJellyseerrDetailsRowBinding
+import uk.rinzler.tv.databinding.ViewJellyseerrDetailsRowBinding
 
 class DetailsRowView @JvmOverloads constructor(
 	context: Context,

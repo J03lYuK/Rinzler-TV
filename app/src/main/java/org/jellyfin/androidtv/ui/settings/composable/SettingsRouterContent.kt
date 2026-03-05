@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.composable
+package uk.rinzler.tv.ui.settings.composable
 
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
@@ -8,7 +8,7 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Composable
-import org.jellyfin.androidtv.ui.navigation.RouterContent
+import uk.rinzler.tv.ui.navigation.RouterContent
 
 /**
  * Wrapper for the [RouterContent] composable that sets the settings slide in/out transitions.

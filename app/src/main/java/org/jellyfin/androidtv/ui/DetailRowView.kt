@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui
+package uk.rinzler.tv.ui
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.widget.FrameLayout
-import org.jellyfin.androidtv.databinding.ViewRowDetailsBinding
+import uk.rinzler.tv.databinding.ViewRowDetailsBinding
 
 class DetailRowView @JvmOverloads constructor(
 	context: Context,

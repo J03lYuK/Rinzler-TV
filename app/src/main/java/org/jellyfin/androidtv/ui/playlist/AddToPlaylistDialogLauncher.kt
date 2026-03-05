@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playlist
+package uk.rinzler.tv.ui.playlist
 
 import android.widget.Toast
 import androidx.compose.runtime.LaunchedEffect
@@ -10,11 +10,11 @@ import androidx.compose.runtime.setValue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.repository.MultiServerRepository
-import org.jellyfin.androidtv.data.repository.ServerUserSession
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.repository.MultiServerRepository
+import uk.rinzler.tv.data.repository.ServerUserSession
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.base.JellyfinTheme
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.playlistsApi
 import org.koin.compose.koinInject
@@ -40,7 +40,7 @@ fun showAddToPlaylistDialog(
 					var showDialog by remember { mutableStateOf(true) }
 					var showCreatePlaylistFor by remember { mutableStateOf<ApiClient?>(null) }
 
-					val enableMultiServer = remember { 
+					val enableMultiServer = remember {
 						userPreferences[UserPreferences.enableMultiServerLibraries]
 					}
 
@@ -52,7 +52,7 @@ fun showAddToPlaylistDialog(
 							}
 						}
 					}
-					
+
 					if (showCreatePlaylistFor != null) {
 						CreatePlaylistDialog(
 							itemId = itemId,

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 import android.widget.ImageView
 import androidx.compose.animation.AnimatedContent
@@ -23,18 +23,18 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.composable.AsyncImage
-import org.jellyfin.androidtv.ui.composable.LyricsDtoBox
-import org.jellyfin.androidtv.ui.composable.modifier.fadingEdges
-import org.jellyfin.androidtv.ui.composable.rememberPlayerProgress
-import org.jellyfin.androidtv.ui.composable.rememberQueueEntry
-import org.jellyfin.androidtv.ui.player.base.PlayerSeekbar
-import org.jellyfin.androidtv.util.apiclient.albumPrimaryImage
-import org.jellyfin.androidtv.util.apiclient.getUrl
-import org.jellyfin.androidtv.util.apiclient.itemImages
-import org.jellyfin.androidtv.util.apiclient.parentImages
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.composable.AsyncImage
+import uk.rinzler.tv.ui.composable.LyricsDtoBox
+import uk.rinzler.tv.ui.composable.modifier.fadingEdges
+import uk.rinzler.tv.ui.composable.rememberPlayerProgress
+import uk.rinzler.tv.ui.composable.rememberQueueEntry
+import uk.rinzler.tv.ui.player.base.PlayerSeekbar
+import uk.rinzler.tv.util.apiclient.albumPrimaryImage
+import uk.rinzler.tv.util.apiclient.getUrl
+import uk.rinzler.tv.util.apiclient.itemImages
+import uk.rinzler.tv.util.apiclient.parentImages
 import org.jellyfin.playback.core.PlaybackManager
 import org.jellyfin.playback.core.model.PlayState
 import org.jellyfin.playback.jellyfin.lyrics

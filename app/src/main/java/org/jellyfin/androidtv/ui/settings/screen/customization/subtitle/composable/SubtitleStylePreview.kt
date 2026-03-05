@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen.customization.subtitle.composable
+package uk.rinzler.tv.ui.settings.screen.customization.subtitle.composable
 
 import android.graphics.Typeface
 import android.util.TypedValue
@@ -20,9 +20,9 @@ import androidx.media3.common.text.Cue
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.CaptionStyleCompat
 import androidx.media3.ui.SubtitleView
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
+import uk.rinzler.tv.R
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.base.JellyfinTheme
 import org.jellyfin.design.Tokens
 
 @OptIn(UnstableApi::class)

@@ -1,15 +1,15 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
 import androidx.annotation.AnyRes
-import org.jellyfin.androidtv.util.apiclient.albumPrimaryImage
-import org.jellyfin.androidtv.util.apiclient.getUrl
-import org.jellyfin.androidtv.util.apiclient.itemImages
-import org.jellyfin.androidtv.util.apiclient.parentImages
-import org.jellyfin.androidtv.util.apiclient.seriesPrimaryImage
-import org.jellyfin.androidtv.util.apiclient.seriesThumbImage
+import uk.rinzler.tv.util.apiclient.albumPrimaryImage
+import uk.rinzler.tv.util.apiclient.getUrl
+import uk.rinzler.tv.util.apiclient.itemImages
+import uk.rinzler.tv.util.apiclient.parentImages
+import uk.rinzler.tv.util.apiclient.seriesPrimaryImage
+import uk.rinzler.tv.util.apiclient.seriesThumbImage
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind

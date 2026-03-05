@@ -1,24 +1,24 @@
-package org.jellyfin.androidtv.ui.itemhandling;
+package uk.rinzler.tv.ui.itemhandling;
 
 import android.content.Context;
 
 import androidx.annotation.Nullable;
 
-import org.jellyfin.androidtv.auth.repository.SessionRepository;
-import org.jellyfin.androidtv.constant.LiveTvOption;
-import org.jellyfin.androidtv.constant.QueryType;
-import org.jellyfin.androidtv.data.model.ChapterItemInfo;
-import org.jellyfin.androidtv.ui.navigation.Destination;
-import org.jellyfin.androidtv.ui.navigation.Destinations;
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository;
-import org.jellyfin.androidtv.ui.playback.MediaManager;
-import org.jellyfin.androidtv.ui.playback.PlaybackLauncher;
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter;
-import org.jellyfin.androidtv.util.PlaybackHelper;
-import org.jellyfin.androidtv.util.UUIDUtils;
-import org.jellyfin.androidtv.util.Utils;
-import org.jellyfin.androidtv.util.apiclient.Response;
-import org.jellyfin.androidtv.util.sdk.compat.JavaCompat;
+import uk.rinzler.tv.auth.repository.SessionRepository;
+import uk.rinzler.tv.constant.LiveTvOption;
+import uk.rinzler.tv.constant.QueryType;
+import uk.rinzler.tv.data.model.ChapterItemInfo;
+import uk.rinzler.tv.ui.navigation.Destination;
+import uk.rinzler.tv.ui.navigation.Destinations;
+import uk.rinzler.tv.ui.navigation.NavigationRepository;
+import uk.rinzler.tv.ui.playback.MediaManager;
+import uk.rinzler.tv.ui.playback.PlaybackLauncher;
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter;
+import uk.rinzler.tv.util.PlaybackHelper;
+import uk.rinzler.tv.util.UUIDUtils;
+import uk.rinzler.tv.util.Utils;
+import uk.rinzler.tv.util.apiclient.Response;
+import uk.rinzler.tv.util.sdk.compat.JavaCompat;
 import org.jellyfin.sdk.api.client.ApiClient;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 import org.jellyfin.sdk.model.api.BaseItemKind;
@@ -80,7 +80,7 @@ public class ItemLauncher {
                 serverId = UUIDUtils.parseUUID(item.getServerId());
             }
         }
-        
+
         switch (rowItem.getBaseRowType()) {
             case BaseItem:
                 BaseItemDto baseItem = rowItem.getBaseItem();

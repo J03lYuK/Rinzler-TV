@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback;
+package uk.rinzler.tv.ui.playback;
 
 import android.app.Activity;
 import android.content.Context;
@@ -47,11 +47,11 @@ import androidx.media3.ui.CaptionStyleCompat;
 import androidx.media3.ui.PlayerView;
 import androidx.media3.ui.SubtitleView;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.data.compat.StreamInfo;
-import org.jellyfin.androidtv.data.syncplay.SyncPlayManager;
-import org.jellyfin.androidtv.preference.UserPreferences;
-import org.jellyfin.androidtv.preference.constant.ZoomMode;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.data.compat.StreamInfo;
+import uk.rinzler.tv.data.syncplay.SyncPlayManager;
+import uk.rinzler.tv.preference.UserPreferences;
+import uk.rinzler.tv.preference.constant.ZoomMode;
 import org.jellyfin.sdk.api.client.ApiClient;
 import org.jellyfin.sdk.model.api.MediaStream;
 import org.jellyfin.sdk.model.api.MediaStreamType;
@@ -113,11 +113,11 @@ public class VideoManager {
         }
 
         mExoPlayerView = view.findViewById(R.id.exoPlayerView);
-        
+
         // Hide PlayerView's built-in subtitle view to prevent conflicts with our custom delay handling
         SubtitleView playerViewSubtitles = mExoPlayerView.getSubtitleView();
         playerViewSubtitles.setVisibility(View.GONE);
-        
+
         mExoPlayerView.setPlayer(mExoPlayer);
         int strokeColor = userPreferences.get(UserPreferences.Companion.getSubtitleTextStrokeColor()).intValue();
         int textWeight = userPreferences.get(UserPreferences.Companion.getSubtitlesTextWeight());
@@ -129,7 +129,7 @@ public class VideoManager {
                 strokeColor,
                 TypefaceCompat.create(activity, Typeface.DEFAULT, textWeight, false)
         );
-        
+
         // Create our own custom SubtitleView that we can control independently
         mCustomSubtitleView = new SubtitleView(activity);
         mCustomSubtitleView.setFixedTextSize(TypedValue.COMPLEX_UNIT_DIP, userPreferences.get(UserPreferences.Companion.getSubtitlesTextSize()));
@@ -137,7 +137,7 @@ public class VideoManager {
         mCustomSubtitleView.setApplyEmbeddedStyles(false);
         mCustomSubtitleView.setBottomPaddingFraction(userPreferences.get(UserPreferences.Companion.getSubtitlesOffsetPosition()));
         mCustomSubtitleView.setStyle(subtitleStyle);
-        
+
         // Add custom subtitle view as overlay on top of PlayerView
         FrameLayout.LayoutParams subtitleParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
@@ -281,10 +281,10 @@ public class VideoManager {
      */
     private ExoPlayer.Builder configureExoplayerBuilder(Context context) {
         ExoPlayer.Builder exoPlayerBuilder = new ExoPlayer.Builder(context);
-        
+
         // Create audio delay processor
         mAudioDelayProcessor = new AudioDelayProcessor();
-        
+
         // Create custom renderers factory that appends audio delay processor
         // to the default processor chain (instead of replacing it)
         DefaultRenderersFactory defaultRendererFactory = new DefaultRenderersFactory(context) {
@@ -385,10 +385,10 @@ public class VideoManager {
     public boolean seekWithinBuffer(long pos) {
         if (!isInitialized())
             return false;
-        
+
         long currentPos = mExoPlayer.getCurrentPosition();
         long bufferedEnd = mExoPlayer.getBufferedPosition();
-        
+
         // For HLS/transcoded streams, ExoPlayer maintains a buffer window
         // If we're seeking backwards within reasonable range, it should use cached data
         // The buffer start is harder to determine, but ExoPlayer handles this gracefully
@@ -687,12 +687,12 @@ public class VideoManager {
             Timber.w("Cannot set subtitle delay: player not initialized");
             return;
         }
-        
+
         if (mSubtitleDelayHandler == null) {
             Timber.w("Cannot set subtitle delay: subtitle delay handler not initialized");
             return;
         }
-        
+
         Timber.d("Setting subtitle delay: %d ms", delayMs);
         mSubtitleDelayHandler.setOffsetMs(delayMs);
     }
@@ -700,10 +700,10 @@ public class VideoManager {
     public void setAudioDelay(long delayMs) {
         Timber.d("Setting audio delay: %d ms", delayMs);
         mAudioDelayMs = delayMs;
-        
+
         if (mAudioDelayProcessor != null) {
             mAudioDelayProcessor.setDelayMs(delayMs);
-            
+
             if (isInitialized()) {
                 long currentPosition = mExoPlayer.getCurrentPosition();
                 if (mExoPlayer.isPlaying()) {
@@ -741,7 +741,7 @@ public class VideoManager {
                 mSubtitleDelayHandler.release();
                 mSubtitleDelayHandler = null;
             }
-            
+
             mExoPlayerView.setPlayer(null);
             mExoPlayer.release();
             mExoPlayer = null;

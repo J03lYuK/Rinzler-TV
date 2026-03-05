@@ -1,8 +1,8 @@
-package org.jellyfin.androidtv.util.sdk
+package uk.rinzler.tv.util.sdk
 
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.auth.store.AuthenticationStore
-import org.jellyfin.androidtv.util.UUIDUtils
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.auth.store.AuthenticationStore
+import uk.rinzler.tv.util.UUIDUtils
 import org.jellyfin.sdk.Jellyfin
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.DeviceInfo

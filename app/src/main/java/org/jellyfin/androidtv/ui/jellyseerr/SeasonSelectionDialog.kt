@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.app.Dialog
 import android.content.Context
@@ -13,8 +13,8 @@ import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.preference.UserSettingPreferences
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.preference.UserSettingPreferences
 
 class SeasonSelectionDialog(
 	context: Context,
@@ -29,7 +29,7 @@ class SeasonSelectionDialog(
 	private var selectAllCheckbox: CheckBox? = null
 	private lateinit var confirmButton: TextView
 	private lateinit var cancelButton: TextView
-	
+
 	private fun getFocusColor(): Int {
 		val userRepository: UserRepository by org.koin.java.KoinJavaComponent.inject(UserRepository::class.java)
 		val userId = userRepository.currentUser.value?.id
@@ -39,7 +39,7 @@ class SeasonSelectionDialog(
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		
+
 		val focusBorderColor = getFocusColor()
 
 		val rootContainer = LinearLayout(context).apply {
@@ -51,7 +51,7 @@ class SeasonSelectionDialog(
 				ViewGroup.LayoutParams.WRAP_CONTENT
 			)
 		}
-		
+
 		val titleText = TextView(context).apply {
 			text = "Select Seasons"
 			textSize = 20f
@@ -65,7 +65,7 @@ class SeasonSelectionDialog(
 			}
 		}
 		rootContainer.addView(titleText)
-		
+
 		val subtitleText = TextView(context).apply {
 			text = "$showName ${if (is4k) "(4K)" else "(HD)"}"
 			textSize = 14f
@@ -78,9 +78,9 @@ class SeasonSelectionDialog(
 			}
 		}
 		rootContainer.addView(subtitleText)
-		
+
 		val availableSeasons = (1..numberOfSeasons).filter { it !in unavailableSeasons }
-		
+
 		if (availableSeasons.isNotEmpty()) {
 			selectAllCheckbox = CheckBox(context).apply {
 				text = if (unavailableSeasons.isEmpty()) "Select All Seasons" else "Select All Available"
@@ -108,7 +108,7 @@ class SeasonSelectionDialog(
 			}
 			rootContainer.addView(selectAllCheckbox)
 		}
-		
+
 		val separator = View(context).apply {
 			setBackgroundColor(Color.parseColor("#374151"))
 			layoutParams = LinearLayout.LayoutParams(
@@ -119,7 +119,7 @@ class SeasonSelectionDialog(
 			}
 		}
 		rootContainer.addView(separator)
-		
+
 		val scrollView = ScrollView(context).apply {
 			layoutParams = LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.MATCH_PARENT,
@@ -128,7 +128,7 @@ class SeasonSelectionDialog(
 			isVerticalScrollBarEnabled = true
 			scrollBarStyle = View.SCROLLBARS_OUTSIDE_OVERLAY
 		}
-		
+
 		val seasonsContainer = LinearLayout(context).apply {
 			orientation = LinearLayout.VERTICAL
 			layoutParams = LinearLayout.LayoutParams(
@@ -136,7 +136,7 @@ class SeasonSelectionDialog(
 				LinearLayout.LayoutParams.WRAP_CONTENT
 			)
 		}
-		
+
 		for (season in 1..numberOfSeasons) {
 			val isUnavailable = season in unavailableSeasons
 			val checkbox = CheckBox(context).apply {
@@ -166,10 +166,10 @@ class SeasonSelectionDialog(
 			seasonCheckboxes.add(checkbox)
 			seasonsContainer.addView(checkbox)
 		}
-		
+
 		scrollView.addView(seasonsContainer)
 		rootContainer.addView(scrollView)
-		
+
 		val buttonsContainer = LinearLayout(context).apply {
 			orientation = LinearLayout.HORIZONTAL
 			gravity = Gravity.CENTER
@@ -180,7 +180,7 @@ class SeasonSelectionDialog(
 				topMargin = 16.dp(context)
 			}
 		}
-		
+
 		cancelButton = TextView(context).apply {
 			text = "Cancel"
 			textSize = 14f
@@ -190,7 +190,7 @@ class SeasonSelectionDialog(
 			isFocusable = true
 			isFocusableInTouchMode = true
 			gravity = Gravity.CENTER
-			
+
 			val normalBg = android.graphics.drawable.GradientDrawable().apply {
 				setColor(Color.parseColor("#6B7280"))
 				cornerRadius = 6.dp(context).toFloat()
@@ -200,12 +200,12 @@ class SeasonSelectionDialog(
 				cornerRadius = 6.dp(context).toFloat()
 				setStroke(2.dp(context), focusBorderColor)
 			}
-			
+
 			background = android.graphics.drawable.StateListDrawable().apply {
 				addState(intArrayOf(android.R.attr.state_focused), focusedBg)
 				addState(intArrayOf(), normalBg)
 			}
-			
+
 			layoutParams = LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.WRAP_CONTENT,
 				LinearLayout.LayoutParams.WRAP_CONTENT
@@ -217,7 +217,7 @@ class SeasonSelectionDialog(
 			}
 		}
 		buttonsContainer.addView(cancelButton)
-		
+
 		confirmButton = TextView(context).apply {
 			text = "Request Selected"
 			textSize = 14f
@@ -227,7 +227,7 @@ class SeasonSelectionDialog(
 			isFocusable = true
 			isFocusableInTouchMode = true
 			gravity = Gravity.CENTER
-			
+
 			val normalBg = android.graphics.drawable.GradientDrawable().apply {
 				setColor(Color.parseColor("#3B82F6"))
 				cornerRadius = 6.dp(context).toFloat()
@@ -237,12 +237,12 @@ class SeasonSelectionDialog(
 				cornerRadius = 6.dp(context).toFloat()
 				setStroke(2.dp(context), focusBorderColor)
 			}
-			
+
 			background = android.graphics.drawable.StateListDrawable().apply {
 				addState(intArrayOf(android.R.attr.state_focused), focusedBg)
 				addState(intArrayOf(), normalBg)
 			}
-			
+
 			layoutParams = LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.WRAP_CONTENT,
 				LinearLayout.LayoutParams.WRAP_CONTENT
@@ -259,28 +259,28 @@ class SeasonSelectionDialog(
 			}
 		}
 		buttonsContainer.addView(confirmButton)
-		
+
 		rootContainer.addView(buttonsContainer)
-		
+
 		setContentView(rootContainer)
-		
+
 		window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 		window?.setLayout(
 			ViewGroup.LayoutParams.WRAP_CONTENT,
 			ViewGroup.LayoutParams.WRAP_CONTENT
 		)
 		window?.setGravity(Gravity.CENTER)
-		
+
 		confirmButton.post {
 			confirmButton.requestFocus()
 		}
 	}
-	
+
 	private fun updateSelectAllCheckbox() {
 		// Only consider available (enabled) season checkboxes
 		val availableCheckboxes = seasonCheckboxes.filter { it.isEnabled }
 		if (availableCheckboxes.isEmpty()) return
-		
+
 		val allAvailableChecked = availableCheckboxes.all { it.isChecked }
 		selectAllCheckbox?.setOnCheckedChangeListener(null)
 		selectAllCheckbox?.isChecked = allAvailableChecked
@@ -292,7 +292,7 @@ class SeasonSelectionDialog(
 			}
 		}
 	}
-	
+
 	override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			dismiss()

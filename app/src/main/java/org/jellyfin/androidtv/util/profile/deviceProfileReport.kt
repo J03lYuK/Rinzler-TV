@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util.profile
+package uk.rinzler.tv.util.profile
 
 import android.content.Context
 import android.media.MediaCodecList
@@ -8,15 +8,15 @@ import android.view.Display
 import android.view.Surface
 import androidx.core.content.ContextCompat
 import kotlinx.serialization.json.Json
-import org.jellyfin.androidtv.BuildConfig
-import org.jellyfin.androidtv.constant.Codec
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.util.appendCodeBlock
-import org.jellyfin.androidtv.util.appendDetails
-import org.jellyfin.androidtv.util.appendItem
-import org.jellyfin.androidtv.util.appendSection
-import org.jellyfin.androidtv.util.appendValue
-import org.jellyfin.androidtv.util.buildMarkdown
+import uk.rinzler.tv.BuildConfig
+import uk.rinzler.tv.constant.Codec
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.util.appendCodeBlock
+import uk.rinzler.tv.util.appendDetails
+import uk.rinzler.tv.util.appendItem
+import uk.rinzler.tv.util.appendSection
+import uk.rinzler.tv.util.appendValue
+import uk.rinzler.tv.util.buildMarkdown
 import org.jellyfin.sdk.api.client.util.ApiSerializer
 import org.jellyfin.sdk.model.ServerVersion
 import kotlin.time.Duration.Companion.nanoseconds

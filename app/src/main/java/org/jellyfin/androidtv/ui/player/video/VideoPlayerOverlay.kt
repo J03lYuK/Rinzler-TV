@@ -1,14 +1,14 @@
-package org.jellyfin.androidtv.ui.player.video
+package uk.rinzler.tv.ui.player.video
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import org.jellyfin.androidtv.ui.composable.rememberQueueEntry
-import org.jellyfin.androidtv.ui.player.base.PlayerOverlayLayout
-import org.jellyfin.androidtv.ui.player.base.rememberPlayerOverlayVisibility
-import org.jellyfin.androidtv.ui.player.base.toast.MediaToastRegistry
-import org.jellyfin.androidtv.ui.player.base.toast.MediaToasts
+import uk.rinzler.tv.ui.composable.rememberQueueEntry
+import uk.rinzler.tv.ui.player.base.PlayerOverlayLayout
+import uk.rinzler.tv.ui.player.base.rememberPlayerOverlayVisibility
+import uk.rinzler.tv.ui.player.base.toast.MediaToastRegistry
+import uk.rinzler.tv.ui.player.base.toast.MediaToasts
 import org.jellyfin.playback.core.PlaybackManager
 import org.jellyfin.playback.jellyfin.queue.baseItem
 import org.jellyfin.playback.jellyfin.queue.baseItemFlow

@@ -1,15 +1,15 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
 import androidx.leanback.widget.HeaderItem
 import androidx.leanback.widget.ListRow
 import androidx.leanback.widget.Row
 import androidx.lifecycle.LifecycleCoroutineScope
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.playback.AudioQueueBaseRowAdapter
-import org.jellyfin.androidtv.ui.playback.MediaManager
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.playback.AudioQueueBaseRowAdapter
+import uk.rinzler.tv.ui.playback.MediaManager
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter
 import org.jellyfin.playback.core.PlaybackManager
 
 class HomeFragmentNowPlayingRow(

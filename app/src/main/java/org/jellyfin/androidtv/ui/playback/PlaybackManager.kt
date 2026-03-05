@@ -1,15 +1,15 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.data.compat.PlaybackException
-import org.jellyfin.androidtv.data.compat.StreamInfo
-import org.jellyfin.androidtv.data.compat.VideoOptions
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
-import org.jellyfin.androidtv.util.apiclient.Response
+import uk.rinzler.tv.data.compat.PlaybackException
+import uk.rinzler.tv.data.compat.StreamInfo
+import uk.rinzler.tv.data.compat.VideoOptions
+import uk.rinzler.tv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.util.apiclient.Response
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.hlsSegmentApi
 import org.jellyfin.sdk.api.client.extensions.mediaInfoApi
@@ -76,7 +76,7 @@ class PlaybackManager(
 			api
 		}
 	}
-	
+
 	fun getVideoStreamInfo(
 		lifecycleOwner: LifecycleOwner,
 		options: VideoOptions,
@@ -97,7 +97,7 @@ class PlaybackManager(
 		callback: Response<StreamInfo>
 	) = lifecycleOwner.lifecycleScope.launch {
 		val apiClient = getApiClient(options)
-		
+
 		if (stream.playSessionId != null && stream.playMethod != PlayMethod.DIRECT_PLAY) {
 			withContext(Dispatchers.IO) {
 				apiClient.hlsSegmentApi.stopEncodingProcess(apiClient.deviceInfo.id, stream.playSessionId)
@@ -115,7 +115,7 @@ class PlaybackManager(
 		startTimeTicks: Long
 	) = runCatching {
 		val apiClient = getApiClient(options)
-		
+
 		val response = withContext(Dispatchers.IO) {
 			apiClient.mediaInfoApi.getPostedPlaybackInfo(
 				itemId = requireNotNull(options.itemId) { "Item id cannot be null" },

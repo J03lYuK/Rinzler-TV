@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.shared.toolbar
+package uk.rinzler.tv.ui.shared.toolbar
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -30,11 +30,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.composable.modifier.overscan
-import org.jellyfin.androidtv.ui.composable.rememberCurrentTime
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.composable.modifier.overscan
+import uk.rinzler.tv.ui.composable.rememberCurrentTime
 
 @Composable
 fun Logo(modifier: Modifier = Modifier) {

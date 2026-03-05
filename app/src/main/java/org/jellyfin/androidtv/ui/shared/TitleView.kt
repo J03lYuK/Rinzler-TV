@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.shared
+package uk.rinzler.tv.ui.shared
 
 import android.content.Context
 import android.graphics.Rect
@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.RelativeLayout
 import androidx.core.view.isVisible
 import androidx.leanback.widget.TitleViewAdapter
-import org.jellyfin.androidtv.databinding.ViewLbTitleBinding
+import uk.rinzler.tv.databinding.ViewLbTitleBinding
 
 class TitleView @JvmOverloads constructor(
 	context: Context?,

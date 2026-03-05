@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv
+package uk.rinzler.tv
 
 import android.content.Context
 import androidx.startup.Initializer

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base.button
+package uk.rinzler.tv.ui.base.button
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -16,8 +16,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.sp
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.base.ProvideTextStyle
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.ProvideTextStyle
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing.composable.inforow
+package uk.rinzler.tv.ui.browsing.composable.inforow
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -25,12 +25,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.repository.MdbListRepository
-import org.jellyfin.androidtv.data.repository.RatingIconProvider
-import org.jellyfin.androidtv.data.repository.TmdbRepository
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.ui.base.Text
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.repository.MdbListRepository
+import uk.rinzler.tv.data.repository.RatingIconProvider
+import uk.rinzler.tv.data.repository.TmdbRepository
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.ui.base.Text
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -13,13 +13,13 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import kotlin.random.Random
 
 /**
  * A custom view that renders falling autumn leaves for fall season.
  * Leaves fall slowly with gentle swaying and rotation.
- * 
+ *
  * Performance optimized for Android TV / Fire TV devices:
  * - Uses cached bitmap rendering from vector drawables
  * - Reduced particle count for low-powered devices
@@ -70,14 +70,14 @@ class LeaffallView @JvmOverloads constructor(
 
 	private val leaves = mutableListOf<Leaf>()
 	private val pumpkins = mutableListOf<Pumpkin>()
-	
+
 	private val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
-	
+
 	// Cached bitmaps for efficient drawing
 	private var leafBitmap: Bitmap? = null
 	private var pumpkinBitmap: Bitmap? = null
 	private val bitmapCache = mutableMapOf<Int, Bitmap>()
-	
+
 	// Leaf color tints for autumn palette
 	private val leafColors = listOf(
 		0xFFFF8C00.toInt(),  // Dark orange
@@ -115,7 +115,7 @@ class LeaffallView @JvmOverloads constructor(
 		isFocusable = false
 		loadBitmaps()
 	}
-	
+
 	private fun loadBitmaps() {
 		ContextCompat.getDrawable(context, R.drawable.seasonal_maple_leaf)?.let { drawable ->
 			leafBitmap = drawable.toBitmap(48, 48)
@@ -124,7 +124,7 @@ class LeaffallView @JvmOverloads constructor(
 			pumpkinBitmap = drawable.toBitmap(64, 64)
 		}
 	}
-	
+
 	private fun getScaledBitmap(source: Bitmap?, size: Int): Bitmap? {
 		source ?: return null
 		return bitmapCache.getOrPut(System.identityHashCode(source) * 1000 + size) {
@@ -138,7 +138,7 @@ class LeaffallView @JvmOverloads constructor(
 	fun startFalling() {
 		if (isFalling) return
 		isFalling = true
-		
+
 		initLeaves()
 		startAnimation()
 	}
@@ -149,7 +149,7 @@ class LeaffallView @JvmOverloads constructor(
 	fun stopFalling() {
 		if (!isFalling) return
 		isFalling = false
-		
+
 		animationRunnable?.let { handler.removeCallbacks(it) }
 		animationRunnable = null
 		leaves.clear()
@@ -161,7 +161,7 @@ class LeaffallView @JvmOverloads constructor(
 
 	private fun initLeaves() {
 		leaves.clear()
-		
+
 		if (width <= 0 || height <= 0) {
 			return
 		}
@@ -190,11 +190,11 @@ class LeaffallView @JvmOverloads constructor(
 
 	private fun startAnimation() {
 		animationRunnable?.let { handler.removeCallbacks(it) }
-		
+
 		animationRunnable = object : Runnable {
 			override fun run() {
 				if (!isFalling) return
-				
+
 				frameCount++
 				updateLeaves()
 				// Only update pumpkins every other frame
@@ -202,7 +202,7 @@ class LeaffallView @JvmOverloads constructor(
 					updatePumpkins()
 				}
 				invalidate()
-				
+
 				// Target ~30fps
 				handler.postDelayed(this, 33L)
 			}
@@ -215,18 +215,18 @@ class LeaffallView @JvmOverloads constructor(
 
 		leaves.forEachIndexed { index, leaf ->
 			leaf.y += leaf.speed
-			
+
 			leaf.driftIndex = (leaf.driftIndex + leaf.driftIndexSpeed) % SINE_TABLE_SIZE
 			leaf.x += sineTable[leaf.driftIndex] * leaf.driftAmplitude * 0.01f
-			
+
 			leaf.currentRotation += leaf.rotationSpeed
 			if (leaf.currentRotation > 360f) leaf.currentRotation -= 360f
-			
+
 			if (leaf.y > height + leaf.size) {
 				val newLeaf = createLeaf(randomY = false)
 				leaves[index] = newLeaf
 			}
-			
+
 			if (leaf.x < -leaf.size) {
 				leaf.x = width + leaf.size
 			} else if (leaf.x > width + leaf.size) {
@@ -247,7 +247,7 @@ class LeaffallView @JvmOverloads constructor(
 		val iterator = pumpkins.iterator()
 		while (iterator.hasNext()) {
 			val pumpkin = iterator.next()
-			
+
 			when (pumpkin.state) {
 				PumpkinState.WAITING -> {
 					pumpkin.waitTimer--
@@ -259,7 +259,7 @@ class LeaffallView @JvmOverloads constructor(
 				PumpkinState.RISING -> {
 					pumpkin.velocity += gravity
 					pumpkin.y += pumpkin.velocity
-					
+
 					if (pumpkin.velocity >= 0 && pumpkin.y >= pumpkin.groundY) {
 						pumpkin.y = pumpkin.groundY
 						pumpkin.velocity = popUpVelocity * bounceDamping
@@ -269,11 +269,11 @@ class LeaffallView @JvmOverloads constructor(
 				PumpkinState.BOUNCING -> {
 					pumpkin.velocity += gravity
 					pumpkin.y += pumpkin.velocity
-					
+
 					if (pumpkin.y >= pumpkin.groundY) {
 						pumpkin.y = pumpkin.groundY
 						pumpkin.bounceCount++
-						
+
 						if (pumpkin.bounceCount >= 1) {
 							pumpkin.state = PumpkinState.SETTLING
 							pumpkin.velocity = 0f
@@ -300,10 +300,10 @@ class LeaffallView @JvmOverloads constructor(
 
 	private fun spawnPumpkins() {
 		if (width <= 0 || height <= 0) return
-		
+
 		val groundY = height - pumpkinSize / 2 - 20f
 		val spacing = width / (pumpkinCount + 1)
-		
+
 		repeat(pumpkinCount) { i ->
 			val x = spacing * (i + 1) + Random.nextFloat() * 40 - 20
 			pumpkins.add(
@@ -323,7 +323,7 @@ class LeaffallView @JvmOverloads constructor(
 
 	override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
 		super.onSizeChanged(w, h, oldw, oldh)
-		
+
 		if (isFalling && leaves.isEmpty()) {
 			initLeaves()
 		}
@@ -331,7 +331,7 @@ class LeaffallView @JvmOverloads constructor(
 
 	override fun onDraw(canvas: Canvas) {
 		super.onDraw(canvas)
-		
+
 		if (!isFalling) return
 
 		// Draw leaves using cached bitmaps with color tints
@@ -350,7 +350,7 @@ class LeaffallView @JvmOverloads constructor(
 			}
 		}
 		paint.colorFilter = null
-		
+
 		// Draw pumpkins using cached bitmaps
 		pumpkinBitmap?.let { baseBitmap ->
 			pumpkins.forEach { pumpkin ->
@@ -378,7 +378,7 @@ class LeaffallView @JvmOverloads constructor(
 
 	override fun onVisibilityChanged(changedView: View, visibility: Int) {
 		super.onVisibilityChanged(changedView, visibility)
-		
+
 		if (visibility == VISIBLE && isFalling) {
 			if (animationRunnable == null) {
 				startAnimation()

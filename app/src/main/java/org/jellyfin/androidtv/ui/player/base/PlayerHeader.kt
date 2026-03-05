@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.player.base
+package uk.rinzler.tv.ui.player.base
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import org.jellyfin.androidtv.ui.shared.toolbar.ToolbarClock
+import uk.rinzler.tv.ui.shared.toolbar.ToolbarClock
 
 @Composable
 fun PlayerHeader(

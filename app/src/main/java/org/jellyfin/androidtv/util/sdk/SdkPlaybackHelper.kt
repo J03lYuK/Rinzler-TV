@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util.sdk
+package uk.rinzler.tv.util.sdk
 
 import android.content.Context
 import android.widget.Toast
@@ -8,14 +8,14 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.repository.ItemRepository
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.playback.PlaybackControllerContainer
-import org.jellyfin.androidtv.ui.playback.PlaybackLauncher
-import org.jellyfin.androidtv.util.PlaybackHelper
-import org.jellyfin.androidtv.util.UUIDUtils
-import org.jellyfin.androidtv.util.apiclient.Response
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.repository.ItemRepository
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.playback.PlaybackControllerContainer
+import uk.rinzler.tv.ui.playback.PlaybackLauncher
+import uk.rinzler.tv.util.PlaybackHelper
+import uk.rinzler.tv.util.UUIDUtils
+import uk.rinzler.tv.util.apiclient.Response
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.instantMixApi
 import org.jellyfin.sdk.api.client.extensions.itemsApi
@@ -85,10 +85,10 @@ class SdkPlaybackHelper(
 	): List<BaseItemDto> = withContext(Dispatchers.IO) {
 		val itemApi = getApiClientForItem(mainItem)
 		val serverId = mainItem.serverId
-		
+
 		fun List<BaseItemDto>.withServerIdPropagated(): List<BaseItemDto> =
 			if (serverId != null) map { it.copy(serverId = serverId) } else this
-		
+
 		when (mainItem.type) {
 			BaseItemKind.EPISODE -> {
 				val seriesId = mainItem.seriesId

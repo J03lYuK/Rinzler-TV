@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing.genre
+package uk.rinzler.tv.ui.browsing.genre
 
 import android.graphics.Color
 import android.os.Bundle
@@ -21,23 +21,23 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.repository.ItemRepository
-import org.jellyfin.androidtv.data.repository.MultiServerRepository
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.databinding.HorizontalGridBrowseBinding
-import org.jellyfin.androidtv.databinding.PopupEmptyBinding
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.AlphaPickerView
-import org.jellyfin.androidtv.ui.itemhandling.BaseItemDtoBaseRowItem
-import org.jellyfin.androidtv.ui.itemhandling.BaseRowItem
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncher
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.util.Utils
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
-import org.jellyfin.androidtv.util.sdk.compat.copyWithServerId
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.repository.ItemRepository
+import uk.rinzler.tv.data.repository.MultiServerRepository
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.databinding.HorizontalGridBrowseBinding
+import uk.rinzler.tv.databinding.PopupEmptyBinding
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.AlphaPickerView
+import uk.rinzler.tv.ui.itemhandling.BaseItemDtoBaseRowItem
+import uk.rinzler.tv.ui.itemhandling.BaseRowItem
+import uk.rinzler.tv.ui.itemhandling.ItemLauncher
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.util.Utils
+import uk.rinzler.tv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.util.sdk.compat.copyWithServerId
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.itemsApi
 import org.jellyfin.sdk.model.api.BaseItemDto
@@ -71,7 +71,7 @@ class GenreBrowseFragment : Fragment() {
 	private val navigationRepository by inject<NavigationRepository>()
 
 	private var binding: HorizontalGridBrowseBinding? = null
-	
+
 	private lateinit var gridAdapter: ArrayObjectAdapter
 	private lateinit var gridPresenter: VerticalGridPresenter
 	private var gridViewHolder: VerticalGridPresenter.ViewHolder? = null
@@ -88,7 +88,7 @@ class GenreBrowseFragment : Fragment() {
 
 	private var currentSortOption: GenreItemSortOption = SORT_OPTIONS[1]
 	private var sortButton: ImageButton? = null
-	
+
 	private var startLetter: String? = null
 	private var letterButton: ImageButton? = null
 	private var jumplistPopup: JumplistPopup? = null
@@ -135,10 +135,10 @@ class GenreBrowseFragment : Fragment() {
 
 		setupHeader()
 		setupToolbar()
-		
+
 		val isFirstLoad = !::gridAdapter.isInitialized || gridAdapter.size() == 0
 		setupGrid()
-		
+
 		// Only load content if this is the first time or if adapter is empty
 		if (isFirstLoad) {
 			loadContent()
@@ -157,12 +157,12 @@ class GenreBrowseFragment : Fragment() {
 	private fun setupToolbar() {
 		val context = context ?: return
 		val toolbar = binding?.toolBar ?: return
-		
+
 		toolbar.visibility = View.VISIBLE
 		toolbar.removeAllViews()
-		
+
 		val buttonSize = Utils.convertDpToPixel(context, 26)
-		
+
 		sortButton = ImageButton(context, null, 0, R.style.Button_Icon).apply {
 			setImageResource(R.drawable.ic_sort)
 			maxHeight = buttonSize
@@ -171,7 +171,7 @@ class GenreBrowseFragment : Fragment() {
 			setOnClickListener { showSortMenu() }
 		}
 		toolbar.addView(sortButton)
-		
+
 		jumplistPopup = JumplistPopup()
 		letterButton = ImageButton(context, null, 0, R.style.Button_Icon).apply {
 			setImageResource(R.drawable.ic_jump_letter)
@@ -186,15 +186,15 @@ class GenreBrowseFragment : Fragment() {
 	private fun showSortMenu() {
 		val context = context ?: return
 		val toolbar = binding?.toolBar ?: return
-		
+
 		val sortMenu = PopupMenu(context, toolbar, Gravity.END)
-		
+
 		SORT_OPTIONS.forEachIndexed { index, option ->
 			val item = sortMenu.menu.add(0, index, index, option.name)
 			item.isChecked = option.sortBy == currentSortOption.sortBy && option.sortOrder == currentSortOption.sortOrder
 		}
 		sortMenu.menu.setGroupCheckable(0, true, true)
-		
+
 		sortMenu.setOnMenuItemClickListener { item ->
 			val selectedOption = SORT_OPTIONS[item.itemId]
 			if (selectedOption.sortBy != currentSortOption.sortBy || selectedOption.sortOrder != currentSortOption.sortOrder) {
@@ -230,7 +230,7 @@ class GenreBrowseFragment : Fragment() {
 		gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener { _, item, _, _ ->
 			if (item is BaseRowItem) {
 				onItemSelected(item)
-				
+
 				// Load more when near the end
 				val position = gridAdapter.indexOf(item)
 				if (position >= gridAdapter.size() - 10 && !isLoading && gridAdapter.size() < totalItems) {
@@ -250,34 +250,34 @@ class GenreBrowseFragment : Fragment() {
 			container.setPadding(0, 0, 0, 0)
 			container.clipChildren = false
 			container.clipToPadding = false
-			
+
 			gridViewHolder = gridPresenter.onCreateViewHolder(container) as VerticalGridPresenter.ViewHolder
 			gridViewHolder?.let { holder ->
 				val gridView = holder.gridView
 				gridView.setNumColumns(NUM_COLUMNS)
 				val verticalSpacing = Utils.convertDpToPixel(requireContext(), 20)
 				gridView.setVerticalSpacing(verticalSpacing)
-				
+
 				// Remove horizontal padding/margins - align items to edges
 				gridView.windowAlignment = BaseGridView.WINDOW_ALIGN_LOW_EDGE
 				gridView.windowAlignmentOffsetPercent = 0f
 				gridView.windowAlignmentOffset = 0
 				gridView.itemAlignmentOffsetPercent = 0f
 				gridView.itemAlignmentOffset = 0
-				
+
 				// Move grid lower with more top padding, allow overflow for focus zoom
 				val topPadding = Utils.convertDpToPixel(requireContext(), 80)
 				gridView.setPadding(0, topPadding, 0, 0)
 				gridView.clipToPadding = false
 				gridView.clipChildren = false
-				
+
 				// Also set on the holder view
 				(holder.view as? ViewGroup)?.apply {
 					clipChildren = false
 					clipToPadding = false
 					setPadding(0, 0, 0, 0)
 				}
-				
+
 				container.removeAllViews()
 				container.addView(holder.view)
 				gridPresenter.onBindViewHolder(holder, gridAdapter)
@@ -289,16 +289,16 @@ class GenreBrowseFragment : Fragment() {
 		item.baseItem?.let { baseItem ->
 			backgroundService.setBackground(baseItem)
 		}
-		
+
 		binding?.title?.apply {
 			text = item.baseItem?.name ?: getString(R.string.lbl_bracket_unknown)
 			visibility = View.VISIBLE
 		}
-		
+
 		// Show and update info row with metadata
 		binding?.infoRow?.visibility = View.VISIBLE
 		updateInfoRow(item.baseItem)
-		
+
 		// Update counter with position
 		val position = gridAdapter.indexOf(item) + 1
 		updateCounter(position)
@@ -308,23 +308,23 @@ class GenreBrowseFragment : Fragment() {
 		val context = context ?: return
 		val infoRow = binding?.infoRow ?: return
 		if (item == null) return
-		
+
 		// Clear existing views
 		infoRow.removeAllViews()
-		
+
 		// Add metadata items similar to JellyseerrBrowseByFragment
 		val metadataItems = mutableListOf<String>()
-		
+
 		// Year
 		item.productionYear?.let { metadataItems.add(it.toString()) }
-		
+
 		// Rating (if available)
 		item.communityRating?.let { rating ->
 			if (rating > 0) {
 				metadataItems.add("★ %.1f".format(rating))
 			}
 		}
-		
+
 		// Runtime for movies
 		item.runTimeTicks?.let { ticks ->
 			val minutes = (ticks / 600000000).toInt()
@@ -338,7 +338,7 @@ class GenreBrowseFragment : Fragment() {
 				}
 			}
 		}
-		
+
 		// Media type
 		val typeLabel = when (item.type) {
 			BaseItemKind.MOVIE -> getString(R.string.lbl_movies)
@@ -346,10 +346,10 @@ class GenreBrowseFragment : Fragment() {
 			else -> ""
 		}
 		if (typeLabel.isNotEmpty()) metadataItems.add(typeLabel)
-		
+
 		// Official rating (PG-13, etc)
 		item.officialRating?.let { if (it.isNotEmpty()) metadataItems.add(it) }
-		
+
 		// Add metadata text views
 		metadataItems.forEachIndexed { index, text ->
 			if (index > 0) {
@@ -362,7 +362,7 @@ class GenreBrowseFragment : Fragment() {
 				}
 				infoRow.addView(separator)
 			}
-			
+
 			val textView = TextView(context).apply {
 				this.text = text
 				textSize = 14f
@@ -375,7 +375,7 @@ class GenreBrowseFragment : Fragment() {
 
 	private fun updateStatusText() {
 		val sortName = currentSortOption.name
-		
+
 		val letterText = if (startLetter != null) "${getString(R.string.lbl_starting_with)} $startLetter " else ""
 		binding?.statusText?.text = "${getString(R.string.lbl_sorted_by)} $sortName${ if (letterText.isNotEmpty()) " • $letterText" else "" }"
 	}
@@ -395,7 +395,7 @@ class GenreBrowseFragment : Fragment() {
 				}
 
 				val enableMultiServer = userPreferences[UserPreferences.enableMultiServerLibraries]
-				
+
 				if (enableMultiServer && serverId == null) {
 					loadMultiServerContent(includeTypes)
 				} else {
@@ -411,14 +411,14 @@ class GenreBrowseFragment : Fragment() {
 			}
 		}
 	}
-	
+
 	private suspend fun loadSingleServerContent(includeTypes: Set<BaseItemKind>) {
 		val targetApi = if (serverId != null) {
 			apiClientFactory.getApiClientForServer(serverId!!) ?: apiClient
 		} else {
 			apiClient
 		}
-		
+
 		val response = withContext(Dispatchers.IO) {
 			targetApi.itemsApi.getItems(
 				parentId = parentId,
@@ -444,7 +444,7 @@ class GenreBrowseFragment : Fragment() {
 		gridAdapter.addAll(gridAdapter.size(), rowItems)
 
 		currentPage++
-		
+
 		updateCounter(if (gridAdapter.size() > 0) 1 else 0)
 		updateStatusText()
 
@@ -453,15 +453,15 @@ class GenreBrowseFragment : Fragment() {
 			binding?.statusText?.visibility = View.VISIBLE
 		}
 	}
-	
+
 	private suspend fun loadMultiServerContent(includeTypes: Set<BaseItemKind>) {
 		val sessions = multiServerRepository.getLoggedInServers()
-		
+
 		if (sessions.isEmpty()) {
 			loadSingleServerContent(includeTypes)
 			return
 		}
-		
+
 		// Load from all servers in parallel
 		val allItems = withContext(Dispatchers.IO) {
 			sessions.flatMap { session ->
@@ -477,7 +477,7 @@ class GenreBrowseFragment : Fragment() {
 						enableTotalRecordCount = true,
 						nameStartsWith = startLetter,
 					).content
-					
+
 					response.items.map { it.copyWithServerId(session.server.id.toString()) }
 				} catch (e: Exception) {
 					Timber.e(e, "Failed to load genre items from server ${session.server.name}")
@@ -485,7 +485,7 @@ class GenreBrowseFragment : Fragment() {
 				}
 			}
 		}
-		
+
 		// Sort combined results
 		val sortedItems = when (currentSortOption.sortOrder) {
 			SortOrder.ASCENDING -> when (currentSortOption.sortBy) {
@@ -505,14 +505,14 @@ class GenreBrowseFragment : Fragment() {
 				else -> allItems
 			}
 		}
-		
+
 		totalItems = sortedItems.size
-		
+
 		val rowItems = sortedItems.map { item ->
 			BaseItemDtoBaseRowItem(item)
 		}
 		gridAdapter.addAll(gridAdapter.size(), rowItems)
-		
+
 		updateCounter(if (gridAdapter.size() > 0) 1 else 0)
 		updateStatusText()
 
@@ -535,24 +535,24 @@ class GenreBrowseFragment : Fragment() {
 		letterButton = null
 		jumplistPopup = null
 	}
-	
+
 	/**
 	 * Popup for jumping to a specific letter in alphabetical lists
 	 */
 	inner class JumplistPopup {
 		private val popupWidth = Utils.convertDpToPixel(requireContext(), 900)
 		private val popupHeight = Utils.convertDpToPixel(requireContext(), 55)
-		
+
 		private var popupWindow: PopupWindow? = null
 		private var alphaPicker: AlphaPickerView? = null
-		
+
 		init {
 			val layout = PopupEmptyBinding.inflate(layoutInflater, binding?.rowsFragment, false)
 			popupWindow = PopupWindow(layout.emptyPopup, popupWidth, popupHeight, true).apply {
 				isOutsideTouchable = true
 				animationStyle = R.style.WindowAnimation_SlideTop
 			}
-			
+
 			alphaPicker = AlphaPickerView(requireContext(), null).apply {
 				onAlphaSelected = { letter ->
 					startLetter = if (letter == '#') null else letter.toString()
@@ -560,10 +560,10 @@ class GenreBrowseFragment : Fragment() {
 					dismiss()
 				}
 			}
-			
+
 			layout.emptyPopup.addView(alphaPicker)
 		}
-		
+
 		fun show() {
 			binding?.rowsFragment?.let { container ->
 				popupWindow?.showAtLocation(container, Gravity.TOP, container.left, container.top)
@@ -572,7 +572,7 @@ class GenreBrowseFragment : Fragment() {
 				}
 			}
 		}
-		
+
 		fun dismiss() {
 			popupWindow?.takeIf { it.isShowing }?.dismiss()
 		}

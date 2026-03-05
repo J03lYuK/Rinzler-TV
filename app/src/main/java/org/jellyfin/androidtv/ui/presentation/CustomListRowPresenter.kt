@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.presentation
+package uk.rinzler.tv.ui.presentation
 
 import android.view.View
 import androidx.core.view.isVisible

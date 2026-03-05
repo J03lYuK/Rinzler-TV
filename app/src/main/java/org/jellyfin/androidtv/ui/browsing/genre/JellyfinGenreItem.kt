@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing.genre
+package uk.rinzler.tv.ui.browsing.genre
 
 import java.util.UUID
 

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -10,16 +10,16 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import kotlin.random.Random
 
 /**
  * A custom view that renders a snowfall effect overlay.
  * Snowflakes fall from the top of the screen with varying sizes, speeds, and horizontal drift.
  * Snowmen periodically drop, bounce, settle, and fade out at the bottom.
- * 
+ *
  * Inspired by Home Assistant's seasonal surprise feature.
- * 
+ *
  * Performance optimized for Android TV / Fire TV devices:
  * - Uses cached bitmap rendering from vector drawables
  * - Reduced particle count for low-powered devices
@@ -71,9 +71,9 @@ class SnowfallView @JvmOverloads constructor(
 
 	private val snowflakes = mutableListOf<Snowflake>()
 	private val snowmen = mutableListOf<Snowman>()
-	
+
 	private val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
-	
+
 	// Cached bitmaps for efficient drawing
 	private var snowflakeBitmap: Bitmap? = null
 	private var snowmanBitmap: Bitmap? = null
@@ -94,7 +94,7 @@ class SnowfallView @JvmOverloads constructor(
 	private val maxSpeed = 2.5f
 	private val minAlpha = 180
 	private val maxAlpha = 255
-	
+
 	private val snowmanCount = 4
 	private val snowmanSize = 70f
 	private val gravity = 0.35f
@@ -106,7 +106,7 @@ class SnowfallView @JvmOverloads constructor(
 		isFocusable = false
 		loadBitmaps()
 	}
-	
+
 	private fun loadBitmaps() {
 		ContextCompat.getDrawable(context, R.drawable.seasonal_snowflake)?.let { drawable ->
 			snowflakeBitmap = drawable.toBitmap(48, 48)
@@ -115,7 +115,7 @@ class SnowfallView @JvmOverloads constructor(
 			snowmanBitmap = drawable.toBitmap(80, 80)
 		}
 	}
-	
+
 	private fun getScaledBitmap(source: Bitmap?, size: Int): Bitmap? {
 		source ?: return null
 		return bitmapCache.getOrPut(System.identityHashCode(source) * 1000 + size) {
@@ -129,7 +129,7 @@ class SnowfallView @JvmOverloads constructor(
 	fun startSnowing() {
 		if (isSnowing) return
 		isSnowing = true
-		
+
 		initSnowflakes()
 		startAnimation()
 	}
@@ -140,7 +140,7 @@ class SnowfallView @JvmOverloads constructor(
 	fun stopSnowing() {
 		if (!isSnowing) return
 		isSnowing = false
-		
+
 		animationRunnable?.let { handler.removeCallbacks(it) }
 		animationRunnable = null
 		snowflakes.clear()
@@ -152,7 +152,7 @@ class SnowfallView @JvmOverloads constructor(
 
 	private fun initSnowflakes() {
 		snowflakes.clear()
-		
+
 		if (width <= 0 || height <= 0) {
 			return
 		}
@@ -180,11 +180,11 @@ class SnowfallView @JvmOverloads constructor(
 
 	private fun startAnimation() {
 		animationRunnable?.let { handler.removeCallbacks(it) }
-		
+
 		animationRunnable = object : Runnable {
 			override fun run() {
 				if (!isSnowing) return
-				
+
 				frameCount++
 				updateSnowflakes()
 				// Only update snowmen every other frame to reduce calculations
@@ -192,7 +192,7 @@ class SnowfallView @JvmOverloads constructor(
 					updateSnowmen()
 				}
 				invalidate()
-				
+
 				// Target ~30fps for smooth animations
 				handler.postDelayed(this, 33L)
 			}
@@ -206,16 +206,16 @@ class SnowfallView @JvmOverloads constructor(
 		snowflakes.forEachIndexed { index, flake ->
 			flake.y += flake.speed
 			flake.rotation += flake.rotationSpeed
-			
+
 			// Use pre-calculated sine table instead of Math.sin()
 			flake.driftIndex = (flake.driftIndex + flake.driftIndexSpeed) % SINE_TABLE_SIZE
 			flake.x += sineTable[flake.driftIndex] * flake.driftAmplitude * 0.015f
-			
+
 			if (flake.y > height + flake.size) {
 				val newFlake = createSnowflake(randomY = false)
 				snowflakes[index] = newFlake
 			}
-			
+
 			if (flake.x < -flake.size) {
 				flake.x = width + flake.size
 			} else if (flake.x > width + flake.size) {
@@ -236,7 +236,7 @@ class SnowfallView @JvmOverloads constructor(
 		val iterator = snowmen.iterator()
 		while (iterator.hasNext()) {
 			val snowman = iterator.next()
-			
+
 			when (snowman.state) {
 				SnowmanState.WAITING -> {
 					snowman.waitTimer--
@@ -248,7 +248,7 @@ class SnowfallView @JvmOverloads constructor(
 				SnowmanState.RISING -> {
 					snowman.velocity += gravity
 					snowman.y += snowman.velocity
-					
+
 					if (snowman.velocity >= 0 && snowman.y >= snowman.groundY) {
 						snowman.y = snowman.groundY
 						snowman.velocity = popUpVelocity * bounceDamping  // Small bounce
@@ -258,11 +258,11 @@ class SnowfallView @JvmOverloads constructor(
 				SnowmanState.BOUNCING -> {
 					snowman.velocity += gravity
 					snowman.y += snowman.velocity
-					
+
 					if (snowman.y >= snowman.groundY) {
 						snowman.y = snowman.groundY
 						snowman.bounceCount++
-						
+
 						if (snowman.bounceCount >= 1) {
 							snowman.state = SnowmanState.SETTLING
 							snowman.velocity = 0f
@@ -289,10 +289,10 @@ class SnowfallView @JvmOverloads constructor(
 
 	private fun spawnSnowmen() {
 		if (width <= 0 || height <= 0) return
-		
+
 		val groundY = height - snowmanSize / 2 - 20f  // Slightly above bottom
 		val spacing = width / (snowmanCount + 1)
-		
+
 		repeat(snowmanCount) { i ->
 			val x = spacing * (i + 1) + Random.nextFloat() * 40 - 20  // Add some randomness
 			val staggerDelay = Random.nextInt(15, 50)  // Random delay at 20fps
@@ -313,7 +313,7 @@ class SnowfallView @JvmOverloads constructor(
 
 	override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
 		super.onSizeChanged(w, h, oldw, oldh)
-		
+
 		if (isSnowing && snowflakes.isEmpty()) {
 			initSnowflakes()
 		}
@@ -321,7 +321,7 @@ class SnowfallView @JvmOverloads constructor(
 
 	override fun onDraw(canvas: Canvas) {
 		super.onDraw(canvas)
-		
+
 		if (!isSnowing) return
 
 		// Draw snowflakes using cached bitmaps
@@ -338,7 +338,7 @@ class SnowfallView @JvmOverloads constructor(
 				}
 			}
 		}
-		
+
 		// Draw snowmen using cached bitmaps
 		snowmanBitmap?.let { baseBitmap ->
 			snowmen.forEach { snowman ->
@@ -366,7 +366,7 @@ class SnowfallView @JvmOverloads constructor(
 
 	override fun onVisibilityChanged(changedView: View, visibility: Int) {
 		super.onVisibilityChanged(changedView, visibility)
-		
+
 		if (visibility == VISIBLE && isSnowing) {
 			if (animationRunnable == null) {
 				startAnimation()

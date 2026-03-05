@@ -1,8 +1,8 @@
-package org.jellyfin.androidtv.ui.itemhandling
+package uk.rinzler.tv.ui.itemhandling
 
 import android.content.Context
-import org.jellyfin.androidtv.constant.ImageType
-import org.jellyfin.androidtv.ui.GridButton
+import uk.rinzler.tv.constant.ImageType
+import uk.rinzler.tv.ui.GridButton
 
 class GridButtonBaseRowItem(
 	val gridButton: GridButton,

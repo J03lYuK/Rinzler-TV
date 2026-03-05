@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
-import org.jellyfin.androidtv.databinding.ItemJellyseerrContentBinding
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverItemDto
-import org.jellyfin.androidtv.util.toHtmlSpanned
+import uk.rinzler.tv.databinding.ItemJellyseerrContentBinding
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverItemDto
+import uk.rinzler.tv.util.toHtmlSpanned
 
 class MediaContentAdapter(
 	private val onItemClicked: (JellyseerrDiscoverItemDto) -> Unit

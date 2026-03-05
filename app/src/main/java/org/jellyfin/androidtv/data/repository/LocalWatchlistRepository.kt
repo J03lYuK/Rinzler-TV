@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.repository
+package uk.rinzler.tv.data.repository
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -138,7 +138,7 @@ class LocalWatchlistRepository(
 				ids = itemIds,
 				fields = ItemRepository.itemFields
 			)
-			
+
 			val itemsById = response.content.items.orEmpty().associateBy { it.id }
 			itemIds.mapNotNull { id -> itemsById[id] }
 		} catch (e: Exception) {

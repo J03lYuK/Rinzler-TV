@@ -1,14 +1,14 @@
-package org.jellyfin.androidtv.ui.playback.overlay.action
+package uk.rinzler.tv.ui.playback.overlay.action
 
 import android.content.Context
 import android.view.Gravity
 import android.view.View
 import android.widget.PopupMenu
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.playback.PlaybackController
-import org.jellyfin.androidtv.ui.playback.VideoSpeedController
-import org.jellyfin.androidtv.ui.playback.overlay.CustomPlaybackTransportControlGlue
-import org.jellyfin.androidtv.ui.playback.overlay.VideoPlayerAdapter
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.playback.PlaybackController
+import uk.rinzler.tv.ui.playback.VideoSpeedController
+import uk.rinzler.tv.ui.playback.overlay.CustomPlaybackTransportControlGlue
+import uk.rinzler.tv.ui.playback.overlay.VideoPlayerAdapter
 import java.util.Locale
 
 class PlaybackSpeedAction(

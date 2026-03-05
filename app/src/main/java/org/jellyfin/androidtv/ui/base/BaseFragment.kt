@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base
+package uk.rinzler.tv.ui.base
 
 import android.os.Bundle
 import android.view.View
@@ -9,14 +9,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.util.getUserFeedbackManager
+import uk.rinzler.tv.util.getUserFeedbackManager
 
 /**
  * Base Fragment class providing common functionality for all fragments.
  * Includes lifecycle-aware flow collection, error handling, and user feedback utilities.
  */
 abstract class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentLayoutId) {
-	
+
 	/**
 	 * Called when the view is created. Override this to set up your UI.
 	 * This is called after onViewCreated but before collecting flows.
@@ -24,7 +24,7 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(cont
 	protected open fun setupUI(view: View, savedInstanceState: Bundle?) {
 		// Override in subclasses
 	}
-	
+
 	/**
 	 * Called to set up observers for ViewModels and flows.
 	 * This is the ideal place to collect flows using the provided extension functions.
@@ -32,13 +32,13 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(cont
 	protected open fun setupObservers() {
 		// Override in subclasses
 	}
-	
+
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		setupUI(view, savedInstanceState)
 		setupObservers()
 	}
-	
+
 	/**
 	 * Collect a flow safely within the fragment's lifecycle.
 	 * Collection starts when the lifecycle reaches STARTED and stops when it drops below.
@@ -57,7 +57,7 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(cont
 			}
 		}
 	}
-	
+
 	/**
 	 * Show an error message to the user using the UserFeedbackManager.
 	 *
@@ -67,7 +67,7 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(cont
 	protected fun showError(message: String, error: Throwable? = null) {
 		requireContext().getUserFeedbackManager().showError(message, error)
 	}
-	
+
 	/**
 	 * Show a success message to the user using the UserFeedbackManager.
 	 *
@@ -76,7 +76,7 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(cont
 	protected fun showSuccess(message: String) {
 		requireContext().getUserFeedbackManager().showSuccess(message)
 	}
-	
+
 	/**
 	 * Show an informational message to the user using the UserFeedbackManager.
 	 *
@@ -85,7 +85,7 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(cont
 	protected fun showMessage(message: String) {
 		requireContext().getUserFeedbackManager().showMessage(message)
 	}
-	
+
 	/**
 	 * Show a long informational message to the user using the UserFeedbackManager.
 	 *

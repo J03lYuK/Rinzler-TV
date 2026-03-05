@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.os.Bundle
 import android.view.View
@@ -7,13 +7,13 @@ import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.constant.JellyseerrFetchLimit
-import org.jellyfin.androidtv.databinding.FragmentJellyseerrSettingsBinding
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.base.BaseFragment
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.constant.JellyseerrFetchLimit
+import uk.rinzler.tv.databinding.FragmentJellyseerrSettingsBinding
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.base.BaseFragment
 import org.jellyfin.sdk.api.client.ApiClient
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,7 +29,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_jellyseerr_settings) {
 
 	private var _binding: FragmentJellyseerrSettingsBinding? = null
 	private val binding get() = _binding!!
-	
+
 	// Per-user Jellyseerr preferences (lazy initialized with current user ID)
 	private val userJellyseerrPrefs: JellyseerrPreferences by lazy {
 		val userId = userRepository.currentUser.value?.id?.toString()
@@ -61,7 +61,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_jellyseerr_settings) {
 	private fun setupFetchLimitSpinner() {
 		val fetchLimitOptions = JellyseerrFetchLimit.values()
 		val displayNames = fetchLimitOptions.map { getString(it.nameRes) }
-		
+
 		val adapter = ArrayAdapter(
 			requireContext(),
 			android.R.layout.simple_spinner_item,
@@ -69,16 +69,16 @@ class SettingsFragment : BaseFragment(R.layout.fragment_jellyseerr_settings) {
 		).apply {
 			setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 		}
-		
+
 		binding.fetchLimitSpinner.adapter = adapter
-		
+
 		// Set initial selection
 		val currentLimit = globalPreferences[JellyseerrPreferences.fetchLimit]
 		val currentIndex = fetchLimitOptions.indexOf(currentLimit)
 		if (currentIndex >= 0) {
 			binding.fetchLimitSpinner.setSelection(currentIndex)
 		}
-		
+
 		// Handle selection changes
 		binding.fetchLimitSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 			override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -86,7 +86,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_jellyseerr_settings) {
 				globalPreferences[JellyseerrPreferences.fetchLimit] = selectedLimit
 				Timber.d("Fetch limit changed to: ${selectedLimit.limit} items")
 			}
-			
+
 			override fun onNothingSelected(parent: AdapterView<*>?) {
 				// Do nothing
 			}
@@ -123,7 +123,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_jellyseerr_settings) {
 				}
 			}
 		}
-		
+
 		loadSavedSettings()
 	}
 
@@ -165,7 +165,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_jellyseerr_settings) {
 
 	private fun connectWithJellyfin() {
 		val jellyseerrServerUrl = binding.serverUrlInput.text.toString().trim()
-		
+
 		if (jellyseerrServerUrl.isEmpty()) {
 			showError("Please enter Jellyseerr server URL first")
 			return
@@ -205,7 +205,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_jellyseerr_settings) {
 			.setView(layout)
 			.setPositiveButton("Connect") { _, _ ->
 				val password = passwordInput.text.toString().trim()
-				
+
 				if (password.isEmpty()) {
 					showError("Password is required")
 					return@setPositiveButton
@@ -229,18 +229,18 @@ class SettingsFragment : BaseFragment(R.layout.fragment_jellyseerr_settings) {
 		lifecycleScope.launch {
 			try {
 				val result = viewModel.loginWithJellyfin(username, password, jellyfinServerUrl, jellyseerrServerUrl)
-				
+
 				result.onSuccess { user ->
 					// Save credentials (using cookie-based auth)
 					globalPreferences[JellyseerrPreferences.serverUrl] = jellyseerrServerUrl
 					globalPreferences[JellyseerrPreferences.enabled] = true
 					binding.enabledSwitch.isChecked = true
-					
+
 				// Initialize connection (using cookie-based auth)
 				viewModel.initializeJellyseerr(jellyseerrServerUrl, "")
-				
+
 				showSuccess("Connected successfully using session cookie!")
-				
+
 				Timber.d("Jellyseerr: Jellyfin authentication successful using cookie authentication")
 			}.onFailure { error ->
 				showError("Connection failed: ${error.message}", error)

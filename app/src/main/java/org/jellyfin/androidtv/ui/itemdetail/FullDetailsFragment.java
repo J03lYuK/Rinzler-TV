@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.itemdetail;
+package uk.rinzler.tv.ui.itemdetail;
 
 import static org.koin.java.KoinJavaComponent.inject;
 
@@ -34,55 +34,55 @@ import androidx.leanback.widget.Row;
 import androidx.leanback.widget.RowPresenter;
 import androidx.lifecycle.Lifecycle;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.auth.repository.UserRepository;
-import org.jellyfin.androidtv.constant.CustomMessage;
-import org.jellyfin.androidtv.constant.QueryType;
-import org.jellyfin.androidtv.data.model.ChapterItemInfo;
-import org.jellyfin.androidtv.data.model.DataRefreshService;
-import org.jellyfin.androidtv.data.model.InfoItem;
-import org.jellyfin.androidtv.data.querying.GetAdditionalPartsRequest;
-import org.jellyfin.androidtv.data.querying.GetSpecialsRequest;
-import org.jellyfin.androidtv.data.querying.GetTrailersRequest;
-import org.jellyfin.androidtv.data.repository.CustomMessageRepository;
-import org.jellyfin.androidtv.data.service.BackgroundService;
-import org.jellyfin.androidtv.databinding.FragmentFullDetailsBinding;
-import org.jellyfin.androidtv.preference.UserPreferences;
-import org.jellyfin.androidtv.preference.constant.ClockBehavior;
-import org.jellyfin.androidtv.ui.InteractionTrackerViewModel;
-import org.jellyfin.androidtv.ui.RecordPopup;
-import org.jellyfin.androidtv.ui.RecordingIndicatorView;
-import org.jellyfin.androidtv.constant.ImageType;
-import org.jellyfin.androidtv.ui.TextUnderButton;
-import org.jellyfin.androidtv.ui.browsing.BrowsingUtils;
-import org.jellyfin.androidtv.ui.itemhandling.BaseItemDtoBaseRowItem;
-import org.jellyfin.androidtv.ui.itemhandling.BaseRowItem;
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncher;
-import org.jellyfin.androidtv.ui.itemhandling.ItemRowAdapter;
-import org.jellyfin.androidtv.ui.livetv.TvManager;
-import org.jellyfin.androidtv.ui.navigation.Destinations;
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository;
-import org.jellyfin.androidtv.ui.playback.MediaManager;
-import org.jellyfin.androidtv.ui.playback.PlaybackLauncher;
-import org.jellyfin.androidtv.ui.presentation.CardPresenter;
-import org.jellyfin.androidtv.ui.presentation.CustomListRowPresenter;
-import org.jellyfin.androidtv.ui.presentation.InfoCardPresenter;
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter;
-import org.jellyfin.androidtv.ui.presentation.MyDetailsOverviewRowPresenter;
-import org.jellyfin.androidtv.util.CoroutineUtils;
-import org.jellyfin.androidtv.util.DateTimeExtensionsKt;
-import org.jellyfin.androidtv.util.ImageHelper;
-import org.jellyfin.androidtv.util.KeyProcessor;
-import org.jellyfin.androidtv.util.MarkdownRenderer;
-import org.jellyfin.androidtv.util.PlaybackHelper;
-import org.jellyfin.androidtv.util.TimeUtils;
-import org.jellyfin.androidtv.util.Utils;
-import org.jellyfin.androidtv.util.apiclient.BaseItemUtils;
-import org.jellyfin.androidtv.util.apiclient.EmptyResponse;
-import org.jellyfin.androidtv.util.apiclient.Response;
-import org.jellyfin.androidtv.util.sdk.BaseItemExtensionsKt;
-import org.jellyfin.androidtv.util.sdk.TrailerUtils;
-import org.jellyfin.androidtv.util.sdk.compat.JavaCompat;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.auth.repository.UserRepository;
+import uk.rinzler.tv.constant.CustomMessage;
+import uk.rinzler.tv.constant.QueryType;
+import uk.rinzler.tv.data.model.ChapterItemInfo;
+import uk.rinzler.tv.data.model.DataRefreshService;
+import uk.rinzler.tv.data.model.InfoItem;
+import uk.rinzler.tv.data.querying.GetAdditionalPartsRequest;
+import uk.rinzler.tv.data.querying.GetSpecialsRequest;
+import uk.rinzler.tv.data.querying.GetTrailersRequest;
+import uk.rinzler.tv.data.repository.CustomMessageRepository;
+import uk.rinzler.tv.data.service.BackgroundService;
+import uk.rinzler.tv.databinding.FragmentFullDetailsBinding;
+import uk.rinzler.tv.preference.UserPreferences;
+import uk.rinzler.tv.preference.constant.ClockBehavior;
+import uk.rinzler.tv.ui.InteractionTrackerViewModel;
+import uk.rinzler.tv.ui.RecordPopup;
+import uk.rinzler.tv.ui.RecordingIndicatorView;
+import uk.rinzler.tv.constant.ImageType;
+import uk.rinzler.tv.ui.TextUnderButton;
+import uk.rinzler.tv.ui.browsing.BrowsingUtils;
+import uk.rinzler.tv.ui.itemhandling.BaseItemDtoBaseRowItem;
+import uk.rinzler.tv.ui.itemhandling.BaseRowItem;
+import uk.rinzler.tv.ui.itemhandling.ItemLauncher;
+import uk.rinzler.tv.ui.itemhandling.ItemRowAdapter;
+import uk.rinzler.tv.ui.livetv.TvManager;
+import uk.rinzler.tv.ui.navigation.Destinations;
+import uk.rinzler.tv.ui.navigation.NavigationRepository;
+import uk.rinzler.tv.ui.playback.MediaManager;
+import uk.rinzler.tv.ui.playback.PlaybackLauncher;
+import uk.rinzler.tv.ui.presentation.CardPresenter;
+import uk.rinzler.tv.ui.presentation.CustomListRowPresenter;
+import uk.rinzler.tv.ui.presentation.InfoCardPresenter;
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter;
+import uk.rinzler.tv.ui.presentation.MyDetailsOverviewRowPresenter;
+import uk.rinzler.tv.util.CoroutineUtils;
+import uk.rinzler.tv.util.DateTimeExtensionsKt;
+import uk.rinzler.tv.util.ImageHelper;
+import uk.rinzler.tv.util.KeyProcessor;
+import uk.rinzler.tv.util.MarkdownRenderer;
+import uk.rinzler.tv.util.PlaybackHelper;
+import uk.rinzler.tv.util.TimeUtils;
+import uk.rinzler.tv.util.Utils;
+import uk.rinzler.tv.util.apiclient.BaseItemUtils;
+import uk.rinzler.tv.util.apiclient.EmptyResponse;
+import uk.rinzler.tv.util.apiclient.Response;
+import uk.rinzler.tv.util.sdk.BaseItemExtensionsKt;
+import uk.rinzler.tv.util.sdk.TrailerUtils;
+import uk.rinzler.tv.util.sdk.compat.JavaCompat;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 import org.jellyfin.sdk.model.api.BaseItemKind;
 import org.jellyfin.sdk.model.api.BaseItemPerson;
@@ -899,13 +899,13 @@ public class FullDetailsFragment extends Fragment implements RecordingIndicatorV
                     public void onClick(View v) {
                         // If this is a genre, shuffle within that genre
                         if (mBaseItem.getType() == BaseItemKind.GENRE) {
-                            java.util.UUID serverId = org.jellyfin.androidtv.util.UUIDUtils.parseUUID(mBaseItem.getServerId());
-                            org.jellyfin.androidtv.ui.shuffle.ShuffleUtilsKt.executeGenreShuffle(
+                            java.util.UUID serverId = uk.rinzler.tv.util.UUIDUtils.parseUUID(mBaseItem.getServerId());
+                            uk.rinzler.tv.ui.shuffle.ShuffleUtilsKt.executeGenreShuffle(
                                 requireContext(),
                                 mBaseItem.getName(),
                                 mBaseItem.getParentId(),
                                 serverId,
-                                KoinJavaComponent.get(org.jellyfin.androidtv.preference.UserPreferences.class),
+                                KoinJavaComponent.get(uk.rinzler.tv.preference.UserPreferences.class),
                                 KoinJavaComponent.get(NavigationRepository.class)
                             );
                         } else {
@@ -914,7 +914,7 @@ public class FullDetailsFragment extends Fragment implements RecordingIndicatorV
                     }
                 });
                 shuffleButton.setOnLongClickListener(v -> {
-                    org.jellyfin.androidtv.ui.shuffle.ShuffleDialogLauncherKt.showShuffleDialog(
+                    uk.rinzler.tv.ui.shuffle.ShuffleDialogLauncherKt.showShuffleDialog(
                         requireContext(),
                         KoinJavaComponent.get(NavigationRepository.class)
                     );
@@ -952,7 +952,7 @@ public class FullDetailsFragment extends Fragment implements RecordingIndicatorV
             MediaSourceInfo mediaSource = mBaseItem.getMediaSources().get(0);
             if (mediaSource.getMediaStreams() != null) {
                 List<MediaStream> mediaStreams = mediaSource.getMediaStreams();
-                
+
                 // Count audio tracks without using streams (desugaring issue)
                 int audioTrackCount = 0;
                 for (MediaStream stream : mediaStreams) {
@@ -1114,7 +1114,7 @@ public class FullDetailsFragment extends Fragment implements RecordingIndicatorV
                 TextUnderButton addToPlaylistButton = TextUnderButton.create(requireContext(), R.drawable.ic_add, buttonSize, 0, getString(R.string.lbl_add_to_playlist), new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
-                        org.jellyfin.androidtv.ui.playlist.AddToPlaylistDialogLauncherKt.showAddToPlaylistDialog(requireContext(), mBaseItem.getId());
+                        uk.rinzler.tv.ui.playlist.AddToPlaylistDialogLauncherKt.showAddToPlaylistDialog(requireContext(), mBaseItem.getId());
                     }
                 });
                 mDetailsOverviewRow.addAction(addToPlaylistButton);
@@ -1231,8 +1231,8 @@ public class FullDetailsFragment extends Fragment implements RecordingIndicatorV
             playButton.setIcon(R.drawable.ic_loop, BUTTON_SIZE);
             mResumeButton.requestFocus();
         } else {
-            String playLabel = BaseItemExtensionsKt.isLiveTv(mBaseItem) ? getString(R.string.lbl_tune_to_channel) 
-                : Utils.getSafeValue(mBaseItem.isFolder(), false) ? getString(R.string.lbl_play_all) 
+            String playLabel = BaseItemExtensionsKt.isLiveTv(mBaseItem) ? getString(R.string.lbl_tune_to_channel)
+                : Utils.getSafeValue(mBaseItem.isFolder(), false) ? getString(R.string.lbl_play_all)
                 : getString(R.string.lbl_play);
             playButton.setLabel(playLabel);
             playButton.setIcon(R.drawable.ic_play, BUTTON_SIZE);

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui
+package uk.rinzler.tv.ui
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,8 +7,8 @@ import android.widget.Button
 import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import androidx.core.view.children
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.databinding.ViewButtonAlphaPickerBinding
+import uk.rinzler.tv.R
+import uk.rinzler.tv.databinding.ViewButtonAlphaPickerBinding
 
 class AlphaPickerView @JvmOverloads constructor(
 	context: Context,

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
 import androidx.leanback.widget.HeaderItem
@@ -8,11 +8,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.repository.LocalWatchlistRepository
-import org.jellyfin.androidtv.ui.itemhandling.BaseItemDtoBaseRowItem
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.repository.LocalWatchlistRepository
+import uk.rinzler.tv.ui.itemhandling.BaseItemDtoBaseRowItem
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter
 import org.jellyfin.sdk.api.client.ApiClient
 import java.util.UUID
 
@@ -53,7 +53,7 @@ class HomeFragmentWatchlistRow(
 		val items = withContext(Dispatchers.IO) {
 			watchlistRepository.getWatchlistItems(api, serverId)
 		}
-		
+
 		items.forEach { item ->
 			adapter.add(BaseItemDtoBaseRowItem(item))
 		}

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.auth.store
+package uk.rinzler.tv.auth.store
 
 import android.content.Context
 import kotlinx.serialization.SerializationException
@@ -12,8 +12,8 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
-import org.jellyfin.androidtv.auth.model.AuthenticationStoreServer
-import org.jellyfin.androidtv.auth.model.AuthenticationStoreUser
+import uk.rinzler.tv.auth.model.AuthenticationStoreServer
+import uk.rinzler.tv.auth.model.AuthenticationStoreUser
 import org.jellyfin.sdk.model.serializer.UUIDSerializer
 import timber.log.Timber
 import java.util.UUID

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home.mediabar
+package uk.rinzler.tv.ui.home.mediabar
 
 import android.graphics.RenderEffect
 import android.graphics.Shader
@@ -59,17 +59,17 @@ import coil3.request.allowHardware
 import coil3.toBitmap
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.repository.MdbListRepository
-import org.jellyfin.androidtv.data.repository.RatingIconProvider
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.preference.constant.NavbarPosition
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.shared.LogoView
-import org.jellyfin.androidtv.util.TimeUtils
-import org.jellyfin.androidtv.util.isImagePrimarilyDark
-import org.jellyfin.androidtv.util.toHtmlSpanned
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.repository.MdbListRepository
+import uk.rinzler.tv.data.repository.RatingIconProvider
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.preference.constant.NavbarPosition
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.shared.LogoView
+import uk.rinzler.tv.util.TimeUtils
+import uk.rinzler.tv.util.isImagePrimarilyDark
+import uk.rinzler.tv.util.toHtmlSpanned
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.api.BaseItemKind
 import org.koin.compose.koinInject
@@ -421,7 +421,7 @@ private fun MediaBarRating(item: MediaBarSlideItem) {
 
 	var apiRatings by remember { mutableStateOf<Map<String, Float>?>(null) }
 
-	val needsExternalRating = enableAdditionalRatings && 
+	val needsExternalRating = enableAdditionalRatings &&
 		(item.tmdbId != null || item.imdbId != null)
 
 	var isLoading by remember { mutableStateOf(needsExternalRating) }
@@ -432,7 +432,7 @@ private fun MediaBarRating(item: MediaBarSlideItem) {
 				isLoading = false
 				return@LaunchedEffect
 			}
-			
+
 			isLoading = true
 			try {
 				val fakeItem = org.jellyfin.sdk.model.api.BaseItemDto(

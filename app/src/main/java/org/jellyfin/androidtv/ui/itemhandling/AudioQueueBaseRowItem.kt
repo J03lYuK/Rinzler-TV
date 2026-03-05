@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.itemhandling
+package uk.rinzler.tv.ui.itemhandling
 
 import org.jellyfin.playback.core.queue.QueueEntry
 import org.jellyfin.playback.jellyfin.queue.baseItem

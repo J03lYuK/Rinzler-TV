@@ -1,8 +1,8 @@
-package org.jellyfin.androidtv.ui.presentation
+package uk.rinzler.tv.ui.presentation
 
 import android.view.ViewGroup
 import androidx.leanback.widget.Presenter
-import org.jellyfin.androidtv.ui.card.ChannelCardView
+import uk.rinzler.tv.ui.card.ChannelCardView
 import org.jellyfin.sdk.model.api.BaseItemDto
 
 class ChannelCardPresenter : Presenter() {

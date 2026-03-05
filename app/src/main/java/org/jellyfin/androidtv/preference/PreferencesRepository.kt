@@ -1,7 +1,7 @@
-package org.jellyfin.androidtv.preference
+package uk.rinzler.tv.preference
 
 import kotlinx.coroutines.runBlocking
-import org.jellyfin.androidtv.data.service.pluginsync.PluginSyncService
+import uk.rinzler.tv.data.service.pluginsync.PluginSyncService
 import org.jellyfin.sdk.api.client.ApiClient
 import kotlin.collections.set
 

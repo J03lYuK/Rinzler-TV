@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.shared
+package uk.rinzler.tv.ui.shared
 
 import android.graphics.Bitmap
 import android.os.Build
@@ -29,15 +29,15 @@ import coil3.request.allowHardware
 import coil3.toBitmap
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.util.isImagePrimarilyDark
+import uk.rinzler.tv.util.isImagePrimarilyDark
 
 /**
  * Displays a logo image with an adaptive shadow effect.
  * The shadow color adjusts based on whether the logo is primarily dark or light.
- * 
+ *
  * The logo is shown immediately with a default black shadow (works for most logos),
  * and the shadow color updates once the image brightness is analyzed.
- * 
+ *
  * Uses the singleton ImageLoader configured in JellyfinApplication for proper
  * authentication and caching.
  */
@@ -102,7 +102,7 @@ fun LogoView(
             } else {
                 Modifier
             }
-            
+
             Image(
                 painter = painter,
                 contentDescription = null,
@@ -113,7 +113,7 @@ fun LogoView(
                 contentScale = ContentScale.Fit,
                 alpha = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) 1f else 0.7f
             )
-            
+
             // Draw the actual logo on top
             Image(
                 painter = painter,

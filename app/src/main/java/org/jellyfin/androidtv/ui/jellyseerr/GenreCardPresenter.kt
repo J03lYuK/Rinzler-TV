@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -11,9 +11,9 @@ import androidx.cardview.widget.CardView
 import androidx.leanback.widget.Presenter
 import coil3.load
 import coil3.request.crossfade
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrGenreDto
-import org.jellyfin.androidtv.preference.UserPreferences
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrGenreDto
+import uk.rinzler.tv.preference.UserPreferences
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import kotlin.random.Random
@@ -59,7 +59,7 @@ class GenreCardPresenter : Presenter(), KoinComponent {
 			// Pick a random backdrop from the list for variety
 			val randomBackdrop = genre.backdrops[Random.nextInt(genre.backdrops.size)]
 			val backdropUrl = "$TMDB_IMAGE_BASE_URL$randomBackdrop"
-			
+
 			imageView.load(backdropUrl) {
 				crossfade(true)
 			}

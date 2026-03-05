@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.navigation
+package uk.rinzler.tv.ui.navigation
 
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow

@@ -1,9 +1,9 @@
-package org.jellyfin.androidtv.data.repository
+package uk.rinzler.tv.data.repository
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import org.jellyfin.androidtv.constant.CustomMessage
+import uk.rinzler.tv.constant.CustomMessage
 
 interface CustomMessageRepository {
 	val message: StateFlow<CustomMessage?>

@@ -1,15 +1,15 @@
-package org.jellyfin.androidtv.ui.settings.compat
+package uk.rinzler.tv.ui.settings.compat
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import org.jellyfin.androidtv.ui.playback.ThemeMusicPlayer
+import uk.rinzler.tv.ui.playback.ThemeMusicPlayer
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class SettingsViewModel : ViewModel(), KoinComponent {
 	private val themeMusicPlayer by inject<ThemeMusicPlayer>()
-	
+
 	private val _visible = MutableStateFlow(false)
 	val visible get() = _visible.asStateFlow()
 

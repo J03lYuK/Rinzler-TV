@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base.button
+package uk.rinzler.tv.ui.base.button
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.JellyfinTheme
 
 object IconButtonDefaults {
 	val Shape: Shape = ButtonDefaults.Shape

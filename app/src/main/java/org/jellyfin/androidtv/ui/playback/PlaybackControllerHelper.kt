@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 import androidx.annotation.OptIn
 import androidx.lifecycle.lifecycleScope
@@ -8,10 +8,10 @@ import androidx.media3.common.util.UnstableApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.ui.playback.segment.MediaSegmentAction
-import org.jellyfin.androidtv.ui.playback.segment.MediaSegmentRepository
-import org.jellyfin.androidtv.util.sdk.end
-import org.jellyfin.androidtv.util.sdk.start
+import uk.rinzler.tv.ui.playback.segment.MediaSegmentAction
+import uk.rinzler.tv.ui.playback.segment.MediaSegmentRepository
+import uk.rinzler.tv.util.sdk.end
+import uk.rinzler.tv.util.sdk.start
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.liveTvApi
 import org.jellyfin.sdk.model.api.BaseItemDto
@@ -183,7 +183,7 @@ fun PlaybackController.applyMediaSegments(
 private fun PlaybackController.addSkipAction(mediaSegment: MediaSegmentDto) {
 	val videoManager = mVideoManager ?: return
 	val exoPlayer = videoManager.mExoPlayer ?: return
-	
+
 	exoPlayer
 		.createMessage { _, _ ->
 			// We can't seek directly on the ExoPlayer instance as not all media is seekable
@@ -203,7 +203,7 @@ private fun PlaybackController.addSkipAction(mediaSegment: MediaSegmentDto) {
 private fun PlaybackController.addAskToSkipAction(mediaSegment: MediaSegmentDto) {
 	val videoManager = mVideoManager ?: return
 	val exoPlayer = videoManager.mExoPlayer ?: return
-	
+
 	exoPlayer
 		.createMessage { _, _ ->
 			fragment?.askToSkip(mediaSegment.end, mediaSegment.type)

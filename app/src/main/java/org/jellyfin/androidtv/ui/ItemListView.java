@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui;
+package uk.rinzler.tv.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import org.jellyfin.androidtv.databinding.ItemListBinding;
+import uk.rinzler.tv.databinding.ItemListBinding;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 
 import java.util.ArrayList;
@@ -81,14 +81,14 @@ public class ItemListView extends FrameLayout {
             toIndex < 0 || toIndex >= mList.getChildCount()) {
             return;
         }
-        
+
         View viewToMove = mList.getChildAt(fromIndex);
         mList.removeViewAt(fromIndex);
         mList.addView(viewToMove, toIndex);
-        
+
         UUID itemId = mItemIds.remove(fromIndex);
         mItemIds.add(toIndex, itemId);
-        
+
         int minIndex = Math.min(fromIndex, toIndex);
         int maxIndex = Math.max(fromIndex, toIndex);
         for (int i = minIndex; i <= maxIndex; i++) {
@@ -97,7 +97,7 @@ public class ItemListView extends FrameLayout {
                 ((ItemRowView) child).updateIndex(i);
             }
         }
-        
+
         updateTotalCount();
     }
 

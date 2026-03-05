@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.startup.fragment
+package uk.rinzler.tv.ui.startup.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,13 +12,13 @@ import androidx.fragment.app.replace
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.model.ConnectedState
-import org.jellyfin.androidtv.auth.model.ConnectingState
-import org.jellyfin.androidtv.auth.model.UnableToConnectState
-import org.jellyfin.androidtv.databinding.FragmentServerAddBinding
-import org.jellyfin.androidtv.ui.startup.ServerAddViewModel
-import org.jellyfin.androidtv.util.getSummary
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.model.ConnectedState
+import uk.rinzler.tv.auth.model.ConnectingState
+import uk.rinzler.tv.auth.model.UnableToConnectState
+import uk.rinzler.tv.databinding.FragmentServerAddBinding
+import uk.rinzler.tv.ui.startup.ServerAddViewModel
+import uk.rinzler.tv.util.getSummary
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ServerAddFragment : Fragment() {

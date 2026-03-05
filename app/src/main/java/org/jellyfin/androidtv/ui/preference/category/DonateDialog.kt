@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.preference.category
+package uk.rinzler.tv.ui.preference.category
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -39,8 +39,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.Text
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.Text
 
 @Composable
 fun DonateDialog(onDismiss: () -> Unit) {

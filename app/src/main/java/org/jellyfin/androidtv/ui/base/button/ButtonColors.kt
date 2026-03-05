@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base.button
+package uk.rinzler.tv.ui.base.button
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color

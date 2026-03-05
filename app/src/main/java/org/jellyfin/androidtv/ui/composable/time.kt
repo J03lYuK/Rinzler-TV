@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.composable
+package uk.rinzler.tv.ui.composable
 
 import android.text.format.DateFormat
 import androidx.compose.runtime.Composable
@@ -8,7 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.delay
-import org.jellyfin.androidtv.util.locale
+import uk.rinzler.tv.util.locale
 import java.util.Date
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes

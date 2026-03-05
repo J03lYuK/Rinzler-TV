@@ -145,7 +145,7 @@
                     android:textSize="15sp" />
             </LinearLayout>
 
-            <org.jellyfin.androidtv.ui.ExpandableTextView
+            <uk.rinzler.tv.ui.ExpandableTextView
                 android:id="@+id/login_disclaimer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

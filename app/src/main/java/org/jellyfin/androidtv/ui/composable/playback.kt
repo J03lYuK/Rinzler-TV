@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.composable
+package uk.rinzler.tv.ui.composable
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing

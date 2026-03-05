@@ -1,11 +1,11 @@
-package org.jellyfin.androidtv.integration.dream.composable
+package uk.rinzler.tv.integration.dream.composable
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import org.jellyfin.androidtv.integration.dream.DreamViewModel
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.ClockBehavior
+import uk.rinzler.tv.integration.dream.DreamViewModel
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.ClockBehavior
 import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.koinInject
 

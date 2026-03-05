@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback.common
+package uk.rinzler.tv.ui.playback.common
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -6,13 +6,13 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.NextUpBehavior
-import org.jellyfin.androidtv.util.apiclient.JellyfinImage
-import org.jellyfin.androidtv.util.apiclient.getLogoImage
-import org.jellyfin.androidtv.util.apiclient.getPrimaryImage
-import org.jellyfin.androidtv.util.apiclient.ioCall
-import org.jellyfin.androidtv.util.sdk.getDisplayName
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.NextUpBehavior
+import uk.rinzler.tv.util.apiclient.JellyfinImage
+import uk.rinzler.tv.util.apiclient.getLogoImage
+import uk.rinzler.tv.util.apiclient.getPrimaryImage
+import uk.rinzler.tv.util.apiclient.ioCall
+import uk.rinzler.tv.util.sdk.getDisplayName
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.InvalidStatusException
 import org.jellyfin.sdk.api.client.extensions.userLibraryApi
@@ -44,20 +44,20 @@ abstract class PlaybackPromptViewModel<S : Enum<S>>(
 	private val initialState: S,
 	private val noDataState: S,
 ) : ViewModel() {
-	
+
 	private val _item = MutableStateFlow<PlaybackPromptItemData?>(null)
 	val item: StateFlow<PlaybackPromptItemData?> = _item
-	
+
 	private val _state = MutableStateFlow(initialState)
 	val state: StateFlow<S> = _state
-	
+
 	/**
 	 * Update the current state.
 	 */
 	protected fun setState(newState: S) {
 		_state.value = newState
 	}
-	
+
 	/**
 	 * Load item data for the given item ID.
 	 */
@@ -76,7 +76,7 @@ abstract class PlaybackPromptViewModel<S : Enum<S>>(
 			}
 		}
 	}
-	
+
 	/**
 	 * Load item data from the API.
 	 * Returns null if the item is not found (404) or another error occurs.

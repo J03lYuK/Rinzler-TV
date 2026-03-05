@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.constant
+package uk.rinzler.tv.constant
 
 object Extras {
 	const val Folder = "folder"

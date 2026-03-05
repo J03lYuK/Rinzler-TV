@@ -1,11 +1,11 @@
-package org.jellyfin.androidtv.ui.settings.screen.playback
+package uk.rinzler.tv.ui.settings.screen.playback
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.util.TimeUtils
+import uk.rinzler.tv.R
+import uk.rinzler.tv.util.TimeUtils
 
 @Composable
 @Stable

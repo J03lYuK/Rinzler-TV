@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.composable.item
+package uk.rinzler.tv.ui.composable.item
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -24,16 +24,16 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.WatchedIndicatorBehavior
-import org.jellyfin.androidtv.ui.base.Badge
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Seekbar
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.composable.rememberPlayerProgress
-import org.jellyfin.androidtv.ui.composable.rememberQueueEntry
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.WatchedIndicatorBehavior
+import uk.rinzler.tv.ui.base.Badge
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Seekbar
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.composable.rememberPlayerProgress
+import uk.rinzler.tv.ui.composable.rememberQueueEntry
 import org.jellyfin.design.Tokens
 import org.jellyfin.playback.core.model.PlayState
 import org.jellyfin.playback.jellyfin.queue.baseItem

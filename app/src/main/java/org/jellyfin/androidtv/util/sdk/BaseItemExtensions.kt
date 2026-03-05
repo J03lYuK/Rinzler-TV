@@ -1,13 +1,13 @@
-package org.jellyfin.androidtv.util.sdk
+package uk.rinzler.tv.util.sdk
 
 import android.content.Context
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.model.ChapterItemInfo
-import org.jellyfin.androidtv.ui.composable.getResolutionName
-import org.jellyfin.androidtv.util.TimeUtils
-import org.jellyfin.androidtv.util.apiclient.chapterImages
-import org.jellyfin.androidtv.util.getQuantityString
-import org.jellyfin.androidtv.util.getTimeFormatter
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.model.ChapterItemInfo
+import uk.rinzler.tv.ui.composable.getResolutionName
+import uk.rinzler.tv.util.TimeUtils
+import uk.rinzler.tv.util.apiclient.chapterImages
+import uk.rinzler.tv.util.getQuantityString
+import uk.rinzler.tv.util.getTimeFormatter
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind
 import org.jellyfin.sdk.model.api.LocationType
@@ -147,7 +147,7 @@ fun BaseItemDto.getSubName(context: Context): String? = when (type) {
 					null
 				}
 			}
-			
+
 			if (resolutionStr != null && name != null) {
 				"$name • $resolutionStr"
 			} else {
@@ -175,7 +175,7 @@ fun BaseItemDto.getSubName(context: Context): String? = when (type) {
 			else -> null
 		}
 		val yearStr = productionYear?.toString()
-		
+
 		// Add resolution if available (from width/height or first media source)
 		val resolutionStr = if (width != null && height != null) {
 			getResolutionName(context, width!!, height!!)
@@ -189,7 +189,7 @@ fun BaseItemDto.getSubName(context: Context): String? = when (type) {
 				null
 			}
 		}
-		
+
 		listOfNotNull(typeStr, yearStr, resolutionStr).joinToString(" • ")
 	}
 	else -> officialRating

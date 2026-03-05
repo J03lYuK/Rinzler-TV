@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv
+package uk.rinzler.tv
 
 import android.app.Application
 import android.content.Context
@@ -16,16 +16,16 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.acra.ACRA
-import org.jellyfin.androidtv.util.apiclient.ioCall
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.data.eventhandling.SocketHandler
-import org.jellyfin.androidtv.data.repository.NotificationsRepository
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrHttpClient
-import org.jellyfin.androidtv.integration.LeanbackChannelWorker
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.ui.background.UpdateCheckWorker
-import org.jellyfin.androidtv.telemetry.TelemetryService
+import uk.rinzler.tv.util.apiclient.ioCall
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.data.eventhandling.SocketHandler
+import uk.rinzler.tv.data.repository.NotificationsRepository
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrHttpClient
+import uk.rinzler.tv.integration.LeanbackChannelWorker
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.ui.background.UpdateCheckWorker
+import uk.rinzler.tv.telemetry.TelemetryService
 import org.koin.android.ext.android.inject
 import org.koin.core.qualifier.named
 import timber.log.Timber
@@ -41,7 +41,7 @@ class JellyfinApplication : Application(), SingletonImageLoader.Factory {
 
 		val notificationsRepository by inject<NotificationsRepository>()
 		notificationsRepository.addDefaultNotifications()
-		
+
 		// Monitor Jellyfin user changes and clear Jellyseerr cookies when user switches
 		setupJellyseerrUserMonitoring()
 	}
@@ -55,22 +55,22 @@ class JellyfinApplication : Application(), SingletonImageLoader.Factory {
 		val imageLoader by inject<ImageLoader>()
 		return imageLoader
 	}
-	
+
 	private fun setupJellyseerrUserMonitoring() {
 		val userRepository by inject<UserRepository>()
 		val jellyseerrPreferencesGlobal by inject<JellyseerrPreferences>(named("global"))
-		
+
 		ProcessLifecycleOwner.get().lifecycleScope.launch {
 			userRepository.currentUser.collect { currentUser ->
 				val currentUsername = currentUser?.name
 				val currentUserId = currentUser?.id?.toString()
 				val lastJellyfinUser = jellyseerrPreferencesGlobal[JellyseerrPreferences.lastJellyfinUser]
-				
+
 				// Switch cookie storage and preferences when user changes (each user gets their own Jellyseerr session)
 				if (currentUserId != null && currentUsername != null) {
 					// Switch to this user's cookie storage
 					JellyseerrHttpClient.switchCookieStorage(currentUserId)
-					
+
 					// Update the stored username in global prefs
 					jellyseerrPreferencesGlobal[JellyseerrPreferences.lastJellyfinUser] = currentUsername
 				}

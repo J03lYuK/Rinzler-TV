@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen.moonfin
+package uk.rinzler.tv.ui.settings.screen.moonfin
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -25,26 +25,26 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.constant.JellyseerrRowType
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.preference.JellyseerrRowConfig
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.form.Checkbox
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.R
+import uk.rinzler.tv.constant.JellyseerrRowType
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.preference.JellyseerrRowConfig
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.form.Checkbox
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
 import org.koin.compose.koinInject
 import org.koin.core.qualifier.named
 
 @Composable
 fun SettingsJellyseerrRowsScreen() {
 	val jellyseerrPreferences = koinInject<JellyseerrPreferences>(named("global"))
-	
+
 	var sections by remember { mutableStateOf(jellyseerrPreferences.rowsConfig) }
 	var focusedRowType by remember { mutableStateOf<JellyseerrRowType?>(null) }
-	
+
 	// Auto-focus the first item on initial load
 	LaunchedEffect(Unit) {
 		val firstSection = sections.sortedBy { it.order }.firstOrNull()
@@ -52,7 +52,7 @@ fun SettingsJellyseerrRowsScreen() {
 			focusedRowType = firstSection.type
 		}
 	}
-	
+
 	// Auto-save when sections change
 	val saveSections = { newSections: List<JellyseerrRowConfig> ->
 		sections = newSections
@@ -67,10 +67,10 @@ fun SettingsJellyseerrRowsScreen() {
 				captionContent = { Text(stringResource(R.string.jellyseerr_rows_description)) },
 			)
 		}
-		
+
 		// Display each row with checkbox and reorder buttons
 		val configurableSections = sections.sortedBy { it.order }
-		
+
 		configurableSections.forEachIndexed { index, section ->
 			item(key = section.type) {
 				JellyseerrRowRow(
@@ -94,10 +94,10 @@ fun SettingsJellyseerrRowsScreen() {
 							val sorted = sections.sortedBy { it.order }.toMutableList()
 							val currentOrder = sorted[index].order
 							val previousOrder = sorted[index - 1].order
-							
+
 							sorted[index] = sorted[index].copy(order = previousOrder)
 							sorted[index - 1] = sorted[index - 1].copy(order = currentOrder)
-							
+
 							saveSections(sorted)
 						}
 					},
@@ -107,17 +107,17 @@ fun SettingsJellyseerrRowsScreen() {
 							val sorted = sections.sortedBy { it.order }.toMutableList()
 							val currentOrder = sorted[index].order
 							val nextOrder = sorted[index + 1].order
-							
+
 							sorted[index] = sorted[index].copy(order = nextOrder)
 							sorted[index + 1] = sorted[index + 1].copy(order = currentOrder)
-							
+
 							saveSections(sorted)
 						}
 					}
 				)
 			}
 		}
-		
+
 		item {
 			ListButton(
 				leadingContent = {
@@ -149,20 +149,20 @@ private fun JellyseerrRowRow(
 	val context = LocalContext.current
 	val focusRequester = remember { FocusRequester() }
 	var isFocused by remember { mutableStateOf(false) }
-	
+
 	// Request focus when this item should be focused
 	LaunchedEffect(shouldRequestFocus) {
 		if (shouldRequestFocus) {
 			focusRequester.requestFocus()
 		}
 	}
-	
+
 	// Single button for the entire row - left/right keys move the item up/down
 	ListButton(
 		modifier = Modifier
 			.fillMaxWidth()
 			.focusRequester(focusRequester)
-			.onFocusChanged { 
+			.onFocusChanged {
 				isFocused = it.isFocused
 				onFocusChanged(it.isFocused)
 			}

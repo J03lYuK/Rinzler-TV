@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.preference.store
+package uk.rinzler.tv.preference.store
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

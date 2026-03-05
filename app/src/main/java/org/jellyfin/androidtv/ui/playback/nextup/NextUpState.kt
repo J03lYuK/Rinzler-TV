@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback.nextup
+package uk.rinzler.tv.ui.playback.nextup
 
 enum class NextUpState {
 	INITIALIZED,

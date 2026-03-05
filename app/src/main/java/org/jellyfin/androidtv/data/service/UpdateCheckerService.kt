@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.service
+package uk.rinzler.tv.data.service
 
 import android.content.Context
 import android.content.Intent
@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.jellyfin.androidtv.BuildConfig
+import uk.rinzler.tv.BuildConfig
 import timber.log.Timber
 import java.io.File
 import java.io.FileOutputStream

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.startup.fragment
+package uk.rinzler.tv.ui.startup.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,11 +15,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.model.UnavailableQuickConnectState
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.databinding.FragmentUserLoginBinding
-import org.jellyfin.androidtv.ui.startup.UserLoginViewModel
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.model.UnavailableQuickConnectState
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.databinding.FragmentUserLoginBinding
+import uk.rinzler.tv.ui.startup.UserLoginViewModel
 import org.jellyfin.sdk.model.serializer.toUUIDOrNull
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.activityViewModel

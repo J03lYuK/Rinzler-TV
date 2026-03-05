@@ -1,12 +1,12 @@
-package org.jellyfin.androidtv.ui.presentation
+package uk.rinzler.tv.ui.presentation
 
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.leanback.widget.RowPresenter
-import org.jellyfin.androidtv.ui.DetailRowView
-import org.jellyfin.androidtv.ui.itemdetail.MyDetailsOverviewRow
-import org.jellyfin.androidtv.util.InfoLayoutHelper
-import org.jellyfin.androidtv.util.MarkdownRenderer
+import uk.rinzler.tv.ui.DetailRowView
+import uk.rinzler.tv.ui.itemdetail.MyDetailsOverviewRow
+import uk.rinzler.tv.util.InfoLayoutHelper
+import uk.rinzler.tv.util.MarkdownRenderer
 import org.jellyfin.sdk.model.api.BaseItemKind
 import org.jellyfin.sdk.model.api.PersonKind
 

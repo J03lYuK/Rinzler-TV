@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.shuffle
+package uk.rinzler.tv.ui.shuffle
 
 import android.content.Context
 import android.widget.Toast
@@ -9,11 +9,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.R
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.util.sdk.ApiClientFactory
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.itemsApi
 import org.jellyfin.sdk.model.api.BaseItemDto
@@ -179,7 +179,7 @@ class ShuffleManager(
 		includeTypes: Set<BaseItemKind>
 	): BaseItemDto? {
 		val maxRetries = 5
-		
+
 		// Primary: Use server-side RANDOM sort with retries for excluded item types
 		for (attempt in 1..maxRetries) {
 			try {
@@ -200,22 +200,22 @@ class ShuffleManager(
 					Timber.d("Shuffle: Server returned no items, totalRecordCount = $totalCount")
 					return null
 				}
-				
+
 				// Server-side excludeItemTypes with RANDOM sort is buggy - filter client-side
 				if (item.type == BaseItemKind.BOX_SET) {
 					Timber.w("Shuffle: Server returned BoxSet despite exclude filter, retrying...")
 					continue
 				}
-				
+
 				return item
 			} catch (e: Exception) {
 				Timber.w(e, "Server-side RANDOM failed on attempt $attempt")
 				break // Fall through to client-side fallback
 			}
 		}
-		
+
 		Timber.w("Server-side random exhausted retries or failed, falling back to client-side random")
-		
+
 		// Fallback: Client-side random (two API calls)
 		try {
 			val countResponse = targetApi.itemsApi.getItems(

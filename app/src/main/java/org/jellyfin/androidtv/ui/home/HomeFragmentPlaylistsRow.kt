@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
 import androidx.leanback.widget.HeaderItem
@@ -8,17 +8,17 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.itemhandling.BaseItemDtoBaseRowItem
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.itemhandling.BaseItemDtoBaseRowItem
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.itemsApi
 import org.jellyfin.sdk.model.api.BaseItemKind
 import org.jellyfin.sdk.model.api.ItemFields
 import org.jellyfin.sdk.model.api.ItemSortBy
 import org.jellyfin.sdk.model.api.SortOrder
-import org.jellyfin.androidtv.data.repository.ItemRepository
+import uk.rinzler.tv.data.repository.ItemRepository
 import timber.log.Timber
 
 class HomeFragmentPlaylistsRow(
@@ -64,7 +64,7 @@ class HomeFragmentPlaylistsRow(
 					limit = 50,
 				).content.items.filter { it.canDelete == true }
 			}
-			
+
 			items.forEach { item ->
 				adapter.add(BaseItemDtoBaseRowItem(item))
 			}

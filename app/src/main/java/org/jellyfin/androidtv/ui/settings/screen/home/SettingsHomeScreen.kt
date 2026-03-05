@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen.home
+package uk.rinzler.tv.ui.settings.screen.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -25,27 +25,27 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.constant.HomeSectionType
-import org.jellyfin.androidtv.preference.HomeSectionConfig
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.form.Checkbox
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.R
+import uk.rinzler.tv.constant.HomeSectionType
+import uk.rinzler.tv.preference.HomeSectionConfig
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.form.Checkbox
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
 import org.koin.compose.koinInject
 
 @Composable
 fun SettingsHomeScreen() {
 	val userSettingPreferences = koinInject<UserSettingPreferences>()
-	val userPreferences = koinInject<org.jellyfin.androidtv.preference.UserPreferences>()
-	val router = org.jellyfin.androidtv.ui.navigation.LocalRouter.current
-	
+	val userPreferences = koinInject<uk.rinzler.tv.preference.UserPreferences>()
+	val router = uk.rinzler.tv.ui.navigation.LocalRouter.current
+
 	var sections by remember { mutableStateOf(userSettingPreferences.homeSectionsConfig) }
 	var focusedSectionType by remember { mutableStateOf<HomeSectionType?>(null) }
-	
+
 	// Auto-focus the first item on initial load
 	LaunchedEffect(Unit) {
 		val firstSection = sections.sortedBy { it.order }.firstOrNull { it.type != HomeSectionType.NONE }
@@ -53,7 +53,7 @@ fun SettingsHomeScreen() {
 			focusedSectionType = firstSection.type
 		}
 	}
-	
+
 	// Auto-save when sections change
 	val saveSections = { newSections: List<HomeSectionConfig> ->
 		sections = newSections
@@ -68,15 +68,15 @@ fun SettingsHomeScreen() {
 				captionContent = { Text(stringResource(R.string.home_sections_description)) },
 			)
 		}
-		
+
 		// Home Rows Image Size
 		item {
-			val posterSize by org.jellyfin.androidtv.ui.settings.compat.rememberPreference(userPreferences, org.jellyfin.androidtv.preference.UserPreferences.posterSize)
+			val posterSize by uk.rinzler.tv.ui.settings.compat.rememberPreference(userPreferences, uk.rinzler.tv.preference.UserPreferences.posterSize)
 			ListButton(
 				leadingContent = { Icon(painterResource(R.drawable.ic_aspect_ratio), contentDescription = null) },
 				headingContent = { Text(stringResource(R.string.pref_poster_size)) },
 				captionContent = { Text(stringResource(posterSize.nameRes)) },
-				onClick = { router.push(org.jellyfin.androidtv.ui.settings.Routes.HOME_POSTER_SIZE) }
+				onClick = { router.push(uk.rinzler.tv.ui.settings.Routes.HOME_POSTER_SIZE) }
 			)
 		}
 
@@ -85,16 +85,16 @@ fun SettingsHomeScreen() {
 			ListButton(
 				leadingContent = { Icon(painterResource(R.drawable.ic_grid), contentDescription = null) },
 				headingContent = { Text(stringResource(R.string.pref_home_rows_image_type)) },
-				onClick = { router.push(org.jellyfin.androidtv.ui.settings.Routes.HOME_ROWS_IMAGE_TYPE) }
+				onClick = { router.push(uk.rinzler.tv.ui.settings.Routes.HOME_ROWS_IMAGE_TYPE) }
 			)
 		}
 
 		item { ListSection(headingContent = { Text(stringResource(R.string.home_sections_description)) }) }
-		
+
 		val configurableSections = sections
 			.filter { it.type != HomeSectionType.MEDIA_BAR }
 			.sortedBy { it.order }
-		
+
 		configurableSections.forEachIndexed { index, section ->
 			if (section.type != HomeSectionType.NONE) {
 				item(key = section.type) {
@@ -119,10 +119,10 @@ fun SettingsHomeScreen() {
 								val sorted = sections.sortedBy { it.order }.toMutableList()
 								val currentOrder = sorted[index].order
 								val previousOrder = sorted[index - 1].order
-								
+
 								sorted[index] = sorted[index].copy(order = previousOrder)
 								sorted[index - 1] = sorted[index - 1].copy(order = currentOrder)
-								
+
 								saveSections(sorted)
 							}
 						},
@@ -132,10 +132,10 @@ fun SettingsHomeScreen() {
 								val sorted = sections.sortedBy { it.order }.toMutableList()
 								val currentOrder = sorted[index].order
 								val nextOrder = sorted[index + 1].order
-								
+
 								sorted[index] = sorted[index].copy(order = nextOrder)
 								sorted[index + 1] = sorted[index + 1].copy(order = currentOrder)
-								
+
 								saveSections(sorted)
 							}
 						}
@@ -143,7 +143,7 @@ fun SettingsHomeScreen() {
 				}
 			}
 		}
-		
+
 		item {
 			ListButton(
 				leadingContent = {
@@ -175,18 +175,18 @@ private fun HomeSectionRow(
 	val context = LocalContext.current
 	val focusRequester = remember { FocusRequester() }
 	var isFocused by remember { mutableStateOf(false) }
-	
+
 	LaunchedEffect(shouldRequestFocus) {
 		if (shouldRequestFocus) {
 			focusRequester.requestFocus()
 		}
 	}
-	
+
 	ListButton(
 		modifier = Modifier
 			.fillMaxWidth()
 			.focusRequester(focusRequester)
-			.onFocusChanged { 
+			.onFocusChanged {
 				isFocused = it.isFocused
 				onFocusChanged(it.isFocused)
 			}

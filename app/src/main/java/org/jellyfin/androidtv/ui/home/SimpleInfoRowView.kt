@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
 import android.graphics.Typeface
@@ -16,13 +16,13 @@ import coil3.request.ImageRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.repository.MdbListRepository
-import org.jellyfin.androidtv.data.repository.RatingIconProvider
-import org.jellyfin.androidtv.data.repository.TmdbRepository
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.ui.composable.getResolutionName
-import org.jellyfin.androidtv.util.TimeUtils
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.repository.MdbListRepository
+import uk.rinzler.tv.data.repository.RatingIconProvider
+import uk.rinzler.tv.data.repository.TmdbRepository
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.ui.composable.getResolutionName
+import uk.rinzler.tv.util.TimeUtils
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind
@@ -39,18 +39,18 @@ class SimpleInfoRowView @JvmOverloads constructor(
 	context: Context,
 	attrs: AttributeSet? = null,
 ) : LinearLayout(context, attrs), KoinComponent {
-	
+
 	private val userSettingPreferences by inject<UserSettingPreferences>()
 	private val mdbListRepository by inject<MdbListRepository>()
 	private val tmdbRepository by inject<TmdbRepository>()
 	private val apiClient by inject<ApiClient>()
 	private val items = mutableListOf<TextView>()
 	private var currentItemId: String? = null
-	
+
 	init {
 		orientation = HORIZONTAL
 		gravity = Gravity.CENTER_VERTICAL
-		
+
 		// Pre-create a pool of TextViews for reuse (increased for more metadata + ratings)
 		repeat(20) {
 			val textView = TextView(context).apply {
@@ -64,31 +64,31 @@ class SimpleInfoRowView @JvmOverloads constructor(
 			addView(textView)
 		}
 	}
-	
+
 	fun setItem(item: BaseItemDto?) {
-		items.forEach { 
+		items.forEach {
 			it.visibility = GONE
 			it.text = ""
 			it.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
 		}
-		
+
 		if (item == null) {
 			currentItemId = null
 			return
 		}
-		
+
 		currentItemId = item.id.toString()
-		
+
 		val metadataItems = mutableListOf<String>()
-		
+
 		val dateText = when (item.type) {
 			BaseItemKind.SERIES -> item.productionYear?.toString()
 			BaseItemKind.EPISODE -> item.premiereDate?.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
-			else -> item.productionYear?.toString() 
+			else -> item.productionYear?.toString()
 				?: item.premiereDate?.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
 		}
 		dateText?.let { metadataItems.add(it) }
-		
+
 		if (item.type == BaseItemKind.EPISODE) {
 			val seasonNum = item.parentIndexNumber
 			val episodeNum = item.indexNumber
@@ -96,33 +96,33 @@ class SimpleInfoRowView @JvmOverloads constructor(
 				metadataItems.add("S${seasonNum}E${episodeNum}")
 			}
 		}
-		
+
 		item.officialRating?.let { rating ->
 			if (rating.isNotBlank()) {
 				metadataItems.add(rating)
 			}
 		}
-		
+
 		if (item.type == BaseItemKind.MOVIE) {
 			item.runTimeTicks?.let { ticks ->
 				val runtimeMs = ticks / 10_000
 				metadataItems.add(TimeUtils.formatRuntimeHoursMinutes(context, runtimeMs))
 			}
 		}
-		
+
 		val mediaSource = item.mediaSources?.firstOrNull()
 		val videoStream = mediaSource?.mediaStreams?.firstOrNull { it.type == org.jellyfin.sdk.model.api.MediaStreamType.VIDEO }
-		
-		val hasSdhSubtitles = mediaSource?.mediaStreams?.any { 
-			it.type == org.jellyfin.sdk.model.api.MediaStreamType.SUBTITLE && it.isHearingImpaired 
+
+		val hasSdhSubtitles = mediaSource?.mediaStreams?.any {
+			it.type == org.jellyfin.sdk.model.api.MediaStreamType.SUBTITLE && it.isHearingImpaired
 		} == true
-		val hasCcSubtitles = mediaSource?.mediaStreams?.any { 
-			it.type == org.jellyfin.sdk.model.api.MediaStreamType.SUBTITLE && !it.isHearingImpaired 
+		val hasCcSubtitles = mediaSource?.mediaStreams?.any {
+			it.type == org.jellyfin.sdk.model.api.MediaStreamType.SUBTITLE && !it.isHearingImpaired
 		} == true
-		
+
 		if (hasSdhSubtitles) metadataItems.add("SDH")
 		if (hasCcSubtitles) metadataItems.add("CC")
-		
+
 		if (videoStream?.width != null && videoStream.height != null) {
 			val resolution = getResolutionName(
 				context = context,
@@ -132,12 +132,12 @@ class SimpleInfoRowView @JvmOverloads constructor(
 			)
 			metadataItems.add(resolution)
 		}
-		
+
 		var index = 0
 		if (metadataItems.isNotEmpty()) {
 			setItemText(index++, metadataItems.joinToString(" • "))
 		}
-		
+
 		val itemIdAtFetchTime = item.id.toString()
 		val isEpisode = item.type == BaseItemKind.EPISODE
 		val enableAdditionalRatings = userSettingPreferences[UserSettingPreferences.enableAdditionalRatings]
@@ -222,7 +222,7 @@ class SimpleInfoRowView @JvmOverloads constructor(
 			}
 		}
 	}
-	
+
 	private fun formatRating(source: String, rating: Float): String {
 		return when (source) {
 			"imdb" -> String.format("%.1f", rating)
@@ -239,7 +239,7 @@ class SimpleInfoRowView @JvmOverloads constructor(
 			else -> String.format("%.1f", rating)
 		}
 	}
-	
+
 	private fun setItemText(index: Int, text: String) {
 		if (index < items.size) {
 			items[index].apply {
@@ -248,7 +248,7 @@ class SimpleInfoRowView @JvmOverloads constructor(
 			}
 		}
 	}
-	
+
 	private fun setItemTextWithIcon(index: Int, text: String, icon: RatingIconProvider.RatingIcon) {
 		if (index < items.size) {
 			val textView = items[index]
@@ -281,7 +281,7 @@ class SimpleInfoRowView @JvmOverloads constructor(
 			}
 		}
 	}
-	
+
 	private fun dpToPx(dp: Int): Int {
 		return (dp * context.resources.displayMetrics.density).toInt()
 	}

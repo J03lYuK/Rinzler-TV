@@ -1,8 +1,8 @@
-package org.jellyfin.androidtv.ui.playback.overlay.action
+package uk.rinzler.tv.ui.playback.overlay.action
 
 import android.content.Context
 import androidx.leanback.widget.PlaybackControlsRow
-import org.jellyfin.androidtv.ui.playback.overlay.VideoPlayerAdapter
+import uk.rinzler.tv.ui.playback.overlay.VideoPlayerAdapter
 
 class PlayPauseAction(context: Context) : PlaybackControlsRow.PlayPauseAction(context),
 	AndroidAction {

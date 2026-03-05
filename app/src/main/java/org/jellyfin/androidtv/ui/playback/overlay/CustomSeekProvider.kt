@@ -1,10 +1,10 @@
-package org.jellyfin.androidtv.ui.playback.overlay
+package uk.rinzler.tv.ui.playback.overlay
 
 import android.content.Context
 import android.graphics.Bitmap
 import androidx.core.content.ContextCompat
 import androidx.leanback.widget.PlaybackSeekDataProvider
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import coil3.ImageLoader
 import coil3.network.NetworkHeaders
 import coil3.network.httpHeaders
@@ -22,7 +22,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.util.coil.SubsetTransformation
+import uk.rinzler.tv.util.coil.SubsetTransformation
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.trickplayApi
 import org.jellyfin.sdk.api.client.util.AuthorizationHeaderBuilder

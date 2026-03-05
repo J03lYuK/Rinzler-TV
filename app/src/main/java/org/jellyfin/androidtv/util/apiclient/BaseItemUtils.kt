@@ -1,10 +1,10 @@
 @file:JvmName("BaseItemUtils")
 
-package org.jellyfin.androidtv.util.apiclient
+package uk.rinzler.tv.util.apiclient
 
 import android.content.Context
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.util.TimeUtils
+import uk.rinzler.tv.R
+import uk.rinzler.tv.util.TimeUtils
 import org.jellyfin.sdk.model.api.SeriesTimerInfoDto
 
 fun SeriesTimerInfoDto.getSeriesOverview(context: Context) = buildString {

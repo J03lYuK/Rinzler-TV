@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 import android.content.Context
 import android.widget.Toast
@@ -10,7 +10,7 @@ import timber.log.Timber
  * Provides consistent user messaging throughout the application with proper logging.
  */
 class UserFeedbackManager(private val context: Context) {
-	
+
 	/**
 	 * Display a short informational message to the user.
 	 * @param message The message to display

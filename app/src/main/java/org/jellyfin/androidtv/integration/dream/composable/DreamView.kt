@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.integration.dream.composable
+package uk.rinzler.tv.integration.dream.composable
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.snap
@@ -12,8 +12,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import org.jellyfin.androidtv.integration.dream.model.DreamContent
-import org.jellyfin.androidtv.preference.UserPreferences
+import uk.rinzler.tv.integration.dream.model.DreamContent
+import uk.rinzler.tv.preference.UserPreferences
 import org.koin.compose.koinInject
 
 @Composable

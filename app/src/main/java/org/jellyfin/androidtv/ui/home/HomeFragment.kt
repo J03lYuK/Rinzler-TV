@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,17 +21,17 @@ import coil3.load
 import coil3.request.crossfade
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.preference.constant.NavbarPosition
-import org.jellyfin.androidtv.ui.InteractionTrackerViewModel
-import org.jellyfin.androidtv.ui.home.mediabar.MediaBarSlideshowViewModel
-import org.jellyfin.androidtv.ui.home.mediabar.TrailerPreviewState
-import org.jellyfin.androidtv.ui.home.mediabar.ExoPlayerTrailerView
-import org.jellyfin.androidtv.ui.shared.toolbar.LeftSidebarNavigation
-import org.jellyfin.androidtv.ui.shared.toolbar.MainToolbar
-import org.jellyfin.androidtv.ui.shared.toolbar.MainToolbarActiveButton
+import uk.rinzler.tv.R
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.preference.constant.NavbarPosition
+import uk.rinzler.tv.ui.InteractionTrackerViewModel
+import uk.rinzler.tv.ui.home.mediabar.MediaBarSlideshowViewModel
+import uk.rinzler.tv.ui.home.mediabar.TrailerPreviewState
+import uk.rinzler.tv.ui.home.mediabar.ExoPlayerTrailerView
+import uk.rinzler.tv.ui.shared.toolbar.LeftSidebarNavigation
+import uk.rinzler.tv.ui.shared.toolbar.MainToolbar
+import uk.rinzler.tv.ui.shared.toolbar.MainToolbarActiveButton
 import org.koin.android.ext.android.inject
 
 class HomeFragment : Fragment() {
@@ -73,15 +73,15 @@ class HomeFragment : Fragment() {
 		halloweenView = view.findViewById(R.id.halloweenView)
 
 		val navbarPosition = userPreferences[UserPreferences.navbarPosition] ?: NavbarPosition.TOP
-		
+
 		when (navbarPosition) {
 			NavbarPosition.LEFT -> {
 				val toolbarContainer = view.findViewById<FrameLayout>(R.id.toolbar_actions)
 				toolbarContainer.isVisible = false
-				
+
 				val sidebarContainer = view.findViewById<FrameLayout>(R.id.left_sidebar)
 				sidebarContainer.isVisible = true
-				
+
 				val sidebarView = view.findViewById<ComposeView>(R.id.sidebar)
 				sidebarView.setContent {
 					LeftSidebarNavigation(
@@ -92,10 +92,10 @@ class HomeFragment : Fragment() {
 			NavbarPosition.TOP -> {
 				val sidebarContainer = view.findViewById<FrameLayout>(R.id.left_sidebar)
 				sidebarContainer.isVisible = false
-				
+
 				val toolbarContainer = view.findViewById<FrameLayout>(R.id.toolbar_actions)
 				toolbarContainer.isVisible = true
-				
+
 				val toolbarView = view.findViewById<ComposeView>(R.id.toolbar)
 				toolbarView.setContent {
 					MainToolbar(
@@ -204,15 +204,15 @@ class HomeFragment : Fragment() {
 		val state = mediaBarViewModel.state.value
 		val isFocused = mediaBarViewModel.isFocused.value
 		val selectedPosition = rowsFragment?.selectedPositionFlow?.value ?: -1
-		
+
 		val isMediaBarEnabled = userSettingPreferences[UserSettingPreferences.mediaBarEnabled]
 		val shouldShowMediaBar = isMediaBarEnabled && (isFocused || (selectedPosition == 0) || selectedPosition == -1)
-		
-		if (state is org.jellyfin.androidtv.ui.home.mediabar.MediaBarState.Ready && shouldShowMediaBar) {
+
+		if (state is uk.rinzler.tv.ui.home.mediabar.MediaBarState.Ready && shouldShowMediaBar) {
 			val playbackState = mediaBarViewModel.playbackState.value
 			val currentItem = state.items.getOrNull(playbackState.currentIndex)
 			val backdropUrl = currentItem?.backdropUrl
-			
+
 			if (backdropUrl != null) {
 				backgroundImage?.isVisible = true
 				backgroundImage?.load(backdropUrl) {
@@ -221,7 +221,7 @@ class HomeFragment : Fragment() {
 			} else {
 				backgroundImage?.isVisible = false
 			}
-			
+
 			logoView?.isVisible = false
 			titleView?.isVisible = false
 		} else {
@@ -248,7 +248,7 @@ class HomeFragment : Fragment() {
 		summerView?.stopEffect()
 		halloweenView?.isVisible = false
 		halloweenView?.stopEffect()
-		
+
 		when (selection) {
 			"winter" -> {
 				snowfallView?.isVisible = true

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base
+package uk.rinzler.tv.ui.base
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -16,7 +16,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.vectorResource
 import coil3.compose.AsyncImagePainter
 import coil3.compose.rememberAsyncImagePainter
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 
 @Composable
 fun ProfilePicture(

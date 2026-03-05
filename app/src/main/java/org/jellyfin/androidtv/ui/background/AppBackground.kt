@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.background
+package uk.rinzler.tv.ui.background
 
 import android.graphics.drawable.ColorDrawable
 import androidx.compose.animation.AnimatedContent
@@ -27,11 +27,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.data.service.BlurContext
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.ui.settings.compat.rememberPreference
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.data.service.BlurContext
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.ui.settings.compat.rememberPreference
 import org.koin.compose.koinInject
 
 @Composable
@@ -70,10 +70,10 @@ fun AppBackground() {
 	val currentBackground by backgroundService.currentBackground.collectAsState()
 	val blurContext by backgroundService.blurContext.collectAsState()
 	val enabled by backgroundService.enabled.collectAsState()
-	
+
 	val detailsBlurAmount by rememberPreference(userSettingPreferences, UserSettingPreferences.detailsBackgroundBlurAmount)
 	val browsingBlurAmount by rememberPreference(userSettingPreferences, UserSettingPreferences.browsingBackgroundBlurAmount)
-	
+
 	val blurAmount = if (backgroundService.useComposeBlur) {
 		when (blurContext) {
 			BlurContext.DETAILS -> detailsBlurAmount

@@ -1,10 +1,10 @@
-package org.jellyfin.androidtv.preference
+package uk.rinzler.tv.preference
 
 import android.content.Context
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.jellyfin.androidtv.constant.JellyseerrFetchLimit
-import org.jellyfin.androidtv.constant.JellyseerrRowType
+import uk.rinzler.tv.constant.JellyseerrFetchLimit
+import uk.rinzler.tv.constant.JellyseerrRowType
 import org.jellyfin.preference.booleanPreference
 import org.jellyfin.preference.enumPreference
 import org.jellyfin.preference.store.SharedPreferenceStore
@@ -17,7 +17,7 @@ import timber.log.Timber
  * - Server connection (URL, auth, API keys)
  * - UI preferences (navigation, toolbar, NSFW filter)
  * - Request profiles and discover rows
- * 
+ *
  * The global preferences instance is only used during migration from older versions.
  */
 class JellyseerrPreferences(context: Context, userId: String? = null) : SharedPreferenceStore(
@@ -65,15 +65,15 @@ class JellyseerrPreferences(context: Context, userId: String? = null) : SharedPr
 		val fourKMovieServerId = stringPreference("jellyseerr_4k_movie_server_id", "")
 		val hdTvServerId = stringPreference("jellyseerr_hd_tv_server_id", "")
 		val fourKTvServerId = stringPreference("jellyseerr_4k_tv_server_id", "")
-		
+
 		// Migration key to track if global->user migration has been done
 		private const val MIGRATION_DONE_KEY = "jellyseerr_migration_v1_done"
-		
+
 		/**
 		 * Migrate settings from global preferences to user-specific preferences.
 		 * This handles the transition where server config was stored globally but now
 		 * needs to be stored per-user.
-		 * 
+		 *
 		 * @param context Application context
 		 * @param userId The user ID to migrate settings to
 		 * @return The user-specific preferences (with migrated data if applicable)
@@ -81,22 +81,22 @@ class JellyseerrPreferences(context: Context, userId: String? = null) : SharedPr
 		fun migrateToUserPreferences(context: Context, userId: String): JellyseerrPreferences {
 			val globalPrefs = context.getSharedPreferences("jellyseerr_prefs", Context.MODE_PRIVATE)
 			val userPrefs = JellyseerrPreferences(context, userId)
-			
+
 			// Check if migration already done for this user
 			if (userPrefs.sharedPreferences.getBoolean(MIGRATION_DONE_KEY, false)) {
 				return userPrefs
 			}
-			
+
 			// Check if global prefs have data worth migrating
 			val globalServerUrl = globalPrefs.getString(serverUrl.key, "") ?: ""
 			val globalEnabled = globalPrefs.getBoolean(enabled.key, false)
-			
+
 			if (globalServerUrl.isEmpty() && !globalEnabled) {
 				// Nothing to migrate, mark as done
 				userPrefs.sharedPreferences.edit().putBoolean(MIGRATION_DONE_KEY, true).apply()
 				return userPrefs
 			}
-			
+
 			// Check if user already has their own config (don't overwrite)
 			val userServerUrl = userPrefs.get(serverUrl)
 			if (userServerUrl.isNotEmpty()) {
@@ -104,9 +104,9 @@ class JellyseerrPreferences(context: Context, userId: String? = null) : SharedPr
 				userPrefs.sharedPreferences.edit().putBoolean(MIGRATION_DONE_KEY, true).apply()
 				return userPrefs
 			}
-			
+
 			Timber.i("Jellyseerr: Migrating settings from global to user $userId")
-			
+
 			// Migrate all settings (server config, auth data, and UI preferences)
 			userPrefs.apply {
 				// Server config and auth
@@ -118,20 +118,20 @@ class JellyseerrPreferences(context: Context, userId: String? = null) : SharedPr
 				set(localPassword, globalPrefs.getString(localPassword.key, "") ?: "")
 				set(apiKey, globalPrefs.getString(apiKey.key, "") ?: "")
 				set(lastConnectionSuccess, globalPrefs.getBoolean(lastConnectionSuccess.key, false))
-				
+
 				// UI preferences
 				set(showInNavigation, globalPrefs.getBoolean(showInNavigation.key, true))
 				set(showInToolbar, globalPrefs.getBoolean(showInToolbar.key, true))
 				set(showRequestStatus, globalPrefs.getBoolean(showRequestStatus.key, true))
 				set(blockNsfw, globalPrefs.getBoolean(blockNsfw.key, true))
 				set(rowsConfigJson, globalPrefs.getString(rowsConfigJson.key, "") ?: "")
-				
+
 				// Fetch limit (enum stored as string)
 				val fetchLimitStr = globalPrefs.getString(fetchLimit.key, null)
 				if (fetchLimitStr != null) {
 					sharedPreferences.edit().putString(fetchLimit.key, fetchLimitStr).apply()
 				}
-				
+
 				// Profile/server IDs
 				set(hdMovieProfileId, globalPrefs.getString(hdMovieProfileId.key, "") ?: "")
 				set(fourKMovieProfileId, globalPrefs.getString(fourKMovieProfileId.key, "") ?: "")
@@ -146,18 +146,18 @@ class JellyseerrPreferences(context: Context, userId: String? = null) : SharedPr
 				set(hdTvServerId, globalPrefs.getString(hdTvServerId.key, "") ?: "")
 				set(fourKTvServerId, globalPrefs.getString(fourKTvServerId.key, "") ?: "")
 			}
-			
+
 			// Mark migration as done
 			userPrefs.sharedPreferences.edit().putBoolean(MIGRATION_DONE_KEY, true).apply()
-			
+
 			Timber.i("Jellyseerr: Migration complete for user $userId")
-			
+
 			return userPrefs
 		}
 	}
 
-	private val json = Json { 
-		ignoreUnknownKeys = true 
+	private val json = Json {
+		ignoreUnknownKeys = true
 		encodeDefaults = true
 	}
 
@@ -165,7 +165,7 @@ class JellyseerrPreferences(context: Context, userId: String? = null) : SharedPr
 		get() {
 			val jsonString = get(rowsConfigJson)
 			if (jsonString.isBlank()) return JellyseerrRowConfig.defaults()
-			
+
 			return try {
 				json.decodeFromString(jsonString)
 			} catch (e: Exception) {

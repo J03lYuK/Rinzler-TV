@@ -1,8 +1,8 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 import android.content.Context
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.ServerRepository
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.ServerRepository
 import org.jellyfin.sdk.discovery.RecommendedServerIssue
 
 /**

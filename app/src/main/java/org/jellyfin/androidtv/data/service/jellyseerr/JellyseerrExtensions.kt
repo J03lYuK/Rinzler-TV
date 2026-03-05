@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.service.jellyseerr
+package uk.rinzler.tv.data.service.jellyseerr
 
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -14,28 +14,28 @@ import java.util.UUID
 /**
  * Convert a JellyseerrDiscoverItemDto to a BaseItemDto for display in search results
  * This creates a virtual item that can be displayed in the UI and opened in Jellyseerr details
- * 
+ *
  * The poster URL is stored in imageTags with a special "jellyseerr://" prefix
  * which will be detected and used directly by the image loading system
- * 
+ *
  * The original Jellyseerr data is stored in taglines as JSON for later retrieval
  */
 fun JellyseerrDiscoverItemDto.toBaseItemDto(): BaseItemDto {
 	val displayTitle = title ?: name ?: "Unknown"
-	
+
 	// Store TMDB poster URL with a special prefix in imageTags
 	// The URL will be used directly when rendering
 	val imageTags = posterPath?.let {
 		val tmdbUrl = "https://image.tmdb.org/t/p/w500$it"
 		mapOf(ImageType.PRIMARY to tmdbUrl)
 	}
-	
+
 	// Extract year from release date
 	val year = releaseDate?.substringBefore("-")?.toIntOrNull()
-	
+
 	// Store the original Jellyseerr data as JSON in taglines for later retrieval
 	val jellyseerrJson = Json.encodeToString(JellyseerrDiscoverItemDto.serializer(), this)
-	
+
 	return BaseItemDto(
 		id = UUID.randomUUID(),
 		name = displayTitle,

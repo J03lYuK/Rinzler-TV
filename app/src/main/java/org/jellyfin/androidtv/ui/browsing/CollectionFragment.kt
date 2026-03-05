@@ -1,8 +1,8 @@
-package org.jellyfin.androidtv.ui.browsing
+package uk.rinzler.tv.ui.browsing
 
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.constant.QueryDefaults
-import org.jellyfin.androidtv.data.repository.ItemRepository
+import uk.rinzler.tv.R
+import uk.rinzler.tv.constant.QueryDefaults
+import uk.rinzler.tv.data.repository.ItemRepository
 import org.jellyfin.sdk.model.api.BaseItemKind
 import org.jellyfin.sdk.model.api.request.GetItemsRequest
 

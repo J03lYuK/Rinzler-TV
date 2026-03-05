@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing.genre
+package uk.rinzler.tv.ui.browsing.genre
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,14 +20,14 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.constant.Extras
-import org.jellyfin.androidtv.data.repository.ItemRepository
-import org.jellyfin.androidtv.data.repository.MultiServerRepository
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.R
+import uk.rinzler.tv.constant.Extras
+import uk.rinzler.tv.data.repository.ItemRepository
+import uk.rinzler.tv.data.repository.MultiServerRepository
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.util.sdk.ApiClientFactory
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.genresApi
 import org.jellyfin.sdk.api.client.extensions.imageApi
@@ -81,7 +81,7 @@ class GenresGridFragment : Fragment() {
 	private var allGenres = mutableListOf<JellyfinGenreItem>()
 	private var filteredGenres = mutableListOf<JellyfinGenreItem>()
 	private var userLibraries = mutableListOf<BaseItemDto>()
-	
+
 	private var selectedLibraryId: UUID? = null
 	private var selectedLibraryName: String? = null
 	private var currentSortOption: GenreSortOption = GenreSortOption.NAME_ASC
@@ -94,7 +94,7 @@ class GenresGridFragment : Fragment() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		
+
 		arguments?.getString(Extras.Folder)?.let { folderJson ->
 			folder = Json.decodeFromString<BaseItemDto>(folderJson)
 			selectedLibraryId = folder?.id
@@ -113,7 +113,7 @@ class GenresGridFragment : Fragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		
+
 		loadingIndicator = view.findViewById(R.id.loadingIndicator)
 		emptyText = view.findViewById(R.id.emptyText)
 		gridContainer = view.findViewById(R.id.gridContainer)
@@ -124,7 +124,7 @@ class GenresGridFragment : Fragment() {
 		sortText = view.findViewById(R.id.sortText)
 
 		if (selectedLibraryName != null) {
-			view.findViewById<TextView>(R.id.title)?.text = 
+			view.findViewById<TextView>(R.id.title)?.text =
 				"${getString(R.string.lbl_genres)} - $selectedLibraryName"
 		}
 
@@ -138,7 +138,7 @@ class GenresGridFragment : Fragment() {
 			Timber.e("gridContainer is not a ViewGroup")
 			return
 		}
-		
+
 		gridPresenter = VerticalGridPresenter(0, false).apply {
 			numberOfColumns = NUM_COLUMNS
 		}
@@ -161,10 +161,10 @@ class GenresGridFragment : Fragment() {
 			gridViewHolder?.view?.let { gridView ->
 				container.addView(gridView)
 				gridPresenter.onBindViewHolder(gridViewHolder!!, gridAdapter)
-				
+
 				// Remove any internal padding from the grid
 				gridView.setPadding(0, 0, 0, 0)
-				
+
 				// Ensure the grid view can receive focus
 				gridView.isFocusable = true
 				gridView.isFocusableInTouchMode = true
@@ -192,13 +192,13 @@ class GenresGridFragment : Fragment() {
 	private fun showLibraryFilterMenu() {
 		val anchor = libraryFilterContainer ?: return
 		val popup = PopupMenu(requireContext(), anchor)
-		
+
 		popup.menu.add(0, -1, 0, R.string.all_libraries)
-		
+
 		userLibraries.forEachIndexed { index, library ->
 			popup.menu.add(0, index, index + 1, library.name ?: "Library")
 		}
-		
+
 		popup.setOnMenuItemClickListener { menuItem ->
 			if (menuItem.itemId == -1) {
 				selectedLibraryId = null
@@ -213,35 +213,35 @@ class GenresGridFragment : Fragment() {
 			loadGenres()
 			true
 		}
-		
+
 		popup.show()
 	}
 
 	private fun showSortMenu() {
 		val anchor = sortContainer ?: return
 		val popup = PopupMenu(requireContext(), anchor)
-		
+
 		GenreSortOption.entries.forEachIndexed { index, option ->
 			popup.menu.add(0, index, index, option.labelResId)
 		}
-		
+
 		popup.setOnMenuItemClickListener { menuItem ->
-			currentSortOption = GenreSortOption.entries.getOrNull(menuItem.itemId) 
+			currentSortOption = GenreSortOption.entries.getOrNull(menuItem.itemId)
 				?: GenreSortOption.NAME_ASC
 			sortText?.text = getString(currentSortOption.labelResId)
 			applySortAndFilter()
 			true
 		}
-		
+
 		popup.show()
 	}
 
 	private fun loadData() {
 		lifecycleScope.launch {
 			showLoading(true)
-			
+
 			val enableMultiServer = userPreferences[UserPreferences.enableMultiServerLibraries]
-			
+
 			if (enableMultiServer && selectedLibraryId == null) {
 				loadMultiServerGenres()
 			} else {
@@ -255,13 +255,13 @@ class GenresGridFragment : Fragment() {
 		try {
 			val sessions = multiServerRepository.getLoggedInServers()
 			Timber.d("GenresGridFragment: Loading genres from ${sessions.size} servers")
-			
+
 			if (sessions.isEmpty()) {
 				loadUserLibraries()
 				loadGenres()
 				return
 			}
-			
+
 			// Load user libraries from all servers for the filter menu
 			userLibraries.clear()
 			sessions.forEach { session ->
@@ -276,9 +276,9 @@ class GenresGridFragment : Fragment() {
 					Timber.e(e, "Failed to load libraries from server ${session.server.name}")
 				}
 			}
-			
+
 			allGenres.clear()
-			
+
 			// Load genres from all servers in parallel
 			val allServerGenres = coroutineScope {
 				sessions.map { session ->
@@ -287,7 +287,7 @@ class GenresGridFragment : Fragment() {
 							val genresResponse = session.apiClient.genresApi.getGenres(
 								sortBy = setOf(ItemSortBy.SORT_NAME),
 							).content
-							
+
 							genresResponse.items.map { genre ->
 								async(Dispatchers.IO) {
 									createGenreItem(genre, session.apiClient, session.server.id)
@@ -300,7 +300,7 @@ class GenresGridFragment : Fragment() {
 					}
 				}.awaitAll().flatten()
 			}
-			
+
 			// Merge genres with the same name - combine item counts
 			val mergedGenres = allServerGenres
 				.groupBy { it.name.lowercase() }
@@ -316,12 +316,12 @@ class GenresGridFragment : Fragment() {
 						)
 					}
 				}
-			
+
 			allGenres.addAll(mergedGenres)
 			Timber.d("GenresGridFragment: Loaded ${allGenres.size} unique genres from all servers")
-			
+
 			applySortAndFilter()
-			
+
 		} catch (e: Exception) {
 			Timber.e(e, "Failed to load multi-server genres")
 			showLoading(false)
@@ -335,12 +335,12 @@ class GenresGridFragment : Fragment() {
 				apiClient.userViewsApi.getUserViews().content
 			}
 			userLibraries.clear()
-			
+
 			// Only include video libraries (movies and TV shows)
 			response.items
 				.filter { it.collectionType in listOf(CollectionType.MOVIES, CollectionType.TVSHOWS) }
 				.let { userLibraries.addAll(it) }
-				
+
 			Timber.d("Loaded ${userLibraries.size} user libraries")
 		} catch (e: Exception) {
 			Timber.e(e, "Failed to load user libraries")
@@ -350,7 +350,7 @@ class GenresGridFragment : Fragment() {
 	private fun loadGenres() {
 		lifecycleScope.launch {
 			showLoading(true)
-			
+
 			try {
 				val genresResponse = withContext(Dispatchers.IO) {
 					apiClient.genresApi.getGenres(
@@ -360,7 +360,7 @@ class GenresGridFragment : Fragment() {
 				}
 
 				allGenres.clear()
-				
+
 				val genreItems = coroutineScope {
 					genresResponse.items.map { genre ->
 						async(Dispatchers.IO) {
@@ -368,13 +368,13 @@ class GenresGridFragment : Fragment() {
 						}
 					}.awaitAll().filterNotNull()
 				}
-				
+
 				allGenres.addAll(genreItems)
-				
+
 				Timber.d("Loaded ${allGenres.size} genres")
-				
+
 				applySortAndFilter()
-				
+
 			} catch (e: Exception) {
 				Timber.e(e, "Failed to load genres")
 				showLoading(false)
@@ -404,7 +404,7 @@ class GenresGridFragment : Fragment() {
 			).content
 
 			val itemCount = itemsResponse.totalRecordCount ?: 0
-			
+
 			if (itemCount == 0) {
 				return null
 			}
@@ -438,7 +438,7 @@ class GenresGridFragment : Fragment() {
 	private fun applySortAndFilter() {
 		filteredGenres.clear()
 		filteredGenres.addAll(allGenres)
-		
+
 		when (currentSortOption) {
 			GenreSortOption.NAME_ASC -> filteredGenres.sortBy { it.name.lowercase() }
 			GenreSortOption.NAME_DESC -> filteredGenres.sortByDescending { it.name.lowercase() }
@@ -446,14 +446,14 @@ class GenresGridFragment : Fragment() {
 			GenreSortOption.LEAST_ITEMS -> filteredGenres.sortBy { it.itemCount }
 			GenreSortOption.RANDOM -> filteredGenres.shuffle()
 		}
-		
+
 		gridAdapter.clear()
 		gridAdapter.addAll(0, filteredGenres)
 		updateCounter(0)
-		
+
 		showLoading(false)
 		showEmpty(filteredGenres.isEmpty())
-		
+
 		if (filteredGenres.isNotEmpty()) {
 			gridViewHolder?.view?.requestFocus()
 		}
@@ -466,7 +466,7 @@ class GenresGridFragment : Fragment() {
 
 	private fun onGenreClicked(genre: JellyfinGenreItem) {
 		Timber.d("Genre clicked: ${genre.name}")
-		
+
 		navigationRepository.navigate(
 			Destinations.genreBrowse(
 				genreName = genre.name,

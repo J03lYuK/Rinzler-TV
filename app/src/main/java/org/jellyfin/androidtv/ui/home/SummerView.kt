@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -10,13 +10,13 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import kotlin.random.Random
 
 /**
  * A custom view that renders summer effects with bouncing beach balls
  * and pulsing suns.
- * 
+ *
  * Performance optimized for Android TV / Fire TV devices:
  * - Uses cached bitmap rendering from vector drawables
  * - Reduced element count for low-powered devices
@@ -90,7 +90,7 @@ class SummerView @JvmOverloads constructor(
 	private val beachUmbrellas = mutableListOf<BeachUmbrella>()
 
 	private val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
-	
+
 	// Cached bitmaps for efficient drawing
 	private var sunBitmap: Bitmap? = null
 	private var beachBallBitmap: Bitmap? = null
@@ -125,7 +125,7 @@ class SummerView @JvmOverloads constructor(
 		isFocusable = false
 		loadBitmaps()
 	}
-	
+
 	private fun loadBitmaps() {
 		ContextCompat.getDrawable(context, R.drawable.seasonal_sun)?.let { drawable ->
 			sunBitmap = drawable.toBitmap(64, 64)
@@ -137,7 +137,7 @@ class SummerView @JvmOverloads constructor(
 			umbrellaBitmap = drawable.toBitmap(64, 64)
 		}
 	}
-	
+
 	private fun getScaledBitmap(source: Bitmap?, size: Int): Bitmap? {
 		source ?: return null
 		return bitmapCache.getOrPut(System.identityHashCode(source) * 1000 + size) {
@@ -173,7 +173,7 @@ class SummerView @JvmOverloads constructor(
 		animationRunnable = object : Runnable {
 			override fun run() {
 				if (!isActive) return
-				
+
 				frameCount++
 				updateBeachBalls()
 				// Stagger updates to reduce per-frame work
@@ -184,7 +184,7 @@ class SummerView @JvmOverloads constructor(
 					updateBeachUmbrellas()
 				}
 				invalidate()
-				
+
 				// Target ~30fps
 				handler.postDelayed(this, 33L)
 			}

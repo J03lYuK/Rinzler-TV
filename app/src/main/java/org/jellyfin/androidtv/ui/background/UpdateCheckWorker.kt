@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.background
+package uk.rinzler.tv.ui.background
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -9,9 +9,9 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.service.UpdateCheckerService
-import org.jellyfin.androidtv.ui.startup.StartupActivity
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.service.UpdateCheckerService
+import uk.rinzler.tv.ui.startup.StartupActivity
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import timber.log.Timber
@@ -35,7 +35,7 @@ class UpdateCheckWorker(
 	override suspend fun doWork(): Result {
 		return try {
 			Timber.d("Checking for app updates...")
-			
+
 			val result = updateChecker.checkForUpdate()
 			result.fold(
 				onSuccess = { updateInfo ->

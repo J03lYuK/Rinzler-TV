@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.repository
+package uk.rinzler.tv.data.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -7,27 +7,27 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrCreateRequestDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverPageDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrGenreDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrHttpClient
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrListResponse
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrMovieDetailsDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrPersonCombinedCreditsDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrPersonDetailsDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrRadarrSettingsDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrRequestDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrServiceServerDetailsDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrServiceServerDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrSonarrSettingsDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrTvDetailsDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrUserDto
-import org.jellyfin.androidtv.data.service.jellyseerr.MoonfinLoginResponse
-import org.jellyfin.androidtv.data.service.jellyseerr.MoonfinProxyConfig
-import org.jellyfin.androidtv.data.service.jellyseerr.MoonfinStatusResponse
-import org.jellyfin.androidtv.data.service.jellyseerr.Seasons
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrCreateRequestDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverPageDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrGenreDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrHttpClient
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrListResponse
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrMovieDetailsDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrPersonCombinedCreditsDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrPersonDetailsDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrRadarrSettingsDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrRequestDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrServiceServerDetailsDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrServiceServerDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrSonarrSettingsDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrTvDetailsDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrUserDto
+import uk.rinzler.tv.data.service.jellyseerr.MoonfinLoginResponse
+import uk.rinzler.tv.data.service.jellyseerr.MoonfinProxyConfig
+import uk.rinzler.tv.data.service.jellyseerr.MoonfinStatusResponse
+import uk.rinzler.tv.data.service.jellyseerr.Seasons
+import uk.rinzler.tv.preference.JellyseerrPreferences
 import org.jellyfin.sdk.api.client.ApiClient
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -49,7 +49,7 @@ interface JellyseerrRepository {
 	suspend fun isSessionValid(): Result<Boolean>
 	suspend fun isSessionValidCached(): Boolean
 	suspend fun getCurrentUser(): Result<JellyseerrUserDto>
-	
+
 	/** Get user-specific preferences (handles migration from global automatically) */
 	suspend fun getPreferences(): JellyseerrPreferences?
 
@@ -136,11 +136,11 @@ class JellyseerrRepositoryImpl(
 	override val isMoonfinMode: StateFlow<Boolean> = _isMoonfinMode.asStateFlow()
 	private var initialized = false
 	private var lastUserId: String? = null // Track which user we're initialized for
-	
+
 	// Session validity cache to prevent excessive login attempts
 	private var lastSessionCheckTime: Long = 0
 	private var lastSessionValid: Boolean = false
-	
+
 	companion object {
 		private const val SESSION_CACHE_DURATION_MS = 5 * 60 * 1000L
 	}
@@ -165,7 +165,7 @@ class JellyseerrRepositoryImpl(
 		// Get current user
 		val currentUser = userRepository.currentUser.value
 		val currentUserId = currentUser?.id?.toString()
-		
+
 		// Reset initialization if user has changed
 		if (initialized && currentUserId != null && currentUserId != lastUserId) {
 			initialized = false
@@ -174,7 +174,7 @@ class JellyseerrRepositoryImpl(
 			_isAvailable.emit(false)
 			invalidateSessionCache()
 		}
-		
+
 		// Reset initialization if client is no longer available
 		if (initialized && httpClient == null) {
 			initialized = false
@@ -191,20 +191,20 @@ class JellyseerrRepositoryImpl(
 				val userPrefs = getPreferences()
 				val serverUrl = userPrefs?.get(JellyseerrPreferences.serverUrl) ?: ""
 				val enabled = userPrefs?.get(JellyseerrPreferences.enabled) ?: false
-				
+
 				val user = withTimeoutOrNull(5000L) {
 					userRepository.currentUser.first { it != null }
 				}
-				
+
 				if (user == null) {
 					_isAvailable.emit(false)
 					initialized = true
 					return@withContext
 				}
-				
+
 				JellyseerrHttpClient.switchCookieStorage(user.id.toString())
 				lastUserId = user.id.toString()
-				
+
 				val storedApiKey = userPrefs?.get(JellyseerrPreferences.apiKey) ?: ""
 				val authMethod = userPrefs?.get(JellyseerrPreferences.authMethod) ?: ""
 				val moonfinMode = userPrefs?.get(JellyseerrPreferences.moonfinMode) ?: false
@@ -254,7 +254,7 @@ class JellyseerrRepositoryImpl(
 
 				if (enabled && serverUrl.isNotEmpty()) {
 					Timber.d("Jellyseerr: Auto-initializing from saved preferences for user $lastUserId")
-					
+
 					if (storedApiKey.isNotEmpty()) {
 						val result = initialize(serverUrl, storedApiKey)
 						if (result.isSuccess) {
@@ -314,7 +314,7 @@ class JellyseerrRepositoryImpl(
 
 	override suspend fun isSessionValidCached(): Boolean {
 		val currentTime = System.currentTimeMillis()
-		
+
 		// Return cached result if it's still valid and not too old
 		if ((currentTime - lastSessionCheckTime) < SESSION_CACHE_DURATION_MS && lastSessionValid) {
 			return lastSessionValid
@@ -324,7 +324,7 @@ class JellyseerrRepositoryImpl(
 		val isValid = isSessionValid().getOrElse { false }
 		lastSessionCheckTime = currentTime
 		lastSessionValid = isValid
-		
+
 		return isValid
 	}
 
@@ -376,7 +376,7 @@ class JellyseerrRepositoryImpl(
 			rootFolderId = rootFolderId,
 			serverId = serverId
 		)
-		
+
 		client.createRequest(
 			mediaId = requestData.mediaId,
 			mediaType = requestData.mediaType,
@@ -458,9 +458,9 @@ class JellyseerrRepositoryImpl(
 	override suspend fun getSonarrSettings(): Result<List<JellyseerrSonarrSettingsDto>> = withClient { it.getSonarrSettings() }
 
 	override suspend fun loginWithJellyfin(
-		username: String, 
-		password: String, 
-		jellyfinUrl: String, 
+		username: String,
+		password: String,
+		jellyfinUrl: String,
 		jellyseerrUrl: String
 	): Result<JellyseerrUserDto> = withContext(Dispatchers.IO) {
 		val currentUserId = userRepository.currentUser.value?.id?.toString()
@@ -469,7 +469,7 @@ class JellyseerrRepositoryImpl(
 		}
 
 		JellyseerrHttpClient.switchCookieStorage(currentUserId)
-		
+
 		val userPrefs = getPreferences()
 		userPrefs?.apply {
 			set(JellyseerrPreferences.authMethod, "jellyfin")
@@ -477,11 +477,11 @@ class JellyseerrRepositoryImpl(
 		}
 
 		initialize(jellyseerrUrl, "")
-		
+
 		val client = httpClient ?: return@withContext Result.failure(
 			IllegalStateException("Failed to initialize HTTP client")
 		)
-		
+
 		val result = client.loginJellyfin(username, password, jellyfinUrl)
 		result.onSuccess { user ->
 			userPrefs?.apply {
@@ -489,7 +489,7 @@ class JellyseerrRepositoryImpl(
 				set(JellyseerrPreferences.lastConnectionSuccess, true)
 			}
 			_isAvailable.emit(true)
-			
+
 			// Auto-generate API key if the user prefers it
 			if (globalPreferences[JellyseerrPreferences.autoGenerateApiKey] == true) {
 				regenerateApiKey().onSuccess { apiKey ->
@@ -505,13 +505,13 @@ class JellyseerrRepositoryImpl(
 			}
 			_isAvailable.emit(false)
 		}
-		
+
 		result
 	}
 
 	override suspend fun loginLocal(
-		email: String, 
-		password: String, 
+		email: String,
+		password: String,
 		jellyseerrUrl: String
 	): Result<JellyseerrUserDto> = withContext(Dispatchers.IO) {
 		val currentUserId = userRepository.currentUser.value?.id?.toString()
@@ -520,7 +520,7 @@ class JellyseerrRepositoryImpl(
 		}
 
 		JellyseerrHttpClient.switchCookieStorage(currentUserId)
-		
+
 		val userPrefs = getPreferences()
 		userPrefs?.apply {
 			set(JellyseerrPreferences.authMethod, "local")
@@ -530,11 +530,11 @@ class JellyseerrRepositoryImpl(
 		}
 
 		initialize(jellyseerrUrl, "")
-		
+
 		val client = httpClient ?: return@withContext Result.failure(
 			IllegalStateException("Failed to initialize HTTP client")
 		)
-		
+
 		val result = client.loginLocal(email, password)
 		result.onSuccess { user ->
 			userPrefs?.apply {
@@ -542,7 +542,7 @@ class JellyseerrRepositoryImpl(
 				set(JellyseerrPreferences.lastConnectionSuccess, true)
 			}
 			_isAvailable.emit(true)
-			
+
 			// Auto-generate API key if the user prefers it
 			if (globalPreferences[JellyseerrPreferences.autoGenerateApiKey] == true) {
 				regenerateApiKey().onSuccess { apiKey ->
@@ -558,17 +558,17 @@ class JellyseerrRepositoryImpl(
 			}
 			_isAvailable.emit(false)
 		}
-		
+
 		result
 	}
 
 	override suspend fun regenerateApiKey(): Result<String> = withContext(Dispatchers.IO) {
 		ensureInitialized()
-		
+
 		val client = httpClient ?: return@withContext Result.failure(
 			IllegalStateException("HTTP client not initialized")
 		)
-		
+
 		val result = client.regenerateApiKey()
 		result.onSuccess { apiKey ->
 			val userPrefs = getPreferences()
@@ -579,7 +579,7 @@ class JellyseerrRepositoryImpl(
 		}.onFailure { error ->
 			Timber.e(error, "Jellyseerr: Failed to regenerate API key")
 		}
-		
+
 		result
 	}
 
@@ -590,7 +590,7 @@ class JellyseerrRepositoryImpl(
 		}
 
 		JellyseerrHttpClient.switchCookieStorage(currentUserId)
-		
+
 		val userPrefs = getPreferences()
 		userPrefs?.apply {
 			set(JellyseerrPreferences.authMethod, "apikey")
@@ -599,11 +599,11 @@ class JellyseerrRepositoryImpl(
 		}
 
 		initialize(jellyseerrUrl, apiKey)
-		
+
 		val client = httpClient ?: return@withContext Result.failure(
 			IllegalStateException("Failed to initialize HTTP client")
 		)
-		
+
 		val result = client.getCurrentUser() // Verify API key works
 		result.onSuccess { user ->
 			userPrefs?.apply {
@@ -617,7 +617,7 @@ class JellyseerrRepositoryImpl(
 			}
 			_isAvailable.emit(false)
 		}
-		
+
 		result
 	}
 
@@ -750,12 +750,12 @@ class JellyseerrRepositoryImpl(
 			set(JellyseerrPreferences.apiKey, "")
 			set(JellyseerrPreferences.authMethod, "")
 		}
-		
+
 		httpClient?.close()
 		httpClient = null
 		initialized = false
 		lastUserId = null
-		
+
 		_isAvailable.emit(false)
 	}
 

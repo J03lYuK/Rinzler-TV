@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback;
+package uk.rinzler.tv.ui.playback;
 
 import static org.koin.java.KoinJavaComponent.inject;
 
@@ -28,17 +28,17 @@ import androidx.leanback.widget.RowPresenter;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwnerKt;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.data.service.BackgroundService;
-import org.jellyfin.androidtv.data.service.BlurContext;
-import org.jellyfin.androidtv.databinding.FragmentAudioNowPlayingBinding;
-import org.jellyfin.androidtv.ui.itemhandling.AudioQueueBaseRowItem;
-import org.jellyfin.androidtv.ui.itemhandling.BaseRowItem;
-import org.jellyfin.androidtv.ui.navigation.Destinations;
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository;
-import org.jellyfin.androidtv.ui.presentation.PositionableListRowPresenter;
-import org.jellyfin.androidtv.util.KeyProcessor;
-import org.jellyfin.androidtv.util.TimeUtils;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.data.service.BackgroundService;
+import uk.rinzler.tv.data.service.BlurContext;
+import uk.rinzler.tv.databinding.FragmentAudioNowPlayingBinding;
+import uk.rinzler.tv.ui.itemhandling.AudioQueueBaseRowItem;
+import uk.rinzler.tv.ui.itemhandling.BaseRowItem;
+import uk.rinzler.tv.ui.navigation.Destinations;
+import uk.rinzler.tv.ui.navigation.NavigationRepository;
+import uk.rinzler.tv.ui.presentation.PositionableListRowPresenter;
+import uk.rinzler.tv.util.KeyProcessor;
+import uk.rinzler.tv.util.TimeUtils;
 import org.jellyfin.playback.core.PlaybackManager;
 
 import java.util.List;

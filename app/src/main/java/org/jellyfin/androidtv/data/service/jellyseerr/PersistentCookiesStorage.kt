@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.service.jellyseerr
+package uk.rinzler.tv.data.service.jellyseerr
 
 import android.content.Context
 import io.ktor.client.plugins.cookies.CookiesStorage
@@ -18,20 +18,20 @@ import timber.log.Timber
 class DelegatingCookiesStorage(private val context: Context) : CookiesStorage {
 	private var delegate: PersistentCookiesStorage = PersistentCookiesStorage(context, null)
 	private var currentUserId: String? = null
-	
+
 	fun switchToUser(userId: String) {
 		if (currentUserId != userId) {
 			currentUserId = userId
 			delegate = PersistentCookiesStorage(context, userId)
 		}
 	}
-	
+
 	override suspend fun get(requestUrl: Url): List<Cookie> = delegate.get(requestUrl)
-	
+
 	override suspend fun addCookie(requestUrl: Url, cookie: Cookie) = delegate.addCookie(requestUrl, cookie)
-	
+
 	override fun close() = delegate.close()
-	
+
 	suspend fun clearAll() = delegate.clearAll()
 }
 
@@ -85,7 +85,7 @@ class PersistentCookiesStorage(context: Context, userId: String? = null) : Cooki
 		val expiredKeys = cookies.filter { (_, cookie) ->
 			isExpired(cookie)
 		}.keys
-		
+
 		if (expiredKeys.isNotEmpty()) {
 			expiredKeys.forEach { cookies.remove(it) }
 			saveCookies()
@@ -134,7 +134,7 @@ class PersistentCookiesStorage(context: Context, userId: String? = null) : Cooki
 	private fun matchesDomain(cookie: Cookie, url: Url): Boolean {
 		val domain = cookie.domain?.lowercase() ?: return true
 		val host = url.host.lowercase()
-		
+
 		return if (domain.startsWith(".")) {
 			// Domain cookie: matches host and all subdomains
 			host == domain.substring(1) || host.endsWith(domain)

@@ -1,11 +1,11 @@
-package org.jellyfin.androidtv.ui.settings.screen.screensaver
+package uk.rinzler.tv.ui.settings.screen.screensaver
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.util.getQuantityString
+import uk.rinzler.tv.R
+import uk.rinzler.tv.util.getQuantityString
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 

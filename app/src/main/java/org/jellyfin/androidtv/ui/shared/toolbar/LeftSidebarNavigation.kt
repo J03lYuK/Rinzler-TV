@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.shared.toolbar
+package uk.rinzler.tv.ui.shared.toolbar
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
@@ -58,33 +58,33 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.data.model.AggregatedLibrary
-import org.jellyfin.androidtv.data.repository.MultiServerRepository
-import org.jellyfin.androidtv.data.repository.UserViewsRepository
-import org.jellyfin.androidtv.data.service.pluginsync.PluginSyncService
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.ClockBehavior
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.focusBorderColor
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncher
-import org.jellyfin.androidtv.ui.navigation.ActivityDestinations
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.playback.MediaManager
-import org.jellyfin.androidtv.ui.playback.ThemeMusicPlayer
-import org.jellyfin.androidtv.ui.settings.compat.SettingsViewModel
-import org.jellyfin.androidtv.ui.shuffle.ShuffleManager
-import org.jellyfin.androidtv.ui.shuffle.ShuffleOptionsDialog
-import org.jellyfin.androidtv.ui.syncplay.SyncPlayDialog
-import org.jellyfin.androidtv.ui.syncplay.SyncPlayViewModel
-import org.jellyfin.androidtv.util.apiclient.getUrl
-import org.jellyfin.androidtv.util.apiclient.primaryImage
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.data.model.AggregatedLibrary
+import uk.rinzler.tv.data.repository.MultiServerRepository
+import uk.rinzler.tv.data.repository.UserViewsRepository
+import uk.rinzler.tv.data.service.pluginsync.PluginSyncService
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.ClockBehavior
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.focusBorderColor
+import uk.rinzler.tv.ui.itemhandling.ItemLauncher
+import uk.rinzler.tv.ui.navigation.ActivityDestinations
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.playback.MediaManager
+import uk.rinzler.tv.ui.playback.ThemeMusicPlayer
+import uk.rinzler.tv.ui.settings.compat.SettingsViewModel
+import uk.rinzler.tv.ui.shuffle.ShuffleManager
+import uk.rinzler.tv.ui.shuffle.ShuffleOptionsDialog
+import uk.rinzler.tv.ui.syncplay.SyncPlayDialog
+import uk.rinzler.tv.ui.syncplay.SyncPlayViewModel
+import uk.rinzler.tv.util.apiclient.getUrl
+import uk.rinzler.tv.util.apiclient.primaryImage
+import uk.rinzler.tv.util.sdk.ApiClientFactory
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.CollectionType
@@ -112,11 +112,11 @@ fun LeftSidebarNavigation(
 	val pluginSyncService = koinInject<PluginSyncService>()
 	val syncCompletedCounter by pluginSyncService.syncCompletedCounter.collectAsState()
 	val jellyseerrPreferences = koinInject<JellyseerrPreferences>(named("global"))
-	
+
 	// User image - same pattern as MainToolbar
 	val currentUser by remember { userRepository.currentUser.filterNotNull() }.collectAsState(null)
 	val userImageUrl = remember(currentUser) { currentUser?.primaryImage?.getUrl(api) }
-	
+
 	// User preferences
 	var showShuffleButton by remember { mutableStateOf(true) }
 	var showGenresButton by remember { mutableStateOf(true) }
@@ -130,7 +130,7 @@ fun LeftSidebarNavigation(
 	var jellyseerrDisplayName by remember { mutableStateOf("Jellyseerr") }
 	var enableFolderView by remember { mutableStateOf(false) }
 	var clockBehavior by remember { mutableStateOf(ClockBehavior.ALWAYS) }
-	
+
 	LaunchedEffect(settingsClosedCounter, syncCompletedCounter) {
 		showShuffleButton = userPreferences[UserPreferences.showShuffleButton]
 		showGenresButton = userPreferences[UserPreferences.showGenresButton]
@@ -142,7 +142,7 @@ fun LeftSidebarNavigation(
 		enableFolderView = userPreferences[UserPreferences.enableFolderView]
 		clockBehavior = userPreferences[UserPreferences.clockBehavior]
 	}
-	
+
 	// Check Jellyseerr settings
 	LaunchedEffect(currentUser) {
 		if (currentUser != null) {
@@ -155,21 +155,21 @@ fun LeftSidebarNavigation(
 			jellyseerrEnabled = false
 		}
 	}
-	
+
 	// Load user views/libraries
 	val userViewsRepository = koinInject<UserViewsRepository>()
 	var userViews by remember { mutableStateOf<List<BaseItemDto>>(emptyList()) }
-	
+
 	LaunchedEffect(Unit) {
 		userViewsRepository.views.collect { views ->
 			userViews = views.toList()
 		}
 	}
-	
+
 	// Load aggregated libraries
 	val multiServerRepository = koinInject<MultiServerRepository>()
 	var aggregatedLibraries by remember { mutableStateOf<List<AggregatedLibrary>>(emptyList()) }
-	
+
 	LaunchedEffect(Unit) {
 		if (enableMultiServer) {
 			withContext(Dispatchers.IO) {
@@ -177,10 +177,10 @@ fun LeftSidebarNavigation(
 			}
 		}
 	}
-	
+
 	// Track if sidebar is expanded (has focus)
 	var isExpanded by remember { mutableStateOf(false) }
-	
+
 	CollapsibleSidebarContent(
 		isExpanded = isExpanded,
 		onExpandedChange = { isExpanded = it },
@@ -244,11 +244,11 @@ private fun CollapsibleSidebarContent(
 	val apiClientFactory = koinInject<ApiClientFactory>()
 	val shuffleManager = koinInject<ShuffleManager>()
 	val themeMusicPlayer = koinInject<ThemeMusicPlayer>()
-	
+
 	var showShuffleDialog by remember { mutableStateOf(false) }
 	val isShuffling by shuffleManager.isShuffling.collectAsState()
 	val showShuffle = shuffleContentType != "disabled" && showShuffleButton
-	
+
 	val homeIcon = ImageVector.vectorResource(R.drawable.ic_house)
 	val searchIcon = ImageVector.vectorResource(R.drawable.ic_search)
 	val shuffleIcon = ImageVector.vectorResource(R.drawable.ic_shuffle)
@@ -260,12 +260,12 @@ private fun CollapsibleSidebarContent(
 	val syncplayIcon = ImageVector.vectorResource(R.drawable.ic_syncplay)
 	val librariesIcon = ImageVector.vectorResource(R.drawable.ic_clapperboard)
 	val settingsIcon = ImageVector.vectorResource(R.drawable.ic_settings)
-	
+
 	val sidebarWidth by animateDpAsState(
 		targetValue = if (isExpanded) 280.dp else 56.dp,
 		label = "sidebarWidth"
 	)
-	
+
 	val expandedBackground = Brush.horizontalGradient(
 		colors = listOf(
 			Color.Black.copy(alpha = 0.9f),
@@ -273,13 +273,13 @@ private fun CollapsibleSidebarContent(
 			Color.Transparent
 		)
 	)
-	
+
 	val scrollState = rememberScrollState()
-	
+
 	val homeFocusRequester = remember { FocusRequester() }
-	
+
 	var librariesHasFocus by remember { mutableStateOf(false) }
-	
+
 	LaunchedEffect(isExpanded) {
 		if (isExpanded) {
 			themeMusicPlayer.stop()
@@ -336,7 +336,7 @@ private fun CollapsibleSidebarContent(
 									// For SearchFragment, find any VerticalGridView (search results) or focusable view
 									val contentView = rootView.findViewById<android.view.ViewGroup?>(android.R.id.content)
 									var focusTarget: android.view.View? = null
-									
+
 									// Try to find a VerticalGridView (search results)
 									contentView?.let { parent ->
 										fun findVerticalGridView(view: android.view.View): android.view.View? {
@@ -351,12 +351,12 @@ private fun CollapsibleSidebarContent(
 										}
 										focusTarget = findVerticalGridView(parent)
 									}
-									
+
 									// If no VerticalGridView found, try any focusable view to the right
 									if (focusTarget == null) {
 										focusTarget = contentView?.focusSearch(android.view.View.FOCUS_RIGHT)
 									}
-									
+
 									if (focusTarget != null) {
 										focusTarget.requestFocus()
 										true
@@ -565,7 +565,7 @@ private fun CollapsibleSidebarContent(
 							}
 						}
 					)
-					
+
 					if (isExpanded && librariesHasFocus) {
 						if (enableMultiServer && aggregatedLibraries.isNotEmpty()) {
 							aggregatedLibraries.forEach { aggLib ->
@@ -623,7 +623,7 @@ private fun CollapsibleSidebarContent(
 			}
 		}
 	}
-		
+
 		// Clock display in top right corner of screen
 		if (showClock) {
 			Box(
@@ -641,7 +641,7 @@ private fun CollapsibleSidebarContent(
 			}
 		}
 	} // End of parent Box
-	
+
 	if (showShuffleDialog) {
 		ShuffleOptionsDialog(
 			userViews = userViews,
@@ -693,11 +693,11 @@ private fun SidebarIconItem(
 	val scope = rememberCoroutineScope()
 	var longPressJob by remember { mutableStateOf<kotlinx.coroutines.Job?>(null) }
 	var longPressTriggered by remember { mutableStateOf(false) }
-	
+
 	LaunchedEffect(isFocused) {
 		onFocusChanged?.invoke(isFocused)
 	}
-	
+
 	val focusedColor = focusBorderColor()
 	val iconAlpha by animateFloatAsState(
 		targetValue = if (isExpanded || imageUrl != null) 1f else 0.5f,
@@ -791,7 +791,7 @@ private fun SidebarIconItem(
 				)
 			}
 		}
-		
+
 		if (delayedShowLabel) {
 			Row {
 				Spacer(modifier = Modifier.width(12.dp))
@@ -814,11 +814,11 @@ private fun SidebarTextItem(
 ) {
 	val interactionSource = remember { MutableInteractionSource() }
 	val isFocused by interactionSource.collectIsFocusedAsState()
-	
+
 	LaunchedEffect(isFocused) {
 		onFocusChanged?.invoke(isFocused)
 	}
-	
+
 	val focusedColor = focusBorderColor()
 	val textColor = Color.White
 

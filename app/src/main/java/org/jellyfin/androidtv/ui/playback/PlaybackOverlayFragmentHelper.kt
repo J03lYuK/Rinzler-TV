@@ -1,6 +1,6 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
-import org.jellyfin.androidtv.ui.InteractionTrackerViewModel
+import uk.rinzler.tv.ui.InteractionTrackerViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class PlaybackOverlayFragmentHelper(

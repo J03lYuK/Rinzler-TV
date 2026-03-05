@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util.sdk
+package uk.rinzler.tv.util.sdk
 
 import android.content.Context
 import android.content.Intent

@@ -1,14 +1,14 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.constant.ChangeTriggerType
-import org.jellyfin.androidtv.constant.HomeSectionType
-import org.jellyfin.androidtv.data.repository.ItemRepository
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.browsing.BrowseRowDef
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.constant.ChangeTriggerType
+import uk.rinzler.tv.constant.HomeSectionType
+import uk.rinzler.tv.data.repository.ItemRepository
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.browsing.BrowseRowDef
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind
@@ -34,7 +34,7 @@ class HomeFragmentHelper(
 	fun loadRecentlyAdded(userViews: Collection<BaseItemDto>): HomeFragmentRow {
 		// Check if multi-server is enabled
 		val enableMultiServer = userPreferences[UserPreferences.enableMultiServerLibraries]
-		
+
 		return if (enableMultiServer) {
 			// Use aggregated row that shows items from all servers
 			HomeFragmentAggregatedLatestRow()
@@ -86,7 +86,7 @@ class HomeFragmentHelper(
 	fun loadResumeVideo(): HomeFragmentRow {
 		// Check if multi-server is enabled
 		val enableMultiServer = userPreferences[UserPreferences.enableMultiServerLibraries]
-		
+
 		return if (enableMultiServer) {
 			// Use aggregated row that shows items from all servers
 			HomeFragmentAggregatedResumeRow(HOME_ROW_MAX_ITEMS)
@@ -99,11 +99,11 @@ class HomeFragmentHelper(
 	fun loadMergedContinueWatching(): HomeFragmentRow {
 		// Check if multi-server is enabled
 		val enableMultiServer = userPreferences[UserPreferences.enableMultiServerLibraries]
-		
+
 		if (enableMultiServer) {
 			return HomeFragmentAggregatedResumeRow(HOME_ROW_MAX_ITEMS, includeNextUp = true)
 		}
-		
+
 		// Use normal merged row for current server only
 		val resumeQuery = GetResumeItemsRequest(
 			limit = HOME_ROW_MAX_ITEMS,
@@ -153,12 +153,12 @@ class HomeFragmentHelper(
 	fun loadNextUp(): HomeFragmentRow {
 		// Check if multi-server is enabled
 		val enableMultiServer = userPreferences[UserPreferences.enableMultiServerLibraries]
-		
+
 		if (enableMultiServer) {
 			// Use aggregated row that shows items from all servers
 			return HomeFragmentAggregatedNextUpRow(HOME_ROW_MAX_ITEMS)
 		}
-		
+
 		// Use normal row for current server only
 		val query = GetNextUpRequest(
 			imageTypeLimit = 1,

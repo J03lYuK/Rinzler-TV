@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.syncplay
+package uk.rinzler.tv.data.syncplay
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -8,27 +8,27 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncherHelper
+import uk.rinzler.tv.ui.itemhandling.ItemLauncherHelper
 import org.jellyfin.sdk.model.api.BaseItemDto
 import timber.log.Timber
 import java.util.UUID
 
 object SyncPlayQueueHelper {
-    
+
     data class QueueResult(
         val items: List<BaseItemDto>,
         val startIndex: Int,
         val startPositionMs: Long,
     )
-    
+
     interface QueueCallback {
         fun onQueueReady(items: List<BaseItemDto>, startIndex: Int, startPositionMs: Long)
         fun onError()
     }
-    
+
     /**
      * Fetches items for a SyncPlay queue concurrently.
-     * 
+     *
      * @param itemIds List of item UUIDs to fetch
      * @param startIndex The index to start playback from
      * @param startPositionTicks The position in ticks to start playback from
@@ -43,7 +43,7 @@ object SyncPlayQueueHelper {
             Timber.w("SyncPlayQueueHelper: Empty itemIds list")
             return@withContext null
         }
-        
+
         // Fetch all items concurrently for better performance
         val deferredItems = itemIds.map { itemId ->
             async {
@@ -55,25 +55,25 @@ object SyncPlayQueueHelper {
                 }
             }
         }
-        
+
         val items = deferredItems.awaitAll().filterNotNull()
-        
+
         if (items.isEmpty()) {
             Timber.e("SyncPlayQueueHelper: Failed to fetch any items for queue")
             return@withContext null
         }
-        
+
         if (items.size < itemIds.size) {
             Timber.w("SyncPlayQueueHelper: Only fetched ${items.size}/${itemIds.size} items")
         }
-        
+
         QueueResult(
             items = items,
             startIndex = startIndex.coerceIn(0, (items.size - 1).coerceAtLeast(0)),
             startPositionMs = SyncPlayUtils.ticksToMs(startPositionTicks),
         )
     }
-    
+
     /**
      * Java-friendly version that uses a callback.
      * Launches a coroutine tied to the provided lifecycle.

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.model
+package uk.rinzler.tv.data.model
 
 data class AppNotification(
 	val message: String,

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home.mediabar
+package uk.rinzler.tv.ui.home.mediabar
 
 import org.jellyfin.sdk.model.api.BaseItemKind
 import java.util.UUID

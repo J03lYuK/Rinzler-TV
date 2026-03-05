@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.syncplay
+package uk.rinzler.tv.data.syncplay
 
 import android.content.Context
 import android.widget.Toast
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserPreferences
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.syncPlayApi
 import org.jellyfin.sdk.model.api.BufferRequestDto
@@ -57,28 +57,28 @@ class SyncPlayManager(
     private var speedCorrectionJob: Job? = null
     private var driftCheckJob: Job? = null
     private var pingJob: Job? = null
-    
+
     // Track last executed command for duplicate detection
     private var lastExecutedCommand: ExecutedCommand? = null
-    
+
     data class ExecutedCommand(
         val type: SendCommandType,
         val whenMs: Long,
         val positionTicks: Long,
         val playlistItemId: UUID?
     )
-    
+
     // Track current playlist to avoid reloading the same item
     private var currentPlaylistItemIds: List<UUID> = emptyList()
     private var currentPlaylistIndex: Int = -1
-    
+
     // Track buffering state to avoid spamming reports
     private var lastReportedBufferingState: Boolean? = null
-    
+
     // Sync cooldown tracking
     private var lastSyncCorrectionTime: Long = 0L
     private var currentSpeedCorrectionTarget: Float = SPEED_NORMAL
-    
+
     // Seek tracking for proper ready reporting
     private var pendingSeekPosition: Long? = null
     private var seekTimeoutJob: Job? = null
@@ -91,10 +91,10 @@ class SyncPlayManager(
     private val speedToSyncDuration get() = userPreferences[UserPreferences.syncPlaySpeedToSyncDuration]
     private val minDelaySkipToSync get() = userPreferences[UserPreferences.syncPlayMinDelaySkipToSync]
     private val extraTimeOffset get() = userPreferences[UserPreferences.syncPlayExtraTimeOffset]
-    
+
     var playbackCallback: SyncPlayPlaybackCallback? = null
     var queueLaunchCallback: ((itemIds: List<UUID>, startIndex: Int, startPositionTicks: Long) -> Unit)? = null
-    
+
     interface SyncPlayPlaybackCallback {
         fun onPlay(positionMs: Long)
         fun onPause(positionMs: Long)
@@ -106,7 +106,7 @@ class SyncPlayManager(
         fun setPlaybackSpeed(speed: Float)
         fun getPlaybackSpeed(): Float
     }
-    
+
     companion object {
         private const val DRIFT_CHECK_INTERVAL_MS = 1000L
         private const val PING_INTERVAL_MS = 5000L
@@ -131,8 +131,8 @@ class SyncPlayManager(
         val result = executeApiCall("get groups") {
             api.syncPlayApi.syncPlayGetGroups().content
         }
-        _availableGroups.value = result.getOrElse { 
-            if (it is org.jellyfin.sdk.api.client.exception.InvalidStatusException && 
+        _availableGroups.value = result.getOrElse {
+            if (it is org.jellyfin.sdk.api.client.exception.InvalidStatusException &&
                 it.message?.contains("403") == true) {
                 Timber.d("SyncPlay: Permission denied for getting groups")
             }
@@ -268,7 +268,7 @@ class SyncPlayManager(
         if (!_state.value.enabled) return
         if (lastReportedBufferingState == true) return
         lastReportedBufferingState = true
-        
+
         val currentPositionTicks = playbackCallback?.getCurrentPositionMs()?.let { SyncPlayUtils.msToTicks(it) } ?: 0L
         val isPlaying = playbackCallback?.isPlaying() == true
         val playlistItemId = currentCommand?.playlistItemId ?: UUID.fromString("00000000-0000-0000-0000-000000000000")
@@ -278,9 +278,9 @@ class SyncPlayManager(
             ((serverTime % 1000) * 1_000_000).toInt(),
             ZoneOffset.UTC
         )
-        
+
         Timber.d("SyncPlay: Reporting buffering at position ${currentPositionTicks / 10000}ms")
-        
+
         scope.launch {
             executeApiCall("report buffering") {
                 api.syncPlayApi.syncPlayBuffering(
@@ -299,10 +299,10 @@ class SyncPlayManager(
         if (!_state.value.enabled) return
         if (lastReportedBufferingState == false) return
         lastReportedBufferingState = false
-        
+
         cancelSeekTimeout()
         pendingSeekPosition = null
-        
+
         val currentPositionTicks = playbackCallback?.getCurrentPositionMs()?.let { SyncPlayUtils.msToTicks(it) } ?: 0L
         val isPlaying = playbackCallback?.isPlaying() == true
         val playlistItemId = currentCommand?.playlistItemId ?: UUID.fromString("00000000-0000-0000-0000-000000000000")
@@ -312,9 +312,9 @@ class SyncPlayManager(
             ((serverTime % 1000) * 1_000_000).toInt(),
             ZoneOffset.UTC
         )
-        
+
         Timber.d("SyncPlay: Reporting ready at position ${currentPositionTicks / 10000}ms")
-        
+
         scope.launch {
             executeApiCall("report ready") {
                 api.syncPlayApi.syncPlayReady(
@@ -332,12 +332,12 @@ class SyncPlayManager(
     fun serverTimeToLocal(serverTime: Long): Long = timeSyncManager.serverTimeToLocal(serverTime)
 
     fun localTimeToServer(localTime: Long): Long = timeSyncManager.localTimeToServer(localTime)
-    
+
     fun getCurrentDriftMs(): Long? {
         val command = currentCommand ?: return null
         val callback = playbackCallback ?: return null
         if (_state.value.groupState != GroupStateType.PLAYING) return null
-        
+
         val expectedPositionMs = estimateServerPosition(command)
         val currentPositionMs = callback.getCurrentPositionMs()
         return currentPositionMs - expectedPositionMs
@@ -357,15 +357,15 @@ class SyncPlayManager(
             "Drift" to if (drift != null) "${drift}ms" else "N/A",
         )
     }
-    
+
     fun onAppResume() {
         if (!_state.value.enabled) return
-        
+
         Timber.d("SyncPlay: App resumed, re-syncing time and validating group")
-        
+
         scope.launch {
             timeSyncManager.syncNow()
-            
+
             try {
                 refreshGroupInfo()
             } catch (e: Exception) {
@@ -373,18 +373,18 @@ class SyncPlayManager(
             }
         }
     }
-    
+
     fun onAppPause() {
         if (!_state.value.enabled) return
         Timber.d("SyncPlay: App paused")
         lastExecutedCommand = null
     }
-    
+
     suspend fun attemptRejoinGroup(): Boolean {
         val groupId = _state.value.groupInfo?.groupId ?: return false
-        
+
         Timber.d("SyncPlay: Attempting to rejoin group $groupId")
-        
+
         return try {
             withContext(Dispatchers.IO) {
                 api.syncPlayApi.syncPlayJoinGroup(JoinGroupRequestDto(groupId = groupId))
@@ -405,13 +405,13 @@ class SyncPlayManager(
             false
         }
     }
-    
+
     private fun startSyncServices() {
         timeSyncManager.startSync()
         startDriftChecking()
         startPingUpdates()
     }
-    
+
     private fun stopSyncServices() {
         timeSyncManager.stopSync()
         stopDriftChecking()
@@ -428,7 +428,7 @@ class SyncPlayManager(
         currentSpeedCorrectionTarget = SPEED_NORMAL
         pendingSeekPosition = null
     }
-    
+
     private fun startDriftChecking() {
         driftCheckJob?.cancel()
         driftCheckJob = scope.launch {
@@ -438,12 +438,12 @@ class SyncPlayManager(
             }
         }
     }
-    
+
     private fun stopDriftChecking() {
         driftCheckJob?.cancel()
         driftCheckJob = null
     }
-    
+
     private fun startPingUpdates() {
         pingJob?.cancel()
         pingJob = scope.launch {
@@ -453,12 +453,12 @@ class SyncPlayManager(
             }
         }
     }
-    
+
     private fun stopPingUpdates() {
         pingJob?.cancel()
         pingJob = null
     }
-    
+
     private suspend fun sendPing() {
         try {
             val ping = timeSyncManager.roundTripTime
@@ -469,24 +469,24 @@ class SyncPlayManager(
             Timber.d(e, "SyncPlay: Failed to send ping")
         }
     }
-    
+
     private fun checkAndCorrectDrift() {
         if (!enableSyncCorrection) return
         if (currentCommand == null) return
         if (_state.value.groupState != GroupStateType.PLAYING) return
-        
+
         val callback = playbackCallback ?: return
         if (!callback.isPlaying()) return
-        
+
         val command = currentCommand ?: return
         val expectedPositionMs = estimateServerPosition(command)
         val currentPositionMs = callback.getCurrentPositionMs()
-        
+
         val driftMs = currentPositionMs - expectedPositionMs
         val absDriftMs = abs(driftMs)
-        
+
         Timber.v("SyncPlay drift: ${driftMs}ms (current=$currentPositionMs, expected=$expectedPositionMs)")
-        
+
         when {
             useSkipToSync && absDriftMs >= minDelaySkipToSync -> {
                 Timber.d("SyncPlay: SkipToSync - drift=${driftMs}ms, seeking to $expectedPositionMs")
@@ -512,7 +512,7 @@ class SyncPlayManager(
             }
         }
     }
-    
+
     private fun estimateServerPosition(command: SendCommand): Long {
         val commandWhenMs = command.`when`.toEpochSecond(ZoneOffset.UTC) * 1000 +
                 (command.`when`.nano / 1_000_000)
@@ -521,7 +521,7 @@ class SyncPlayManager(
         val elapsedMs = serverNow - commandWhenMs
         return commandPositionMs + elapsedMs + extraTimeOffset.toLong()
     }
-    
+
     private fun calculateDynamicSpeed(driftMs: Long): Float {
         val duration = speedToSyncDuration.toFloat()
         val speed = if (driftMs > 0) {
@@ -531,7 +531,7 @@ class SyncPlayManager(
         }
         return speed.coerceIn(MIN_PLAYBACK_SPEED, MAX_PLAYBACK_SPEED)
     }
-    
+
     private fun calculateCorrectionDuration(driftMs: Long, targetSpeed: Float): Long {
         val speedDiff = abs(targetSpeed - SPEED_NORMAL)
         return if (speedDiff > 0) {
@@ -540,35 +540,35 @@ class SyncPlayManager(
             speedToSyncDuration.toLong()
         }
     }
-    
+
     private fun startSpeedCorrection(callback: SyncPlayPlaybackCallback, targetSpeed: Float, duration: Long = speedToSyncDuration.toLong()) {
         if (isSpeedCorrecting) return
-        
+
         speedCorrectionJob?.cancel()
         speedCorrectionJob = null
-        
+
         isSpeedCorrecting = true
         currentSpeedCorrectionTarget = targetSpeed
         lastSyncCorrectionTime = System.currentTimeMillis()
-        
+
         scope.launch(Dispatchers.Main) {
             callback.setPlaybackSpeed(targetSpeed)
         }
-        
+
         speedCorrectionJob = scope.launch {
             delay(duration)
             stopSpeedCorrection()
         }
     }
-    
+
     private fun stopSpeedCorrection() {
         val wasSpeedCorrecting = isSpeedCorrecting
         isSpeedCorrecting = false
         currentSpeedCorrectionTarget = SPEED_NORMAL
-        
+
         speedCorrectionJob?.cancel()
         speedCorrectionJob = null
-        
+
         if (wasSpeedCorrecting) {
             scope.launch(Dispatchers.Main) {
                 playbackCallback?.setPlaybackSpeed(SPEED_NORMAL)
@@ -580,27 +580,27 @@ class SyncPlayManager(
         val commandWhenMs = command.`when`.toEpochSecond(ZoneOffset.UTC) * 1000 +
                 (command.`when`.nano / 1_000_000)
         val positionTicks = command.positionTicks ?: 0
-        
+
         if (isDuplicateCommand(command.command, commandWhenMs, positionTicks, command.playlistItemId)) {
             Timber.d("SyncPlay: Ignoring duplicate command ${command.command}")
             return
         }
-        
+
         Timber.i("SyncPlay: Received command ${command.command}, positionTicks=$positionTicks")
         currentCommand = command
         stopSpeedCorrection()
         clearScheduledCommand()
-        
+
         val localTargetTime = serverTimeToLocal(commandWhenMs)
         val adjustedTargetTime = localTargetTime + extraTimeOffset.toLong()
-        
+
         lastExecutedCommand = ExecutedCommand(
             type = command.command,
             whenMs = commandWhenMs,
             positionTicks = positionTicks,
             playlistItemId = command.playlistItemId
         )
-        
+
         when (command.command) {
             SendCommandType.UNPAUSE -> {
                 schedulePlay(adjustedTargetTime, positionTicks)
@@ -619,7 +619,7 @@ class SyncPlayManager(
             }
         }
     }
-    
+
     private fun isDuplicateCommand(
         type: SendCommandType,
         whenMs: Long,
@@ -627,14 +627,14 @@ class SyncPlayManager(
         playlistItemId: UUID?
     ): Boolean {
         val last = lastExecutedCommand ?: return false
-        
+
         if (last.type != type) return false
         if (last.playlistItemId != playlistItemId) return false
-        
+
         val timeDiff = abs(whenMs - last.whenMs)
         val positionDiff = abs(positionTicks - last.positionTicks)
-        
-        return timeDiff < DUPLICATE_COMMAND_THRESHOLD_MS && 
+
+        return timeDiff < DUPLICATE_COMMAND_THRESHOLD_MS &&
                positionDiff < DUPLICATE_POSITION_THRESHOLD_TICKS
     }
 
@@ -677,21 +677,21 @@ class SyncPlayManager(
             is org.jellyfin.sdk.model.api.SyncPlayPlayQueueUpdate -> {
                 val queue = update.data
                 val reason = queue.reason
-                
+
                 val itemIds = queue.playlist.mapNotNull { it.itemId }
                 if (itemIds.isNotEmpty()) {
                     val startIndex = queue.playingItemIndex
                     val startPosition = queue.startPositionTicks
-                    
+
                     val isNewQueue = reason == org.jellyfin.sdk.model.api.PlayQueueUpdateReason.NEW_PLAYLIST ||
                         itemIds != currentPlaylistItemIds ||
                         (startIndex != currentPlaylistIndex && playbackCallback == null)
-                    
+
                     if (isNewQueue) {
                         Timber.i("SyncPlay: Loading new queue (reason=$reason, items=${itemIds.size}, index=$startIndex)")
                         currentPlaylistItemIds = itemIds
                         currentPlaylistIndex = startIndex
-                        
+
                         scope.launch(Dispatchers.Main) {
                             if (playbackCallback != null) {
                                 playbackCallback?.onLoadQueue(itemIds, startIndex, startPosition)
@@ -749,7 +749,7 @@ class SyncPlayManager(
         scheduledSeekJob?.cancel()
         val targetPositionMs = SyncPlayUtils.ticksToMs(positionTicks)
         pendingSeekPosition = targetPositionMs
-        
+
         scheduledSeekJob = scope.launch(Dispatchers.Main) {
             val delayMs = targetLocalTime - System.currentTimeMillis()
             if (delayMs > 0) {
@@ -759,7 +759,7 @@ class SyncPlayManager(
             playbackCallback?.onSeek(targetPositionMs)
         }
     }
-    
+
     private fun startSeekTimeout(targetPositionMs: Long) {
         cancelSeekTimeout()
         seekTimeoutJob = scope.launch {
@@ -774,7 +774,7 @@ class SyncPlayManager(
             }
         }
     }
-    
+
     private fun cancelSeekTimeout() {
         seekTimeoutJob?.cancel()
         seekTimeoutJob = null

@@ -1,12 +1,12 @@
-package org.jellyfin.androidtv.util.profile
+package uk.rinzler.tv.util.profile
 
 import android.content.Context
 import android.util.Size
 import androidx.media3.common.MimeTypes
-import org.jellyfin.androidtv.constant.Codec
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.AudioBehavior
-import org.jellyfin.androidtv.preference.constant.MaxVideoResolution
+import uk.rinzler.tv.constant.Codec
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.AudioBehavior
+import uk.rinzler.tv.preference.constant.MaxVideoResolution
 import org.jellyfin.sdk.model.ServerVersion
 import org.jellyfin.sdk.model.api.CodecType
 import org.jellyfin.sdk.model.api.DlnaProfileType

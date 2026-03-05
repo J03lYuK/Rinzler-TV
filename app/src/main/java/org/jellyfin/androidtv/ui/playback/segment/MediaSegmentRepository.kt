@@ -1,11 +1,11 @@
-package org.jellyfin.androidtv.ui.playback.segment
+package uk.rinzler.tv.ui.playback.segment
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.util.UUIDUtils
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
-import org.jellyfin.androidtv.util.sdk.duration
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.util.UUIDUtils
+import uk.rinzler.tv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.util.sdk.duration
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.mediaSegmentsApi
 import org.jellyfin.sdk.model.api.BaseItemDto

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.os.Bundle
 import android.view.Gravity
@@ -19,16 +19,16 @@ import androidx.leanback.widget.VerticalGridPresenter
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverItemDto
-import org.jellyfin.androidtv.databinding.HorizontalGridBrowseBinding
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.itemhandling.JellyseerrMediaBaseRowItem
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.util.Utils
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverItemDto
+import uk.rinzler.tv.databinding.HorizontalGridBrowseBinding
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.itemhandling.JellyseerrMediaBaseRowItem
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.util.Utils
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -60,12 +60,12 @@ class JellyseerrBrowseByFragment : Fragment() {
 	private val navigationRepository: NavigationRepository by inject()
 	private val backgroundService: BackgroundService by inject()
 	private val userPreferences: UserPreferences by inject()
-	
+
 	private var filterId: Int = 0
 	private var filterName: String = ""
 	private var mediaType: String = "movie" // movie or tv
 	private var filterType: BrowseFilterType = BrowseFilterType.GENRE
-	
+
 	private var binding: HorizontalGridBrowseBinding? = null
 	private lateinit var gridAdapter: ArrayObjectAdapter
 	private lateinit var gridPresenter: VerticalGridPresenter
@@ -74,23 +74,23 @@ class JellyseerrBrowseByFragment : Fragment() {
 	private var totalPages = 1
 	private var totalResults = 0
 	private var isLoading = false
-	
+
 	// Sorting
 	private var currentSortOption: JellyseerrSortOption = SORT_OPTIONS[0]
 	private var sortButton: ImageButton? = null
-	
+
 	// Filtering
 	private var showAvailableOnly: Boolean = false
 	private var showRequestedOnly: Boolean = false
 	private var filterButton: ImageButton? = null
-	
+
 	companion object {
 		private const val ARG_FILTER_ID = "filter_id"
 		private const val ARG_FILTER_NAME = "filter_name"
 		private const val ARG_MEDIA_TYPE = "media_type"
 		private const val ARG_FILTER_TYPE = "filter_type"
 		private const val NUM_COLUMNS = 7
-		
+
 		// TMDB sort options
 		val SORT_OPTIONS = listOf(
 			JellyseerrSortOption("Popularity", "popularity.desc"),
@@ -99,10 +99,10 @@ class JellyseerrBrowseByFragment : Fragment() {
 			JellyseerrSortOption("Title", "original_title.asc"),
 			JellyseerrSortOption("Revenue", "revenue.desc")
 		)
-		
+
 		fun newInstance(
-			filterId: Int, 
-			filterName: String, 
+			filterId: Int,
+			filterName: String,
 			mediaType: String,
 			filterType: BrowseFilterType = BrowseFilterType.GENRE
 		): JellyseerrBrowseByFragment {
@@ -116,10 +116,10 @@ class JellyseerrBrowseByFragment : Fragment() {
 			}
 		}
 	}
-	
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		
+
 		arguments?.let {
 			filterId = it.getInt(ARG_FILTER_ID)
 			filterName = it.getString(ARG_FILTER_NAME) ?: ""
@@ -131,7 +131,7 @@ class JellyseerrBrowseByFragment : Fragment() {
 			}
 		}
 	}
-	
+
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
@@ -140,23 +140,23 @@ class JellyseerrBrowseByFragment : Fragment() {
 		binding = HorizontalGridBrowseBinding.inflate(inflater, container, false)
 		return binding!!.root
 	}
-	
+
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		
+
 		setupHeader()
 		setupToolbar()
 		setupGrid()
 		loadContent()
 	}
-	
+
 	override fun onDestroyView() {
 		super.onDestroyView()
 		binding = null
 		gridViewHolder = null
 		sortButton = null
 	}
-	
+
 	private fun setupHeader() {
 		binding?.apply {
 			// Show filter name centered at top (always visible)
@@ -167,16 +167,16 @@ class JellyseerrBrowseByFragment : Fragment() {
 			infoRow.visibility = View.GONE
 		}
 	}
-	
+
 	private fun setupToolbar() {
 		val context = context ?: return
 		val toolbar = binding?.toolBar ?: return
-		
+
 		toolbar.visibility = View.VISIBLE
 		toolbar.removeAllViews()
-		
+
 		val buttonSize = Utils.convertDpToPixel(context, 26)
-		
+
 		// Filter button
 		filterButton = ImageButton(context, null, 0, R.style.Button_Icon).apply {
 			setImageResource(R.drawable.ic_filter)
@@ -186,7 +186,7 @@ class JellyseerrBrowseByFragment : Fragment() {
 			setOnClickListener { showFilterMenu() }
 		}
 		toolbar.addView(filterButton)
-		
+
 		// Sort button
 		sortButton = ImageButton(context, null, 0, R.style.Button_Icon).apply {
 			setImageResource(R.drawable.ic_sort)
@@ -197,19 +197,19 @@ class JellyseerrBrowseByFragment : Fragment() {
 		}
 		toolbar.addView(sortButton)
 	}
-	
+
 	private fun showFilterMenu() {
 		val context = context ?: return
 		val toolbar = binding?.toolBar ?: return
-		
+
 		val filterMenu = PopupMenu(context, toolbar, Gravity.END)
-		
+
 		// Filter options
 		filterMenu.menu.add(0, 0, 0, "Show All").isChecked = !showAvailableOnly && !showRequestedOnly
 		filterMenu.menu.add(0, 1, 1, "Available Only").isChecked = showAvailableOnly
 		filterMenu.menu.add(0, 2, 2, "Requested Only").isChecked = showRequestedOnly
 		filterMenu.menu.setGroupCheckable(0, true, true)
-		
+
 		filterMenu.setOnMenuItemClickListener { item ->
 			when (item.itemId) {
 				0 -> {
@@ -239,19 +239,19 @@ class JellyseerrBrowseByFragment : Fragment() {
 		}
 		filterMenu.show()
 	}
-	
+
 	private fun showSortMenu() {
 		val context = context ?: return
 		val toolbar = binding?.toolBar ?: return
-		
+
 		val sortMenu = PopupMenu(context, toolbar, Gravity.END)
-		
+
 		SORT_OPTIONS.forEachIndexed { index, option ->
 			val item = sortMenu.menu.add(0, index, index, option.name)
 			item.isChecked = option.value == currentSortOption.value
 		}
 		sortMenu.menu.setGroupCheckable(0, true, true)
-		
+
 		sortMenu.setOnMenuItemClickListener { item ->
 			val selectedOption = SORT_OPTIONS[item.itemId]
 			if (selectedOption.value != currentSortOption.value) {
@@ -264,17 +264,17 @@ class JellyseerrBrowseByFragment : Fragment() {
 		}
 		sortMenu.show()
 	}
-	
+
 	private fun setupGrid() {
 		val zoomFactor = if (userPreferences[UserPreferences.cardFocusExpansion]) FocusHighlight.ZOOM_FACTOR_MEDIUM else FocusHighlight.ZOOM_FACTOR_NONE
 		gridPresenter = VerticalGridPresenter(zoomFactor, false).apply {
 			numberOfColumns = NUM_COLUMNS
 			shadowEnabled = false
 		}
-		
+
 		gridAdapter = ArrayObjectAdapter(CardPresenter())
-		
-gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener { 
+
+gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener {
 			itemViewHolder: Presenter.ViewHolder?,
 			item: Any?,
 			rowViewHolder: RowPresenter.ViewHolder?,
@@ -282,15 +282,15 @@ gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener {
 			val discoverItem = (item as? JellyseerrMediaBaseRowItem)?.item
 			if (discoverItem != null) {
 				onItemSelected(discoverItem)
-				
+
 				val position = gridAdapter.indexOf(item)
 				if (position >= gridAdapter.size() - 10 && !isLoading && currentPage < totalPages) {
 					loadMoreContent()
 				}
 			}
 		})
-		
-		gridPresenter.setOnItemViewClickedListener(OnItemViewClickedListener { 
+
+		gridPresenter.setOnItemViewClickedListener(OnItemViewClickedListener {
 			itemViewHolder: Presenter.ViewHolder?,
 			item: Any?,
 			rowViewHolder: RowPresenter.ViewHolder?,
@@ -300,7 +300,7 @@ gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener {
 				onItemClicked(discoverItem)
 			}
 		})
-		
+
 		// Create grid view and add to container
 		binding?.rowsFragment?.let { container ->
 			gridViewHolder = gridPresenter.onCreateViewHolder(container) as VerticalGridPresenter.ViewHolder
@@ -309,64 +309,64 @@ gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener {
 				gridView.setNumColumns(NUM_COLUMNS)
 				val verticalSpacing = Utils.convertDpToPixel(requireContext(), 40)
 				gridView.setVerticalSpacing(verticalSpacing)
-				
+
 				// Remove horizontal padding, add top padding
 				val topPadding = Utils.convertDpToPixel(requireContext(), 8)
 				gridView.setPadding(0, topPadding, 0, 0)
-				
+
 				container.removeAllViews()
 				container.addView(holder.view)
 				gridPresenter.onBindViewHolder(holder, gridAdapter)
 			}
 		}
 	}
-	
+
 	private fun onItemSelected(item: JellyseerrDiscoverItemDto) {
 		// Update background with backdrop
 		item.backdropPath?.let { backdropPath ->
 			val backdropUrl = "https://image.tmdb.org/t/p/w1280$backdropPath"
-			backgroundService.setBackgroundUrl(backdropUrl, org.jellyfin.androidtv.data.service.BlurContext.BROWSING)
+			backgroundService.setBackgroundUrl(backdropUrl, uk.rinzler.tv.data.service.BlurContext.BROWSING)
 		}
-		
+
 		// Update title on the left to show selected item name (filterLogo stays centered)
 		binding?.title?.apply {
 			text = item.title ?: item.name ?: "Unknown"
 			visibility = View.VISIBLE
 		}
-		
+
 		// Show and update info row with metadata
 		binding?.infoRow?.visibility = View.VISIBLE
 		updateInfoRow(item)
-		
+
 		// Update counter with position
 		val position = gridAdapter.indexOf(item) + 1
 		updateCounter(position)
 	}
-	
+
 	private fun updateCounter(position: Int) {
 		binding?.counter?.text = "$position | $totalResults"
 	}
-	
+
 	private fun updateInfoRow(item: JellyseerrDiscoverItemDto) {
 		val context = context ?: return
 		val infoRow = binding?.infoRow ?: return
-		
+
 		// Clear existing views
 		infoRow.removeAllViews()
-		
+
 		val metadataItems = mutableListOf<String>()
-		
+
 		// Year
 		val year = item.releaseDate?.take(4) ?: item.firstAirDate?.take(4)
 		year?.let { metadataItems.add(it) }
-		
+
 		// Rating (if available)
 		item.voteAverage?.let { rating ->
 			if (rating > 0) {
 				metadataItems.add("★ %.1f".format(rating))
 			}
 		}
-		
+
 		// Media type
 		val typeLabel = when (item.mediaType) {
 			"movie" -> "Movie"
@@ -374,7 +374,7 @@ gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener {
 			else -> ""
 		}
 		if (typeLabel.isNotEmpty()) metadataItems.add(typeLabel)
-		
+
 		// Status indicator
 		item.mediaInfo?.status?.let { status ->
 			val statusText = when (status) {
@@ -387,7 +387,7 @@ gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener {
 			}
 			statusText?.let { metadataItems.add(it) }
 		}
-		
+
 		// Add metadata text views
 		metadataItems.forEachIndexed { index, text ->
 			if (index > 0) {
@@ -400,7 +400,7 @@ gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener {
 				}
 				infoRow.addView(separator)
 			}
-			
+
 			val textView = android.widget.TextView(context).apply {
 				this.text = text
 				textSize = 14f
@@ -410,7 +410,7 @@ gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener {
 			infoRow.addView(textView)
 		}
 	}
-	
+
 	private fun updateStatusText() {
 		val sortName = currentSortOption.name
 		val filterTypeName = when (filterType) {
@@ -420,33 +420,33 @@ gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener {
 			BrowseFilterType.KEYWORD -> "Keyword"
 		}
 		val mediaTypeName = if (mediaType == "movie") getString(R.string.lbl_movies) else getString(R.string.lbl_tv_series)
-		
+
 		binding?.statusText?.text = "${getString(R.string.lbl_showing)} $mediaTypeName ${getString(R.string.lbl_from)} '$filterName' ${getString(R.string.lbl_sorted_by)} $sortName"
 	}
-	
+
 	private fun loadContent() {
 		if (isLoading) return
 		isLoading = true
 		currentPage = 1
-		
+
 		// Show loading state
 		binding?.counter?.text = "..."
-		
+
 		lifecycleScope.launch {
 			try {
 				val result = fetchContent(currentPage)
-				
+
 				result?.getOrNull()?.let { page ->
 					totalPages = page.totalPages ?: 1
 					totalResults = page.totalResults ?: 0
 					var items = page.results ?: emptyList()
-					
+
 					// Apply availability filter
 					items = applyFilter(items)
-					
+
 					gridAdapter.clear()
 					gridAdapter.addAll(0, items.map { JellyseerrMediaBaseRowItem(it) })
-					
+
 					// Update UI
 					updateCounter(if (items.isNotEmpty()) 1 else 0)
 					updateStatusText()
@@ -458,22 +458,22 @@ gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener {
 			}
 		}
 	}
-	
+
 	private fun loadMoreContent() {
 		if (isLoading || currentPage >= totalPages) return
 		isLoading = true
 		currentPage++
-		
+
 		lifecycleScope.launch {
 			try {
 				val result = fetchContent(currentPage)
-				
+
 				result?.getOrNull()?.let { page ->
 					var items = page.results ?: emptyList()
-					
+
 					// Apply availability filter
 					items = applyFilter(items)
-					
+
 					gridAdapter.addAll(gridAdapter.size(), items.map { JellyseerrMediaBaseRowItem(it) })
 				}
 			} catch (e: Exception) {
@@ -484,13 +484,13 @@ gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener {
 			}
 		}
 	}
-	
+
 	private fun applyFilter(items: List<JellyseerrDiscoverItemDto>): List<JellyseerrDiscoverItemDto> {
 		// If no filter is active, return all items
 		if (!showAvailableOnly && !showRequestedOnly) {
 			return items
 		}
-		
+
 		return items.filter { item ->
 			val status = item.mediaInfo?.status
 			when {
@@ -502,8 +502,8 @@ gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener {
 			}
 		}
 	}
-	
-	private suspend fun fetchContent(page: Int): Result<org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverPageDto>? {
+
+	private suspend fun fetchContent(page: Int): Result<uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverPageDto>? {
 		return when (filterType) {
 			BrowseFilterType.GENRE -> {
 				if (mediaType == "movie") {
@@ -530,7 +530,7 @@ gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener {
 			}
 		}
 	}
-	
+
 	private fun onItemClicked(item: JellyseerrDiscoverItemDto) {
 		val itemJson = Json.encodeToString(JellyseerrDiscoverItemDto.serializer(), item)
 		navigationRepository.navigate(Destinations.jellyseerrMediaDetails(itemJson))

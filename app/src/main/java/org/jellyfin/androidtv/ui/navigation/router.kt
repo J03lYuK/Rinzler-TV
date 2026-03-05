@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.navigation
+package uk.rinzler.tv.ui.navigation
 
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.ContentTransform

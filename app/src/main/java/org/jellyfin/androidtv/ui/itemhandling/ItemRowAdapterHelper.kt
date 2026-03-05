@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.itemhandling
+package uk.rinzler.tv.ui.itemhandling
 
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner
@@ -10,16 +10,16 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.constant.LiveTvOption
-import org.jellyfin.androidtv.data.querying.GetAdditionalPartsRequest
-import org.jellyfin.androidtv.data.querying.GetSpecialsRequest
-import org.jellyfin.androidtv.data.querying.GetTrailersRequest
-import org.jellyfin.androidtv.data.repository.ParentalControlsRepository
-import org.jellyfin.androidtv.data.repository.UserViewsRepository
-import org.jellyfin.androidtv.ui.GridButton
-import org.jellyfin.androidtv.ui.browsing.BrowseGridFragment.SortOption
-import org.jellyfin.androidtv.util.sdk.compat.copyWithServerId
+import uk.rinzler.tv.R
+import uk.rinzler.tv.constant.LiveTvOption
+import uk.rinzler.tv.data.querying.GetAdditionalPartsRequest
+import uk.rinzler.tv.data.querying.GetSpecialsRequest
+import uk.rinzler.tv.data.querying.GetTrailersRequest
+import uk.rinzler.tv.data.repository.ParentalControlsRepository
+import uk.rinzler.tv.data.repository.UserViewsRepository
+import uk.rinzler.tv.ui.GridButton
+import uk.rinzler.tv.ui.browsing.BrowseGridFragment.SortOption
+import uk.rinzler.tv.util.sdk.compat.copyWithServerId
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.InvalidStatusException
 import org.jellyfin.sdk.api.client.extensions.artistsApi
@@ -122,7 +122,7 @@ fun ItemRowAdapter.retrieveResumeItems(api: ApiClient, query: GetResumeItemsRequ
 						item = item,
 						preferParentThumb = preferParentThumb,
 						staticHeight = isStaticHeight,
-						preferSeriesPoster = cardPresenter?.imageType == org.jellyfin.androidtv.constant.ImageType.POSTER
+						preferSeriesPoster = cardPresenter?.imageType == uk.rinzler.tv.constant.ImageType.POSTER
 					)
 				}
 			)
@@ -168,7 +168,7 @@ fun ItemRowAdapter.retrieveNextUpItems(api: ApiClient, query: GetNextUpRequest) 
 							item = item,
 							preferParentThumb = preferParentThumb,
 							staticHeight = false,
-							preferSeriesPoster = cardPresenter?.imageType == org.jellyfin.androidtv.constant.ImageType.POSTER
+							preferSeriesPoster = cardPresenter?.imageType == uk.rinzler.tv.constant.ImageType.POSTER
 						)
 					}
 				)
@@ -182,7 +182,7 @@ fun ItemRowAdapter.retrieveNextUpItems(api: ApiClient, query: GetNextUpRequest) 
 							item = item,
 							preferParentThumb = preferParentThumb,
 							staticHeight = isStaticHeight,
-							preferSeriesPoster = cardPresenter?.imageType == org.jellyfin.androidtv.constant.ImageType.POSTER
+							preferSeriesPoster = cardPresenter?.imageType == uk.rinzler.tv.constant.ImageType.POSTER
 						)
 					}
 				)
@@ -217,7 +217,7 @@ fun ItemRowAdapter.retrieveMergedContinueWatchingItems(
 
 			// Create a set of resume item IDs for quick lookup
 			val resumeItemIds = resumeItems.mapTo(HashSet()) { it.id }
-			
+
 			// Track series IDs from resume items to get their lastPlayedDate for next up matching
 			val seriesLastPlayedMap = mutableMapOf<java.util.UUID, java.time.LocalDateTime>()
 			resumeItems.forEach { item ->
@@ -255,7 +255,7 @@ fun ItemRowAdapter.retrieveMergedContinueWatchingItems(
 						item = item,
 						preferParentThumb = preferParentThumb,
 						staticHeight = isStaticHeight,
-						preferSeriesPoster = cardPresenter?.imageType == org.jellyfin.androidtv.constant.ImageType.POSTER
+						preferSeriesPoster = cardPresenter?.imageType == uk.rinzler.tv.constant.ImageType.POSTER
 					)
 				}
 			)
@@ -290,7 +290,7 @@ fun ItemRowAdapter.retrieveLatestMedia(api: ApiClient, query: GetLatestMediaRequ
 						preferParentThumb = preferParentThumb,
 						staticHeight = isStaticHeight,
 						selectAction = BaseRowItemSelectAction.ShowDetails,
-						preferSeriesPoster = cardPresenter?.imageType == org.jellyfin.androidtv.constant.ImageType.POSTER
+						preferSeriesPoster = cardPresenter?.imageType == uk.rinzler.tv.constant.ImageType.POSTER
 					)
 				}
 

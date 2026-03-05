@@ -1,13 +1,13 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.leanback.widget.RowPresenter
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverItemDto
-import org.jellyfin.androidtv.util.dp
-import org.jellyfin.androidtv.util.toHtmlSpanned
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverItemDto
+import uk.rinzler.tv.util.dp
+import uk.rinzler.tv.util.toHtmlSpanned
 
 class DetailsOverviewRowPresenter : RowPresenter() {
 	class ViewHolder(
@@ -17,12 +17,12 @@ class DetailsOverviewRowPresenter : RowPresenter() {
 
 		fun setItem(row: DetailsOverviewRow) {
 			val item = row.item
-			
+
 			binding.fdTitle.text = item.title ?: item.name ?: "Unknown"
 
 			binding.fdMainInfoRow.removeAllViews()
 			val context = binding.root.context
-			
+
 			val year = item.releaseDate?.take(4) ?: item.firstAirDate?.take(4)
 			if (!year.isNullOrEmpty()) {
 				addInfoText(year)
@@ -67,7 +67,7 @@ class DetailsOverviewRowPresenter : RowPresenter() {
 				setTextColor(context.getColor(R.color.white))
 				alpha = 0.7f
 			}
-			
+
 			if (binding.fdMainInfoRow.childCount > 0) {
 				val divider = TextView(context).apply {
 					this.text = "  •  "
@@ -77,7 +77,7 @@ class DetailsOverviewRowPresenter : RowPresenter() {
 				}
 				binding.fdMainInfoRow.addView(divider)
 			}
-			
+
 			binding.fdMainInfoRow.addView(textView)
 		}
 
@@ -85,7 +85,7 @@ class DetailsOverviewRowPresenter : RowPresenter() {
 			val item = row.item
 			val movieDetails = row.movieDetails
 			val tvDetails = row.tvDetails
-			
+
 			// Genres
 			val genres = when {
 				movieDetails != null -> movieDetails.genres.map { it.name }

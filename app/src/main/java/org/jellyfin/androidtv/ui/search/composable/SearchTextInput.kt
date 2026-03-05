@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.search.composable
+package uk.rinzler.tv.ui.search.composable
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -33,11 +33,11 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.base.LocalTextStyle
-import org.jellyfin.androidtv.ui.base.ProvideTextStyle
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.LocalTextStyle
+import uk.rinzler.tv.ui.base.ProvideTextStyle
 
 @Composable
 fun SearchTextInput(
@@ -80,7 +80,7 @@ fun SearchTextInput(
 						true
 					} else false
 				}
-				.onFocusChanged { 
+				.onFocusChanged {
 					if (!it.isFocused) {
 						isEditing = false
 						keyboardController?.hide()

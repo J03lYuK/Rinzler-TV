@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.integration.dream
+package uk.rinzler.tv.integration.dream
 
 import org.jellyfin.playback.core.element.ElementKey
 import org.jellyfin.playback.core.element.requiredElement

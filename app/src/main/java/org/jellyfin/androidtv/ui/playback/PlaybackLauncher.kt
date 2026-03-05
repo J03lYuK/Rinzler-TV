@@ -1,15 +1,15 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 import android.content.Context
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.data.syncplay.SyncPlayManager
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.navigation.ActivityDestinations
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.data.syncplay.SyncPlayManager
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.navigation.ActivityDestinations
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind
 import org.jellyfin.sdk.model.api.MediaType
@@ -56,13 +56,13 @@ class PlaybackLauncher(
 	) {
 		// Stop any playing theme music before starting playback
 		themeMusicPlayer.stop()
-		
+
 		val isAudio = items.any { it.mediaType == MediaType.AUDIO }
 
 		if (isAudio) {
 			mediaManager.playNow(context, items, itemsPosition, shuffle)
 			navigationRepository.navigate(Destinations.nowPlaying)
-			
+
 			// Sync with SyncPlay group if in one
 			syncPlayQueueIfNeeded(items, itemsPosition)
 		} else {
@@ -72,7 +72,7 @@ class PlaybackLauncher(
 			videoQueueManager.setCurrentMediaPosition(itemsPosition)
 
 			if (items.isEmpty()) return
-			
+
 			// Sync with SyncPlay group if in one
 			syncPlayQueueIfNeeded(items, itemsPosition)
 
@@ -87,16 +87,16 @@ class PlaybackLauncher(
 			}
 		}
 	}
-	
+
 	private fun syncPlayQueueIfNeeded(items: List<BaseItemDto>, startIndex: Int) {
 		// Only sync if user is in a SyncPlay group
 		val groupInfo = syncPlayManager.state.value.groupInfo
 		if (groupInfo == null) return
-		
+
 		// Get item IDs for the queue
 		val itemIds = items.mapNotNull { it.id }
 		if (itemIds.isEmpty()) return
-		
+
 		scope.launch {
 			syncPlayManager.setPlayQueue(
 				itemIds = itemIds,

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import android.view.View
-import org.jellyfin.androidtv.databinding.ItemJellyseerrRequestBinding
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrRequestDto
+import uk.rinzler.tv.databinding.ItemJellyseerrRequestBinding
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrRequestDto
 
 class RequestsAdapter :
 	ListAdapter<JellyseerrRequestDto, RequestsAdapter.ViewHolder>(DiffCallback()) {

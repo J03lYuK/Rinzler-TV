@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 import androidx.annotation.OptIn
 import androidx.media3.common.C
@@ -16,10 +16,10 @@ import kotlin.math.min
 
 /**
  * An AudioProcessor that delays audio samples by a configurable amount.
- * 
+ *
  * Positive delay values will delay the audio (make it play later),
  * which effectively makes video appear ahead of audio.
- * 
+ *
  * Negative delay values will advance the audio (skip initial samples),
  * which effectively makes audio appear ahead of video.
  */
@@ -29,17 +29,17 @@ class AudioDelayProcessor : AudioProcessor {
     private var inputAudioFormat = AudioFormat.NOT_SET
     private var outputAudioFormat = AudioFormat.NOT_SET
     private var isActive = false
-    
+
     private var delayMs: Long = 0
     private var pendingDelayMs: Long = 0
     private var delaySamples: Int = 0
-    
+
     private val delayBuffer: Queue<ByteBuffer> = LinkedList()
     private var bufferedSampleCount: Int = 0
     private var inputEnded = false
     private var outputBuffer = EMPTY_BUFFER
     private var skipSamples: Int = 0
-    
+
     /**
      * Sets the audio delay in milliseconds.
      * Positive values delay audio (audio plays later).
@@ -49,22 +49,22 @@ class AudioDelayProcessor : AudioProcessor {
         Timber.d("AudioDelayProcessor: Setting delay to %d ms", delayMs)
         this.pendingDelayMs = delayMs
     }
-    
+
     fun getDelayMs(): Long = delayMs
 
     override fun configure(inputAudioFormat: AudioFormat): AudioFormat {
         Timber.d("AudioDelayProcessor: configure called with format: %s", inputAudioFormat)
-        
+
         if (inputAudioFormat.encoding == C.ENCODING_INVALID) {
             return AudioFormat.NOT_SET
         }
-        
+
         this.inputAudioFormat = inputAudioFormat
         this.outputAudioFormat = inputAudioFormat
-        
+
         // Apply pending delay
         this.delayMs = pendingDelayMs
-        
+
         // Calculate delay in samples
         if (delayMs > 0) {
             // Positive delay: buffer audio samples
@@ -84,7 +84,7 @@ class AudioDelayProcessor : AudioProcessor {
             delaySamples = 0
             skipSamples = 0
         }
-        
+
         isActive = delayMs != 0L
         return outputAudioFormat
     }
@@ -95,7 +95,7 @@ class AudioDelayProcessor : AudioProcessor {
         if (!inputBuffer.hasRemaining()) {
             return
         }
-        
+
         // Handle negative delay (skip samples)
         if (skipSamples > 0) {
             val bytesToSkip = min(skipSamples, inputBuffer.remaining())
@@ -105,7 +105,7 @@ class AudioDelayProcessor : AudioProcessor {
                 return
             }
         }
-        
+
         // Handle positive delay (buffer samples)
         if (delaySamples > 0) {
             // Add input to delay buffer
@@ -115,7 +115,7 @@ class AudioDelayProcessor : AudioProcessor {
             copy.flip()
             delayBuffer.offer(copy)
             bufferedSampleCount += copy.remaining()
-            
+
             // Output from delay buffer if we have enough
             if (bufferedSampleCount >= delaySamples) {
                 val excess = bufferedSampleCount - delaySamples
@@ -132,29 +132,29 @@ class AudioDelayProcessor : AudioProcessor {
             outputBuffer = copy
         }
     }
-    
+
     private fun outputFromDelayBuffer(bytesToOutput: Int) {
         var remaining = bytesToOutput
         val output = ByteBuffer.allocateDirect(bytesToOutput).order(ByteOrder.nativeOrder())
-        
+
         while (remaining > 0 && delayBuffer.isNotEmpty()) {
             val buffer = delayBuffer.peek() ?: break
             val bytesToRead = min(remaining, buffer.remaining())
-            
+
             // Read bytes from buffer
             val oldLimit = buffer.limit()
             buffer.limit(buffer.position() + bytesToRead)
             output.put(buffer)
             buffer.limit(oldLimit)
-            
+
             remaining -= bytesToRead
             bufferedSampleCount -= bytesToRead
-            
+
             if (!buffer.hasRemaining()) {
                 delayBuffer.poll()
             }
         }
-        
+
         output.flip()
         outputBuffer = output
     }
@@ -180,15 +180,15 @@ class AudioDelayProcessor : AudioProcessor {
         delayBuffer.clear()
         bufferedSampleCount = 0
         inputEnded = false
-        
+
         // Apply pending delay
         delayMs = pendingDelayMs
-        
+
         // Recalculate delay/skip samples based on current format
         if (inputAudioFormat != AudioFormat.NOT_SET) {
             val bytesPerSample = getBytesPerSample(inputAudioFormat.encoding) * inputAudioFormat.channelCount
             val bytesPerMs = (inputAudioFormat.sampleRate * bytesPerSample) / 1000
-            
+
             if (delayMs > 0) {
                 // Positive delay: buffer audio samples
                 delaySamples = (delayMs * bytesPerMs).toInt()
@@ -204,7 +204,7 @@ class AudioDelayProcessor : AudioProcessor {
                 skipSamples = 0
             }
         }
-        
+
         isActive = delayMs != 0L
         Timber.d("AudioDelayProcessor flush: delay=%d ms, isActive=%b", delayMs, isActive)
     }
@@ -219,7 +219,7 @@ class AudioDelayProcessor : AudioProcessor {
         delayMs = 0
         pendingDelayMs = 0
     }
-    
+
     private fun getBytesPerSample(encoding: Int): Int {
         return when (encoding) {
             C.ENCODING_PCM_8BIT -> 1

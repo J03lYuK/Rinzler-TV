@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 interface PlaybackControllerNotifiable {
 	fun onCompletion()

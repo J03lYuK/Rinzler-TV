@@ -1,7 +1,7 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 import android.content.Context
-import org.jellyfin.androidtv.util.apiclient.Response
+import uk.rinzler.tv.util.apiclient.Response
 import org.jellyfin.sdk.model.api.BaseItemDto
 import java.util.UUID
 

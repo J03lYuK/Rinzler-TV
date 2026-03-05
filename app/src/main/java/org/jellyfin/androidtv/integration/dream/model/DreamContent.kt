@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.integration.dream.model
+package uk.rinzler.tv.integration.dream.model
 
 import android.graphics.Bitmap
 import org.jellyfin.playback.core.queue.QueueEntry

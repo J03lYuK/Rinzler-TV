@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -10,13 +10,13 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import kotlin.random.Random
 
 /**
  * A custom view that renders falling cherry blossom petals and flowers for spring.
  * Petals fall slower than snowflakes with gentle swaying motion.
- * 
+ *
  * Performance optimized for Android TV / Fire TV devices:
  * - Uses cached bitmap rendering from vector drawables
  * - Reduced particle count for low-powered devices
@@ -70,9 +70,9 @@ class PetalfallView @JvmOverloads constructor(
 
 	private val petals = mutableListOf<Petal>()
 	private val bees = mutableListOf<Bee>()
-	
+
 	private val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
-	
+
 	// Cached bitmaps for efficient drawing
 	private var cherryBlossomBitmap: Bitmap? = null
 	private var beeBitmap: Bitmap? = null
@@ -103,7 +103,7 @@ class PetalfallView @JvmOverloads constructor(
 		isFocusable = false
 		loadBitmaps()
 	}
-	
+
 	private fun loadBitmaps() {
 		ContextCompat.getDrawable(context, R.drawable.seasonal_cherry_blossom)?.let { drawable ->
 			cherryBlossomBitmap = drawable.toBitmap(48, 48)
@@ -112,7 +112,7 @@ class PetalfallView @JvmOverloads constructor(
 			beeBitmap = drawable.toBitmap(48, 48)
 		}
 	}
-	
+
 	private fun getScaledBitmap(source: Bitmap?, size: Int): Bitmap? {
 		source ?: return null
 		return bitmapCache.getOrPut(System.identityHashCode(source) * 1000 + size) {
@@ -126,7 +126,7 @@ class PetalfallView @JvmOverloads constructor(
 	fun startFalling() {
 		if (isFalling) return
 		isFalling = true
-		
+
 		initPetals()
 		startAnimation()
 	}
@@ -137,7 +137,7 @@ class PetalfallView @JvmOverloads constructor(
 	fun stopFalling() {
 		if (!isFalling) return
 		isFalling = false
-		
+
 		animationRunnable?.let { handler.removeCallbacks(it) }
 		animationRunnable = null
 		petals.clear()
@@ -149,7 +149,7 @@ class PetalfallView @JvmOverloads constructor(
 
 	private fun initPetals() {
 		petals.clear()
-		
+
 		if (width <= 0 || height <= 0) {
 			return
 		}
@@ -178,11 +178,11 @@ class PetalfallView @JvmOverloads constructor(
 
 	private fun startAnimation() {
 		animationRunnable?.let { handler.removeCallbacks(it) }
-		
+
 		animationRunnable = object : Runnable {
 			override fun run() {
 				if (!isFalling) return
-				
+
 				frameCount++
 				updatePetals()
 				// Only update bees every other frame
@@ -190,7 +190,7 @@ class PetalfallView @JvmOverloads constructor(
 					updateBees()
 				}
 				invalidate()
-				
+
 				// Target ~30fps
 				handler.postDelayed(this, 33L)
 			}
@@ -203,18 +203,18 @@ class PetalfallView @JvmOverloads constructor(
 
 		petals.forEachIndexed { index, petal ->
 			petal.y += petal.speed
-			
+
 			petal.driftIndex = (petal.driftIndex + petal.driftIndexSpeed) % SINE_TABLE_SIZE
 			petal.x += sineTable[petal.driftIndex] * petal.driftAmplitude * 0.012f
-			
+
 			petal.currentRotation += petal.rotationSpeed
 			if (petal.currentRotation > 360f) petal.currentRotation -= 360f
-			
+
 			if (petal.y > height + petal.size) {
 				val newPetal = createPetal(randomY = false)
 				petals[index] = newPetal
 			}
-			
+
 			if (petal.x < -petal.size) {
 				petal.x = width + petal.size
 			} else if (petal.x > width + petal.size) {
@@ -235,7 +235,7 @@ class PetalfallView @JvmOverloads constructor(
 		val iterator = bees.iterator()
 		while (iterator.hasNext()) {
 			val bee = iterator.next()
-			
+
 			when (bee.state) {
 				BeeState.WAITING -> {
 					bee.waitTimer--
@@ -249,10 +249,10 @@ class PetalfallView @JvmOverloads constructor(
 					} else {
 						bee.x -= bee.speed
 					}
-					
+
 					bee.buzzIndex = (bee.buzzIndex + bee.buzzIndexSpeed) % SINE_TABLE_SIZE
 					bee.y += sineTable[bee.buzzIndex] * bee.buzzAmplitude
-					
+
 					val reachedEnd = if (bee.fromLeft) bee.x > width + bee.size else bee.x < -bee.size
 					if (reachedEnd) {
 						bee.state = BeeState.FADING
@@ -273,17 +273,17 @@ class PetalfallView @JvmOverloads constructor(
 
 	private fun spawnBees() {
 		if (width <= 0 || height <= 0) return
-		
+
 		val usableHeight = height * 0.6f
 		val topMargin = height * 0.2f
 		val zoneHeight = usableHeight / beeCount
-		
+
 		repeat(beeCount) { i ->
 			val fromLeft = Random.nextBoolean()
 			val startX = if (fromLeft) -beeSize else width + beeSize
 			val baseY = topMargin + (zoneHeight * i) + (zoneHeight * 0.2f)
 			val y = baseY + Random.nextFloat() * (zoneHeight * 0.6f)
-			
+
 			bees.add(
 				Bee(
 					x = startX,
@@ -305,7 +305,7 @@ class PetalfallView @JvmOverloads constructor(
 
 	override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
 		super.onSizeChanged(w, h, oldw, oldh)
-		
+
 		if (isFalling && petals.isEmpty()) {
 			initPetals()
 		}
@@ -313,7 +313,7 @@ class PetalfallView @JvmOverloads constructor(
 
 	override fun onDraw(canvas: Canvas) {
 		super.onDraw(canvas)
-		
+
 		if (!isFalling) return
 
 		// Draw petals using cached bitmaps
@@ -359,7 +359,7 @@ class PetalfallView @JvmOverloads constructor(
 
 	override fun onVisibilityChanged(changedView: View, visibility: Int) {
 		super.onVisibilityChanged(changedView, visibility)
-		
+
 		if (visibility == VISIBLE && isFalling) {
 			if (animationRunnable == null) {
 				startAnimation()

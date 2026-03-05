@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.app.Dialog
 import android.content.Context
@@ -28,10 +28,10 @@ class QualitySelectionDialog(
 	private lateinit var hdButton: TextView
 	private lateinit var fourKButton: TextView
 	private lateinit var cancelButton: TextView
-	
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		
+
 		val rootContainer = LinearLayout(context).apply {
 			orientation = LinearLayout.VERTICAL
 			setBackgroundColor(Color.parseColor("#1F2937"))
@@ -41,7 +41,7 @@ class QualitySelectionDialog(
 				ViewGroup.LayoutParams.WRAP_CONTENT
 			)
 		}
-		
+
 		val titleText = TextView(context).apply {
 			text = "Select Quality"
 			textSize = 20f
@@ -56,7 +56,7 @@ class QualitySelectionDialog(
 			}
 		}
 		rootContainer.addView(titleText)
-		
+
 		val subtitleText = TextView(context).apply {
 			text = title
 			textSize = 14f
@@ -70,7 +70,7 @@ class QualitySelectionDialog(
 			}
 		}
 		rootContainer.addView(subtitleText)
-		
+
 		val buttonsContainer = LinearLayout(context).apply {
 			orientation = LinearLayout.VERTICAL
 			layoutParams = LinearLayout.LayoutParams(
@@ -78,10 +78,10 @@ class QualitySelectionDialog(
 				LinearLayout.LayoutParams.WRAP_CONTENT
 			)
 		}
-		
+
 		val hdLabel = getQualityLabel(false, hdStatus)
 		val isHdDisabled = !canRequestHd || isStatusBlocked(hdStatus)
-		
+
 		hdButton = createButton(
 			text = hdLabel,
 			isEnabled = !isHdDisabled,
@@ -91,10 +91,10 @@ class QualitySelectionDialog(
 			dismiss()
 		}
 		buttonsContainer.addView(hdButton)
-		
+
 		val fourKLabel = getQualityLabel(true, status4k)
 		val is4kDisabled = !canRequest4k || isStatusBlocked(status4k)
-		
+
 		fourKButton = createButton(
 			text = fourKLabel,
 			isEnabled = !is4kDisabled,
@@ -105,9 +105,9 @@ class QualitySelectionDialog(
 		}
 		(fourKButton.layoutParams as LinearLayout.LayoutParams).topMargin = 12.dp(context)
 		buttonsContainer.addView(fourKButton)
-		
+
 		rootContainer.addView(buttonsContainer)
-		
+
 		cancelButton = createButton(
 			text = "Cancel",
 			isEnabled = true,
@@ -117,9 +117,9 @@ class QualitySelectionDialog(
 		}
 		(cancelButton.layoutParams as LinearLayout.LayoutParams).topMargin = 24.dp(context)
 		rootContainer.addView(cancelButton)
-		
+
 		setContentView(rootContainer)
-		
+
 		window?.apply {
 			setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 			setLayout(
@@ -128,17 +128,17 @@ class QualitySelectionDialog(
 			)
 			setGravity(Gravity.CENTER)
 		}
-		
+
 		val firstEnabled = when {
 			!isHdDisabled -> hdButton
 			!is4kDisabled -> fourKButton
 			else -> cancelButton
 		}
 		firstEnabled.requestFocus()
-		
+
 		setupFocusNavigation()
 	}
-	
+
 	private fun getQualityLabel(is4k: Boolean, status: Int?): String {
 		val qualityPrefix = if (is4k) "4K" else "HD"
 		return when (status) {
@@ -150,11 +150,11 @@ class QualitySelectionDialog(
 			else -> "Request $qualityPrefix"
 		}
 	}
-	
+
 	private fun isStatusBlocked(status: Int?): Boolean {
 		return status != null && status >= 2 && status != 4
 	}
-	
+
 	private fun createButton(
 		text: String,
 		isEnabled: Boolean,
@@ -168,7 +168,7 @@ class QualitySelectionDialog(
 			setTypeface(typeface, android.graphics.Typeface.BOLD)
 			gravity = Gravity.CENTER
 			setPadding(24.dp(context), 16.dp(context), 24.dp(context), 16.dp(context))
-			
+
 			background = android.graphics.drawable.GradientDrawable().apply {
 				setColor(
 					when {
@@ -179,12 +179,12 @@ class QualitySelectionDialog(
 				)
 				cornerRadius = 8.dp(context).toFloat()
 			}
-			
+
 			alpha = if (isEnabled) 1f else 0.5f
 			isFocusable = isEnabled
 			isFocusableInTouchMode = isEnabled
 			this.isEnabled = isEnabled
-			
+
 			if (isEnabled) {
 				setOnClickListener { onClick() }
 				setOnFocusChangeListener { v, hasFocus ->
@@ -198,34 +198,34 @@ class QualitySelectionDialog(
 					)
 				}
 			}
-			
+
 			layoutParams = LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.MATCH_PARENT,
 				LinearLayout.LayoutParams.WRAP_CONTENT
 			)
 		}
 	}
-	
+
 	private fun setupFocusNavigation() {
 		val focusableButtons = listOfNotNull(
 			hdButton.takeIf { it.isEnabled },
 			fourKButton.takeIf { it.isEnabled },
 			cancelButton
 		)
-		
+
 		focusableButtons.forEachIndexed { index, button ->
 			button.id = View.generateViewId()
 		}
-		
+
 		focusableButtons.forEachIndexed { index, button ->
 			val prevButton = focusableButtons.getOrNull(index - 1)
 			val nextButton = focusableButtons.getOrNull(index + 1)
-			
+
 			button.nextFocusUpId = prevButton?.id ?: button.id
 			button.nextFocusDownId = nextButton?.id ?: button.id
 		}
 	}
-	
+
 	override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
 		when (keyCode) {
 			KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
@@ -235,7 +235,7 @@ class QualitySelectionDialog(
 		}
 		return super.onKeyDown(keyCode, event)
 	}
-	
+
 	private fun Int.dp(context: Context): Int {
 		return (this * context.resources.displayMetrics.density).toInt()
 	}

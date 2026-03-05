@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.service
+package uk.rinzler.tv.data.service
 
 import android.content.Context
 import android.os.Build
@@ -14,14 +14,14 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.auth.model.Server
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.util.BitmapBlur
-import org.jellyfin.androidtv.util.apiclient.getUrl
-import org.jellyfin.androidtv.util.apiclient.itemBackdropImages
-import org.jellyfin.androidtv.util.apiclient.parentBackdropImages
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.util.BitmapBlur
+import uk.rinzler.tv.util.apiclient.getUrl
+import uk.rinzler.tv.util.apiclient.itemBackdropImages
+import uk.rinzler.tv.util.apiclient.parentBackdropImages
+import uk.rinzler.tv.util.sdk.ApiClientFactory
 import org.jellyfin.sdk.Jellyfin
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.imageApi
@@ -68,7 +68,7 @@ class BackgroundService(
 	val currentBackground get() = _currentBackground.asStateFlow()
 	val blurContext get() = _blurContext.asStateFlow()
 	val enabled get() = _enabled.asStateFlow()
-	
+
 	/**
 	 * Returns true if blur should be applied via Compose modifier (Android 12+),
 	 * false if blur is pre-applied to bitmap (Android 11 and below).
@@ -91,7 +91,7 @@ class BackgroundService(
 
 		// Get the appropriate API client for this item's server
 		val itemApi = apiClientFactory.getApiClientForItemOrFallback(baseItem, api)
-		
+
 		// Get all backdrop urls
 		val backdropUrls = (baseItem.itemBackdropImages + baseItem.parentBackdropImages)
 			.map { it.getUrl(itemApi) }
@@ -141,7 +141,7 @@ class BackgroundService(
 		if (backdropUrls.isEmpty()) return clearBackgrounds()
 
 		_enabled.value = true
-		
+
 		val blurAmount = when (_blurContext.value) {
 			BlurContext.DETAILS -> userSettingPreferences[UserSettingPreferences.detailsBackgroundBlurAmount]
 			BlurContext.BROWSING -> userSettingPreferences[UserSettingPreferences.browsingBackgroundBlurAmount]
@@ -154,7 +154,7 @@ class BackgroundService(
 				val bitmap = imageLoader.execute(
 					request = ImageRequest.Builder(context).data(url).build()
 				).image?.toBitmap()
-				
+
 				if (bitmap != null && !useComposeBlur && blurAmount > 0) {
 					BitmapBlur.blur(bitmap, blurAmount).asImageBitmap()
 				} else {

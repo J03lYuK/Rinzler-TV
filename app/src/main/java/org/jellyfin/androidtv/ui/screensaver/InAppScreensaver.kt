@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.screensaver
+package uk.rinzler.tv.ui.screensaver
 
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -12,9 +12,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import org.jellyfin.androidtv.integration.dream.composable.DreamHost
-import org.jellyfin.androidtv.ui.InteractionTrackerViewModel
-import org.jellyfin.androidtv.ui.base.dialog.DialogBase
+import uk.rinzler.tv.integration.dream.composable.DreamHost
+import uk.rinzler.tv.ui.InteractionTrackerViewModel
+import uk.rinzler.tv.ui.base.dialog.DialogBase
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

@@ -1,8 +1,8 @@
-package org.jellyfin.androidtv.auth.store
+package uk.rinzler.tv.auth.store
 
 import android.content.Context
-import org.jellyfin.androidtv.auth.model.AuthenticationSortBy
-import org.jellyfin.androidtv.preference.constant.UserSelectBehavior
+import uk.rinzler.tv.auth.model.AuthenticationSortBy
+import uk.rinzler.tv.preference.constant.UserSelectBehavior
 import org.jellyfin.preference.booleanPreference
 import org.jellyfin.preference.enumPreference
 import org.jellyfin.preference.store.SharedPreferenceStore

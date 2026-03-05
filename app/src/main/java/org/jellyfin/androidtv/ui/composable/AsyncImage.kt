@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.composable
+package uk.rinzler.tv.ui.composable
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
@@ -13,8 +13,8 @@ import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.viewinterop.AndroidView
-import org.jellyfin.androidtv.ui.AsyncImageView
-import org.jellyfin.androidtv.util.BlurHashDecoder
+import uk.rinzler.tv.ui.AsyncImageView
+import uk.rinzler.tv.util.BlurHashDecoder
 
 private data class AsyncImageState(
 	val url: String?,

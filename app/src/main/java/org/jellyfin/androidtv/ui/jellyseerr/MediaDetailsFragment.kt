@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -33,26 +33,26 @@ import coil3.toBitmap
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.Dispatchers
-import org.jellyfin.androidtv.util.toHtmlSpanned
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverItemDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrMovieDetailsDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrRequestDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrTvDetailsDto
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.itemdetail.v2.DetailActionButton
-import org.jellyfin.androidtv.ui.itemhandling.JellyseerrMediaBaseRowItem
-import org.jellyfin.androidtv.ui.itemhandling.JellyseerrPersonBaseRowItem
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.NavbarPosition
-import org.jellyfin.androidtv.ui.shared.toolbar.LeftSidebarNavigation
-import org.jellyfin.androidtv.ui.shared.toolbar.MainToolbar
-import org.jellyfin.androidtv.ui.shared.toolbar.MainToolbarActiveButton
-import org.jellyfin.androidtv.util.dp
+import uk.rinzler.tv.util.toHtmlSpanned
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverItemDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrMovieDetailsDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrRequestDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrTvDetailsDto
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.itemdetail.v2.DetailActionButton
+import uk.rinzler.tv.ui.itemhandling.JellyseerrMediaBaseRowItem
+import uk.rinzler.tv.ui.itemhandling.JellyseerrPersonBaseRowItem
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.NavbarPosition
+import uk.rinzler.tv.ui.shared.toolbar.LeftSidebarNavigation
+import uk.rinzler.tv.ui.shared.toolbar.MainToolbar
+import uk.rinzler.tv.ui.shared.toolbar.MainToolbarActiveButton
+import uk.rinzler.tv.util.dp
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -72,7 +72,7 @@ class MediaDetailsFragment : Fragment() {
 	private val navigationRepository: NavigationRepository by inject()
 	private val apiClient: ApiClient by inject()
 	private val userPreferences: UserPreferences by inject()
-	
+
 	private var selectedItem: JellyseerrDiscoverItemDto? = null
 	private var movieDetails: JellyseerrMovieDetailsDto? = null
 	private var tvDetails: JellyseerrTvDetailsDto? = null
@@ -86,7 +86,7 @@ class MediaDetailsFragment : Fragment() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		
+
 		// Get item from arguments (passed via navigation system)
 		val itemJson = arguments?.getString("item")
 		if (itemJson != null) {
@@ -96,7 +96,7 @@ class MediaDetailsFragment : Fragment() {
 				Timber.e(e, "Failed to deserialize item from arguments")
 			}
 		}
-		
+
 		if (selectedItem == null) {
 			Timber.e("MediaDetailsFragment: No item data found in arguments")
 			Toast.makeText(requireContext(), "Error: Item data not found", Toast.LENGTH_SHORT).show()
@@ -111,7 +111,7 @@ class MediaDetailsFragment : Fragment() {
 		savedInstanceState: Bundle?
 	): View {
 		sidebarId = View.generateViewId()
-		
+
 		val mainContainer = object : FrameLayout(requireContext()) {
 			override fun dispatchKeyEvent(event: KeyEvent): Boolean {
 				if (event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
@@ -161,9 +161,9 @@ class MediaDetailsFragment : Fragment() {
 
 		scrollView.addView(rootLayout)
 		rootLayout.addView(createBackdropWithHeaderSection())
-		
+
 		mainContainer.addView(scrollView)
-		
+
 		when (navbarPosition) {
 			NavbarPosition.LEFT -> {
 				val sidebarContainer = FrameLayout(requireContext()).apply {
@@ -175,7 +175,7 @@ class MediaDetailsFragment : Fragment() {
 					}
 					elevation = 8f * resources.displayMetrics.density
 				}
-				
+
 				val sidebarOverlay = ComposeView(requireContext()).apply {
 					id = sidebarId
 					layoutParams = FrameLayout.LayoutParams(
@@ -202,7 +202,7 @@ class MediaDetailsFragment : Fragment() {
 					}
 					elevation = 8f * resources.displayMetrics.density
 				}
-				
+
 				val topToolbarOverlay = ComposeView(requireContext()).apply {
 					id = sidebarId
 					layoutParams = FrameLayout.LayoutParams(
@@ -220,7 +220,7 @@ class MediaDetailsFragment : Fragment() {
 				mainContainer.addView(topToolbarContainer)
 			}
 		}
-		
+
 		return mainContainer
 	}
 
@@ -273,9 +273,9 @@ class MediaDetailsFragment : Fragment() {
 				LinearLayout.LayoutParams.WRAP_CONTENT
 			)
 		}
-		
+
 		container.addView(createBackdropSection())
-		
+
 		val posterWrapper = FrameLayout(requireContext()).apply {
 			layoutParams = FrameLayout.LayoutParams(
 				FrameLayout.LayoutParams.WRAP_CONTENT,
@@ -287,7 +287,7 @@ class MediaDetailsFragment : Fragment() {
 			elevation = 8.dp(context).toFloat()
 		}
 		posterWrapper.addView(createPosterSection())
-		
+
 		val headerWrapper = LinearLayout(requireContext()).apply {
 			orientation = LinearLayout.VERTICAL
 			layoutParams = FrameLayout.LayoutParams(
@@ -297,7 +297,7 @@ class MediaDetailsFragment : Fragment() {
 				topMargin = 196.dp(context)
 			}
 		}
-		
+
 		val gradientFade = View(requireContext()).apply {
 			layoutParams = LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.MATCH_PARENT,
@@ -312,7 +312,7 @@ class MediaDetailsFragment : Fragment() {
 			)
 		}
 		headerWrapper.addView(gradientFade)
-		
+
 		val headerContent = LinearLayout(requireContext()).apply {
 			orientation = LinearLayout.VERTICAL
 			layoutParams = LinearLayout.LayoutParams(
@@ -322,10 +322,10 @@ class MediaDetailsFragment : Fragment() {
 			setBackgroundColor(Color.parseColor("#111827"))
 			setPadding(50.dp(context), 0, 50.dp(context), 8.dp(context))
 		}
-		
+
 		headerWrapper.addView(headerContent)
 		container.addView(headerWrapper)
-		
+
 		val contentWrapper = LinearLayout(requireContext()).apply {
 			orientation = LinearLayout.VERTICAL
 			layoutParams = FrameLayout.LayoutParams(
@@ -345,7 +345,7 @@ class MediaDetailsFragment : Fragment() {
 		contentWrapper.addView(createSimilarSection())
 		contentWrapper.addView(createKeywordsSection())
 		container.addView(contentWrapper)
-		
+
 		val titleWrapper = FrameLayout(requireContext()).apply {
 			layoutParams = FrameLayout.LayoutParams(
 				FrameLayout.LayoutParams.MATCH_PARENT,
@@ -359,10 +359,10 @@ class MediaDetailsFragment : Fragment() {
 		titleWrapper.addView(createTitleSection())
 		container.addView(titleWrapper)
 		container.addView(posterWrapper)
-		
+
 		return container
 	}
-	
+
 	private fun createTitleSection(): View {
 		val container = LinearLayout(requireContext()).apply {
 			orientation = LinearLayout.VERTICAL
@@ -373,13 +373,13 @@ class MediaDetailsFragment : Fragment() {
 		}
 
 		container.addView(createStatusBadge())
-		
+
 		val title = when {
 			movieDetails != null -> movieDetails!!.title
 			tvDetails != null -> tvDetails!!.name
 			else -> selectedItem?.title ?: "Unknown"
 		}
-		
+
 		val year = when {
 			movieDetails != null -> movieDetails!!.releaseDate?.take(4)
 			tvDetails != null -> tvDetails!!.firstAirDate?.take(4)
@@ -401,14 +401,14 @@ class MediaDetailsFragment : Fragment() {
 		container.addView(titleText)
 
 		container.addView(createAttributesSection())
-		
+
 		return container
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		loadFullDetails()
-		
+
 		// Focus will be handled automatically by the first focusable element
 		view.post {
 			requestButton?.requestFocus()
@@ -427,7 +427,7 @@ class MediaDetailsFragment : Fragment() {
 					tvDetails = viewModel.getTvDetails(item.id).getOrNull()
 					Timber.d("Loaded TV details: ${tvDetails?.name}")
 				}
-				
+
 				view?.let { refreshUI() }
 			} catch (e: Exception) {
 				Timber.e(e, "Failed to load full details")
@@ -440,12 +440,12 @@ class MediaDetailsFragment : Fragment() {
 		val mainContainer = view as? FrameLayout
 		val scrollView = mainContainer?.getChildAt(0) as? ScrollView
 		val rootLayout = scrollView?.getChildAt(0) as? LinearLayout
-		
+
 		if (rootLayout != null) {
 			Timber.d("MediaDetailsFragment: Refreshing UI with full details")
 			rootLayout.removeAllViews()
 			rootLayout.addView(createBackdropWithHeaderSection())
-			
+
 			view?.post {
 				requestButton?.requestFocus()
 			}
@@ -482,7 +482,7 @@ class MediaDetailsFragment : Fragment() {
 					.build()
 				val result = imageLoader.execute(request)
 				backdropImage.setImageDrawable(result.image?.asDrawable(resources))
-				
+
 				// Note: BackgroundService requires BaseItemDto or Server, cannot use TMDB URLs
 			} catch (e: Exception) {
 				Timber.e(e, "Failed to load backdrop")
@@ -499,7 +499,7 @@ class MediaDetailsFragment : Fragment() {
 
 		container.addView(backdropImage)
 		container.addView(gradientOverlay)
-		
+
 		return container
 	}
 
@@ -556,12 +556,12 @@ class MediaDetailsFragment : Fragment() {
 		val mediaInfo = movieDetails?.mediaInfo ?: tvDetails?.mediaInfo ?: selectedItem?.mediaInfo
 		val status = mediaInfo?.status
 		val status4k = mediaInfo?.status4k
-		
+
 		// Check for declined requests
 		val requests = mediaInfo?.requests
 		val hdDeclined = requests?.any { !it.is4k && it.status == 3 } == true
 		val fourKDeclined = requests?.any { it.is4k && it.status == 3 } == true
-		
+
 		// Determine what to show based on both statuses
 		val (statusText, bgColor) = when {
 			// Both HD and 4K declined
@@ -570,72 +570,72 @@ class MediaDetailsFragment : Fragment() {
 			fourKDeclined -> "4K DECLINED" to Color.parseColor("#EF4444") // red-500
 			// Only HD declined
 			hdDeclined -> "HD DECLINED" to Color.parseColor("#EF4444") // red-500
-			
+
 			// Both HD and 4K blacklisted
 			status == 6 && status4k == 6 -> "HD + 4K BLACKLISTED" to Color.parseColor("#DC2626") // red-600
 			// Only 4K blacklisted
 			status4k == 6 -> "4K BLACKLISTED" to Color.parseColor("#DC2626") // red-600
 			// Only HD blacklisted
 			status == 6 -> "HD BLACKLISTED" to Color.parseColor("#DC2626") // red-600
-			
+
 			// Both HD and 4K available
 			status == 5 && status4k == 5 -> "HD + 4K AVAILABLE" to Color.parseColor("#22C55E") // green-500
 			// Only 4K available
 			status4k == 5 -> "4K AVAILABLE" to Color.parseColor("#22C55E") // green-500
 			// Only HD available
 			status == 5 -> "HD AVAILABLE" to Color.parseColor("#22C55E") // green-500
-			
+
 			// Both HD and 4K partially available
 			status == 4 && status4k == 4 -> "HD + 4K PARTIAL" to Color.parseColor("#22C55E") // green-500
 			// Only 4K partially available
 			status4k == 4 -> "4K PARTIAL" to Color.parseColor("#22C55E") // green-500
 			// Only HD partially available
 			status == 4 -> "HD PARTIAL" to Color.parseColor("#22C55E") // green-500
-			
+
 			// Both HD and 4K processing
 			status == 3 && status4k == 3 -> "HD + 4K PROCESSING" to Color.parseColor("#6366F1") // indigo-500
 			// Only 4K processing
 			status4k == 3 -> "4K PROCESSING" to Color.parseColor("#6366F1") // indigo-500
 			// Only HD processing
 			status == 3 -> "HD PROCESSING" to Color.parseColor("#6366F1") // indigo-500
-			
+
 			// Both HD and 4K pending
 			status == 2 && status4k == 2 -> "HD + 4K PENDING" to Color.parseColor("#EAB308") // yellow-500
 			// Only 4K pending
 			status4k == 2 -> "4K PENDING" to Color.parseColor("#EAB308") // yellow-500
 			// Only HD pending
 			status == 2 -> "HD PENDING" to Color.parseColor("#EAB308") // yellow-500
-			
+
 			// Both HD and 4K unknown
 			status == 1 && status4k == 1 -> "HD + 4K UNKNOWN" to Color.parseColor("#9CA3AF") // gray-400
 			// Only 4K unknown
 			status4k == 1 -> "4K UNKNOWN" to Color.parseColor("#9CA3AF") // gray-400
 			// Only HD unknown
 			status == 1 -> "HD UNKNOWN" to Color.parseColor("#9CA3AF") // gray-400
-			
+
 			// Not requested
 			else -> "NOT REQUESTED" to Color.parseColor("#6B7280") // gray-500
 		}
-		
+
 		val badge = TextView(requireContext()).apply {
 			text = statusText
 			textSize = 10f  // Reduced from 12f
 			setTextColor(Color.WHITE)
 			setTypeface(typeface, android.graphics.Typeface.BOLD)
 			setPadding(16.dp(context), 6.dp(context), 16.dp(context), 6.dp(context))
-			
+
 			// Create pill-shaped background
 			background = android.graphics.drawable.GradientDrawable().apply {
 				setColor(bgColor)
 				cornerRadius = 100.dp(context).toFloat()  // Large radius for pill shape
 			}
-			
+
 			layoutParams = LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.WRAP_CONTENT,
 				LinearLayout.LayoutParams.WRAP_CONTENT
 			)
 		}
-		
+
 		return badge
 	}
 
@@ -655,11 +655,11 @@ class MediaDetailsFragment : Fragment() {
 		}
 
 		val attributes = mutableListOf<String>()
-		
+
 		movieDetails?.runtime?.let { runtime ->
 			attributes.add("$runtime min")
 		}
-		
+
 		val genres = movieDetails?.genres?.take(3)?.map { it.name }
 			?: tvDetails?.genres?.take(3)?.map { it.name }
 			?: emptyList()
@@ -674,9 +674,9 @@ class MediaDetailsFragment : Fragment() {
 				LinearLayout.LayoutParams.WRAP_CONTENT
 			)
 		}
-		
+
 		container.addView(attributesText)
-		
+
 		// Add tagline below genres if available
 		val tagline = movieDetails?.tagline?.takeIf { it.isNotEmpty() } ?: tvDetails?.tagline?.takeIf { it.isNotEmpty() }
 		if (tagline != null) {
@@ -694,7 +694,7 @@ class MediaDetailsFragment : Fragment() {
 			}
 			container.addView(taglineText)
 		}
-		
+
 		return container
 	}
 
@@ -781,7 +781,7 @@ class MediaDetailsFragment : Fragment() {
 		requestButton = composeView
 		return composeView
 	}
-	
+
 	/**
 	 * Get a combined status label when nothing is requestable
 	 */
@@ -803,7 +803,7 @@ class MediaDetailsFragment : Fragment() {
 			else -> "Unavailable"
 		}
 	}
-	
+
 	/**
 	 * Handle request button click - show quality selection if both options available
 	 */
@@ -814,12 +814,12 @@ class MediaDetailsFragment : Fragment() {
 			"movie" -> movieDetails?.title ?: item.title ?: item.name ?: "Unknown"
 			else -> tvDetails?.name ?: item.name ?: item.title ?: "Unknown"
 		}
-		
+
 		lifecycleScope.launch {
 			val (userCan4k, has4kServer, hasHdServer) = checkQualityAvailability(mediaType)
 			val hdAvailable = canRequestHd && hasHdServer
 			val fourKAvailable = canRequest4k && userCan4k && has4kServer
-			
+
 			if (hdAvailable && fourKAvailable) {
 				// Both available - show quality selection dialog
 				val dialog = QualitySelectionDialog(
@@ -849,7 +849,7 @@ class MediaDetailsFragment : Fragment() {
 			}
 		}
 	}
-	
+
 	/**
 	 * Check if 4K requests are possible for the given media type
 	 * Returns (userHas4kPermission, server4kAvailable, serverHdAvailable)
@@ -864,7 +864,7 @@ class MediaDetailsFragment : Fragment() {
 				"tv" -> user?.canRequest4kTv() ?: false
 				else -> user?.canRequest4k() ?: false
 			}
-			
+
 			val (has4kServer, hasHdServer) = when (mediaType) {
 				"movie" -> {
 					val radarrResult = viewModel.getRadarrServers()
@@ -878,7 +878,7 @@ class MediaDetailsFragment : Fragment() {
 				}
 				else -> Pair(false, false)
 			}
-			
+
 			Triple(userCan4k, has4kServer, hasHdServer)
 		} catch (e: Exception) {
 			Timber.e(e, "Failed to check quality availability")
@@ -948,7 +948,7 @@ class MediaDetailsFragment : Fragment() {
 			)
 		}
 		overviewTextGroup.addView(overviewText)
-		
+
 		// Add action buttons below overview
 		overviewTextGroup.addView(createActionButtonsSection())
 
@@ -957,7 +957,7 @@ class MediaDetailsFragment : Fragment() {
 
 		// Right side - Media facts
 		container.addView(createMediaFactsSection())
-		
+
 		return container
 	}
 
@@ -967,7 +967,7 @@ class MediaDetailsFragment : Fragment() {
 	 */
 	private fun createMediaFactsSection(): View {
 		Timber.d("MediaDetailsFragment: Creating metadata - movieDetails: ${movieDetails != null}, tvDetails: ${tvDetails != null}, status: ${movieDetails?.status ?: tvDetails?.status}, tagline: ${movieDetails?.tagline ?: tvDetails?.tagline}")
-		
+
 		val container = LinearLayout(requireContext()).apply {
 			orientation = LinearLayout.VERTICAL
 			layoutParams = LinearLayout.LayoutParams(
@@ -982,7 +982,7 @@ class MediaDetailsFragment : Fragment() {
 
 		// Collect all fact rows first
 		val factRows = mutableListOf<Pair<String, String>>()
-		
+
 		// Add rating if available
 		val voteAverage = movieDetails?.voteAverage ?: tvDetails?.voteAverage ?: selectedItem?.voteAverage
 		if (voteAverage != null && voteAverage > 0) {
@@ -1005,7 +1005,7 @@ class MediaDetailsFragment : Fragment() {
 					factRows.add("First Air Date" to formattedDate)
 				}
 			}
-			
+
 			// Last Air Date (if available)
 			currentTvDetails.lastAirDate?.let { date ->
 				val formattedDate = formatDate(date)
@@ -1013,7 +1013,7 @@ class MediaDetailsFragment : Fragment() {
 					factRows.add("Last Air Date" to formattedDate)
 				}
 			}
-			
+
 			// Number of Seasons
 			currentTvDetails.numberOfSeasons?.let { seasons ->
 				factRows.add("Seasons" to seasons.toString())
@@ -1030,7 +1030,7 @@ class MediaDetailsFragment : Fragment() {
 					factRows.add("Release Date" to formattedDate)
 				}
 			}
-			
+
 			// Revenue
 			currentMovieDetails.revenue?.let { revenue ->
 				if (revenue > 0) {
@@ -1068,7 +1068,7 @@ class MediaDetailsFragment : Fragment() {
 		if (!studios.isNullOrEmpty()) {
 			factRows.add("Networks" to studios.joinToString(", "))
 		}
-		
+
 		// Add rows with appropriate corner radius
 		factRows.forEachIndexed { index, (label, value) ->
 			val isFirst = index == 0
@@ -1095,7 +1095,7 @@ class MediaDetailsFragment : Fragment() {
 			background = android.graphics.drawable.GradientDrawable().apply {
 				setColor(Color.TRANSPARENT) // Transparent background
 				setStroke(1.dp(context), Color.parseColor("#374151")) // gray-700 border
-				
+
 				// Set corner radii: [top-left, top-right, bottom-right, bottom-left]
 				val radius = 8.dp(context).toFloat()
 				val radii = floatArrayOf(
@@ -1151,7 +1151,7 @@ class MediaDetailsFragment : Fragment() {
 			clipToPadding = false
 			id = View.generateViewId()
 		}
-		
+
 		castSection = container
 
 		val castHeading = TextView(requireContext()).apply {
@@ -1170,9 +1170,9 @@ class MediaDetailsFragment : Fragment() {
 
 		val castList = movieDetails?.credits?.cast?.take(ITEMS_PER_SECTION)
 			?: tvDetails?.credits?.cast?.take(ITEMS_PER_SECTION)
-		
+
 		Timber.d("MediaDetailsFragment: Creating cast section - castList size: ${castList?.size}, movieDetails: ${movieDetails != null}, tvDetails: ${tvDetails != null}")
-		
+
 		if (!castList.isNullOrEmpty()) {
 			val horizontalScrollView = android.widget.HorizontalScrollView(requireContext()).apply {
 				layoutParams = LinearLayout.LayoutParams(
@@ -1181,7 +1181,7 @@ class MediaDetailsFragment : Fragment() {
 				)
 				isHorizontalScrollBarEnabled = false
 			}
-			
+
 			val castRow = LinearLayout(requireContext()).apply {
 				orientation = LinearLayout.HORIZONTAL
 				layoutParams = LinearLayout.LayoutParams(
@@ -1191,7 +1191,7 @@ class MediaDetailsFragment : Fragment() {
 				clipChildren = false
 				clipToPadding = false
 			}
-			
+
 			val castPresenter = CardPresenter(true, 130)
 			castList.forEach { cast ->
 				val rowItem = JellyseerrPersonBaseRowItem(cast)
@@ -1213,10 +1213,10 @@ class MediaDetailsFragment : Fragment() {
 				}
 				castRow.addView(vh.view)
 			}
-			
+
 			horizontalScrollView.addView(castRow)
 			container.addView(horizontalScrollView)
-			
+
 			requestButton?.nextFocusDownId = castRow.getChildAt(0)?.id ?: container.id
 		} else {
 			val noCast = TextView(requireContext()).apply {
@@ -1233,7 +1233,7 @@ class MediaDetailsFragment : Fragment() {
 
 		return container
 	}
-	
+
 	/**
 	 * Creates a paginated horizontal card row. Loads page 1 immediately,
 	 * then fetches subsequent pages when focus reaches the last 2 cards.
@@ -1538,7 +1538,7 @@ class MediaDetailsFragment : Fragment() {
 
 			currentRow?.addView(keywordTag)
 			itemsInRow++
-			
+
 			// Start new row if we've filled the width (this will wrap naturally with horizontal scroll if needed)
 			// For now, we'll use a simple max items per row approach
 			if (itemsInRow >= 5) {
@@ -1569,7 +1569,7 @@ class MediaDetailsFragment : Fragment() {
 			val userResult = viewModel.getCurrentUser()
 			val user = userResult.getOrNull()
 			val hasAdvanced = user?.hasAdvancedRequestPermission() ?: false
-			
+
 			if (hasAdvanced) {
 				// Show advanced options dialog before proceeding
 				showAdvancedOptionsDialog(item, is4k)
@@ -1579,7 +1579,7 @@ class MediaDetailsFragment : Fragment() {
 			}
 		}
 	}
-	
+
 	/**
 	 * Show advanced request options dialog for users with REQUEST_ADVANCED permission
 	 */
@@ -1589,7 +1589,7 @@ class MediaDetailsFragment : Fragment() {
 			isMovie -> movieDetails?.title ?: item.title ?: item.name ?: "Unknown"
 			else -> tvDetails?.name ?: item.name ?: item.title ?: "Unknown"
 		}
-		
+
 		lifecycleScope.launch {
 			val serverExists = try {
 				if (isMovie) {
@@ -1603,7 +1603,7 @@ class MediaDetailsFragment : Fragment() {
 				Timber.e(e, "Failed to check server availability")
 				false
 			}
-			
+
 			if (!serverExists) {
 				if (!isAdded) return@launch
 				val quality = if (is4k) "4K" else "HD (1080p)"
@@ -1615,7 +1615,7 @@ class MediaDetailsFragment : Fragment() {
 				).show()
 				return@launch
 			}
-			
+
 			val dialog = AdvancedRequestOptionsDialog(
 				context = requireContext(),
 				title = title,
@@ -1635,7 +1635,7 @@ class MediaDetailsFragment : Fragment() {
 			dialog.show()
 		}
 	}
-	
+
 	/**
 	 * Load server details for the advanced options dialog
 	 */
@@ -1653,7 +1653,7 @@ class MediaDetailsFragment : Fragment() {
 				}
 				val detailsResult = viewModel.getRadarrServerDetails(server.id)
 				val details = detailsResult.getOrNull() ?: return null
-				
+
 				AdvancedRequestOptionsDialog.ServerDetailsData(
 					serverId = server.id,
 					profiles = details.profiles,
@@ -1670,7 +1670,7 @@ class MediaDetailsFragment : Fragment() {
 				}
 				val detailsResult = viewModel.getSonarrServerDetails(server.id)
 				val details = detailsResult.getOrNull() ?: return null
-				
+
 				AdvancedRequestOptionsDialog.ServerDetailsData(
 					serverId = server.id,
 					profiles = details.profiles,
@@ -1684,23 +1684,23 @@ class MediaDetailsFragment : Fragment() {
 			null
 		}
 	}
-	
+
 	/**
 	 * Proceed with the request after any dialogs
 	 */
 	private fun proceedWithRequest(
-		item: JellyseerrDiscoverItemDto, 
-		is4k: Boolean, 
+		item: JellyseerrDiscoverItemDto,
+		is4k: Boolean,
 		advancedOptions: AdvancedRequestOptions?
 	) {
 		// If it's a TV show, show season selection dialog
 		if (item.mediaType == "tv") {
 			val numberOfSeasons = tvDetails?.numberOfSeasons ?: 1
 			val showName = tvDetails?.name ?: item.name ?: item.title ?: "Unknown Show"
-			
+
 			// Gather unavailable seasons (already requested or available for this quality)
 			val unavailableSeasons = getUnavailableSeasons(is4k)
-			
+
 			val dialog = SeasonSelectionDialog(
 				requireContext(),
 				showName,
@@ -1717,7 +1717,7 @@ class MediaDetailsFragment : Fragment() {
 			submitRequest(item, null, is4k, advancedOptions)
 		}
 	}
-	
+
 	/**
 	 * Get set of season numbers that are already requested or available
 	 * for the specified quality (HD or 4K)
@@ -1725,7 +1725,7 @@ class MediaDetailsFragment : Fragment() {
 	private fun getUnavailableSeasons(is4k: Boolean): Set<Int> {
 		val unavailableSeasons = mutableSetOf<Int>()
 		val mediaInfo = tvDetails?.mediaInfo ?: return unavailableSeasons
-		
+
 		// Check existing requests for this quality
 		mediaInfo.requests?.forEach { request ->
 			// Only consider requests matching the quality (HD or 4K)
@@ -1739,10 +1739,10 @@ class MediaDetailsFragment : Fragment() {
 				}
 			}
 		}
-		
+
 		return unavailableSeasons
 	}
-	
+
 	private fun submitRequest(
 		item: JellyseerrDiscoverItemDto,
 		seasons: List<Int>?,
@@ -1752,10 +1752,10 @@ class MediaDetailsFragment : Fragment() {
 		lifecycleScope.launch {
 			try {
 				val result = viewModel.requestMedia(item, seasons, is4k, advancedOptions)
-				
+
 				// Check if fragment is still attached before accessing context
 				if (!isAdded) return@launch
-				
+
 				result.onSuccess {
 					val quality = if (is4k) "4K" else "HD"
 					val seasonInfo = if (seasons != null) {
@@ -1795,13 +1795,13 @@ class MediaDetailsFragment : Fragment() {
 	 */
 	private fun showCancelRequestDialog(pendingRequests: List<JellyseerrRequestDto>) {
 		if (pendingRequests.isEmpty()) return
-		
+
 		val item = selectedItem ?: return
 		val title = when (item.mediaType) {
 			"movie" -> movieDetails?.title ?: item.title ?: item.name ?: "Unknown"
 			else -> tvDetails?.name ?: item.name ?: item.title ?: "Unknown"
 		}
-		
+
 		// Build description of what will be cancelled
 		val description = if (pendingRequests.size == 1) {
 			val req = pendingRequests.first()
@@ -1815,7 +1815,7 @@ class MediaDetailsFragment : Fragment() {
 			if (fourKCount > 0) parts.add("$fourKCount 4K")
 			"Cancel ${parts.joinToString(" and ")} request${if (pendingRequests.size > 1) "s" else ""} for \"$title\"?"
 		}
-		
+
 		android.app.AlertDialog.Builder(requireContext())
 			.setTitle("Cancel Request")
 			.setMessage(description)
@@ -1825,7 +1825,7 @@ class MediaDetailsFragment : Fragment() {
 			.setNegativeButton("Keep Request", null)
 			.show()
 	}
-	
+
 	/**
 	 * Cancel the given pending requests
 	 */
@@ -1834,7 +1834,7 @@ class MediaDetailsFragment : Fragment() {
 			try {
 				var successCount = 0
 				var failCount = 0
-				
+
 				for (request in requests) {
 					val result = viewModel.cancelRequest(request.id)
 					if (result.isSuccess) {
@@ -1844,19 +1844,19 @@ class MediaDetailsFragment : Fragment() {
 						Timber.e(result.exceptionOrNull(), "Failed to cancel request ${request.id}")
 					}
 				}
-				
+
 				// Check if fragment is still attached
 				if (!isAdded) return@launch
-				
+
 				val message = when {
 					failCount == 0 && successCount == 1 -> "Request cancelled"
 					failCount == 0 -> "$successCount requests cancelled"
 					successCount == 0 -> "Failed to cancel request${if (failCount > 1) "s" else ""}"
 					else -> "$successCount cancelled, $failCount failed"
 				}
-				
+
 				Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-				
+
 				// Refresh details to update status
 				loadFullDetails()
 			} catch (e: Exception) {
@@ -1874,7 +1874,7 @@ class MediaDetailsFragment : Fragment() {
 
 	private fun playTrailer() {
 		val item = selectedItem ?: return
-		
+
 		// Open YouTube search for the trailer
 		// Format: "[Movie/Show Name] [Year] official trailer"
 		val year = when {
@@ -1883,7 +1883,7 @@ class MediaDetailsFragment : Fragment() {
 		}
 		val title = item.title ?: item.name ?: "Unknown"
 		val searchQuery = "$title ${year ?: ""} official trailer"
-		
+
 		try {
 			// Create a generic YouTube search intent without specifying a package
 			// This allows the user to choose their preferred app (YouTube, SmartTube, etc.)
@@ -1892,7 +1892,7 @@ class MediaDetailsFragment : Fragment() {
 				android.content.Intent.ACTION_VIEW,
 				android.net.Uri.parse(youtubeSearchUrl)
 			)
-			
+
 			// Show app chooser to allow user to select their preferred app
 			val chooser = android.content.Intent.createChooser(intent, "Play Trailer")
 			startActivity(chooser)
@@ -1901,7 +1901,7 @@ class MediaDetailsFragment : Fragment() {
 			Toast.makeText(requireContext(), "Unable to open trailer", Toast.LENGTH_SHORT).show()
 		}
 	}
-	
+
 	private fun playInMoonfin() {
 		lifecycleScope.launch {
 			try {
@@ -1912,9 +1912,9 @@ class MediaDetailsFragment : Fragment() {
 				val imdbId = externalIds?.imdbId
 				val title = movieDetails?.title ?: tvDetails?.name ?: tvDetails?.title ?: selectedItem?.title ?: selectedItem?.name
 				val mediaType = movieDetails?.mediaType ?: tvDetails?.mediaType ?: selectedItem?.mediaType
-				
+
 				Timber.d("Searching for item in Jellyfin library - Title: $title, Type: $mediaType, TMDB: $tmdbId, TVDB: $tvdbId, IMDB: $imdbId")
-				
+
 				// Search for the item in Jellyfin library using provider IDs
 				val jellyfinItem = searchForItemByProviderIds(
 					tmdbId = tmdbId,
@@ -1923,7 +1923,7 @@ class MediaDetailsFragment : Fragment() {
 					title = title,
 					mediaType = mediaType
 				)
-				
+
 				if (jellyfinItem != null) {
 					Timber.d("Found item in Jellyfin library: ${jellyfinItem.name} (${jellyfinItem.id})")
 					// Navigate to Moonfin details page
@@ -1938,7 +1938,7 @@ class MediaDetailsFragment : Fragment() {
 			}
 		}
 	}
-	
+
 	/**
 	 * Search for an item in Jellyfin library by provider IDs (TMDB, TVDB, IMDB)
 	 * Falls back to title search if no provider ID matches found
@@ -1956,23 +1956,23 @@ class MediaDetailsFragment : Fragment() {
 				Timber.w("No title available for search")
 				return@withContext null
 			}
-			
+
 			// Determine the correct Jellyfin item type based on Jellyseerr media type
 			val includeItemTypes = when (mediaType) {
 				"movie" -> setOf(BaseItemKind.MOVIE)
 				"tv" -> setOf(BaseItemKind.SERIES)
 				else -> setOf(BaseItemKind.MOVIE, BaseItemKind.SERIES) // Search both if unknown
 			}
-			
+
 			val response by apiClient.itemsApi.getItems(
 				searchTerm = title,
 				includeItemTypes = includeItemTypes,
 				recursive = true,
 				limit = 50 // Get more results to check provider IDs
 			)
-			
+
 			Timber.d("Found ${response.items.size} items of type $mediaType matching title '$title'")
-			
+
 			// Try to match by provider IDs first (most accurate)
 			if (tmdbId != null) {
 				val tmdbMatch = response.items.firstOrNull { item ->
@@ -1984,7 +1984,7 @@ class MediaDetailsFragment : Fragment() {
 					return@withContext tmdbMatch
 				}
 			}
-			
+
 			if (tvdbId != null) {
 				val tvdbMatch = response.items.firstOrNull { item ->
 					val itemTvdbId = item.providerIds?.get("Tvdb")
@@ -1995,7 +1995,7 @@ class MediaDetailsFragment : Fragment() {
 					return@withContext tvdbMatch
 				}
 			}
-			
+
 			if (imdbId != null) {
 				val imdbMatch = response.items.firstOrNull { item ->
 					val itemImdbId = item.providerIds?.get("Imdb")
@@ -2006,23 +2006,23 @@ class MediaDetailsFragment : Fragment() {
 					return@withContext imdbMatch
 				}
 			}
-			
+
 			// Fallback to exact title match
 			val exactMatch = response.items.firstOrNull { item ->
 				item.name.equals(title, ignoreCase = true)
 			}
-			
+
 			if (exactMatch != null) {
 				Timber.d("Matched by exact title: ${exactMatch.name} (${exactMatch.id})")
 				return@withContext exactMatch
 			}
-			
+
 			// Last resort: return first result if it's a close match
 			val firstResult = response.items.firstOrNull()
 			if (firstResult != null) {
 				Timber.w("Using first search result as fallback: ${firstResult.name} (${firstResult.id})")
 			}
-			
+
 			firstResult
 		} catch (e: Exception) {
 			Timber.e(e, "Failed to search Jellyfin library")
