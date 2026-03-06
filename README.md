@@ -12,7 +12,7 @@
 
 <a href="https://www.buymeacoffee.com/kylejoel87e" target="_blank"><img src="https://github.com/user-attachments/assets/fe26eaec-147f-496f-8e95-4ebe19f57131" alt="Buy Me A Coffee" ></a>
 
-> **[← Back to main Rinzler project](https://github.com/Rinzler-Client)**
+> **[← Back to main Rinzler project](https://github.com/J03lYuK/Rinzler-TV)**
 
 Rinzler for Android TV is an enhanced fork of the official Jellyfin Android TV client, optimized for the viewing experience on Android TV, Nvidia Shield, and Amazon Fire TV devices.
 
