@@ -1536,15 +1536,15 @@ class ItemDetailsFragment : Fragment() {
 			LazyColumn(
 				state = listState,
 				modifier = Modifier.fillMaxSize(),
-				contentPadding = PaddingValues(top = 180.dp, start = 100.dp, end = 100.dp, bottom = 80.dp),
+				contentPadding = PaddingValues(top = 140.dp, start = 100.dp, end = 100.dp, bottom = 80.dp),
 			) {
 				item {
 					Row(
 						verticalAlignment = Alignment.Bottom,
-						modifier = Modifier.padding(bottom = 48.dp),
+						modifier = Modifier.padding(bottom = 24.dp),
 					) {
 							if (posterUrl != null) {
-								Box(modifier = Modifier.width(220.dp)) {
+								Box(modifier = Modifier.width(150.dp)) {
 									AsyncImage(
 										model = posterUrl,
 										contentDescription = null,
@@ -1557,14 +1557,14 @@ class ItemDetailsFragment : Fragment() {
 										contentScale = ContentScale.FillWidth,
 									)
 								}
-								Spacer(modifier = Modifier.width(32.dp))
+								Spacer(modifier = Modifier.width(24.dp))
 							}
 
 							Column(modifier = Modifier.padding(bottom = 8.dp)) {
 								item.seriesName?.let { seriesName ->
 									Text(
 										text = seriesName,
-										fontSize = 22.sp,
+										fontSize = 20.sp,
 										fontWeight = FontWeight.W500,
 										color = Color.White.copy(alpha = 0.6f),
 									)
@@ -1573,26 +1573,29 @@ class ItemDetailsFragment : Fragment() {
 
 								Text(
 									text = item.name ?: "",
-									fontSize = 48.sp,
+									fontSize = 38.sp,
 									fontWeight = FontWeight.W700,
 									color = Color.White,
-									lineHeight = 55.sp,
+									lineHeight = 44.sp,
 								)
 
 								Spacer(modifier = Modifier.height(4.dp))
 
 								Text(
 									text = "${uiState.episodes.size} Episode${if (uiState.episodes.size != 1) "s" else ""}",
-									fontSize = 18.sp,
+									fontSize = 16.sp,
 									color = Color.White.copy(alpha = 0.5f),
 								)
 							}
 						}
+				}
 
-					if (uiState.episodes.isNotEmpty()) {
+				if (uiState.episodes.isNotEmpty()) {
+					item {
 						Row(
 							modifier = Modifier
 								.fillMaxWidth()
+								.focusRestorer(playButtonFocusRequester)
 								.onFocusChanged { focusState ->
 									if (focusState.hasFocus) {
 										scrollLockScope.launch(Dispatchers.Main.immediate) {
@@ -1653,7 +1656,7 @@ class ItemDetailsFragment : Fragment() {
 				}
 
 				item {
-					Spacer(modifier = Modifier.height(36.dp))
+					Spacer(modifier = Modifier.height(24.dp))
 				}
 
 				items(uiState.episodes.size) { index ->
