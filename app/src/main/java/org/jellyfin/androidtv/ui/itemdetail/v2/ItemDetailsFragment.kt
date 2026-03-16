@@ -131,6 +131,7 @@ import org.jellyfin.sdk.model.api.MediaStreamType
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
+import java.time.Instant
 import java.util.UUID
 import android.graphics.Color as AndroidColor
 
@@ -155,6 +156,7 @@ class ItemDetailsFragment : Fragment() {
 	private var lastFocusedBeforeSidebar: View? = null
 	private var toolbarOverlayView: View? = null
 	private val scrollToTop = mutableStateOf(false)
+	private var lastUpdated: Instant = Instant.now()
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -432,6 +434,34 @@ class ItemDetailsFragment : Fragment() {
 				}
 			}
 			.launchIn(lifecycleScope)
+	}
+
+	override fun onResume() {
+		super.onResume()
+
+		viewLifecycleOwner.lifecycleScope.launch {
+			delay(750)
+			if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) return@launch
+
+			val lastPlaybackTime = dataRefreshService.lastPlayback ?: return@launch
+			val currentItem = viewModel.uiState.value.item ?: return@launch
+			if (currentItem.type == BaseItemKind.MUSIC_ARTIST) return@launch
+
+			val recentPlayback = lastPlaybackTime.isAfter(lastUpdated) ||
+				Instant.now().toEpochMilli() - lastPlaybackTime.toEpochMilli() < 2000
+			if (!recentPlayback) return@launch
+
+			val lastPlayedItem = dataRefreshService.lastPlayedItem
+			if (currentItem.type == BaseItemKind.EPISODE && lastPlayedItem != null &&
+				currentItem.id != lastPlayedItem.id && lastPlayedItem.type == BaseItemKind.EPISODE
+			) {
+				viewModel.loadItem(lastPlayedItem.id)
+				dataRefreshService.lastPlayedItem = null
+			} else {
+				viewModel.refreshItem(currentItem.id)
+			}
+			lastUpdated = Instant.now()
+		}
 	}
 
 	override fun onDestroyView() {

@@ -70,6 +70,35 @@ class ItemDetailsViewModel(
 	var serverId: UUID? = null
 		private set
 
+	fun refreshItem(itemId: UUID) {
+		viewModelScope.launch {
+			try {
+				val item = withContext(Dispatchers.IO) {
+					effectiveApi.userLibraryApi.getItem(itemId = itemId).content
+				}
+				val cast = item.people
+					?.filter { it.type == PersonKind.ACTOR || it.type == PersonKind.GUEST_STAR }
+					?: emptyList()
+				val directors = item.people?.filter { it.type == PersonKind.DIRECTOR } ?: emptyList()
+				val writers = item.people?.filter { it.type == PersonKind.WRITER } ?: emptyList()
+				val badges = getMediaBadges(item)
+
+				_uiState.value = _uiState.value.copy(
+					item = item,
+					cast = cast,
+					directors = directors,
+					writers = writers,
+					badges = badges,
+				)
+
+				loadAdditionalData(item)
+			} catch (err: Exception) {
+				coroutineContext.ensureActive()
+				Timber.e(err, "Failed to refresh item $itemId")
+			}
+		}
+	}
+
 	fun loadItem(itemId: UUID, serverId: UUID? = null) {
 		viewModelScope.launch {
 			_uiState.value = ItemDetailsUiState(isLoading = true)
