@@ -202,7 +202,7 @@ class HomeFragment : Fragment() {
 			.onEach { trailerState ->
 				val hasTrailer = trailerState is TrailerPreviewState.Buffering ||
 					trailerState is TrailerPreviewState.Playing
-				trailerWebView?.isVisible = hasTrailer
+				trailerWebView?.isVisible = hasTrailer && shouldShowMediaBar()
 			}
 			.launchIn(lifecycleScope)
 
@@ -221,11 +221,7 @@ class HomeFragment : Fragment() {
 
 	private fun updateMediaBarBackground() {
 		val state = mediaBarViewModel.state.value
-		val isFocused = mediaBarViewModel.isFocused.value
-		val selectedPosition = rowsFragment?.selectedPositionFlow?.value ?: -1
-		
-		val isMediaBarEnabled = userSettingPreferences[UserSettingPreferences.mediaBarEnabled]
-		val shouldShowMediaBar = isMediaBarEnabled && (isFocused || (selectedPosition == 0) || selectedPosition == -1)
+		val shouldShowMediaBar = shouldShowMediaBar()
 		
 		if (state is org.jellyfin.androidtv.ui.home.mediabar.MediaBarState.Ready && shouldShowMediaBar) {
 			val playbackState = mediaBarViewModel.playbackState.value
@@ -255,12 +251,23 @@ class HomeFragment : Fragment() {
 			infoRowView?.isVisible = false
 			summaryView?.isVisible = false
 		} else {
+			// Ensure trailer overlay cannot linger when media bar is not active.
+			mediaBarViewModel.stopTrailer()
+			trailerWebView?.isVisible = false
+
 			backgroundImage?.isVisible = false
 			logoView?.isVisible = false
 			titleView?.isVisible = true
 			infoRowView?.isVisible = true
 			summaryView?.isVisible = true
 		}
+	}
+
+	private fun shouldShowMediaBar(): Boolean {
+		val isFocused = mediaBarViewModel.isFocused.value
+		val selectedPosition = rowsFragment?.selectedPositionFlow?.value ?: -1
+		val isMediaBarEnabled = userSettingPreferences[UserSettingPreferences.mediaBarEnabled]
+		return isMediaBarEnabled && (isFocused || selectedPosition == 0)
 	}
 
 	/**
