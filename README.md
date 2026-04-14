@@ -4,7 +4,7 @@
 ---
 
 <p align="center">
-   <img width="4305" height="2659" alt="splash-background" src="https://github.com/user-attachments/assets/c05882da-81ce-47e9-a4b2-c995c337b9b9" />
+   <img width="4305" height="2659" alt="splash-background" src="Rinzler Logo.png" />
 </p>
 
 [![License](https://img.shields.io/github/license/Rinzler-Client/AndroidTV-FireTV.svg)](https://github.com/Rinzler-Client/AndroidTV-FireTV)
