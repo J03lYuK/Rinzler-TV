@@ -12,7 +12,7 @@
 [![github](https://img.shields.io/github/downloads/Rinzler-Client/AndroidTV-FireTV/total?logo=github&label=Downloads)](https://github.com/Rinzler-Client/AndroidTV-FireTV/releases)
 [![Google Play](https://img.shields.io/badge/Android%20TV-Google%20Play-green?logo=googleplay)](link)
 
-<a href="https://www.buymeacoffee.com/kylejoel87e" target="_blank"><img src="https://github.com/user-attachments/assets/fe26eaec-147f-496f-8e95-4ebe19f57131" alt="Buy Me A Coffee" ></a>
+<a href="https://buymeacoffee.com/rinzleruk" target="_blank"><img src="https://github.com/user-attachments/assets/fe26eaec-147f-496f-8e95-4ebe19f57131" alt="Buy Me A Coffee" ></a>
 
 > **[← Back to main Rinzler project](https://github.com/Rinzler-Client)**
 
