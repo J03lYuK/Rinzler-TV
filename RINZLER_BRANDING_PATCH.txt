@@ -1,0 +1,9 @@
+Rinzler branding patch applied:
+- Replaced launcher icons with Rinzler icon
+- Replaced Android TV banner assets
+- Replaced in-app donate QR code with updated QR code
+- Updated Buy Me a Coffee link to https://buymeacoffee.com/rinzleruk
+- Updated GitHub funding file
+- Replaced ic_moonfin drawables with Rinzler wordmark images
+
+Clean build folders were removed from this zip.

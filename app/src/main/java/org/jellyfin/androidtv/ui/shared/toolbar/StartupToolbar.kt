@@ -1,0 +1,53 @@
+package uk.rinzler.tv.ui.shared.toolbar
+
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.button.IconButton
+
+@Composable
+fun StartupToolbar(
+	openHelp: () -> Unit,
+	openSettings: () -> Unit,
+) {
+	val focusRequester = remember { FocusRequester() }
+	Toolbar(
+		start = {},
+		end = {
+			ToolbarButtons {
+				IconButton(
+					onClick = openHelp,
+					modifier = Modifier.focusRequester(focusRequester),
+				) {
+					Icon(
+						imageVector = ImageVector.vectorResource(R.drawable.ic_help),
+						contentDescription = stringResource(R.string.help),
+					)
+				}
+
+				IconButton(onClick = openSettings) {
+					Icon(
+						imageVector = ImageVector.vectorResource(R.drawable.ic_settings),
+						contentDescription = stringResource(R.string.lbl_settings),
+					)
+				}
+
+				Spacer(Modifier.width(8.dp))
+
+				ToolbarClock()
+
+				Spacer(Modifier.width(12.dp))
+			}
+		}
+	)
+}

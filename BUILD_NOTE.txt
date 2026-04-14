@@ -1,0 +1,4 @@
+Build verification note:
+- I attempted a local Gradle build sanity check.
+- It could not complete in this environment because the Gradle wrapper needed to download Gradle from services.gradle.org, but this container has no outbound internet access.
+- The source tree has still been reworked into a clean Rinzler baseline.

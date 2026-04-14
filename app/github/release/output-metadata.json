@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "uk.rinzler.tv",
+  "variantName": "githubRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 1080199,
+      "versionName": "1.8.1",
+      "outputFile": "rinzler-androidtv-v1.8.1-github-release.apk"
+    }
+  ],
+  "elementType": "File",
+  "baselineProfiles": [
+    {
+      "minApi": 28,
+      "maxApi": 30,
+      "baselineProfiles": [
+        "baselineProfiles/1/rinzler-androidtv-v1.8.1-github-release.dm"
+      ]
+    },
+    {
+      "minApi": 31,
+      "maxApi": 2147483647,
+      "baselineProfiles": [
+        "baselineProfiles/0/rinzler-androidtv-v1.8.1-github-release.dm"
+      ]
+    }
+  ],
+  "minSdkVersionForDexing": 23
+}
