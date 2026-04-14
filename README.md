@@ -7,14 +7,14 @@
    <img width="4305" height="2659" alt="splash-background" src="Rinzler Logo.png" />
 </p>
 
-[![License](https://img.shields.io/github/license/Rinzler-Client/AndroidTV-FireTV.svg)](https://github.com/Rinzler-Client/AndroidTV-FireTV)
-[![Release](https://img.shields.io/github/release/Rinzler-Client/AndroidTV-FireTV.svg)](https://github.com/Rinzler-Client/AndroidTV-FireTV/releases)
-[![github](https://img.shields.io/github/downloads/Rinzler-Client/AndroidTV-FireTV/total?logo=github&label=Downloads)](https://github.com/Rinzler-Client/AndroidTV-FireTV/releases)
-[![Google Play](https://img.shields.io/badge/Android%20TV-Google%20Play-green?logo=googleplay)](link)
+[![License](https://img.shields.io/github/license/J03lYuK/Rinzler-TV.svg)](https://github.com/J03lYuK/Rinzler-TV/blob/main/LICENSE)
+[![Release](https://img.shields.io/github/v/release/J03lYuK/Rinzler-TV?include_prereleases)](https://github.com/J03lYuK/Rinzler-TV/releases)
+[![Downloads](https://img.shields.io/github/downloads/J03lYuK/Rinzler-TV/total?logo=github&label=Downloads)](https://github.com/J03lYuK/Rinzler-TV/releases)
+[![Android TV](https://img.shields.io/badge/Android%20TV-GitHub%20Releases-blue?logo=github)](https://github.com/J03lYuK/Rinzler-TV/releases)
 
 <a href="https://buymeacoffee.com/rinzleruk" target="_blank"><img src="https://github.com/user-attachments/assets/fe26eaec-147f-496f-8e95-4ebe19f57131" alt="Buy Me A Coffee" ></a>
 
-> **[← Back to main Rinzler project](https://github.com/Rinzler-Client)**
+> **[← Back to main Rinzler project](https://github.com/J03lYuK)**
 
 Rinzler for Android TV is an enhanced Jellyfin client derived from the official Jellyfin Android TV project, optimized for a different viewing experience on Android TV, Nvidia Shield, and Amazon Fire TV devices. Rinzler also supports **Emby Server 4.8.0.0+**, allowing you to connect to either Jellyfin or Emby from a single app.
 
@@ -35,14 +35,6 @@ Rinzler for Android TV builds on the solid foundation of Jellyfin with targeted 
 - **Unified Library Support** - Seamless playback from multiple Jellyfin and Emby servers
 - Seamless switching between servers for content playback
 - Improved server selection logic
-
-### Emby Server Support
-- **Full Emby Integration** - Connect to Emby Server 4.8.0.0+ alongside Jellyfin
-- Automatic server type detection during setup (no manual configuration needed)
-- WebSocket real-time events with reconnection and jitter-based backoff
-- In-memory caching for library views and display preferences
-- Feature gating hides Jellyfin-only features (SyncPlay, Media Segments, Lyrics) when connected to Emby
-- See [docs/EMBY_SUPPORT.md](docs/EMBY_SUPPORT.md) for the full feature matrix
 
 ### Emby Server Support
 - **Full Emby Integration** - Connect to Emby Server 4.8.0.0+ alongside Jellyfin
@@ -203,7 +195,7 @@ https://github.com/user-attachments/assets/113fa9d8-039c-4f14-8c95-785ca6d47c9b
 ## Installation
 
 ### Pre-built Releases
-Download the latest APK from the [Releases page](https://github.com/Rinzler-Client/AndroidTV-FireTV/releases).
+Download the latest APK from the [Releases page](https://github.com/J03lYuK/Rinzler-TV/releases).
 
 **Supported Devices:**
 - Android TV devices (Android 6.0+)
@@ -242,7 +234,7 @@ Your session is saved securely and will reconnect automatically.
 
 1. **Clone the repository:**
 ```bash
-git clone https://github.com/Rinzler-Client/AndroidTV-FireTV.git
+git clone https://github.com/J03lYuK/Rinzler-TV.git
 cd Rinzler-TV
 ```
 
@@ -309,8 +301,8 @@ Translations contributed to Rinzler that are universally applicable will be subm
 
 ## Support & Community
 
-- **Issues** - [GitHub Issues](https://github.com/Rinzler-Client/AndroidTV-FireTV/issues) for bugs and feature requests
-- **Discussions** - [GitHub Discussions](https://github.com/Rinzler-Client/AndroidTV-FireTV/discussions) for questions and ideas
+- **Issues** - [GitHub Issues](https://github.com/J03lYuK/Rinzler-TV/issues) for bugs and feature requests
+- **Discussions** - [GitHub Discussions](https://github.com/J03lYuK/Rinzler-TV/discussions) for questions and ideas
 - **Upstream Jellyfin** - [jellyfin.org](https://jellyfin.org) for server-related questions
 
 ## Credits
@@ -330,5 +322,5 @@ This project inherits the GPL v2 license from the upstream Jellyfin Android TV p
 
 <p align="center">
    <strong>Rinzler for Android TV</strong> is an independent fork and is not affiliated with the Jellyfin project.<br>
-   <a href="https://github.com/Rinzler-Client">← Back to main Rinzler project</a>
+   <a href="https://github.com/J03lYuK">← Back to main Rinzler project</a>
 </p>
