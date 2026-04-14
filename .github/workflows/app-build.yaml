@@ -3,9 +3,13 @@ name: App / Build
 on:
   push:
     branches:
+      - main
       - master
       - release-*
+    tags:
+      - v*
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -24,10 +28,27 @@ jobs:
           java-version-file: .tools-versions
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@f29f5a9d7b09a7c6b29859002d29d24e1674c884 # v5.0.1
+      - name: Prepare signing files
+        if: github.event_name != 'pull_request' && secrets.ANDROID_KEYSTORE_BASE64 != '' && secrets.ANDROID_KEYSTORE_PASSWORD != '' && secrets.ANDROID_KEY_ALIAS != '' && secrets.ANDROID_KEY_PASSWORD != ''
+        shell: bash
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > release-keystore.jks
+          cat <<EOF > keystore.properties
+          storeFile=release-keystore.jks
+          storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
+          keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
+          EOF
       - name: Assemble debug APKs
         run: ./gradlew assembleDebug
+      - name: Assemble signed GitHub release APK
+        if: github.event_name != 'pull_request' && secrets.ANDROID_KEYSTORE_BASE64 != '' && secrets.ANDROID_KEYSTORE_PASSWORD != '' && secrets.ANDROID_KEY_ALIAS != '' && secrets.ANDROID_KEY_PASSWORD != ''
+        run: ./gradlew assembleGithubRelease
       - name: Create publish bundle
-        run: mkdir -p build/gh-app-publish/; find app/build/ -iname "*.apk" -exec mv "{}" build/gh-app-publish/ \;
+        shell: bash
+        run: |
+          mkdir -p build/gh-app-publish/
+          find app/build/ -iname "*.apk" -exec cp "{}" build/gh-app-publish/ \;
       - name: Upload artifacts
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
