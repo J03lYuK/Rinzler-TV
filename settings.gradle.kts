@@ -16,6 +16,7 @@ plugins {
 
 // Application
 include(":app")
+include(":app-mobile")
 
 // Modules
 include(":design")
