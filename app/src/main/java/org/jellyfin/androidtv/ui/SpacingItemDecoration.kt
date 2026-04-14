@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui
+package uk.rinzler.tv.ui
 
 import android.graphics.Rect
 import android.view.View

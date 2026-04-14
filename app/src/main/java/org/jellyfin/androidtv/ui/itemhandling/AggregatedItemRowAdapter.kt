@@ -1,12 +1,12 @@
-package org.jellyfin.androidtv.ui.itemhandling
+package uk.rinzler.tv.ui.itemhandling
 
 import android.os.Handler
 import android.os.Looper
 import androidx.leanback.widget.Presenter
-import org.jellyfin.androidtv.data.model.AggregatedItem
-import org.jellyfin.androidtv.data.repository.ParentalControlsRepository
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter
+import uk.rinzler.tv.data.model.AggregatedItem
+import uk.rinzler.tv.data.repository.ParentalControlsRepository
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter
 import timber.log.Timber
 
 /**
@@ -21,7 +21,7 @@ class AggregatedItemRowAdapter(
 	private val chunkSize: Int = DEFAULT_CHUNK_SIZE,
 	private val preferParentThumb: Boolean = false,
 	private val staticHeight: Boolean = true,
-	private val imageType: org.jellyfin.androidtv.constant.ImageType = org.jellyfin.androidtv.constant.ImageType.POSTER,
+	private val imageType: uk.rinzler.tv.constant.ImageType = uk.rinzler.tv.constant.ImageType.POSTER,
 ) : MutableObjectAdapter<BaseRowItem>(presenter) {
 
 	private var itemsLoaded = 0
@@ -79,7 +79,7 @@ class AggregatedItemRowAdapter(
 				aggregatedItem = aggItem,
 				preferParentThumb = preferParentThumb,
 				staticHeight = staticHeight,
-				preferSeriesPoster = imageType == org.jellyfin.androidtv.constant.ImageType.POSTER
+				preferSeriesPoster = imageType == uk.rinzler.tv.constant.ImageType.POSTER
 			))
 		}
 

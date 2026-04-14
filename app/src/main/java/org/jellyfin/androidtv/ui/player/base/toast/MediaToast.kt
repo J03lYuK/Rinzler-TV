@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.player.base.toast
+package uk.rinzler.tv.ui.player.base.toast
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -19,9 +19,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.base.LocalTextStyle
-import org.jellyfin.androidtv.ui.base.ProvideTextStyle
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.LocalTextStyle
+import uk.rinzler.tv.ui.base.ProvideTextStyle
 
 data class MediaToastColors(
 	val backgroundColor: Color,

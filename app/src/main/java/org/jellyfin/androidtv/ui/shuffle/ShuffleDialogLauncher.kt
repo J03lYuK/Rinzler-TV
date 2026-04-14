@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.shuffle
+package uk.rinzler.tv.ui.shuffle
 
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -9,12 +9,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.data.model.AggregatedLibrary
-import org.jellyfin.androidtv.data.repository.MultiServerRepository
-import org.jellyfin.androidtv.data.repository.UserViewsRepository
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.data.model.AggregatedLibrary
+import uk.rinzler.tv.data.repository.MultiServerRepository
+import uk.rinzler.tv.data.repository.UserViewsRepository
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.navigation.NavigationRepository
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.koin.compose.koinInject

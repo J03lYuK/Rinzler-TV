@@ -1,4 +1,4 @@
-package org.moonfin.server.core.model
+package uk.rinzler.server.core.model
 
 data class QuickConnectInfo(
     val secret: String,

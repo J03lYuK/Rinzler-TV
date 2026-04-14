@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
@@ -7,7 +7,7 @@ import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
 import org.json.JSONArray
 import org.json.JSONObject
-import org.moonfin.server.core.model.ServerType
+import uk.rinzler.server.core.model.ServerType
 import timber.log.Timber
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicReference

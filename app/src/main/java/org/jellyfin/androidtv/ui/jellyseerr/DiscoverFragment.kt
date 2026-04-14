@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.os.Bundle
 import android.util.Log
@@ -15,18 +15,18 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.data.service.BlurContext
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverItemDto
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.NavbarPosition
-import org.jellyfin.androidtv.ui.shared.toolbar.LeftSidebarNavigation
-import org.jellyfin.androidtv.ui.shared.toolbar.Navbar
-import org.jellyfin.androidtv.util.toHtmlSpanned
-import org.jellyfin.androidtv.ui.shared.toolbar.NavbarActiveButton
-import org.jellyfin.androidtv.util.Debouncer
-import org.jellyfin.androidtv.ui.settings.compat.SettingsViewModel
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.data.service.BlurContext
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverItemDto
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.NavbarPosition
+import uk.rinzler.tv.ui.shared.toolbar.LeftSidebarNavigation
+import uk.rinzler.tv.ui.shared.toolbar.Navbar
+import uk.rinzler.tv.util.toHtmlSpanned
+import uk.rinzler.tv.ui.shared.toolbar.NavbarActiveButton
+import uk.rinzler.tv.util.Debouncer
+import uk.rinzler.tv.ui.settings.compat.SettingsViewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel

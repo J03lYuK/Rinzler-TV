@@ -1,20 +1,20 @@
-package org.jellyfin.androidtv.ui.settings.screen.customization
+package uk.rinzler.tv.ui.settings.screen.customization
 
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.WatchedIndicatorBehavior
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.form.RadioButton
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.navigation.LocalRouter
-import org.jellyfin.androidtv.ui.settings.compat.rememberPreference
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.R
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.WatchedIndicatorBehavior
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.form.RadioButton
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.navigation.LocalRouter
+import uk.rinzler.tv.ui.settings.compat.rememberPreference
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
 import org.koin.compose.koinInject
 
 @Composable

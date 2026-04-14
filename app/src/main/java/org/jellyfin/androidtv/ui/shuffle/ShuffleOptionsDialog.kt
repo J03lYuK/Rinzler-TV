@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.shuffle
+package uk.rinzler.tv.ui.shuffle
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -43,9 +43,9 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.model.AggregatedLibrary
-import org.jellyfin.androidtv.ui.base.Icon
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.model.AggregatedLibrary
+import uk.rinzler.tv.ui.base.Icon
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.genresApi
 import org.jellyfin.sdk.model.api.BaseItemDto

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base.dialog
+package uk.rinzler.tv.ui.base.dialog
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.EnterTransition
@@ -26,7 +26,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.JellyfinTheme
 
 @Composable
 fun DialogBase(

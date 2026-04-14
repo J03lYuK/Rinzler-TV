@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.app.Dialog
 import android.content.Context

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.app.Activity
 import android.content.Context
@@ -9,16 +9,16 @@ import androidx.leanback.widget.OnItemViewClickedListener
 import androidx.leanback.widget.Presenter
 import androidx.leanback.widget.Row
 import androidx.leanback.widget.RowPresenter
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.constant.LiveTvOption
-import org.jellyfin.androidtv.ui.GridButton
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.ui.presentation.GridButtonPresenter
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter
-import org.jellyfin.androidtv.util.Utils
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.constant.LiveTvOption
+import uk.rinzler.tv.ui.GridButton
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.ui.presentation.GridButtonPresenter
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter
+import uk.rinzler.tv.util.Utils
 
 class HomeFragmentLiveTVRow(
 	private val activity: Activity,

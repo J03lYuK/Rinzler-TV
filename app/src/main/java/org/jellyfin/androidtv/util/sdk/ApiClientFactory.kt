@@ -1,14 +1,14 @@
-package org.jellyfin.androidtv.util.sdk
+package uk.rinzler.tv.util.sdk
 
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.auth.store.AuthenticationStore
-import org.jellyfin.androidtv.util.EmbyCompatInterceptor
-import org.jellyfin.androidtv.util.UUIDUtils
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.auth.store.AuthenticationStore
+import uk.rinzler.tv.util.EmbyCompatInterceptor
+import uk.rinzler.tv.util.UUIDUtils
 import org.jellyfin.sdk.Jellyfin
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.DeviceInfo
 import org.jellyfin.sdk.model.api.BaseItemDto
-import org.moonfin.server.core.model.ServerType
+import uk.rinzler.server.core.model.ServerType
 import timber.log.Timber
 import java.util.UUID
 

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen
+package uk.rinzler.tv.ui.settings.screen
 
 import android.content.Context
 import android.content.Intent
@@ -46,25 +46,25 @@ import androidx.compose.ui.window.DialogProperties
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.jellyfin.androidtv.data.service.UpdateCheckerService
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.form.Checkbox
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.navigation.LocalRouter
-import org.jellyfin.androidtv.ui.preference.category.DonateDialog
-import org.jellyfin.androidtv.ui.preference.category.GlassDialogButton
-import org.jellyfin.androidtv.ui.settings.Routes
-import org.jellyfin.androidtv.ui.settings.compat.rememberPreference
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
-import org.jellyfin.androidtv.util.supportsFeature
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.tv.data.service.UpdateCheckerService
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.form.Checkbox
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.navigation.LocalRouter
+import uk.rinzler.tv.ui.preference.category.DonateDialog
+import uk.rinzler.tv.ui.preference.category.GlassDialogButton
+import uk.rinzler.tv.ui.settings.Routes
+import uk.rinzler.tv.ui.settings.compat.rememberPreference
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.util.supportsFeature
 import org.koin.compose.koinInject
 import org.koin.java.KoinJavaComponent.inject
-import org.moonfin.server.core.feature.ServerFeature
+import uk.rinzler.server.core.feature.ServerFeature
 import timber.log.Timber
 
 @Composable
@@ -109,7 +109,7 @@ fun SettingsMainScreen() {
 
 		item {
 			ListButton(
-				leadingContent = { Icon(painterResource(R.drawable.ic_moonfin), contentDescription = null) },
+				leadingContent = { Icon(painterResource(R.drawable.ic_jellyfin), contentDescription = null) },
 				headingContent = { Text(stringResource(R.string.pref_plugin_settings)) },
 				captionContent = { Text(stringResource(R.string.pref_plugin_description)) },
 				onClick = { router.push(Routes.PLUGIN) }
@@ -164,7 +164,7 @@ fun SettingsMainScreen() {
 			)
 		}
 
-		if (org.jellyfin.androidtv.BuildConfig.ENABLE_OTA_UPDATES) {
+		if (uk.rinzler.tv.BuildConfig.ENABLE_OTA_UPDATES) {
 			item {
 				ListButton(
 					leadingContent = {
@@ -174,7 +174,7 @@ fun SettingsMainScreen() {
 						)
 					},
 					headingContent = { Text("Check for Updates") },
-					captionContent = { Text("Download latest Moonfin version") },
+					captionContent = { Text("Download latest Rinzler version") },
 					onClick = {
 						checkForUpdates(context, updateChecker) { info ->
 							updateInfoForDialog = info
@@ -203,7 +203,7 @@ fun SettingsMainScreen() {
 						tint = Color.Red
 					)
 				},
-				headingContent = { Text("Support Moonfin") },
+				headingContent = { Text("Support Rinzler") },
 				captionContent = { Text("Help us continue development") },
 				onClick = {
 					showDonateDialog = true

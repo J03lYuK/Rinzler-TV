@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.card
+package uk.rinzler.tv.ui.card
 
 import android.content.Context
 import android.text.SpannableStringBuilder
@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.core.text.bold
-import org.jellyfin.androidtv.databinding.ViewCardMediaInfoBinding
+import uk.rinzler.tv.databinding.ViewCardMediaInfoBinding
 import org.jellyfin.sdk.model.api.MediaStream
 import org.jellyfin.sdk.model.api.MediaStreamType
 import java.text.NumberFormat

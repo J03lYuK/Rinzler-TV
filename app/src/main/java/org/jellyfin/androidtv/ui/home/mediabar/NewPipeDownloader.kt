@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home.mediabar
+package uk.rinzler.tv.ui.home.mediabar
 
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody.Companion.toRequestBody

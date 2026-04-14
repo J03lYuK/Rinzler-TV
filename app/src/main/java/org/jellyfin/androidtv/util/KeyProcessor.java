@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util;
+package uk.rinzler.tv.util;
 
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -8,18 +8,18 @@ import android.widget.PopupMenu;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LifecycleOwner;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.constant.CustomMessage;
-import org.jellyfin.androidtv.data.repository.CustomMessageRepository;
-import org.jellyfin.androidtv.data.repository.ItemMutationRepository;
-import org.jellyfin.androidtv.ui.itemhandling.AudioQueueBaseRowItem;
-import org.jellyfin.androidtv.ui.itemhandling.BaseRowItem;
-import org.jellyfin.androidtv.ui.itemhandling.BaseRowType;
-import org.jellyfin.androidtv.ui.navigation.Destinations;
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository;
-import org.jellyfin.androidtv.ui.playback.MediaManager;
-import org.jellyfin.androidtv.util.apiclient.Response;
-import org.jellyfin.androidtv.util.sdk.BaseItemExtensionsKt;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.constant.CustomMessage;
+import uk.rinzler.tv.data.repository.CustomMessageRepository;
+import uk.rinzler.tv.data.repository.ItemMutationRepository;
+import uk.rinzler.tv.ui.itemhandling.AudioQueueBaseRowItem;
+import uk.rinzler.tv.ui.itemhandling.BaseRowItem;
+import uk.rinzler.tv.ui.itemhandling.BaseRowType;
+import uk.rinzler.tv.ui.navigation.Destinations;
+import uk.rinzler.tv.ui.navigation.NavigationRepository;
+import uk.rinzler.tv.ui.playback.MediaManager;
+import uk.rinzler.tv.util.apiclient.Response;
+import uk.rinzler.tv.util.sdk.BaseItemExtensionsKt;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 import org.jellyfin.sdk.model.api.BaseItemKind;
 import org.jellyfin.sdk.model.api.ItemSortBy;

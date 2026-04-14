@@ -1,10 +1,10 @@
-package org.jellyfin.androidtv.ui.notification
+package uk.rinzler.tv.ui.notification
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.leanback.widget.Presenter
-import org.jellyfin.androidtv.data.model.AppNotification
-import org.jellyfin.androidtv.databinding.ViewCardNotificationBinding
+import uk.rinzler.tv.data.model.AppNotification
+import uk.rinzler.tv.databinding.ViewCardNotificationBinding
 
 class AppNotificationPresenter : Presenter() {
 	override fun onCreateViewHolder(parent: ViewGroup): ViewHolder {

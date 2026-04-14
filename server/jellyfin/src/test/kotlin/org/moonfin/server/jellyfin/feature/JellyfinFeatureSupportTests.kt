@@ -1,8 +1,8 @@
-package org.moonfin.server.jellyfin.feature
+package uk.rinzler.server.jellyfin.feature
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import org.moonfin.server.core.feature.ServerFeature
+import uk.rinzler.server.core.feature.ServerFeature
 
 class JellyfinFeatureSupportTests : FunSpec({
 

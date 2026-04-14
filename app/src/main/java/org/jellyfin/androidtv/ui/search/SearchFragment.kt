@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.search
+package uk.rinzler.tv.ui.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,14 +28,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.compose.AndroidFragment
 import androidx.fragment.compose.content
 import androidx.leanback.app.RowsSupportFragment
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.preference.constant.NavbarPosition
-import org.jellyfin.androidtv.ui.search.composable.SearchTextInput
-import org.jellyfin.androidtv.ui.search.composable.SearchVoiceInput
-import org.jellyfin.androidtv.ui.shared.toolbar.NavbarActiveButton
-import org.jellyfin.androidtv.ui.shared.toolbar.NavigationLayout
-import org.jellyfin.androidtv.ui.shared.toolbar.rememberNavbarPosition
-import org.jellyfin.androidtv.util.speech.rememberSpeechRecognizerAvailability
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.preference.constant.NavbarPosition
+import uk.rinzler.tv.ui.search.composable.SearchTextInput
+import uk.rinzler.tv.ui.search.composable.SearchVoiceInput
+import uk.rinzler.tv.ui.shared.toolbar.NavbarActiveButton
+import uk.rinzler.tv.ui.shared.toolbar.NavigationLayout
+import uk.rinzler.tv.ui.shared.toolbar.rememberNavbarPosition
+import uk.rinzler.tv.util.speech.rememberSpeechRecognizerAvailability
 import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.koinInject
 import org.koin.core.parameter.parametersOf

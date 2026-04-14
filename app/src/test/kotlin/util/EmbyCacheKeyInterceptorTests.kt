@@ -2,7 +2,7 @@ package util
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import org.jellyfin.androidtv.util.EmbyCacheKeyInterceptor
+import uk.rinzler.tv.util.EmbyCacheKeyInterceptor
 
 class EmbyCacheKeyInterceptorTests : FunSpec({
 

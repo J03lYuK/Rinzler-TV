@@ -1,7 +1,7 @@
-package org.moonfin.server.core.api
+package uk.rinzler.server.core.api
 
-import org.moonfin.server.core.model.PublicSystemInfo
-import org.moonfin.server.core.model.SystemInfo
+import uk.rinzler.server.core.model.PublicSystemInfo
+import uk.rinzler.server.core.model.SystemInfo
 
 interface ServerSystemApi {
     suspend fun getPublicSystemInfo(): PublicSystemInfo

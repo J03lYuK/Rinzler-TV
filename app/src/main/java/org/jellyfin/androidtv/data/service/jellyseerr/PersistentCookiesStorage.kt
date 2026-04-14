@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.service.jellyseerr
+package uk.rinzler.tv.data.service.jellyseerr
 
 import android.content.Context
 import io.ktor.client.plugins.cookies.CookiesStorage

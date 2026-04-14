@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,17 +9,17 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.data.repository.JellyseerrRepository
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverItemDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrGenreDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrMediaDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrNetworkDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrRequestDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrStudioDto
-import org.jellyfin.androidtv.data.service.jellyseerr.Seasons
-import org.jellyfin.androidtv.constant.JellyseerrFetchLimit
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.util.ErrorHandler
+import uk.rinzler.tv.data.repository.JellyseerrRepository
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverItemDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrGenreDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrMediaDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrNetworkDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrRequestDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrStudioDto
+import uk.rinzler.tv.data.service.jellyseerr.Seasons
+import uk.rinzler.tv.constant.JellyseerrFetchLimit
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.util.ErrorHandler
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -186,7 +186,7 @@ class JellyseerrViewModel(
 	val searchResults: StateFlow<List<JellyseerrDiscoverItemDto>> = _searchResults.asStateFlow()
 
 	val isAvailable: StateFlow<Boolean> = jellyseerrRepository.isAvailable
-	val isMoonfinMode: StateFlow<Boolean> = jellyseerrRepository.isMoonfinMode
+	val isRinzlerMode: StateFlow<Boolean> = jellyseerrRepository.isRinzlerMode
 
 	init {
 		// Auto-initialize from saved preferences when ViewModel is created
@@ -221,11 +221,11 @@ class JellyseerrViewModel(
 		}
 	}
 
-	suspend fun loginWithJellyfin(username: String, password: String, jellyfinUrl: String, jellyseerrUrl: String): Result<org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrUserDto> {
+	suspend fun loginWithJellyfin(username: String, password: String, jellyfinUrl: String, jellyseerrUrl: String): Result<uk.rinzler.tv.data.service.jellyseerr.JellyseerrUserDto> {
 		return jellyseerrRepository.loginWithJellyfin(username, password, jellyfinUrl, jellyseerrUrl)
 	}
 
-	suspend fun loginLocal(email: String, password: String, jellyseerrUrl: String): Result<org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrUserDto> {
+	suspend fun loginLocal(email: String, password: String, jellyseerrUrl: String): Result<uk.rinzler.tv.data.service.jellyseerr.JellyseerrUserDto> {
 		return jellyseerrRepository.loginLocal(email, password, jellyseerrUrl)
 	}
 

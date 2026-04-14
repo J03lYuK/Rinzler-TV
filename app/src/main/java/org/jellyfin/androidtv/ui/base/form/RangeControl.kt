@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base.form
+package uk.rinzler.tv.ui.base.form
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.focusable
@@ -19,7 +19,7 @@ import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.input.key.type
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.JellyfinTheme
 
 @Immutable
 data class RangeControlColors(

@@ -1,4 +1,4 @@
-package org.moonfin.server.emby
+package uk.rinzler.server.emby
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe

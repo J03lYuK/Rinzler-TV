@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home.mediabar
+package uk.rinzler.tv.ui.home.mediabar
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,12 +17,12 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.data.repository.ItemMutationRepository
-import org.jellyfin.androidtv.data.repository.MultiServerRepository
-import org.jellyfin.androidtv.data.repository.ParentalControlsRepository
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.data.repository.ItemMutationRepository
+import uk.rinzler.tv.data.repository.MultiServerRepository
+import uk.rinzler.tv.data.repository.ParentalControlsRepository
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
 import org.jellyfin.sdk.api.client.ApiClient
 import android.content.Context
 import coil3.ImageLoader
@@ -237,7 +237,7 @@ class MediaBarSlideshowViewModel(
 
 		try {
 			val request = Request.Builder()
-				.url("$baseUrl/Moonfin/MediaBar?profile=tv")
+				.url("$baseUrl/Rinzler/MediaBar?profile=tv")
 				.header("Authorization", "MediaBrowser Token=\"$token\"")
 				.get()
 				.build()

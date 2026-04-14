@@ -1,13 +1,13 @@
-package org.jellyfin.androidtv.ui.playback.overlay;
+package uk.rinzler.tv.ui.playback.overlay;
 
 import androidx.annotation.NonNull;
 import androidx.leanback.media.PlayerAdapter;
 
-import org.jellyfin.androidtv.auth.repository.UserRepository;
-import org.jellyfin.androidtv.ui.playback.CustomPlaybackOverlayFragment;
-import org.jellyfin.androidtv.ui.playback.PlaybackController;
-import org.jellyfin.androidtv.util.Utils;
-import org.jellyfin.androidtv.util.apiclient.StreamHelper;
+import uk.rinzler.tv.auth.repository.UserRepository;
+import uk.rinzler.tv.ui.playback.CustomPlaybackOverlayFragment;
+import uk.rinzler.tv.ui.playback.PlaybackController;
+import uk.rinzler.tv.util.Utils;
+import uk.rinzler.tv.util.apiclient.StreamHelper;
 import org.jellyfin.sdk.model.api.ChapterInfo;
 import org.jellyfin.sdk.model.api.MediaSourceInfo;
 import org.koin.java.KoinJavaComponent;

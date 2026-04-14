@@ -1,8 +1,8 @@
-package org.moonfin.server.emby.socket
+package uk.rinzler.server.emby.socket
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import org.moonfin.server.core.model.EmbyConnectionState
+import uk.rinzler.server.core.model.EmbyConnectionState
 
 class EmbyWebSocketEdgeCaseTests : FunSpec({
 

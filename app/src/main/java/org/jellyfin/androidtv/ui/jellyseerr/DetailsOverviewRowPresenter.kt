@@ -1,13 +1,13 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.leanback.widget.RowPresenter
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverItemDto
-import org.jellyfin.androidtv.util.dp
-import org.jellyfin.androidtv.util.toHtmlSpanned
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverItemDto
+import uk.rinzler.tv.util.dp
+import uk.rinzler.tv.util.toHtmlSpanned
 
 class DetailsOverviewRowPresenter : RowPresenter() {
 	class ViewHolder(

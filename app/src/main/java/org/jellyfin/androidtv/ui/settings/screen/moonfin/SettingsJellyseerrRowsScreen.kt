@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen.moonfin
+package uk.rinzler.tv.ui.settings.screen.moonfin
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -25,16 +25,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.constant.JellyseerrRowType
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.preference.JellyseerrRowConfig
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.form.Checkbox
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.R
+import uk.rinzler.tv.constant.JellyseerrRowType
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.preference.JellyseerrRowConfig
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.form.Checkbox
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
 import org.koin.compose.koinInject
 import org.koin.core.qualifier.named
 

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 import android.content.Context
 import android.media.AudioAttributes
@@ -9,8 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.preference.UserSettingPreferences
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.preference.UserSettingPreferences
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.libraryApi
 import org.jellyfin.sdk.model.api.BaseItemDto

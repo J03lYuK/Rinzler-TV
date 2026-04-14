@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.startup
+package uk.rinzler.tv.ui.startup
 
 import android.app.AlertDialog
 import android.content.Context
@@ -10,8 +10,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.databinding.DialogPinEntryBinding
+import uk.rinzler.tv.R
+import uk.rinzler.tv.databinding.DialogPinEntryBinding
 
 /**
  * TV-friendly PIN entry dialog with numeric keypad

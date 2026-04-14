@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.constant
+package uk.rinzler.tv.constant
 
 enum class ChangeTriggerType {
 	LibraryUpdated,

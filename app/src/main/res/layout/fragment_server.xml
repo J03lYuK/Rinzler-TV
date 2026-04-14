@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_login_gradient">
+    android:background="@android:color/black">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:paddingHorizontal="@dimen/overscan_horizontal"
-            android:paddingBottom="24dp">
+            android:paddingBottom="12dp">
 
         <TextView
             android:id="@+id/notification"
@@ -32,37 +32,25 @@
             android:visibility="gone"
             tools:visibility="visible" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_moonfin" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/app_name"
-                android:textColor="@color/white"
-                android:textSize="28sp" />
-        </LinearLayout>
+        <ImageView
+            android:layout_width="116dp"
+            android:layout_height="86dp"
+            android:layout_marginTop="2dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/app_name"
+            android:padding="2dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/rinzler_hero_logo" />
 
         <LinearLayout
             android:layout_width="700dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/bg_login_card"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingHorizontal="40dp"
-            android:paddingVertical="36dp">
+            android:paddingHorizontal="28dp"
+            android:paddingVertical="18dp">
 
             <TextView
                 android:id="@+id/server_name"
@@ -80,14 +68,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/who_is_watching"
                 android:textColor="@color/white"
-                android:textSize="32sp"
+                android:textSize="28sp"
                 android:textStyle="bold" />
 
             <androidx.leanback.widget.HorizontalGridView
                 android:id="@+id/users"
                 android:layout_width="match_parent"
                 android:layout_height="153dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:scrollbars="none"
@@ -111,7 +99,7 @@
                 style="@style/Button.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:drawableStart="@drawable/ic_pencil"
                 android:text="@string/lbl_edit"
                 android:textSize="15sp"
@@ -121,7 +109,7 @@
                 android:id="@+id/actions_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -145,11 +133,11 @@
                     android:textSize="15sp" />
             </LinearLayout>
 
-            <org.jellyfin.androidtv.ui.ExpandableTextView
+            <uk.rinzler.tv.ui.ExpandableTextView
                 android:id="@+id/login_disclaimer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="3"

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback;
+package uk.rinzler.tv.ui.playback;
 
 import static org.koin.java.KoinJavaComponent.get;
 import static org.koin.java.KoinJavaComponent.inject;
@@ -12,30 +12,30 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.auth.repository.SessionRepository;
-import org.jellyfin.androidtv.data.compat.PlaybackException;
-import org.jellyfin.androidtv.data.compat.StreamInfo;
-import org.jellyfin.androidtv.data.compat.VideoOptions;
-import org.jellyfin.androidtv.data.model.DataRefreshService;
-import org.jellyfin.androidtv.data.syncplay.SyncPlayUtils;
-import org.jellyfin.androidtv.preference.UserPreferences;
-import org.jellyfin.androidtv.preference.UserSettingPreferences;
-import org.jellyfin.androidtv.preference.constant.NextUpBehavior;
-import org.jellyfin.androidtv.preference.constant.RefreshRateSwitchingBehavior;
-import org.jellyfin.androidtv.preference.constant.StillWatchingBehavior;
-import org.jellyfin.androidtv.preference.constant.ZoomMode;
-import org.jellyfin.androidtv.ui.InteractionTrackerViewModel;
-import org.jellyfin.androidtv.ui.livetv.TvManager;
-import org.jellyfin.androidtv.ui.playback.PrePlaybackTrackSelector;
-import org.jellyfin.androidtv.util.TimeUtils;
-import org.jellyfin.androidtv.util.UUIDUtils;
-import org.jellyfin.androidtv.util.Utils;
-import org.jellyfin.androidtv.util.apiclient.ReportingHelper;
-import org.jellyfin.androidtv.util.apiclient.Response;
-import org.jellyfin.androidtv.util.profile.DeviceProfileKt;
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory;
-import org.jellyfin.androidtv.util.sdk.compat.JavaCompat;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.auth.repository.SessionRepository;
+import uk.rinzler.tv.data.compat.PlaybackException;
+import uk.rinzler.tv.data.compat.StreamInfo;
+import uk.rinzler.tv.data.compat.VideoOptions;
+import uk.rinzler.tv.data.model.DataRefreshService;
+import uk.rinzler.tv.data.syncplay.SyncPlayUtils;
+import uk.rinzler.tv.preference.UserPreferences;
+import uk.rinzler.tv.preference.UserSettingPreferences;
+import uk.rinzler.tv.preference.constant.NextUpBehavior;
+import uk.rinzler.tv.preference.constant.RefreshRateSwitchingBehavior;
+import uk.rinzler.tv.preference.constant.StillWatchingBehavior;
+import uk.rinzler.tv.preference.constant.ZoomMode;
+import uk.rinzler.tv.ui.InteractionTrackerViewModel;
+import uk.rinzler.tv.ui.livetv.TvManager;
+import uk.rinzler.tv.ui.playback.PrePlaybackTrackSelector;
+import uk.rinzler.tv.util.TimeUtils;
+import uk.rinzler.tv.util.UUIDUtils;
+import uk.rinzler.tv.util.Utils;
+import uk.rinzler.tv.util.apiclient.ReportingHelper;
+import uk.rinzler.tv.util.apiclient.Response;
+import uk.rinzler.tv.util.profile.DeviceProfileKt;
+import uk.rinzler.tv.util.sdk.ApiClientFactory;
+import uk.rinzler.tv.util.sdk.compat.JavaCompat;
 import org.jellyfin.sdk.api.client.ApiClient;
 import org.jellyfin.sdk.model.ServerVersion;
 import org.jellyfin.sdk.model.api.BaseItemDto;
@@ -76,7 +76,7 @@ public class PlaybackController implements PlaybackControllerNotifiable {
     private Lazy<ReportingHelper> reportingHelper = inject(ReportingHelper.class);
     private final Lazy<InteractionTrackerViewModel> lazyInteractionTracker = inject(InteractionTrackerViewModel.class);
     private Lazy<PrePlaybackTrackSelector> trackSelector = inject(PrePlaybackTrackSelector.class);
-    private Lazy<org.jellyfin.androidtv.data.syncplay.SyncPlayManager> syncPlayManager = inject(org.jellyfin.androidtv.data.syncplay.SyncPlayManager.class);
+    private Lazy<uk.rinzler.tv.data.syncplay.SyncPlayManager> syncPlayManager = inject(uk.rinzler.tv.data.syncplay.SyncPlayManager.class);
 
     List<BaseItemDto> mItems;
     VideoManager mVideoManager;
@@ -145,7 +145,7 @@ public class PlaybackController implements PlaybackControllerNotifiable {
     }
     
     private void setupSyncPlayCallback() {
-        syncPlayManager.getValue().setPlaybackCallback(new org.jellyfin.androidtv.data.syncplay.SyncPlayManager.SyncPlayPlaybackCallback() {
+        syncPlayManager.getValue().setPlaybackCallback(new uk.rinzler.tv.data.syncplay.SyncPlayManager.SyncPlayPlaybackCallback() {
             @Override
             public void onPlay(long positionMs) {
                 Timber.i("SyncPlay onPlay callback: positionMs=%d, currentState=%s", positionMs, mPlaybackState);
@@ -227,18 +227,18 @@ public class PlaybackController implements PlaybackControllerNotifiable {
         if (mFragment == null) {
             Timber.i("Fragment is null, launching playback without lifecycle");
             
-            org.jellyfin.androidtv.data.syncplay.SyncPlayQueueFetcher.fetchQueueAsync(
+            uk.rinzler.tv.data.syncplay.SyncPlayQueueFetcher.fetchQueueAsync(
                 itemIds,
                 startIndex,
                 startPositionTicks,
-                new org.jellyfin.androidtv.data.syncplay.SyncPlayQueueHelper.QueueCallback() {
+                new uk.rinzler.tv.data.syncplay.SyncPlayQueueHelper.QueueCallback() {
                     @Override
                     public void onQueueReady(java.util.List<org.jellyfin.sdk.model.api.BaseItemDto> items, int actualStartIndex, long startPositionMs) {
                         videoQueueManager.getValue().setCurrentVideoQueue(items, null);
                         videoQueueManager.getValue().setCurrentMediaPosition(actualStartIndex);
                         
                         android.content.Context context = KoinJavaComponent.<android.app.Application>get(android.app.Application.class);
-                        Lazy<org.jellyfin.androidtv.ui.playback.PlaybackLauncher> playbackLauncher = inject(org.jellyfin.androidtv.ui.playback.PlaybackLauncher.class);
+                        Lazy<uk.rinzler.tv.ui.playback.PlaybackLauncher> playbackLauncher = inject(uk.rinzler.tv.ui.playback.PlaybackLauncher.class);
                         playbackLauncher.getValue().launch(context, items, (int) startPositionMs, false, actualStartIndex, false);
                     }
 
@@ -251,12 +251,12 @@ public class PlaybackController implements PlaybackControllerNotifiable {
             return;
         }
         
-        org.jellyfin.androidtv.data.syncplay.SyncPlayQueueHelper.fetchQueue(
+        uk.rinzler.tv.data.syncplay.SyncPlayQueueHelper.fetchQueue(
             mFragment,
             itemIds,
             startIndex,
             startPositionTicks,
-            new org.jellyfin.androidtv.data.syncplay.SyncPlayQueueHelper.QueueCallback() {
+            new uk.rinzler.tv.data.syncplay.SyncPlayQueueHelper.QueueCallback() {
                 @Override
                 public void onQueueReady(java.util.List<org.jellyfin.sdk.model.api.BaseItemDto> items, int actualStartIndex, long startPositionMs) {
                     if (mFragment == null || mFragment.getActivity() == null) return;
@@ -1084,8 +1084,8 @@ public class PlaybackController implements PlaybackControllerNotifiable {
         stopReportLoop();
         startPauseReportLoop();
         
-        org.jellyfin.androidtv.data.syncplay.SyncPlayManager manager = syncPlayManager.getValue();
-        org.jellyfin.androidtv.data.syncplay.SyncPlayState state = manager.getState().getValue();
+        uk.rinzler.tv.data.syncplay.SyncPlayManager manager = syncPlayManager.getValue();
+        uk.rinzler.tv.data.syncplay.SyncPlayState state = manager.getState().getValue();
         if (state.getGroupInfo() != null && state.getGroupState() == org.jellyfin.sdk.model.api.GroupStateType.PLAYING) {
             executeSyncPlayCommand(() -> {
                 try {
@@ -1110,8 +1110,8 @@ public class PlaybackController implements PlaybackControllerNotifiable {
                 stopReportLoop();
                 play(getCurrentPosition());
                 
-                org.jellyfin.androidtv.data.syncplay.SyncPlayManager manager = syncPlayManager.getValue();
-                org.jellyfin.androidtv.data.syncplay.SyncPlayState state = manager.getState().getValue();
+                uk.rinzler.tv.data.syncplay.SyncPlayManager manager = syncPlayManager.getValue();
+                uk.rinzler.tv.data.syncplay.SyncPlayState state = manager.getState().getValue();
                 if (state.getGroupInfo() != null && state.getGroupState() == org.jellyfin.sdk.model.api.GroupStateType.PAUSED) {
                     executeSyncPlayCommand(() -> {
                         try {
@@ -1250,7 +1250,7 @@ public class PlaybackController implements PlaybackControllerNotifiable {
         wasSeeking = true;
         
         // If in SyncPlay group and not responding to a SyncPlay command, send seek request to server
-        org.jellyfin.androidtv.data.syncplay.SyncPlayManager manager = syncPlayManager.getValue();
+        uk.rinzler.tv.data.syncplay.SyncPlayManager manager = syncPlayManager.getValue();
         if (manager.getState().getValue().getGroupInfo() != null && !isRespondingToSyncPlayCommand) {
             Timber.i("SyncPlay: Sending seek request to server for position %d", pos);
             final long positionTicks = SyncPlayUtils.msToTicks(pos);

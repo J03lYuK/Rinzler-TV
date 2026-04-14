@@ -1,6 +1,6 @@
-package org.jellyfin.androidtv.constant
+package uk.rinzler.tv.constant
 
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import org.jellyfin.preference.PreferenceEnum
 
 enum class ImageType(

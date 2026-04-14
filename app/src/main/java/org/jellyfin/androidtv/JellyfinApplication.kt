@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv
+package uk.rinzler.tv
 
 import android.app.Application
 import android.content.Context
@@ -16,16 +16,16 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.acra.ACRA
-import org.jellyfin.androidtv.util.apiclient.ioCall
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.data.eventhandling.SocketHandler
-import org.jellyfin.androidtv.data.repository.NotificationsRepository
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrHttpClient
-import org.jellyfin.androidtv.integration.LeanbackChannelWorker
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.ui.background.UpdateCheckWorker
-import org.jellyfin.androidtv.telemetry.TelemetryService
+import uk.rinzler.tv.util.apiclient.ioCall
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.data.eventhandling.SocketHandler
+import uk.rinzler.tv.data.repository.NotificationsRepository
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrHttpClient
+import uk.rinzler.tv.integration.LeanbackChannelWorker
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.ui.background.UpdateCheckWorker
+import uk.rinzler.tv.telemetry.TelemetryService
 import org.koin.android.ext.android.inject
 import org.koin.core.qualifier.named
 import timber.log.Timber

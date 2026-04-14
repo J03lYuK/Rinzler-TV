@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.service.jellyseerr
+package uk.rinzler.tv.data.service.jellyseerr
 
 import android.util.Base64
 import io.ktor.client.HttpClient
@@ -40,7 +40,7 @@ class JellyseerrHttpClient(
 	private val baseUrl: String,
 	private val apiKey: String,
 ) {
-	var proxyConfig: MoonfinProxyConfig? = null
+	var proxyConfig: RinzlerProxyConfig? = null
 
 	val isProxyMode: Boolean get() = proxyConfig != null
 
@@ -61,15 +61,15 @@ class JellyseerrHttpClient(
 	private fun apiUrl(path: String): String {
 		val proxy = proxyConfig
 		return if (proxy != null) {
-			"${proxy.jellyfinBaseUrl}/Moonfin/Jellyseerr/Api/${path.trimStart('/')}"
+			"${proxy.jellyfinBaseUrl}/Rinzler/Jellyseerr/Api/${path.trimStart('/')}"
 		} else {
 			"$baseUrl/api/v1/${path.trimStart('/')}"
 		}
 	}
 
 	private fun moonfinUrl(path: String): String {
-		val proxy = proxyConfig ?: throw IllegalStateException("Moonfin proxy not configured")
-		return "${proxy.jellyfinBaseUrl}/Moonfin/Jellyseerr/${path.trimStart('/')}"
+		val proxy = proxyConfig ?: throw IllegalStateException("Rinzler proxy not configured")
+		return "${proxy.jellyfinBaseUrl}/Rinzler/Jellyseerr/${path.trimStart('/')}"
 	}
 	companion object {
 		private const val REQUEST_TIMEOUT_SECONDS = 30L
@@ -202,7 +202,7 @@ class JellyseerrHttpClient(
 		}
 
 		engine {
-			// Intercept Moonfin proxy responses to unwrap FileContents envelope.
+			// Intercept Rinzler proxy responses to unwrap FileContents envelope.
 			// The proxy's ProxyApiRequest() wraps responses in
 			// {"FileContents":"base64...","ContentType":"..."} which breaks
 			// Ktor's ContentNegotiation deserialization for some endpoints.
@@ -210,8 +210,8 @@ class JellyseerrHttpClient(
 				val request = chain.request()
 				val response = chain.proceed(request)
 
-				// Only process Moonfin proxy API responses
-				if (!request.url.encodedPath.contains("/Moonfin/Jellyseerr/Api/")) {
+				// Only process Rinzler proxy API responses
+				if (!request.url.encodedPath.contains("/Rinzler/Jellyseerr/Api/")) {
 					return@addInterceptor response
 				}
 
@@ -1192,38 +1192,38 @@ class JellyseerrHttpClient(
 		Timber.e(error, "Jellyseerr: Failed to get Sonarr settings")
 	}
 
-	// ==================== Moonfin Plugin SSO ====================
+	// ==================== Rinzler Plugin SSO ====================
 
-	suspend fun getMoonfinStatus(): Result<MoonfinStatusResponse> = runCatching {
+	suspend fun getRinzlerStatus(): Result<RinzlerStatusResponse> = runCatching {
 		val url = moonfinUrl("Status")
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
-		Timber.d("Jellyseerr: Moonfin status - Status: ${response.status}")
-		response.body<MoonfinStatusResponse>()
+		Timber.d("Jellyseerr: Rinzler status - Status: ${response.status}")
+		response.body<RinzlerStatusResponse>()
 	}.onFailure { error ->
-		Timber.e(error, "Jellyseerr: Failed to get Moonfin status")
+		Timber.e(error, "Jellyseerr: Failed to get Rinzler status")
 	}
 
 	suspend fun moonfinLogin(
 		username: String,
 		password: String,
 		authType: String = "jellyfin",
-	): Result<MoonfinLoginResponse> = runCatching {
+	): Result<RinzlerLoginResponse> = runCatching {
 		val url = moonfinUrl("Login")
 		val response = httpClient.post(url) {
 			addAuthHeader()
 			contentType(ContentType.Application.Json)
-			setBody(MoonfinLoginRequest(username = username, password = password, authType = authType))
+			setBody(RinzlerLoginRequest(username = username, password = password, authType = authType))
 		}
-		Timber.d("Jellyseerr: Moonfin login - Status: ${response.status}")
-		val result = response.body<MoonfinLoginResponse>()
+		Timber.d("Jellyseerr: Rinzler login - Status: ${response.status}")
+		val result = response.body<RinzlerLoginResponse>()
 		if (!result.success) {
-			throw Exception(result.error ?: "Moonfin login failed")
+			throw Exception(result.error ?: "Rinzler login failed")
 		}
 		result
 	}.onFailure { error ->
-		Timber.e(error, "Jellyseerr: Moonfin login failed")
+		Timber.e(error, "Jellyseerr: Rinzler login failed")
 	}
 
 	suspend fun moonfinLogout(): Result<Unit> = runCatching {
@@ -1231,20 +1231,20 @@ class JellyseerrHttpClient(
 		val response = httpClient.delete(url) {
 			addAuthHeader()
 		}
-		Timber.d("Jellyseerr: Moonfin logout - Status: ${response.status}")
+		Timber.d("Jellyseerr: Rinzler logout - Status: ${response.status}")
 	}.onFailure { error ->
-		Timber.e(error, "Jellyseerr: Moonfin logout failed")
+		Timber.e(error, "Jellyseerr: Rinzler logout failed")
 	}
 
-	suspend fun moonfinValidate(): Result<MoonfinValidateResponse> = runCatching {
+	suspend fun moonfinValidate(): Result<RinzlerValidateResponse> = runCatching {
 		val url = moonfinUrl("Validate")
 		val response = httpClient.get(url) {
 			addAuthHeader()
 		}
-		Timber.d("Jellyseerr: Moonfin validate - Status: ${response.status}")
-		response.body<MoonfinValidateResponse>()
+		Timber.d("Jellyseerr: Rinzler validate - Status: ${response.status}")
+		response.body<RinzlerValidateResponse>()
 	}.onFailure { error ->
-		Timber.e(error, "Jellyseerr: Moonfin validate failed")
+		Timber.e(error, "Jellyseerr: Rinzler validate failed")
 	}
 
 	fun close() {

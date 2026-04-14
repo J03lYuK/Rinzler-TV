@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.player.video
+package uk.rinzler.tv.ui.player.video
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.focusGroup
@@ -31,14 +31,14 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.LocalTextStyle
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.button.IconButton
-import org.jellyfin.androidtv.ui.base.popover.Popover
-import org.jellyfin.androidtv.ui.composable.rememberPlayerPositionInfo
-import org.jellyfin.androidtv.ui.player.base.PlayerSeekbar
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.LocalTextStyle
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.button.IconButton
+import uk.rinzler.tv.ui.base.popover.Popover
+import uk.rinzler.tv.ui.composable.rememberPlayerPositionInfo
+import uk.rinzler.tv.ui.player.base.PlayerSeekbar
 import org.jellyfin.playback.core.PlaybackManager
 import org.jellyfin.playback.core.model.PlayState
 import org.jellyfin.playback.core.queue.queue

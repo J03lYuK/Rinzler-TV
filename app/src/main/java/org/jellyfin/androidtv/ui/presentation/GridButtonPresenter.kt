@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.presentation
+package uk.rinzler.tv.ui.presentation
 
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -20,10 +20,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.leanback.widget.Presenter
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.GridButton
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.itemhandling.GridButtonBaseRowItem
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.GridButton
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.itemhandling.GridButtonBaseRowItem
 
 class GridButtonPresenter @JvmOverloads constructor(
 	private val width: Int = 110,

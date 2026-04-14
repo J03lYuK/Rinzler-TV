@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.composable
+package uk.rinzler.tv.ui.settings.composable
 
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import org.jellyfin.androidtv.ui.base.dialog.DialogBase
+import uk.rinzler.tv.ui.base.dialog.DialogBase
 
 @Composable
 fun SettingsDialog(

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing.genre
+package uk.rinzler.tv.ui.browsing.genre
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,7 @@ import coil3.load
 import coil3.request.crossfade
 import coil3.request.error
 import coil3.request.placeholder
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 
 /**
  * Presenter for displaying Jellyfin genre cards with backdrop images.

@@ -1,6 +1,6 @@
-package org.moonfin.server.core.api
+package uk.rinzler.server.core.api
 
-import org.moonfin.server.core.model.DisplayPreferences
+import uk.rinzler.server.core.model.DisplayPreferences
 
 interface ServerDisplayPreferencesApi {
     suspend fun getDisplayPreferences(id: String, userId: String, client: String): DisplayPreferences

@@ -1,10 +1,10 @@
-package org.moonfin.server.emby.api
+package uk.rinzler.server.emby.api
 
-import org.moonfin.server.core.api.ServerDisplayPreferencesApi
-import org.moonfin.server.core.model.DisplayPreferences
-import org.moonfin.server.emby.EmbyApiClient
-import org.moonfin.server.emby.mapper.toCoreDisplayPreferences
-import org.moonfin.server.emby.mapper.toEmbyDisplayPreferences
+import uk.rinzler.server.core.api.ServerDisplayPreferencesApi
+import uk.rinzler.server.core.model.DisplayPreferences
+import uk.rinzler.server.emby.EmbyApiClient
+import uk.rinzler.server.emby.mapper.toCoreDisplayPreferences
+import uk.rinzler.server.emby.mapper.toEmbyDisplayPreferences
 
 class EmbyDisplayPreferencesApi(private val apiClient: EmbyApiClient) : ServerDisplayPreferencesApi {
 

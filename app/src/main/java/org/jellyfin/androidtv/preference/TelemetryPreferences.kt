@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.preference
+package uk.rinzler.tv.preference
 
 import android.content.Context
 import org.acra.ACRA

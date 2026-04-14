@@ -1,12 +1,12 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.content.Context
-import org.jellyfin.androidtv.constant.ImageType
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrCastMemberDto
-import org.jellyfin.androidtv.ui.itemhandling.BaseRowItem
-import org.jellyfin.androidtv.ui.itemhandling.BaseRowType
-import org.jellyfin.androidtv.util.apiclient.JellyfinImage
-import org.jellyfin.androidtv.util.apiclient.JellyfinImageSource
+import uk.rinzler.tv.constant.ImageType
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrCastMemberDto
+import uk.rinzler.tv.ui.itemhandling.BaseRowItem
+import uk.rinzler.tv.ui.itemhandling.BaseRowType
+import uk.rinzler.tv.util.apiclient.JellyfinImage
+import uk.rinzler.tv.util.apiclient.JellyfinImageSource
 import java.util.UUID
 
 class CastRowItem(

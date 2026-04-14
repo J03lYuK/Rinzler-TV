@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base.button
+package uk.rinzler.tv.ui.base.button
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.colorResource
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 
 @Composable
 fun ProgressButtonBase(

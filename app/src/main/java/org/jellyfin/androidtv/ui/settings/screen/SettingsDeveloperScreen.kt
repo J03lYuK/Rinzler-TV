@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen
+package uk.rinzler.tv.ui.settings.screen
 
 import android.text.format.Formatter
 import androidx.compose.runtime.Composable
@@ -10,20 +10,20 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import coil3.ImageLoader
-import org.jellyfin.androidtv.BuildConfig
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.preference.SystemPreferences
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.form.Checkbox
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.settings.compat.rememberPreference
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
-import org.jellyfin.androidtv.util.isTvDevice
-import org.jellyfin.androidtv.util.supportsFeature
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.moonfin.server.core.feature.ServerFeature
+import uk.rinzler.tv.BuildConfig
+import uk.rinzler.tv.R
+import uk.rinzler.tv.preference.SystemPreferences
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.form.Checkbox
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.settings.compat.rememberPreference
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.util.isTvDevice
+import uk.rinzler.tv.util.supportsFeature
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.server.core.feature.ServerFeature
 import org.koin.compose.koinInject
 
 @Composable

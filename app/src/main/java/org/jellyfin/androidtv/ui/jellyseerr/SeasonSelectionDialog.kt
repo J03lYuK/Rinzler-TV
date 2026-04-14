@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.app.Dialog
 import android.content.Context
@@ -13,8 +13,8 @@ import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.preference.UserSettingPreferences
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.preference.UserSettingPreferences
 
 class SeasonSelectionDialog(
 	context: Context,

@@ -1,12 +1,12 @@
 @file:UseSerializers(UUIDSerializer::class)
 
-package org.jellyfin.androidtv.auth.model
+package uk.rinzler.tv.auth.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseSerializers
 import org.jellyfin.sdk.model.serializer.UUIDSerializer
-import org.moonfin.server.core.model.ServerType
+import uk.rinzler.server.core.model.ServerType
 import java.time.Instant
 import java.util.UUID
 

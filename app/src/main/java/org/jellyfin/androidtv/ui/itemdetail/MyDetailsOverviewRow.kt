@@ -1,9 +1,9 @@
-package org.jellyfin.androidtv.ui.itemdetail
+package uk.rinzler.tv.ui.itemdetail
 
 import androidx.core.view.isVisible
 import androidx.leanback.widget.Row
-import org.jellyfin.androidtv.data.model.InfoItem
-import org.jellyfin.androidtv.ui.TextUnderButton
+import uk.rinzler.tv.data.model.InfoItem
+import uk.rinzler.tv.ui.TextUnderButton
 import org.jellyfin.sdk.model.api.BaseItemDto
 
 class MyDetailsOverviewRow @JvmOverloads constructor(

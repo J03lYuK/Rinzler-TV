@@ -1,10 +1,10 @@
-package org.jellyfin.androidtv.ui.itemhandling
+package uk.rinzler.tv.ui.itemhandling
 
 import android.content.Context
-import org.jellyfin.androidtv.constant.ImageType
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrCastMemberDto
-import org.jellyfin.androidtv.util.apiclient.JellyfinImage
-import org.jellyfin.androidtv.util.apiclient.JellyfinImageSource
+import uk.rinzler.tv.constant.ImageType
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrCastMemberDto
+import uk.rinzler.tv.util.apiclient.JellyfinImage
+import uk.rinzler.tv.util.apiclient.JellyfinImageSource
 import java.util.UUID
 
 /**

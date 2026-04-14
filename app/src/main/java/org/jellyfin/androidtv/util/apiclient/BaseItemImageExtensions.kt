@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util.apiclient
+package uk.rinzler.tv.util.apiclient
 
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.ImageType

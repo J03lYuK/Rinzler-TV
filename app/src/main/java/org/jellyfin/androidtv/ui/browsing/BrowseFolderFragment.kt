@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing
+package uk.rinzler.tv.ui.browsing
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -16,16 +16,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
-import org.jellyfin.androidtv.constant.Extras
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.data.service.BlurContext
-import org.jellyfin.androidtv.ui.itemhandling.BaseRowItem
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncher
-import org.jellyfin.androidtv.ui.itemhandling.ItemRowAdapter
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter
-import org.jellyfin.androidtv.ui.presentation.PositionableListRowPresenter
+import uk.rinzler.tv.constant.Extras
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.data.service.BlurContext
+import uk.rinzler.tv.ui.itemhandling.BaseRowItem
+import uk.rinzler.tv.ui.itemhandling.ItemLauncher
+import uk.rinzler.tv.ui.itemhandling.ItemRowAdapter
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter
+import uk.rinzler.tv.ui.presentation.PositionableListRowPresenter
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.koin.android.ext.android.inject
 

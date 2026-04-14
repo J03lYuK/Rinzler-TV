@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import org.jellyfin.sdk.model.api.BaseItemDto
 

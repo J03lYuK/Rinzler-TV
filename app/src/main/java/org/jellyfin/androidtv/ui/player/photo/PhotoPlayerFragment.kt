@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.player.photo
+package uk.rinzler.tv.ui.player.photo
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.compose.content
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.JellyfinTheme
 import org.jellyfin.sdk.model.api.ItemSortBy
 import org.jellyfin.sdk.model.api.SortOrder
 import org.jellyfin.sdk.model.serializer.toUUIDOrNull

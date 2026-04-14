@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.integration.dream.composable
+package uk.rinzler.tv.integration.dream.composable
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import kotlin.random.Random
 
 @Composable
@@ -85,7 +85,7 @@ fun DreamContentLogo() {
 		}
 		
 		Image(
-			painter = painterResource(R.drawable.app_logo),
+				painter = painterResource(R.drawable.app_icon_foreground),
 			contentDescription = stringResource(R.string.app_name),
 			modifier = Modifier
 				.offset { IntOffset(offsetX.value.toInt(), offsetY.value.toInt()) }

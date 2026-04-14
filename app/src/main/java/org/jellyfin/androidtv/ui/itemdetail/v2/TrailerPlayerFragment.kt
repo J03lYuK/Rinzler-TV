@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.itemdetail.v2
+package uk.rinzler.tv.ui.itemdetail.v2
 
 import android.os.Bundle
 import android.os.Handler
@@ -27,9 +27,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
-import org.jellyfin.androidtv.ui.home.mediabar.YouTubeStreamResolver
-import org.jellyfin.androidtv.ui.home.mediabar.SponsorBlockApi
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.home.mediabar.YouTubeStreamResolver
+import uk.rinzler.tv.ui.home.mediabar.SponsorBlockApi
+import uk.rinzler.tv.ui.navigation.NavigationRepository
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 

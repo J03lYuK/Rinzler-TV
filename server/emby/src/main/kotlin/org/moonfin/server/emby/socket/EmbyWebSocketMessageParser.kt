@@ -1,4 +1,4 @@
-package org.moonfin.server.emby.socket
+package uk.rinzler.server.emby.socket
 
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.contentOrNull
@@ -6,7 +6,7 @@ import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.json.longOrNull
-import org.moonfin.server.core.model.ServerWebSocketMessage
+import uk.rinzler.server.core.model.ServerWebSocketMessage
 import timber.log.Timber
 
 internal object EmbyWebSocketMessageParser {

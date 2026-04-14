@@ -1,6 +1,6 @@
-package org.jellyfin.androidtv.data.service.jellyseerr
+package uk.rinzler.tv.data.service.jellyseerr
 
-data class MoonfinProxyConfig(
+data class RinzlerProxyConfig(
 	val jellyfinBaseUrl: String,
 	val jellyfinToken: String,
 )

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.repository
+package uk.rinzler.tv.data.repository
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.shareIn
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.auth.repository.UserRepository
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.auth.repository.UserRepository
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.userViewsApi
 import org.jellyfin.sdk.model.api.BaseItemDto

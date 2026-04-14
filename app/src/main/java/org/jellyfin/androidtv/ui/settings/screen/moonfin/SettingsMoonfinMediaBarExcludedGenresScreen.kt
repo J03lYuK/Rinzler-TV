@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen.moonfin
+package uk.rinzler.tv.ui.settings.screen.moonfin
 
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -19,14 +19,14 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.form.Checkbox
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.settings.compat.rememberPreference
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.R
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.form.Checkbox
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.settings.compat.rememberPreference
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
 import org.jellyfin.sdk.api.client.ApiClient
 import org.koin.compose.koinInject
 import java.util.concurrent.TimeUnit
@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit
 private data class GenreItem(val id: String, val name: String)
 
 @Composable
-fun SettingsMoonfinMediaBarExcludedGenresScreen() {
+fun SettingsRinzlerMediaBarExcludedGenresScreen() {
 	val api = koinInject<ApiClient>()
 	val userSettingPreferences = koinInject<UserSettingPreferences>()
 	var excludedGenresJson by rememberPreference(userSettingPreferences, UserSettingPreferences.mediaBarExcludedGenres)
@@ -64,7 +64,7 @@ fun SettingsMoonfinMediaBarExcludedGenresScreen() {
 			val token = api.accessToken ?: return@withContext
 			try {
 				val request = Request.Builder()
-					.url("$baseUrl/Moonfin/Genres")
+					.url("$baseUrl/Rinzler/Genres")
 					.header("Authorization", "MediaBrowser Token=\"$token\"")
 					.get()
 					.build()

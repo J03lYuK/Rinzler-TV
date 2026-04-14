@@ -1,14 +1,14 @@
-package org.jellyfin.androidtv.ui.itemdetail
+package uk.rinzler.tv.ui.itemdetail
 
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.data.repository.ItemMutationRepository
-import org.jellyfin.androidtv.data.repository.ItemRepository
-import org.jellyfin.androidtv.util.Utils
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.data.repository.ItemMutationRepository
+import uk.rinzler.tv.data.repository.ItemRepository
+import uk.rinzler.tv.util.Utils
+import uk.rinzler.tv.util.sdk.ApiClientFactory
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.itemsApi
 import org.jellyfin.sdk.api.client.extensions.playlistsApi

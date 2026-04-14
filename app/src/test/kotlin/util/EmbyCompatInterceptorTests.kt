@@ -1,8 +1,8 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import org.moonfin.server.core.model.ServerType
+import uk.rinzler.server.core.model.ServerType
 
 class EmbyCompatInterceptorTests : FunSpec({
 

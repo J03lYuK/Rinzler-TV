@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.compat
+package uk.rinzler.tv.ui.settings.compat
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

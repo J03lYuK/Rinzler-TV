@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing.v2
+package uk.rinzler.tv.ui.browsing.v2
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
@@ -51,26 +51,26 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import coil3.compose.AsyncImage
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.WatchedIndicatorBehavior
-import org.jellyfin.androidtv.ui.base.Badge
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Seekbar
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.focusBorderColor
-import org.jellyfin.androidtv.ui.browsing.composable.inforow.InfoRowColors
-import org.jellyfin.androidtv.ui.browsing.composable.inforow.InfoRowCompactRatings
-import org.jellyfin.androidtv.ui.itemdetail.v2.InfoItemBadge
-import org.jellyfin.androidtv.ui.itemdetail.v2.InfoItemSeparator
-import org.jellyfin.androidtv.ui.itemdetail.v2.InfoItemText
-import org.jellyfin.androidtv.ui.itemdetail.v2.RuntimeInfo
-import org.jellyfin.androidtv.util.TimeUtils
+import uk.rinzler.tv.R
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.WatchedIndicatorBehavior
+import uk.rinzler.tv.ui.base.Badge
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Seekbar
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.focusBorderColor
+import uk.rinzler.tv.ui.browsing.composable.inforow.InfoRowColors
+import uk.rinzler.tv.ui.browsing.composable.inforow.InfoRowCompactRatings
+import uk.rinzler.tv.ui.itemdetail.v2.InfoItemBadge
+import uk.rinzler.tv.ui.itemdetail.v2.InfoItemSeparator
+import uk.rinzler.tv.ui.itemdetail.v2.InfoItemText
+import uk.rinzler.tv.ui.itemdetail.v2.RuntimeInfo
+import uk.rinzler.tv.util.TimeUtils
 import org.jellyfin.design.Tokens
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind
 import org.koin.compose.koinInject
-import org.jellyfin.androidtv.ui.settings.compat.SettingsViewModel
+import uk.rinzler.tv.ui.settings.compat.SettingsViewModel
 import org.koin.compose.viewmodel.koinActivityViewModel
 
 // Jellyfin accent blue

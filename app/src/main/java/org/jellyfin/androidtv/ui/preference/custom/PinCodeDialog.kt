@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.preference.custom
+package uk.rinzler.tv.ui.preference.custom
 
 import android.app.AlertDialog
 import android.content.Context
@@ -11,7 +11,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.getSystemService
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 
 object PinCodeDialog {
 	enum class Mode {

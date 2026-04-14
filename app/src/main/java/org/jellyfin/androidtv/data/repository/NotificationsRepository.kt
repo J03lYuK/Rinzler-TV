@@ -1,17 +1,17 @@
-package org.jellyfin.androidtv.data.repository
+package uk.rinzler.tv.data.repository
 
 import android.content.Context
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import org.jellyfin.androidtv.BuildConfig
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.model.Server
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.jellyfin.androidtv.data.model.AppNotification
-import org.jellyfin.androidtv.preference.SystemPreferences
-import org.jellyfin.androidtv.util.isTvDevice
+import uk.rinzler.tv.BuildConfig
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.tv.data.model.AppNotification
+import uk.rinzler.tv.preference.SystemPreferences
+import uk.rinzler.tv.util.isTvDevice
 import org.jellyfin.sdk.model.ServerVersion
-import org.moonfin.server.core.model.ServerType
+import uk.rinzler.server.core.model.ServerType
 
 interface NotificationsRepository {
 	val notifications: StateFlow<List<AppNotification>>

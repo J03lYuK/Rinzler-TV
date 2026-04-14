@@ -7,7 +7,7 @@
         <item name="android:colorPrimaryDark">@color/grey</item>
         <item name="android:colorAccent">@color/jellyfin_blue</item>
         <!-- Background resource or color -->
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowBackground">@drawable/tron_splash_bg</item>
         <item name="defaultBackground">@color/not_quite_black</item>
         <!-- Background color for CardViews -->
         <item name="cardImageBackground">@color/grey</item>
@@ -87,7 +87,7 @@
     </style>
 
     <style name="Theme.Jellyfin.Dialog" parent="Theme.AppCompat.Dialog">
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowBackground">@drawable/tron_splash_bg</item>
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 </resources>

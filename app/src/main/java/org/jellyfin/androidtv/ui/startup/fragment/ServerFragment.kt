@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.startup.fragment
+package uk.rinzler.tv.ui.startup.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -20,28 +20,28 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.model.ApiClientErrorLoginState
-import org.jellyfin.androidtv.auth.model.AuthenticatedState
-import org.jellyfin.androidtv.auth.model.AuthenticatingState
-import org.jellyfin.androidtv.auth.model.PrivateUser
-import org.jellyfin.androidtv.auth.model.RequireSignInState
-import org.jellyfin.androidtv.auth.model.Server
-import org.jellyfin.androidtv.auth.model.ServerUnavailableState
-import org.jellyfin.androidtv.auth.model.ServerVersionNotSupported
-import org.jellyfin.androidtv.auth.model.User
-import org.jellyfin.androidtv.auth.repository.AuthenticationRepository
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.jellyfin.androidtv.auth.repository.ServerUserRepository
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.databinding.FragmentServerBinding
-import org.jellyfin.androidtv.ui.card.UserCardView
-import org.jellyfin.androidtv.ui.startup.PinEntryDialog
-import org.jellyfin.androidtv.ui.startup.StartupViewModel
-import org.jellyfin.androidtv.util.ListAdapter
-import org.jellyfin.androidtv.util.MarkdownRenderer
-import org.jellyfin.androidtv.util.PinCodeUtil
-import org.jellyfin.androidtv.util.setServerTypeIcon
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.model.ApiClientErrorLoginState
+import uk.rinzler.tv.auth.model.AuthenticatedState
+import uk.rinzler.tv.auth.model.AuthenticatingState
+import uk.rinzler.tv.auth.model.PrivateUser
+import uk.rinzler.tv.auth.model.RequireSignInState
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.tv.auth.model.ServerUnavailableState
+import uk.rinzler.tv.auth.model.ServerVersionNotSupported
+import uk.rinzler.tv.auth.model.User
+import uk.rinzler.tv.auth.repository.AuthenticationRepository
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.tv.auth.repository.ServerUserRepository
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.databinding.FragmentServerBinding
+import uk.rinzler.tv.ui.card.UserCardView
+import uk.rinzler.tv.ui.startup.PinEntryDialog
+import uk.rinzler.tv.ui.startup.StartupViewModel
+import uk.rinzler.tv.util.ListAdapter
+import uk.rinzler.tv.util.MarkdownRenderer
+import uk.rinzler.tv.util.PinCodeUtil
+import uk.rinzler.tv.util.setServerTypeIcon
 import org.jellyfin.sdk.model.serializer.toUUIDOrNull
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -145,8 +145,8 @@ class ServerFragment : Fragment() {
 			mode = PinEntryDialog.Mode.VERIFY,
 			onComplete = { pin ->
 				if (pin != null) {
-					val userPrefs = org.jellyfin.androidtv.preference.UserSettingPreferences(requireContext(), user.id)
-					val storedHash = userPrefs[org.jellyfin.androidtv.preference.UserSettingPreferences.userPinHash]
+					val userPrefs = uk.rinzler.tv.preference.UserSettingPreferences(requireContext(), user.id)
+					val storedHash = userPrefs[uk.rinzler.tv.preference.UserSettingPreferences.userPinHash]
 					
 					if (PinCodeUtil.hashPin(pin) == storedHash) {
 						authenticateUser(server, user)

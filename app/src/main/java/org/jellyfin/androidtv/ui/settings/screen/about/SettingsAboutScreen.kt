@@ -1,20 +1,20 @@
-package org.jellyfin.androidtv.ui.settings.screen.about
+package uk.rinzler.tv.ui.settings.screen.about
 
 import android.content.ClipData
 import android.os.Build
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import org.jellyfin.androidtv.BuildConfig
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.navigation.LocalRouter
-import org.jellyfin.androidtv.ui.settings.Routes
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
-import org.jellyfin.androidtv.ui.settings.util.copyAction
+import uk.rinzler.tv.BuildConfig
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.navigation.LocalRouter
+import uk.rinzler.tv.ui.settings.Routes
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.ui.settings.util.copyAction
 
 @Composable
 fun SettingsAboutScreen(launchedFromLogin: Boolean = false) {
@@ -34,10 +34,10 @@ fun SettingsAboutScreen(launchedFromLogin: Boolean = false) {
 		}
 
 		item {
-			val heading = "Moonfin app version"
-			val caption = "moonfin-androidtv ${BuildConfig.VERSION_NAME} ${BuildConfig.BUILD_TYPE}"
+			val heading = "Rinzler app version"
+			val caption = "rinzler-androidtv ${BuildConfig.VERSION_NAME} ${BuildConfig.BUILD_TYPE}"
 			ListButton(
-				leadingContent = { Icon(painterResource(R.drawable.ic_moonfin), contentDescription = null) },
+				leadingContent = { Icon(painterResource(R.drawable.app_icon_foreground), contentDescription = null) },
 				headingContent = { Text(heading) },
 				captionContent = { Text(caption) },
 				onClick = copyAction(ClipData.newPlainText(heading, caption)),

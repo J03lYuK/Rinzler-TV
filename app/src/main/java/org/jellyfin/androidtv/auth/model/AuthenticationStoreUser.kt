@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.auth.model
+package uk.rinzler.tv.auth.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

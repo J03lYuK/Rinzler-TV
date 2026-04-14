@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.os.Bundle
 import android.view.KeyEvent
@@ -30,37 +30,37 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.constant.CustomMessage
-import org.jellyfin.androidtv.constant.HomeSectionType
-import org.jellyfin.androidtv.constant.QueryType
-import org.jellyfin.androidtv.data.model.DataRefreshService
-import org.jellyfin.androidtv.data.repository.CustomMessageRepository
-import org.jellyfin.androidtv.data.repository.NotificationsRepository
-import org.jellyfin.androidtv.data.repository.UserViewsRepository
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.data.service.BlurContext
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.ui.browsing.CompositeClickedListener
-import org.jellyfin.androidtv.ui.browsing.CompositeSelectedListener
-import org.jellyfin.androidtv.ui.itemhandling.AggregatedItemRowAdapter
-import org.jellyfin.androidtv.ui.itemhandling.BaseRowItem
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncher
-import org.jellyfin.androidtv.ui.itemhandling.ItemRowAdapter
-import org.jellyfin.androidtv.ui.itemhandling.refreshItem
-import org.jellyfin.androidtv.ui.home.mediabar.MediaBarSlideshowViewModel
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.playback.AudioEventListener
-import org.jellyfin.androidtv.ui.playback.MediaManager
-import org.jellyfin.androidtv.ui.playback.PlaybackController
-import org.jellyfin.androidtv.ui.playback.ThemeMusicPlayer
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter
-import org.jellyfin.androidtv.ui.presentation.PositionableListRowPresenter
-import org.jellyfin.androidtv.util.KeyProcessor
-import org.jellyfin.androidtv.util.Debouncer
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.constant.CustomMessage
+import uk.rinzler.tv.constant.HomeSectionType
+import uk.rinzler.tv.constant.QueryType
+import uk.rinzler.tv.data.model.DataRefreshService
+import uk.rinzler.tv.data.repository.CustomMessageRepository
+import uk.rinzler.tv.data.repository.NotificationsRepository
+import uk.rinzler.tv.data.repository.UserViewsRepository
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.data.service.BlurContext
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.ui.browsing.CompositeClickedListener
+import uk.rinzler.tv.ui.browsing.CompositeSelectedListener
+import uk.rinzler.tv.ui.itemhandling.AggregatedItemRowAdapter
+import uk.rinzler.tv.ui.itemhandling.BaseRowItem
+import uk.rinzler.tv.ui.itemhandling.ItemLauncher
+import uk.rinzler.tv.ui.itemhandling.ItemRowAdapter
+import uk.rinzler.tv.ui.itemhandling.refreshItem
+import uk.rinzler.tv.ui.home.mediabar.MediaBarSlideshowViewModel
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.playback.AudioEventListener
+import uk.rinzler.tv.ui.playback.MediaManager
+import uk.rinzler.tv.ui.playback.PlaybackController
+import uk.rinzler.tv.ui.playback.ThemeMusicPlayer
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter
+import uk.rinzler.tv.ui.presentation.PositionableListRowPresenter
+import uk.rinzler.tv.util.KeyProcessor
+import uk.rinzler.tv.util.Debouncer
 import org.jellyfin.playback.core.PlaybackManager
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.liveTvApi
@@ -177,7 +177,7 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 			// Check for coroutine cancellation
 			if (!isActive) return@launch
 
-			// Add media bar row if enabled in Moonfin settings (not part of configurable sections)
+			// Add media bar row if enabled in Rinzler settings (not part of configurable sections)
 			if (userSettingPreferences[UserSettingPreferences.mediaBarEnabled]) {
 				rows.add(mediaBarRow)
 			}
@@ -335,7 +335,7 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 					val horizontalGrid = findParentHorizontalGridView(focusedView)
 					if (horizontalGrid != null && horizontalGrid.selectedPosition == 0) {
 						try {
-							val sidebar = requireActivity().findViewById<View?>(org.jellyfin.androidtv.R.id.sidebar)
+							val sidebar = requireActivity().findViewById<View?>(uk.rinzler.tv.R.id.sidebar)
 							if (sidebar != null && sidebar.isVisible) {
 								sidebar.requestFocus()
 								return@setOnKeyInterceptListener true
@@ -353,7 +353,7 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 					selectedPosition == 0) {
 					try {
 						val decor = requireActivity().window.decorView
-						val toolbarActions = decor.findViewById<View?>(org.jellyfin.androidtv.R.id.toolbar_actions)
+						val toolbarActions = decor.findViewById<View?>(uk.rinzler.tv.R.id.toolbar_actions)
 						if (toolbarActions != null && toolbarActions.isFocusable) {
 							toolbarActions.requestFocus()
 							return@setOnKeyListener true

@@ -1,11 +1,11 @@
-package org.moonfin.server.core.api
+package uk.rinzler.server.core.api
 
-import org.moonfin.server.core.model.GetItemsRequest
-import org.moonfin.server.core.model.GetLatestMediaRequest
-import org.moonfin.server.core.model.GetNextUpRequest
-import org.moonfin.server.core.model.GetResumeItemsRequest
-import org.moonfin.server.core.model.ItemsResult
-import org.moonfin.server.core.model.ServerItem
+import uk.rinzler.server.core.model.GetItemsRequest
+import uk.rinzler.server.core.model.GetLatestMediaRequest
+import uk.rinzler.server.core.model.GetNextUpRequest
+import uk.rinzler.server.core.model.GetResumeItemsRequest
+import uk.rinzler.server.core.model.ItemsResult
+import uk.rinzler.server.core.model.ServerItem
 
 interface ServerItemsApi {
     suspend fun getItems(request: GetItemsRequest): ItemsResult

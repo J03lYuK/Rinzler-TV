@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.preference
+package uk.rinzler.tv.preference
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
@@ -7,7 +7,7 @@ import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
-import org.jellyfin.androidtv.constant.JellyseerrRowType
+import uk.rinzler.tv.constant.JellyseerrRowType
 
 /**
  * Custom serializer for JellyseerrRowType enum.

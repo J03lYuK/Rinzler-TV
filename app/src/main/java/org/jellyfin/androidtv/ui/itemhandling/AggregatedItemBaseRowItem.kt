@@ -1,7 +1,7 @@
-package org.jellyfin.androidtv.ui.itemhandling
+package uk.rinzler.tv.ui.itemhandling
 
-import org.jellyfin.androidtv.auth.model.Server
-import org.jellyfin.androidtv.data.model.AggregatedItem
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.tv.data.model.AggregatedItem
 import org.jellyfin.sdk.api.client.ApiClient
 import java.util.UUID
 

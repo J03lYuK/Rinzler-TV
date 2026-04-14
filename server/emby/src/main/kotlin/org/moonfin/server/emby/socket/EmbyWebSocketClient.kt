@@ -1,4 +1,4 @@
-package org.moonfin.server.emby.socket
+package uk.rinzler.server.emby.socket
 
 import android.media.AudioManager
 import kotlinx.coroutines.CoroutineScope
@@ -26,10 +26,10 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
-import org.moonfin.server.core.api.ServerWebSocketApi
-import org.moonfin.server.core.model.EmbyConnectionState
-import org.moonfin.server.core.model.ServerWebSocketMessage
-import org.moonfin.server.emby.EmbyApiClient
+import uk.rinzler.server.core.api.ServerWebSocketApi
+import uk.rinzler.server.core.model.EmbyConnectionState
+import uk.rinzler.server.core.model.ServerWebSocketMessage
+import uk.rinzler.server.emby.EmbyApiClient
 import timber.log.Timber
 import java.net.URLEncoder
 import java.util.concurrent.TimeUnit

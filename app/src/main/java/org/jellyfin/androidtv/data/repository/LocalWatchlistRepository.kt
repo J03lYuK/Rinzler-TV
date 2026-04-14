@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.repository
+package uk.rinzler.tv.data.repository
 
 import android.content.Context
 import android.content.SharedPreferences

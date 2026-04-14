@@ -1,12 +1,12 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.preference.constant.AppTheme
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.preference.constant.AppTheme
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 

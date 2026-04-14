@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui
+package uk.rinzler.tv.ui
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -11,13 +11,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.databinding.ClockUserBugBinding
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.ClockBehavior
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.shuffle.ShuffleManager
-import org.jellyfin.androidtv.ui.shuffle.showShuffleDialog
+import uk.rinzler.tv.databinding.ClockUserBugBinding
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.ClockBehavior
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.shuffle.ShuffleManager
+import uk.rinzler.tv.ui.shuffle.showShuffleDialog
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base.popover
+package uk.rinzler.tv.ui.base.popover
 
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.IntOffset

@@ -1,11 +1,11 @@
-package org.jellyfin.androidtv.preference
+package uk.rinzler.tv.preference
 
 import android.content.Context
 import androidx.preference.PreferenceManager
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.jellyfin.androidtv.constant.HomeSectionType
-import org.jellyfin.androidtv.preference.constant.AppTheme
+import uk.rinzler.tv.constant.HomeSectionType
+import uk.rinzler.tv.preference.constant.AppTheme
 import org.jellyfin.preference.booleanPreference
 import org.jellyfin.preference.enumPreference
 import org.jellyfin.preference.intPreference
@@ -62,7 +62,7 @@ class UserSettingPreferences(
 		
 		// Home rows image type settings
 		val homeRowsUniversalOverride = booleanPreference("homeRowsUniversalOverride", false)
-		val homeRowsUniversalImageType = enumPreference("homeRowsUniversalImageType", org.jellyfin.androidtv.constant.ImageType.POSTER)
+		val homeRowsUniversalImageType = enumPreference("homeRowsUniversalImageType", uk.rinzler.tv.constant.ImageType.POSTER)
 		
 		// Background blur settings
 		@Deprecated("Use detailsBackgroundBlurAmount or browsingBackgroundBlurAmount instead", ReplaceWith("detailsBackgroundBlurAmount"))
@@ -178,7 +178,7 @@ class UserSettingPreferences(
 	/**
 	 * Get the image type for a specific home row, respecting universal override.
 	 */
-	fun getHomeRowImageType(sectionType: HomeSectionType): org.jellyfin.androidtv.constant.ImageType {
+	fun getHomeRowImageType(sectionType: HomeSectionType): uk.rinzler.tv.constant.ImageType {
 		// Check if universal override is enabled
 		if (get(homeRowsUniversalOverride)) {
 			return get(homeRowsUniversalImageType)
@@ -186,18 +186,18 @@ class UserSettingPreferences(
 		
 		// Get per-row preference
 		val key = "homeRowImageType_${sectionType.serializedName}"
-		val value = sharedPreferences.getString(key, org.jellyfin.androidtv.constant.ImageType.POSTER.name)
+		val value = sharedPreferences.getString(key, uk.rinzler.tv.constant.ImageType.POSTER.name)
 		return try {
-			org.jellyfin.androidtv.constant.ImageType.valueOf(value ?: org.jellyfin.androidtv.constant.ImageType.POSTER.name)
+			uk.rinzler.tv.constant.ImageType.valueOf(value ?: uk.rinzler.tv.constant.ImageType.POSTER.name)
 		} catch (e: IllegalArgumentException) {
-			org.jellyfin.androidtv.constant.ImageType.POSTER
+			uk.rinzler.tv.constant.ImageType.POSTER
 		}
 	}
 
 	/**
 	 * Set the image type for a specific home row.
 	 */
-	fun setHomeRowImageType(sectionType: HomeSectionType, imageType: org.jellyfin.androidtv.constant.ImageType) {
+	fun setHomeRowImageType(sectionType: HomeSectionType, imageType: uk.rinzler.tv.constant.ImageType) {
 		val key = "homeRowImageType_${sectionType.serializedName}"
 		sharedPreferences.edit().putString(key, imageType.name).apply()
 	}

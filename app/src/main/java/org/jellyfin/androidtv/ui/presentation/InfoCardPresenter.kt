@@ -1,8 +1,8 @@
-package org.jellyfin.androidtv.ui.presentation
+package uk.rinzler.tv.ui.presentation
 
 import android.view.ViewGroup
 import androidx.leanback.widget.Presenter
-import org.jellyfin.androidtv.ui.card.MediaInfoCardView
+import uk.rinzler.tv.ui.card.MediaInfoCardView
 import org.jellyfin.sdk.model.api.MediaStream
 
 class InfoCardPresenter : Presenter() {

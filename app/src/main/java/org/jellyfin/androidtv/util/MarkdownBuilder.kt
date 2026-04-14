@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 class MarkdownBuilder : Appendable, CharSequence {
 	private val stringBuilder = StringBuilder()

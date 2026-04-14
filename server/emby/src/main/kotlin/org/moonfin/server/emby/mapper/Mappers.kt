@@ -1,4 +1,4 @@
-package org.moonfin.server.emby.mapper
+package uk.rinzler.server.emby.mapper
 
 import org.emby.client.model.BaseItemDto
 import org.emby.client.model.BaseItemPerson
@@ -13,25 +13,25 @@ import org.emby.client.model.NameLongIdPair
 import org.emby.client.model.PersonType as EmbyPersonType
 import org.emby.client.model.UserDto
 import org.emby.client.model.UserItemDataDto
-import org.moonfin.server.core.model.ImageType
-import org.moonfin.server.core.model.ItemType
-import org.moonfin.server.core.model.MediaProtocol
-import org.moonfin.server.core.model.MediaType
-import org.moonfin.server.core.model.NameIdPair
-import org.moonfin.server.core.model.PersonType
-import org.moonfin.server.core.model.ServerItem
-import org.moonfin.server.core.model.ServerMediaSource
-import org.moonfin.server.core.model.ServerMediaStream
-import org.moonfin.server.core.model.ServerPerson
-import org.moonfin.server.core.model.ServerUser
-import org.moonfin.server.core.model.StreamType
-import org.moonfin.server.emby.EmbyUserInfo
-import org.moonfin.server.core.model.DisplayPreferences as CoreDisplayPreferences
-import org.moonfin.server.core.model.LiveTvGuideInfo as CoreLiveTvGuideInfo
-import org.moonfin.server.core.model.LiveTvSeriesTimerInfo
-import org.moonfin.server.core.model.LiveTvTimerInfo
-import org.moonfin.server.core.model.SortOrder as CoreSortOrder
-import org.moonfin.server.core.model.UserItemData
+import uk.rinzler.server.core.model.ImageType
+import uk.rinzler.server.core.model.ItemType
+import uk.rinzler.server.core.model.MediaProtocol
+import uk.rinzler.server.core.model.MediaType
+import uk.rinzler.server.core.model.NameIdPair
+import uk.rinzler.server.core.model.PersonType
+import uk.rinzler.server.core.model.ServerItem
+import uk.rinzler.server.core.model.ServerMediaSource
+import uk.rinzler.server.core.model.ServerMediaStream
+import uk.rinzler.server.core.model.ServerPerson
+import uk.rinzler.server.core.model.ServerUser
+import uk.rinzler.server.core.model.StreamType
+import uk.rinzler.server.emby.EmbyUserInfo
+import uk.rinzler.server.core.model.DisplayPreferences as CoreDisplayPreferences
+import uk.rinzler.server.core.model.LiveTvGuideInfo as CoreLiveTvGuideInfo
+import uk.rinzler.server.core.model.LiveTvSeriesTimerInfo
+import uk.rinzler.server.core.model.LiveTvTimerInfo
+import uk.rinzler.server.core.model.SortOrder as CoreSortOrder
+import uk.rinzler.server.core.model.UserItemData
 import java.time.ZoneOffset
 
 private fun String?.toItemType(): ItemType = when (this) {

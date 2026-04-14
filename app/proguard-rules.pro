@@ -9,11 +9,11 @@
 -keepclasseswithmembers class kotlinx.serialization.json.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
--keep,includedescriptorclasses class org.jellyfin.androidtv.**$$serializer { *; }
--keepclassmembers class org.jellyfin.androidtv.** {
+-keep,includedescriptorclasses class uk.rinzler.tv.**$$serializer { *; }
+-keepclassmembers class uk.rinzler.tv.** {
     *** Companion;
 }
--keepclasseswithmembers class org.jellyfin.androidtv.** {
+-keepclasseswithmembers class uk.rinzler.tv.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
 
@@ -47,7 +47,7 @@
 -keep class androidx.leanback.** { *; }
 
 # Data binding & view binding
--keep class org.jellyfin.androidtv.databinding.** { *; }
+-keep class uk.rinzler.tv.databinding.** { *; }
 
 # Keep Compose @Composable functions from being removed
 -keep @androidx.compose.runtime.Composable class * { *; }

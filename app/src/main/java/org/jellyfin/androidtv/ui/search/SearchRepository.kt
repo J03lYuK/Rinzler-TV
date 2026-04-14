@@ -1,13 +1,13 @@
-package org.jellyfin.androidtv.ui.search
+package uk.rinzler.tv.ui.search
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.constant.QueryDefaults
-import org.jellyfin.androidtv.data.repository.ItemRepository
-import org.jellyfin.androidtv.data.repository.MultiServerRepository
-import org.jellyfin.androidtv.util.apiclient.ioCallContent
+import uk.rinzler.tv.constant.QueryDefaults
+import uk.rinzler.tv.data.repository.ItemRepository
+import uk.rinzler.tv.data.repository.MultiServerRepository
+import uk.rinzler.tv.util.apiclient.ioCallContent
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.ApiClientException
 import org.jellyfin.sdk.api.client.extensions.itemsApi

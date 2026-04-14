@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,10 +7,10 @@ import android.widget.ImageView
 import androidx.leanback.widget.Presenter
 import coil3.load
 import coil3.request.crossfade
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrNetworkDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrStudioDto
-import org.jellyfin.androidtv.preference.UserPreferences
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrNetworkDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrStudioDto
+import uk.rinzler.tv.preference.UserPreferences
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import timber.log.Timber

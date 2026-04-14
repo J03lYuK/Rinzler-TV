@@ -1,9 +1,9 @@
-package org.jellyfin.androidtv.telemetry
+package uk.rinzler.tv.telemetry
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
-import org.jellyfin.androidtv.preference.TelemetryPreferences
+import uk.rinzler.tv.preference.TelemetryPreferences
 
 class TelemetryPreferencesKeyTests : FunSpec({
 

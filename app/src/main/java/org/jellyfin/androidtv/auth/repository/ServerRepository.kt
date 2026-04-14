@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.auth.repository
+package uk.rinzler.tv.auth.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -9,14 +9,14 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.auth.model.AuthenticationStoreServer
-import org.jellyfin.androidtv.auth.model.ConnectedState
-import org.jellyfin.androidtv.auth.model.ConnectingState
-import org.jellyfin.androidtv.auth.model.Server
-import org.jellyfin.androidtv.auth.model.ServerAdditionState
-import org.jellyfin.androidtv.auth.model.UnableToConnectState
-import org.jellyfin.androidtv.auth.store.AuthenticationStore
-import org.jellyfin.androidtv.util.sdk.toServer
+import uk.rinzler.tv.auth.model.AuthenticationStoreServer
+import uk.rinzler.tv.auth.model.ConnectedState
+import uk.rinzler.tv.auth.model.ConnectingState
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.tv.auth.model.ServerAdditionState
+import uk.rinzler.tv.auth.model.UnableToConnectState
+import uk.rinzler.tv.auth.store.AuthenticationStore
+import uk.rinzler.tv.util.sdk.toServer
 import org.jellyfin.sdk.Jellyfin
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.ApiClientException
@@ -28,7 +28,7 @@ import org.jellyfin.sdk.discovery.RecommendedServerInfoScore
 import org.jellyfin.sdk.model.ServerVersion
 import org.jellyfin.sdk.model.api.BrandingOptionsDto
 import org.jellyfin.sdk.model.serializer.toUUID
-import org.moonfin.server.core.model.ServerType
+import uk.rinzler.server.core.model.ServerType
 import timber.log.Timber
 import java.time.Instant
 import java.util.UUID

@@ -1,4 +1,4 @@
-package org.moonfin.server.emby.discovery
+package uk.rinzler.server.emby.discovery
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.currentCoroutineContext
@@ -11,11 +11,11 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import org.emby.client.api.SystemServiceApi
-import org.moonfin.server.core.api.ServerDiscoveryApi
-import org.moonfin.server.core.model.DiscoveredServer
-import org.moonfin.server.core.model.PublicSystemInfo
-import org.moonfin.server.core.model.ServerType
-import org.moonfin.server.core.model.ServerValidationResult
+import uk.rinzler.server.core.api.ServerDiscoveryApi
+import uk.rinzler.server.core.model.DiscoveredServer
+import uk.rinzler.server.core.model.PublicSystemInfo
+import uk.rinzler.server.core.model.ServerType
+import uk.rinzler.server.core.model.ServerValidationResult
 import timber.log.Timber
 import java.net.DatagramPacket
 import java.net.DatagramSocket

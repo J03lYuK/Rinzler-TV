@@ -1,15 +1,15 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 import android.content.Context
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.data.syncplay.SyncPlayManager
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.navigation.ActivityDestinations
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.data.syncplay.SyncPlayManager
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.navigation.ActivityDestinations
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind
 import org.jellyfin.sdk.model.api.MediaType

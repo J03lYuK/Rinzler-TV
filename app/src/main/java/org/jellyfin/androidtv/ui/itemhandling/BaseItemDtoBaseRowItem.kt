@@ -1,22 +1,22 @@
-package org.jellyfin.androidtv.ui.itemhandling
+package uk.rinzler.tv.ui.itemhandling
 
 import android.content.Context
-import org.jellyfin.androidtv.util.apiclient.JellyfinImage
-import org.jellyfin.androidtv.util.apiclient.albumPrimaryImage
-import org.jellyfin.androidtv.util.apiclient.itemImages
-import org.jellyfin.androidtv.util.apiclient.parentImages
-import org.jellyfin.androidtv.util.apiclient.seriesPrimaryImage
-import org.jellyfin.androidtv.util.apiclient.seriesThumbImage
-import org.jellyfin.androidtv.util.getTimeFormatter
-import org.jellyfin.androidtv.util.locale
-import org.jellyfin.androidtv.util.sdk.getFullName
-import org.jellyfin.androidtv.util.sdk.getSubName
-import org.jellyfin.androidtv.util.toHtmlSpanned
+import uk.rinzler.tv.util.apiclient.JellyfinImage
+import uk.rinzler.tv.util.apiclient.albumPrimaryImage
+import uk.rinzler.tv.util.apiclient.itemImages
+import uk.rinzler.tv.util.apiclient.parentImages
+import uk.rinzler.tv.util.apiclient.seriesPrimaryImage
+import uk.rinzler.tv.util.apiclient.seriesThumbImage
+import uk.rinzler.tv.util.getTimeFormatter
+import uk.rinzler.tv.util.locale
+import uk.rinzler.tv.util.sdk.getFullName
+import uk.rinzler.tv.util.sdk.getSubName
+import uk.rinzler.tv.util.toHtmlSpanned
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind
 import org.jellyfin.sdk.model.api.ImageType
 import java.time.format.DateTimeFormatter
-import org.jellyfin.androidtv.constant.ImageType as BaseRowImageType
+import uk.rinzler.tv.constant.ImageType as BaseRowImageType
 
 open class BaseItemDtoBaseRowItem @JvmOverloads constructor(
 	item: BaseItemDto,

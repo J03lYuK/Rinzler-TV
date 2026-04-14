@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.player.base
+package uk.rinzler.tv.ui.player.base
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -30,8 +30,8 @@ import androidx.compose.ui.platform.LocalWindowInfo
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.composable.modifier.overscan
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.composable.modifier.overscan
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 

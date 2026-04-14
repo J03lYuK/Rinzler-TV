@@ -1,4 +1,4 @@
-package org.moonfin.server.jellyfin.mapper
+package uk.rinzler.server.jellyfin.mapper
 
 import java.time.ZoneOffset
 import org.jellyfin.sdk.model.api.BaseItemDto
@@ -14,19 +14,19 @@ import org.jellyfin.sdk.model.api.NameGuidPair
 import org.jellyfin.sdk.model.api.PersonKind
 import org.jellyfin.sdk.model.api.UserDto
 import org.jellyfin.sdk.model.api.UserItemDataDto
-import org.moonfin.server.core.model.ImageType
-import org.moonfin.server.core.model.ItemType
-import org.moonfin.server.core.model.MediaProtocol
-import org.moonfin.server.core.model.MediaType
-import org.moonfin.server.core.model.NameIdPair
-import org.moonfin.server.core.model.PersonType
-import org.moonfin.server.core.model.ServerItem
-import org.moonfin.server.core.model.ServerMediaSource
-import org.moonfin.server.core.model.ServerMediaStream
-import org.moonfin.server.core.model.ServerPerson
-import org.moonfin.server.core.model.ServerUser
-import org.moonfin.server.core.model.StreamType
-import org.moonfin.server.core.model.UserItemData
+import uk.rinzler.server.core.model.ImageType
+import uk.rinzler.server.core.model.ItemType
+import uk.rinzler.server.core.model.MediaProtocol
+import uk.rinzler.server.core.model.MediaType
+import uk.rinzler.server.core.model.NameIdPair
+import uk.rinzler.server.core.model.PersonType
+import uk.rinzler.server.core.model.ServerItem
+import uk.rinzler.server.core.model.ServerMediaSource
+import uk.rinzler.server.core.model.ServerMediaStream
+import uk.rinzler.server.core.model.ServerPerson
+import uk.rinzler.server.core.model.ServerUser
+import uk.rinzler.server.core.model.StreamType
+import uk.rinzler.server.core.model.UserItemData
 
 fun BaseItemKind.toItemType(): ItemType = when (this) {
     BaseItemKind.MOVIE -> ItemType.MOVIE

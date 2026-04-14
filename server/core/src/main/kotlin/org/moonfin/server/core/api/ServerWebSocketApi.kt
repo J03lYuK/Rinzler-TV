@@ -1,7 +1,7 @@
-package org.moonfin.server.core.api
+package uk.rinzler.server.core.api
 
 import kotlinx.coroutines.flow.Flow
-import org.moonfin.server.core.model.ServerWebSocketMessage
+import uk.rinzler.server.core.model.ServerWebSocketMessage
 
 interface ServerWebSocketApi {
     suspend fun connect()

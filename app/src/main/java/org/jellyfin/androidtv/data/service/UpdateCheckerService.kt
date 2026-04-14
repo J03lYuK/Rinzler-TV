@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.service
+package uk.rinzler.tv.data.service
 
 import android.content.Context
 import android.content.Intent
@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.jellyfin.androidtv.BuildConfig
+import uk.rinzler.tv.BuildConfig
 import timber.log.Timber
 import java.io.File
 import java.io.FileOutputStream
@@ -32,10 +32,10 @@ class UpdateCheckerService(private val context: Context) {
 	}
 
 	companion object {
-		private const val GITHUB_OWNER = "Moonfin-Client"
-		private const val GITHUB_REPO = "AndroidTV-FireTV"
+		private const val GITHUB_OWNER = "J03lYuK"
+		private const val GITHUB_REPO = "Rinzler-TV"
 		private const val GITHUB_API_URL = "https://api.github.com/repos/$GITHUB_OWNER/$GITHUB_REPO/releases/latest"
-		private const val PLUGIN_UPDATE_PATH = "/Moonfin/ClientUpdate"
+		private const val PLUGIN_UPDATE_PATH = "/Rinzler/ClientUpdate"
 	}
 
 	/** Cached result from the last plugin update check (populated on startup sync). */
@@ -61,7 +61,7 @@ class UpdateCheckerService(private val context: Context) {
 	)
 
 	/**
-	 * Response from the Moonfin plugin's `/Moonfin/ClientUpdate` endpoint.
+	 * Response from the Rinzler plugin's `/Rinzler/ClientUpdate` endpoint.
 	 */
 	@Serializable
 	data class PluginUpdateResponse(
@@ -82,7 +82,7 @@ class UpdateCheckerService(private val context: Context) {
 	)
 
 	/**
-	 * Check if an update is available via the Moonfin server plugin.
+	 * Check if an update is available via the Rinzler server plugin.
 	 * Returns `null` if the plugin endpoint is unavailable.
 	 */
 	suspend fun checkForUpdateViaPlugin(

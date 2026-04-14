@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen.moonfin
+package uk.rinzler.tv.ui.settings.screen.moonfin
 
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -9,17 +9,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.repository.ParentalControlsRepository
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.form.Checkbox
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.repository.ParentalControlsRepository
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.form.Checkbox
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
 import org.koin.compose.koinInject
 
 @Composable
-fun SettingsMoonfinParentalControlsScreen() {
+fun SettingsRinzlerParentalControlsScreen() {
 	val parentalControlsRepository = koinInject<ParentalControlsRepository>()
 	
 	var availableRatings by remember { mutableStateOf<List<String>>(emptyList()) }
@@ -36,7 +36,7 @@ fun SettingsMoonfinParentalControlsScreen() {
 	SettingsColumn {
 		item {
 			ListSection(
-				overlineContent = { Text(stringResource(R.string.moonfin_settings).uppercase()) },
+				overlineContent = { Text(stringResource(R.string.rinzler_settings).uppercase()) },
 				headingContent = { Text(stringResource(R.string.pref_parental_controls)) },
 				captionContent = { Text(stringResource(R.string.pref_parental_controls_description)) },
 			)

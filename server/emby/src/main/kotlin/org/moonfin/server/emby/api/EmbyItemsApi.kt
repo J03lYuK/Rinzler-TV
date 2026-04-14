@@ -1,21 +1,21 @@
-package org.moonfin.server.emby.api
+package uk.rinzler.server.emby.api
 
 import org.emby.client.model.QueryResultBaseItemDto
-import org.moonfin.server.core.api.ServerItemsApi
-import org.moonfin.server.core.model.GetItemsRequest
-import org.moonfin.server.core.model.GetLatestMediaRequest
-import org.moonfin.server.core.model.GetNextUpRequest
-import org.moonfin.server.core.model.GetResumeItemsRequest
-import org.moonfin.server.core.model.ItemField
-import org.moonfin.server.core.model.ItemFilter
-import org.moonfin.server.core.model.ItemSortBy
-import org.moonfin.server.core.model.ItemType
-import org.moonfin.server.core.model.ItemsResult
-import org.moonfin.server.core.model.MediaType
-import org.moonfin.server.core.model.ServerItem
-import org.moonfin.server.core.model.SortOrder
-import org.moonfin.server.emby.EmbyApiClient
-import org.moonfin.server.emby.mapper.toServerItem
+import uk.rinzler.server.core.api.ServerItemsApi
+import uk.rinzler.server.core.model.GetItemsRequest
+import uk.rinzler.server.core.model.GetLatestMediaRequest
+import uk.rinzler.server.core.model.GetNextUpRequest
+import uk.rinzler.server.core.model.GetResumeItemsRequest
+import uk.rinzler.server.core.model.ItemField
+import uk.rinzler.server.core.model.ItemFilter
+import uk.rinzler.server.core.model.ItemSortBy
+import uk.rinzler.server.core.model.ItemType
+import uk.rinzler.server.core.model.ItemsResult
+import uk.rinzler.server.core.model.MediaType
+import uk.rinzler.server.core.model.ServerItem
+import uk.rinzler.server.core.model.SortOrder
+import uk.rinzler.server.emby.EmbyApiClient
+import uk.rinzler.server.emby.mapper.toServerItem
 
 class EmbyItemsApi(private val apiClient: EmbyApiClient) : ServerItemsApi {
 

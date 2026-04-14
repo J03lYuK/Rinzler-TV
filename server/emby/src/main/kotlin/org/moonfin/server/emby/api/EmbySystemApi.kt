@@ -1,10 +1,10 @@
-package org.moonfin.server.emby.api
+package uk.rinzler.server.emby.api
 
 import org.emby.client.api.SystemServiceApi
-import org.moonfin.server.core.api.ServerSystemApi
-import org.moonfin.server.core.model.PublicSystemInfo
-import org.moonfin.server.core.model.SystemInfo
-import org.moonfin.server.emby.EmbyApiClient
+import uk.rinzler.server.core.api.ServerSystemApi
+import uk.rinzler.server.core.model.PublicSystemInfo
+import uk.rinzler.server.core.model.SystemInfo
+import uk.rinzler.server.emby.EmbyApiClient
 
 class EmbySystemApi(private val apiClient: EmbyApiClient) : ServerSystemApi {
 

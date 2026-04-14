@@ -1,7 +1,7 @@
-package org.moonfin.server.core.api
+package uk.rinzler.server.core.api
 
-import org.moonfin.server.core.model.ServerItem
-import org.moonfin.server.core.model.UserItemData
+import uk.rinzler.server.core.model.ServerItem
+import uk.rinzler.server.core.model.UserItemData
 
 interface ServerUserLibraryApi {
     suspend fun getItem(itemId: String): ServerItem

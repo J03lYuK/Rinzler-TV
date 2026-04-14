@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.repository
+package uk.rinzler.tv.data.repository
 
 import android.content.Context
 import kotlinx.coroutines.CoroutineScope
@@ -13,7 +13,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.jellyfin.androidtv.auth.repository.SessionRepository
+import uk.rinzler.tv.auth.repository.SessionRepository
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.filterApi
 import org.jellyfin.sdk.model.api.BaseItemDto

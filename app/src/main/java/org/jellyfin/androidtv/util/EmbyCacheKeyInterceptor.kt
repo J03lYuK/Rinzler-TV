@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 import coil3.intercept.Interceptor
 import coil3.memory.MemoryCache

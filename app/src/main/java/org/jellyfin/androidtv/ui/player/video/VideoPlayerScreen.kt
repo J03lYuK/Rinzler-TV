@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.player.video
+package uk.rinzler.tv.ui.player.video
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -14,12 +14,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.flow.map
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.ui.ScreensaverLock
-import org.jellyfin.androidtv.ui.player.base.PlayerSubtitles
-import org.jellyfin.androidtv.ui.player.base.PlayerSurface
-import org.jellyfin.androidtv.ui.player.base.toast.MediaToastRegistry
-import org.jellyfin.androidtv.ui.player.video.toast.rememberPlaybackManagerMediaToastEmitter
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.ui.ScreensaverLock
+import uk.rinzler.tv.ui.player.base.PlayerSubtitles
+import uk.rinzler.tv.ui.player.base.PlayerSurface
+import uk.rinzler.tv.ui.player.base.toast.MediaToastRegistry
+import uk.rinzler.tv.ui.player.video.toast.rememberPlaybackManagerMediaToastEmitter
 import org.jellyfin.playback.core.PlaybackManager
 import org.jellyfin.playback.core.model.PlayState
 import org.koin.compose.koinInject

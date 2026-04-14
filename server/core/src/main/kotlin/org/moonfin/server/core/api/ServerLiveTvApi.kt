@@ -1,9 +1,9 @@
-package org.moonfin.server.core.api
+package uk.rinzler.server.core.api
 
-import org.moonfin.server.core.model.ItemsResult
-import org.moonfin.server.core.model.LiveTvGuideInfo
-import org.moonfin.server.core.model.LiveTvSeriesTimerInfo
-import org.moonfin.server.core.model.LiveTvTimerInfo
+import uk.rinzler.server.core.model.ItemsResult
+import uk.rinzler.server.core.model.LiveTvGuideInfo
+import uk.rinzler.server.core.model.LiveTvSeriesTimerInfo
+import uk.rinzler.server.core.model.LiveTvTimerInfo
 
 interface ServerLiveTvApi {
     suspend fun getChannels(userId: String? = null, startIndex: Int? = null, limit: Int? = null): ItemsResult

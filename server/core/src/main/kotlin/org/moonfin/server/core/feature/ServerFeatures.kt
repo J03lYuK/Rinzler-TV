@@ -1,4 +1,4 @@
-package org.moonfin.server.core.feature
+package uk.rinzler.server.core.feature
 
 enum class ServerFeature {
     QUICK_CONNECT,

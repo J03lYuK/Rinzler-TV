@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui;
+package uk.rinzler.tv.ui;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -15,10 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.databinding.ItemRowBinding;
-import org.jellyfin.androidtv.util.TimeUtils;
-import org.jellyfin.androidtv.util.sdk.BaseItemExtensionsKt;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.databinding.ItemRowBinding;
+import uk.rinzler.tv.util.TimeUtils;
+import uk.rinzler.tv.util.sdk.BaseItemExtensionsKt;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 import org.jellyfin.sdk.model.api.MediaType;
 

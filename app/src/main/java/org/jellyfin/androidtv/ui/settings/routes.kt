@@ -1,84 +1,84 @@
-package org.jellyfin.androidtv.ui.settings
+package uk.rinzler.tv.ui.settings
 
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.navigation.RouteComposable
-import org.jellyfin.androidtv.ui.settings.composable.SettingsNumericScreen
-import org.jellyfin.androidtv.ui.settings.screen.SettingsDeveloperScreen
-import org.jellyfin.androidtv.ui.settings.screen.SettingsMainScreen
-import org.jellyfin.androidtv.ui.settings.screen.SettingsTelemetryScreen
-import org.jellyfin.androidtv.ui.settings.screen.about.SettingsAboutScreen
-import org.jellyfin.androidtv.ui.settings.screen.authentication.SettingsAuthenticationAutoSignInScreen
-import org.jellyfin.androidtv.ui.settings.screen.authentication.SettingsAuthenticationPinCodeScreen
-import org.jellyfin.androidtv.ui.settings.screen.authentication.SettingsAuthenticationScreen
-import org.jellyfin.androidtv.ui.settings.screen.authentication.SettingsAuthenticationServerScreen
-import org.jellyfin.androidtv.ui.settings.screen.authentication.SettingsAuthenticationServerUserScreen
-import org.jellyfin.androidtv.ui.settings.screen.authentication.SettingsAuthenticationSortByScreen
-import org.jellyfin.androidtv.ui.settings.screen.customization.SettingsCustomizationClockScreen
-import org.jellyfin.androidtv.ui.settings.screen.customization.SettingsCustomizationScreen
-import org.jellyfin.androidtv.ui.settings.screen.customization.SettingsCustomizationThemeScreen
-import org.jellyfin.androidtv.ui.settings.screen.customization.SettingsCustomizationWatchedIndicatorScreen
-import org.jellyfin.androidtv.ui.settings.screen.customization.subtitle.SettingsSubtitleTextStrokeColorScreen
-import org.jellyfin.androidtv.ui.settings.screen.customization.subtitle.SettingsSubtitlesBackgroundColorScreen
-import org.jellyfin.androidtv.ui.settings.screen.customization.subtitle.SettingsSubtitlesScreen
-import org.jellyfin.androidtv.ui.settings.screen.customization.subtitle.SettingsSubtitlesTextColorScreen
-import org.jellyfin.androidtv.ui.settings.screen.home.SettingsHomePosterSizeScreen
-import org.jellyfin.androidtv.ui.settings.screen.home.SettingsHomeScreen
-import org.jellyfin.androidtv.ui.settings.screen.home.SettingsHomeSectionScreen
-import org.jellyfin.androidtv.ui.settings.screen.library.SettingsLibrariesDisplayGridScreen
-import org.jellyfin.androidtv.ui.settings.screen.library.SettingsLibrariesDisplayImageSizeScreen
-import org.jellyfin.androidtv.ui.settings.screen.library.SettingsLibrariesDisplayImageTypeScreen
-import org.jellyfin.androidtv.ui.settings.screen.library.SettingsLibrariesDisplayScreen
-import org.jellyfin.androidtv.ui.settings.screen.library.SettingsLibrariesScreen
-import org.jellyfin.androidtv.ui.settings.screen.license.SettingsLicenseScreen
-import org.jellyfin.androidtv.ui.settings.screen.license.SettingsLicensesScreen
-import org.jellyfin.androidtv.ui.settings.screen.livetv.SettingsLiveTvGuideChannelOrderScreen
-import org.jellyfin.androidtv.ui.settings.screen.livetv.SettingsLiveTvGuideFiltersScreen
-import org.jellyfin.androidtv.ui.settings.screen.livetv.SettingsLiveTvGuideOptionsScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsJellyseerrRowsScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsJellyseerrScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsMoonfinBrowsingBlurScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsMoonfinDetailsBlurScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsMoonfinHomeRowsImageScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsMoonfinMediaBarColorScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsMoonfinMediaBarContentTypeScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsMoonfinMediaBarExcludedGenresScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsMoonfinMediaBarItemCountScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsMoonfinMediaBarOpacityScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsMoonfinMediaBarSourceTypeScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsMoonfinNavbarPositionScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsMoonfinParentalControlsScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsPluginScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsPluginAppearanceScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsPluginHomeScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsPluginMediaBarScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsPluginRatingsScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsPluginThemeMusicScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsPluginToolbarScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsMoonfinSeasonalSurpriseScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsMoonfinShuffleContentTypeScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsMoonfinSyncPlayScreen
-import org.jellyfin.androidtv.ui.settings.screen.moonfin.SettingsMoonfinThemeMusicVolumeScreen
-import org.jellyfin.androidtv.ui.settings.screen.playback.SettingsPlaybackAdvancedScreen
-import org.jellyfin.androidtv.ui.settings.screen.playback.SettingsPlaybackAudioBehaviorScreen
-import org.jellyfin.androidtv.ui.settings.screen.playback.SettingsPlaybackInactivityPromptScreen
-import org.jellyfin.androidtv.ui.settings.screen.playback.SettingsPlaybackMaxBitrateScreen
-import org.jellyfin.androidtv.ui.settings.screen.playback.SettingsPlaybackMaxResolutionScreen
-import org.jellyfin.androidtv.ui.settings.screen.playback.SettingsPlaybackPlayerScreen
-import org.jellyfin.androidtv.ui.settings.screen.playback.SettingsPlaybackPrerollsScreen
-import org.jellyfin.androidtv.ui.settings.screen.playback.SettingsPlaybackRefreshRateSwitchingBehaviorScreen
-import org.jellyfin.androidtv.ui.settings.screen.playback.SettingsPlaybackResumeSubtractDurationScreen
-import org.jellyfin.androidtv.ui.settings.screen.playback.SettingsPlaybackScreen
-import org.jellyfin.androidtv.ui.settings.screen.playback.SettingsPlaybackZoomModeScreen
-import org.jellyfin.androidtv.ui.settings.screen.playback.mediasegment.SettingsPlaybackMediaSegmentScreen
-import org.jellyfin.androidtv.ui.settings.screen.playback.mediasegment.SettingsPlaybackMediaSegmentsScreen
-import org.jellyfin.androidtv.ui.settings.screen.playback.nextup.SettingsPlaybackNextUpBehaviorScreen
-import org.jellyfin.androidtv.ui.settings.screen.playback.nextup.SettingsPlaybackNextUpScreen
-import org.jellyfin.androidtv.ui.settings.screen.screensaver.SettingsScreensaverAgeRatingScreen
-import org.jellyfin.androidtv.ui.settings.screen.screensaver.SettingsScreensaverDimmingScreen
-import org.jellyfin.androidtv.ui.settings.screen.screensaver.SettingsScreensaverModeScreen
-import org.jellyfin.androidtv.ui.settings.screen.screensaver.SettingsScreensaverScreen
-import org.jellyfin.androidtv.ui.settings.screen.screensaver.SettingsScreensaverTimeoutScreen
+import uk.rinzler.tv.R
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.navigation.RouteComposable
+import uk.rinzler.tv.ui.settings.composable.SettingsNumericScreen
+import uk.rinzler.tv.ui.settings.screen.SettingsDeveloperScreen
+import uk.rinzler.tv.ui.settings.screen.SettingsMainScreen
+import uk.rinzler.tv.ui.settings.screen.SettingsTelemetryScreen
+import uk.rinzler.tv.ui.settings.screen.about.SettingsAboutScreen
+import uk.rinzler.tv.ui.settings.screen.authentication.SettingsAuthenticationAutoSignInScreen
+import uk.rinzler.tv.ui.settings.screen.authentication.SettingsAuthenticationPinCodeScreen
+import uk.rinzler.tv.ui.settings.screen.authentication.SettingsAuthenticationScreen
+import uk.rinzler.tv.ui.settings.screen.authentication.SettingsAuthenticationServerScreen
+import uk.rinzler.tv.ui.settings.screen.authentication.SettingsAuthenticationServerUserScreen
+import uk.rinzler.tv.ui.settings.screen.authentication.SettingsAuthenticationSortByScreen
+import uk.rinzler.tv.ui.settings.screen.customization.SettingsCustomizationClockScreen
+import uk.rinzler.tv.ui.settings.screen.customization.SettingsCustomizationScreen
+import uk.rinzler.tv.ui.settings.screen.customization.SettingsCustomizationThemeScreen
+import uk.rinzler.tv.ui.settings.screen.customization.SettingsCustomizationWatchedIndicatorScreen
+import uk.rinzler.tv.ui.settings.screen.customization.subtitle.SettingsSubtitleTextStrokeColorScreen
+import uk.rinzler.tv.ui.settings.screen.customization.subtitle.SettingsSubtitlesBackgroundColorScreen
+import uk.rinzler.tv.ui.settings.screen.customization.subtitle.SettingsSubtitlesScreen
+import uk.rinzler.tv.ui.settings.screen.customization.subtitle.SettingsSubtitlesTextColorScreen
+import uk.rinzler.tv.ui.settings.screen.home.SettingsHomePosterSizeScreen
+import uk.rinzler.tv.ui.settings.screen.home.SettingsHomeScreen
+import uk.rinzler.tv.ui.settings.screen.home.SettingsHomeSectionScreen
+import uk.rinzler.tv.ui.settings.screen.library.SettingsLibrariesDisplayGridScreen
+import uk.rinzler.tv.ui.settings.screen.library.SettingsLibrariesDisplayImageSizeScreen
+import uk.rinzler.tv.ui.settings.screen.library.SettingsLibrariesDisplayImageTypeScreen
+import uk.rinzler.tv.ui.settings.screen.library.SettingsLibrariesDisplayScreen
+import uk.rinzler.tv.ui.settings.screen.library.SettingsLibrariesScreen
+import uk.rinzler.tv.ui.settings.screen.license.SettingsLicenseScreen
+import uk.rinzler.tv.ui.settings.screen.license.SettingsLicensesScreen
+import uk.rinzler.tv.ui.settings.screen.livetv.SettingsLiveTvGuideChannelOrderScreen
+import uk.rinzler.tv.ui.settings.screen.livetv.SettingsLiveTvGuideFiltersScreen
+import uk.rinzler.tv.ui.settings.screen.livetv.SettingsLiveTvGuideOptionsScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsJellyseerrRowsScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsJellyseerrScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsRinzlerBrowsingBlurScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsRinzlerDetailsBlurScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsRinzlerHomeRowsImageScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsRinzlerMediaBarColorScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsRinzlerMediaBarContentTypeScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsRinzlerMediaBarExcludedGenresScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsRinzlerMediaBarItemCountScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsRinzlerMediaBarOpacityScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsRinzlerMediaBarSourceTypeScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsRinzlerNavbarPositionScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsRinzlerParentalControlsScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsPluginScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsPluginAppearanceScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsPluginHomeScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsPluginMediaBarScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsPluginRatingsScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsPluginThemeMusicScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsPluginToolbarScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsRinzlerSeasonalSurpriseScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsRinzlerShuffleContentTypeScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsRinzlerSyncPlayScreen
+import uk.rinzler.tv.ui.settings.screen.moonfin.SettingsRinzlerThemeMusicVolumeScreen
+import uk.rinzler.tv.ui.settings.screen.playback.SettingsPlaybackAdvancedScreen
+import uk.rinzler.tv.ui.settings.screen.playback.SettingsPlaybackAudioBehaviorScreen
+import uk.rinzler.tv.ui.settings.screen.playback.SettingsPlaybackInactivityPromptScreen
+import uk.rinzler.tv.ui.settings.screen.playback.SettingsPlaybackMaxBitrateScreen
+import uk.rinzler.tv.ui.settings.screen.playback.SettingsPlaybackMaxResolutionScreen
+import uk.rinzler.tv.ui.settings.screen.playback.SettingsPlaybackPlayerScreen
+import uk.rinzler.tv.ui.settings.screen.playback.SettingsPlaybackPrerollsScreen
+import uk.rinzler.tv.ui.settings.screen.playback.SettingsPlaybackRefreshRateSwitchingBehaviorScreen
+import uk.rinzler.tv.ui.settings.screen.playback.SettingsPlaybackResumeSubtractDurationScreen
+import uk.rinzler.tv.ui.settings.screen.playback.SettingsPlaybackScreen
+import uk.rinzler.tv.ui.settings.screen.playback.SettingsPlaybackZoomModeScreen
+import uk.rinzler.tv.ui.settings.screen.playback.mediasegment.SettingsPlaybackMediaSegmentScreen
+import uk.rinzler.tv.ui.settings.screen.playback.mediasegment.SettingsPlaybackMediaSegmentsScreen
+import uk.rinzler.tv.ui.settings.screen.playback.nextup.SettingsPlaybackNextUpBehaviorScreen
+import uk.rinzler.tv.ui.settings.screen.playback.nextup.SettingsPlaybackNextUpScreen
+import uk.rinzler.tv.ui.settings.screen.screensaver.SettingsScreensaverAgeRatingScreen
+import uk.rinzler.tv.ui.settings.screen.screensaver.SettingsScreensaverDimmingScreen
+import uk.rinzler.tv.ui.settings.screen.screensaver.SettingsScreensaverModeScreen
+import uk.rinzler.tv.ui.settings.screen.screensaver.SettingsScreensaverScreen
+import uk.rinzler.tv.ui.settings.screen.screensaver.SettingsScreensaverTimeoutScreen
 import org.jellyfin.sdk.model.api.MediaSegmentType
 import org.jellyfin.sdk.model.serializer.toUUIDOrNull
 
@@ -319,7 +319,7 @@ val routes = mapOf<String, RouteComposable>(
 		SettingsHomePosterSizeScreen()
 	},
 	Routes.HOME_ROWS_IMAGE_TYPE to {
-		SettingsMoonfinHomeRowsImageScreen()
+		SettingsRinzlerHomeRowsImageScreen()
 	},
 	Routes.LIVETV_GUIDE_FILTERS to {
 		SettingsLiveTvGuideFiltersScreen()
@@ -406,49 +406,49 @@ val routes = mapOf<String, RouteComposable>(
 		SettingsPluginRatingsScreen()
 	},
 	Routes.MOONFIN_NAVBAR_POSITION to {
-		SettingsMoonfinNavbarPositionScreen()
+		SettingsRinzlerNavbarPositionScreen()
 	},
 	Routes.MOONFIN_SHUFFLE_CONTENT_TYPE to {
-		SettingsMoonfinShuffleContentTypeScreen()
+		SettingsRinzlerShuffleContentTypeScreen()
 	},
 	Routes.MOONFIN_MEDIA_BAR_SOURCE_TYPE to {
-		SettingsMoonfinMediaBarSourceTypeScreen()
+		SettingsRinzlerMediaBarSourceTypeScreen()
 	},
 	Routes.MOONFIN_MEDIA_BAR_EXCLUDED_GENRES to {
-		SettingsMoonfinMediaBarExcludedGenresScreen()
+		SettingsRinzlerMediaBarExcludedGenresScreen()
 	},
 	Routes.MOONFIN_MEDIA_BAR_CONTENT_TYPE to {
-		SettingsMoonfinMediaBarContentTypeScreen()
+		SettingsRinzlerMediaBarContentTypeScreen()
 	},
 	Routes.MOONFIN_MEDIA_BAR_ITEM_COUNT to {
-		SettingsMoonfinMediaBarItemCountScreen()
+		SettingsRinzlerMediaBarItemCountScreen()
 	},
 	Routes.MOONFIN_MEDIA_BAR_OPACITY to {
-		SettingsMoonfinMediaBarOpacityScreen()
+		SettingsRinzlerMediaBarOpacityScreen()
 	},
 	Routes.MOONFIN_MEDIA_BAR_COLOR to {
-		SettingsMoonfinMediaBarColorScreen()
+		SettingsRinzlerMediaBarColorScreen()
 	},
 	Routes.MOONFIN_THEME_MUSIC_VOLUME to {
-		SettingsMoonfinThemeMusicVolumeScreen()
+		SettingsRinzlerThemeMusicVolumeScreen()
 	},
 	Routes.MOONFIN_SEASONAL_SURPRISE to {
-		SettingsMoonfinSeasonalSurpriseScreen()
+		SettingsRinzlerSeasonalSurpriseScreen()
 	},
 	Routes.MOONFIN_HOME_ROWS_IMAGE to {
-		SettingsMoonfinHomeRowsImageScreen()
+		SettingsRinzlerHomeRowsImageScreen()
 	},
 	Routes.MOONFIN_DETAILS_BLUR to {
-		SettingsMoonfinDetailsBlurScreen()
+		SettingsRinzlerDetailsBlurScreen()
 	},
 	Routes.MOONFIN_BROWSING_BLUR to {
-		SettingsMoonfinBrowsingBlurScreen()
+		SettingsRinzlerBrowsingBlurScreen()
 	},
 	Routes.MOONFIN_PARENTAL_CONTROLS to {
-		SettingsMoonfinParentalControlsScreen()
+		SettingsRinzlerParentalControlsScreen()
 	},
 	Routes.MOONFIN_SYNCPLAY to {
-		SettingsMoonfinSyncPlayScreen()
+		SettingsRinzlerSyncPlayScreen()
 	},
 	Routes.MOONFIN_SYNCPLAY_MIN_DELAY to {
 		SettingsNumericScreen(
@@ -506,7 +506,7 @@ val routes = mapOf<String, RouteComposable>(
 		)
 	},
 	Routes.SYNCPLAY to {
-		SettingsMoonfinSyncPlayScreen()
+		SettingsRinzlerSyncPlayScreen()
 	},
 	Routes.TELEMETRY to {
 		SettingsTelemetryScreen()

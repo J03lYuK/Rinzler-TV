@@ -1,7 +1,7 @@
-package org.jellyfin.androidtv.ui.livetv
+package uk.rinzler.tv.ui.livetv
 
-import org.jellyfin.androidtv.preference.SystemPreferences
-import org.jellyfin.androidtv.util.Utils
+import uk.rinzler.tv.preference.SystemPreferences
+import uk.rinzler.tv.util.Utils
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject

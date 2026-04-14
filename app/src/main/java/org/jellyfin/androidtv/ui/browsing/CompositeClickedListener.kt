@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing
+package uk.rinzler.tv.ui.browsing
 
 import androidx.leanback.widget.OnItemViewClickedListener
 import androidx.leanback.widget.Presenter

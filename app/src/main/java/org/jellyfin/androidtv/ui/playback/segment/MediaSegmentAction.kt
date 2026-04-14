@@ -1,6 +1,6 @@
-package org.jellyfin.androidtv.ui.playback.segment
+package uk.rinzler.tv.ui.playback.segment
 
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import org.jellyfin.preference.PreferenceEnum
 
 enum class MediaSegmentAction(

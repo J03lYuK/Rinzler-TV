@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.composable.item
+package uk.rinzler.tv.ui.composable.item
 
 import android.net.Uri
 import android.os.Handler
@@ -40,10 +40,10 @@ import androidx.media3.ui.PlayerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.playback.segment.MediaSegmentRepository
-import org.jellyfin.androidtv.util.UUIDUtils
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.playback.segment.MediaSegmentRepository
+import uk.rinzler.tv.util.UUIDUtils
+import uk.rinzler.tv.util.sdk.ApiClientFactory
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.videosApi
 import org.jellyfin.sdk.model.api.BaseItemDto

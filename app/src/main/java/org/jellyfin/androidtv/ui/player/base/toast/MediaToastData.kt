@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.player.base.toast
+package uk.rinzler.tv.ui.player.base.toast
 
 import androidx.annotation.DrawableRes
 

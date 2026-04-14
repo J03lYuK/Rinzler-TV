@@ -1,4 +1,4 @@
-package org.moonfin.server.emby.socket
+package uk.rinzler.server.emby.socket
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.nulls.shouldBeNull
@@ -7,7 +7,7 @@ import io.kotest.matchers.types.shouldBeInstanceOf
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
-import org.moonfin.server.core.model.ServerWebSocketMessage
+import uk.rinzler.server.core.model.ServerWebSocketMessage
 
 class EmbyWebSocketMessageParserTests : FunSpec({
 

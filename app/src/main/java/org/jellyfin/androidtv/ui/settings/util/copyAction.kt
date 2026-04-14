@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.util
+package uk.rinzler.tv.ui.settings.util
 
 import android.content.ClipData
 import android.os.Build
@@ -10,7 +10,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 
 @Composable
 fun copyAction(data: ClipData): () -> Unit {

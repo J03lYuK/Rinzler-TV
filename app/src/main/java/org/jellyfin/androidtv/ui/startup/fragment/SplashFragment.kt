@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.startup.fragment
+package uk.rinzler.tv.ui.startup.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,8 +20,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.compose.content
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.JellyfinTheme
 
 @Composable
 fun SplashScreen() {
@@ -34,7 +34,7 @@ fun SplashScreen() {
 			modifier = Modifier.fillMaxSize(),
 		) {
 			Image(
-				painter = painterResource(R.drawable.app_logo),
+				painter = painterResource(R.drawable.rinzler_ring_logo),
 				contentDescription = stringResource(R.string.app_name),
 				modifier = Modifier
 					.width(400.dp)

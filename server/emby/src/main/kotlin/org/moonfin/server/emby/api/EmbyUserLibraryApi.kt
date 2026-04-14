@@ -1,12 +1,12 @@
-package org.moonfin.server.emby.api
+package uk.rinzler.server.emby.api
 
 import org.emby.client.model.UserItemDataDto
-import org.moonfin.server.core.api.ServerUserLibraryApi
-import org.moonfin.server.core.model.ServerItem
-import org.moonfin.server.core.model.UserItemData
-import org.moonfin.server.emby.EmbyApiClient
-import org.moonfin.server.emby.mapper.toServerItem
-import org.moonfin.server.emby.mapper.toUserItemData
+import uk.rinzler.server.core.api.ServerUserLibraryApi
+import uk.rinzler.server.core.model.ServerItem
+import uk.rinzler.server.core.model.UserItemData
+import uk.rinzler.server.emby.EmbyApiClient
+import uk.rinzler.server.emby.mapper.toServerItem
+import uk.rinzler.server.emby.mapper.toUserItemData
 
 class EmbyUserLibraryApi(private val apiClient: EmbyApiClient) : ServerUserLibraryApi {
 

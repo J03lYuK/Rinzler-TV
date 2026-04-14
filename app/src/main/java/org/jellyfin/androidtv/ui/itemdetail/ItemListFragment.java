@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.itemdetail;
+package uk.rinzler.tv.ui.itemdetail;
 
 import static org.koin.java.KoinJavaComponent.inject;
 
@@ -24,31 +24,31 @@ import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.util.TextUtilsKt;
-import org.jellyfin.androidtv.data.model.DataRefreshService;
-import org.jellyfin.androidtv.data.service.BackgroundService;
-import org.jellyfin.androidtv.data.service.BlurContext;
-import org.jellyfin.androidtv.databinding.FragmentItemListBinding;
-import org.jellyfin.androidtv.databinding.ViewRowDetailsBinding;
-import org.jellyfin.androidtv.ui.AsyncImageView;
-import org.jellyfin.androidtv.ui.ItemListView;
-import org.jellyfin.androidtv.ui.ItemListViewHelperKt;
-import org.jellyfin.androidtv.ui.ItemRowView;
-import org.jellyfin.androidtv.ui.TextUnderButton;
-import org.jellyfin.androidtv.ui.itemhandling.BaseItemDtoBaseRowItem;
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncher;
-import org.jellyfin.androidtv.ui.navigation.Destinations;
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository;
-import org.jellyfin.androidtv.ui.playback.AudioEventListener;
-import org.jellyfin.androidtv.ui.playback.MediaManager;
-import org.jellyfin.androidtv.ui.playback.PlaybackController;
-import org.jellyfin.androidtv.ui.playback.PlaybackLauncher;
-import org.jellyfin.androidtv.util.ImageHelper;
-import org.jellyfin.androidtv.util.InfoLayoutHelper;
-import org.jellyfin.androidtv.util.PlaybackHelper;
-import org.jellyfin.androidtv.util.Utils;
-import org.jellyfin.androidtv.util.sdk.BaseItemExtensionsKt;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.util.TextUtilsKt;
+import uk.rinzler.tv.data.model.DataRefreshService;
+import uk.rinzler.tv.data.service.BackgroundService;
+import uk.rinzler.tv.data.service.BlurContext;
+import uk.rinzler.tv.databinding.FragmentItemListBinding;
+import uk.rinzler.tv.databinding.ViewRowDetailsBinding;
+import uk.rinzler.tv.ui.AsyncImageView;
+import uk.rinzler.tv.ui.ItemListView;
+import uk.rinzler.tv.ui.ItemListViewHelperKt;
+import uk.rinzler.tv.ui.ItemRowView;
+import uk.rinzler.tv.ui.TextUnderButton;
+import uk.rinzler.tv.ui.itemhandling.BaseItemDtoBaseRowItem;
+import uk.rinzler.tv.ui.itemhandling.ItemLauncher;
+import uk.rinzler.tv.ui.navigation.Destinations;
+import uk.rinzler.tv.ui.navigation.NavigationRepository;
+import uk.rinzler.tv.ui.playback.AudioEventListener;
+import uk.rinzler.tv.ui.playback.MediaManager;
+import uk.rinzler.tv.ui.playback.PlaybackController;
+import uk.rinzler.tv.ui.playback.PlaybackLauncher;
+import uk.rinzler.tv.util.ImageHelper;
+import uk.rinzler.tv.util.InfoLayoutHelper;
+import uk.rinzler.tv.util.PlaybackHelper;
+import uk.rinzler.tv.util.Utils;
+import uk.rinzler.tv.util.sdk.BaseItemExtensionsKt;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 import org.jellyfin.sdk.model.api.BaseItemKind;
 import org.jellyfin.sdk.model.api.MediaType;
@@ -493,13 +493,13 @@ public class ItemListFragment extends Fragment implements View.OnKeyListener {
                     public void onClick(View v) {
                         // If this is a genre, shuffle within that genre
                         if (mBaseItem.getType() == BaseItemKind.GENRE) {
-                            java.util.UUID serverId = org.jellyfin.androidtv.util.UUIDUtils.parseUUID(mBaseItem.getServerId());
-                            org.jellyfin.androidtv.ui.shuffle.ShuffleUtilsKt.executeGenreShuffle(
+                            java.util.UUID serverId = uk.rinzler.tv.util.UUIDUtils.parseUUID(mBaseItem.getServerId());
+                            uk.rinzler.tv.ui.shuffle.ShuffleUtilsKt.executeGenreShuffle(
                                 requireContext(),
                                 mBaseItem.getName(),
                                 mBaseItem.getParentId(),
                                 serverId,
-                                KoinJavaComponent.get(org.jellyfin.androidtv.preference.UserPreferences.class),
+                                KoinJavaComponent.get(uk.rinzler.tv.preference.UserPreferences.class),
                                 KoinJavaComponent.get(NavigationRepository.class)
                             );
                         } else if (!mItems.isEmpty()) {
@@ -510,7 +510,7 @@ public class ItemListFragment extends Fragment implements View.OnKeyListener {
                     }
                 });
                 shuffle.setOnLongClickListener(v -> {
-                    org.jellyfin.androidtv.ui.shuffle.ShuffleDialogLauncherKt.showShuffleDialog(
+                    uk.rinzler.tv.ui.shuffle.ShuffleDialogLauncherKt.showShuffleDialog(
                         requireContext(),
                         KoinJavaComponent.get(NavigationRepository.class)
                     );

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen.license
+package uk.rinzler.tv.ui.settings.screen.license
 
 import android.content.ClipData
 import androidx.compose.foundation.lazy.items
@@ -8,13 +8,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.util.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListMessage
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
-import org.jellyfin.androidtv.ui.settings.util.copyAction
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListMessage
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.ui.settings.util.copyAction
 
 @Composable
 fun SettingsLicenseScreen(artifactId: String) {

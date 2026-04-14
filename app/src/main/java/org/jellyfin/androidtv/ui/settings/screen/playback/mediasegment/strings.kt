@@ -1,6 +1,6 @@
-package org.jellyfin.androidtv.ui.settings.screen.playback.mediasegment
+package uk.rinzler.tv.ui.settings.screen.playback.mediasegment
 
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import org.jellyfin.sdk.model.api.MediaSegmentType
 
 val MediaSegmentType.nameRes

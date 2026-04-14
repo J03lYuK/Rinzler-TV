@@ -1,20 +1,20 @@
-package org.jellyfin.androidtv.ui.settings.screen.moonfin
+package uk.rinzler.tv.ui.settings.screen.moonfin
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.navigation.LocalRouter
-import org.jellyfin.androidtv.ui.settings.Routes
-import org.jellyfin.androidtv.ui.settings.compat.rememberPreference
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
-import org.jellyfin.androidtv.ui.settings.screen.customization.getBlurLabel
-import org.jellyfin.androidtv.ui.settings.screen.customization.getSeasonalLabel
+import uk.rinzler.tv.R
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.navigation.LocalRouter
+import uk.rinzler.tv.ui.settings.Routes
+import uk.rinzler.tv.ui.settings.compat.rememberPreference
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.ui.settings.screen.customization.getBlurLabel
+import uk.rinzler.tv.ui.settings.screen.customization.getSeasonalLabel
 import org.koin.compose.koinInject
 
 @Composable

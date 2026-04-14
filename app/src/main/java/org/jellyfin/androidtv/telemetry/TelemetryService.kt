@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.telemetry
+package uk.rinzler.tv.telemetry
 
 import android.app.Application
 import android.content.Context
@@ -15,14 +15,14 @@ import org.acra.plugins.SimplePluginLoader
 import org.acra.sender.ReportSender
 import org.acra.sender.ReportSenderException
 import org.acra.sender.ReportSenderFactory
-import org.jellyfin.androidtv.BuildConfig
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.preference.TelemetryPreferences
-import org.jellyfin.androidtv.util.appendCodeBlock
-import org.jellyfin.androidtv.util.appendItem
-import org.jellyfin.androidtv.util.appendSection
-import org.jellyfin.androidtv.util.appendValue
-import org.jellyfin.androidtv.util.buildMarkdown
+import uk.rinzler.tv.BuildConfig
+import uk.rinzler.tv.R
+import uk.rinzler.tv.preference.TelemetryPreferences
+import uk.rinzler.tv.util.appendCodeBlock
+import uk.rinzler.tv.util.appendItem
+import uk.rinzler.tv.util.appendSection
+import uk.rinzler.tv.util.appendValue
+import uk.rinzler.tv.util.buildMarkdown
 import org.jellyfin.sdk.api.client.util.AuthorizationHeaderBuilder
 import java.net.HttpURLConnection
 import java.net.URL
@@ -85,7 +85,7 @@ object TelemetryService {
 			val connection = URL(url).openConnection() as HttpURLConnection
 			// Add authorization
 			val clientName = buildString {
-				append("Moonfin Android TV")
+				append("Rinzler Android TV")
 				if (BuildConfig.DEBUG) append(" (debug)")
 			}
 			val authorization = AuthorizationHeaderBuilder.buildHeader(
@@ -113,9 +113,9 @@ object TelemetryService {
 			private fun CrashReportData.toReport(): String = buildMarkdown {
 			// Header
 			appendLine("---")
-			appendLine("client: Moonfin for Android TV")
+			appendLine("client: Rinzler for Android TV")
 			appendLine("client_version: ${BuildConfig.VERSION_NAME}")
-			appendLine("client_repository: https://github.com/Moonfin-Client/AndroidTV-FireTV")
+			appendLine("client_repository: https://github.com/Rinzler-Client/AndroidTV-FireTV")
 			appendLine("type: crash_report")
 			appendLine("format: markdown")
 			appendLine("---")

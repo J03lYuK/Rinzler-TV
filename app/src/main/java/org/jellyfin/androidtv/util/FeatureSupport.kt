@@ -1,11 +1,11 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
-import org.jellyfin.androidtv.auth.model.Server
-import org.moonfin.server.core.feature.ServerFeature
-import org.moonfin.server.core.feature.ServerFeatureSupport
-import org.moonfin.server.core.model.ServerType
-import org.moonfin.server.emby.feature.EmbyFeatureSupport
-import org.moonfin.server.jellyfin.feature.JellyfinFeatureSupport
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.server.core.feature.ServerFeature
+import uk.rinzler.server.core.feature.ServerFeatureSupport
+import uk.rinzler.server.core.model.ServerType
+import uk.rinzler.server.emby.feature.EmbyFeatureSupport
+import uk.rinzler.server.jellyfin.feature.JellyfinFeatureSupport
 
 fun ServerType.featureSupport(): ServerFeatureSupport = when (this) {
     ServerType.JELLYFIN -> JellyfinFeatureSupport

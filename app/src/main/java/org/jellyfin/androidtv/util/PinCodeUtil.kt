@@ -1,8 +1,8 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 import android.content.Context
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.ui.startup.PinEntryDialog
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.ui.startup.PinEntryDialog
 import java.security.MessageDigest
 import java.util.UUID
 

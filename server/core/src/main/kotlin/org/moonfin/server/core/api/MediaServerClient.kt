@@ -1,7 +1,7 @@
-package org.moonfin.server.core.api
+package uk.rinzler.server.core.api
 
-import org.moonfin.server.core.model.DeviceInfo
-import org.moonfin.server.core.model.ServerType
+import uk.rinzler.server.core.model.DeviceInfo
+import uk.rinzler.server.core.model.ServerType
 
 interface MediaServerClient {
 	val serverType: ServerType

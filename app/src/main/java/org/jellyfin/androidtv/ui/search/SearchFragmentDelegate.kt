@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.search
+package uk.rinzler.tv.ui.search
 
 import android.content.Context
 import androidx.leanback.widget.FocusHighlight
@@ -7,17 +7,17 @@ import androidx.leanback.widget.ListRow
 import androidx.leanback.widget.OnItemViewClickedListener
 import androidx.leanback.widget.OnItemViewSelectedListener
 import androidx.leanback.widget.Row
-import org.jellyfin.androidtv.constant.ImageType
-import org.jellyfin.androidtv.constant.QueryType
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.data.service.BlurContext
-import org.jellyfin.androidtv.ui.itemhandling.BaseRowItem
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncher
-import org.jellyfin.androidtv.ui.itemhandling.ItemRowAdapter
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.ui.presentation.CustomListRowPresenter
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter
+import uk.rinzler.tv.constant.ImageType
+import uk.rinzler.tv.constant.QueryType
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.data.service.BlurContext
+import uk.rinzler.tv.ui.itemhandling.BaseRowItem
+import uk.rinzler.tv.ui.itemhandling.ItemLauncher
+import uk.rinzler.tv.ui.itemhandling.ItemRowAdapter
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.ui.presentation.CustomListRowPresenter
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter
 
 class SearchFragmentDelegate(
 	private val context: Context,

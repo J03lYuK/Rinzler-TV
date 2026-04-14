@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.service.pluginsync
+package uk.rinzler.tv.data.service.pluginsync
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -26,12 +26,12 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.data.repository.JellyseerrRepository
-import org.jellyfin.androidtv.data.service.UpdateCheckerService
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.data.repository.JellyseerrRepository
+import uk.rinzler.tv.data.service.UpdateCheckerService
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
 import org.jellyfin.preference.Preference
 import org.jellyfin.preference.PreferenceEnum
 import org.jellyfin.preference.store.SharedPreferenceStore
@@ -40,7 +40,7 @@ import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 /**
- * Bidirectional settings sync service for the Moonfin server plugin.
+ * Bidirectional settings sync service for the Rinzler server plugin.
  *
  * Direction: three-way merge with local-wins conflict resolution.
  *
@@ -59,8 +59,8 @@ import java.util.concurrent.TimeUnit
  * settings configured on the server dashboard are applied to new clients.
  *
  * **On Startup** (called from [syncOnStartup]):
- * 1. Pings `GET /Moonfin/Ping` to check plugin availability
- * 2. Fetches server settings via `GET /Moonfin/Settings`
+ * 1. Pings `GET /Rinzler/Ping` to check plugin availability
+ * 2. Fetches server settings via `GET /Rinzler/Settings`
  * 3. Loads the last-synced snapshot
  * 4. Three-way merges local, server, and snapshot
  * 5. Applies merged values locally and pushes to server
@@ -91,9 +91,9 @@ class PluginSyncService(
 ) {
 	companion object {
 		private const val TAG = "PluginSync"
-		private const val PING_PATH = "/Moonfin/Ping"
-		private const val SETTINGS_PATH = "/Moonfin/Settings"
-		private const val JELLYSEERR_CONFIG_PATH = "/Moonfin/Jellyseerr/Config"
+		private const val PING_PATH = "/Rinzler/Ping"
+		private const val SETTINGS_PATH = "/Rinzler/Settings"
+		private const val JELLYSEERR_CONFIG_PATH = "/Rinzler/Jellyseerr/Config"
 		private const val DEBOUNCE_MS = 500L
 		private val JSON_MEDIA_TYPE = "application/json; charset=utf-8".toMediaType()
 	}
@@ -213,13 +213,13 @@ class PluginSyncService(
 		}
 
 		registerChangeListeners()
-		if (org.jellyfin.androidtv.BuildConfig.ENABLE_OTA_UPDATES) {
+		if (uk.rinzler.tv.BuildConfig.ENABLE_OTA_UPDATES) {
 			checkForPluginUpdate(baseUrl, token)
 		}
 	}
 
 	/**
-	 * Configure Jellyseerr proxy mode via Moonfin plugin.
+	 * Configure Jellyseerr proxy mode via Rinzler plugin.
 	 * Must be called AFTER user is set (requires active Jellyfin user for cookie storage).
 	 * Separated from [syncOnStartup] because settings sync must run before the user is published
 	 * to prevent stale preference reads, while Jellyseerr needs the user ID.
@@ -233,11 +233,11 @@ class PluginSyncService(
 		if (!serverAvailable) return@withContext
 
 		fetchJellyseerrConfig(baseUrl, token)
-		autoConfigureMoonfinProxy(baseUrl, token)
+		autoConfigureRinzlerProxy(baseUrl, token)
 	}
 
 	/**
-	 * Silently checks for app updates via `/Moonfin/ClientUpdate` and caches the result
+	 * Silently checks for app updates via `/Rinzler/ClientUpdate` and caches the result
 	 * in [UpdateCheckerService.latestPluginUpdateInfo].
 	 */
 	private suspend fun checkForPluginUpdate(baseUrl: String, token: String) {
@@ -281,8 +281,8 @@ class PluginSyncService(
 	}
 
 	/**
-	 * Ping the Moonfin server plugin to check availability.
-	 * `GET {baseUrl}/Moonfin/Ping`
+	 * Ping the Rinzler server plugin to check availability.
+	 * `GET {baseUrl}/Rinzler/Ping`
 	 */
 	private fun ping(baseUrl: String, token: String): Boolean {
 		return try {
@@ -304,7 +304,7 @@ class PluginSyncService(
 
 	/**
 	 * Fetch settings from the server.
-	 * `GET {baseUrl}/Moonfin/Settings`
+	 * `GET {baseUrl}/Rinzler/Settings`
 	 *
 	 * Supports both v1 (flat key-value) and v2 (profiled envelope with
 	 * `global`, `desktop`, `mobile`, `tv` profiles) response formats.
@@ -396,7 +396,7 @@ class PluginSyncService(
 
 	/**
 	 * Fetch Jellyseerr configuration from the server and write the admin-configured URL locally.
-	 * `GET {baseUrl}/Moonfin/Jellyseerr/Config`
+	 * `GET {baseUrl}/Rinzler/Jellyseerr/Config`
 	 *
 	 * This is pull-only — the URL is admin-configured on the server and never pushed by clients.
 	 */
@@ -445,33 +445,33 @@ class PluginSyncService(
 	}
 
 	/**
-	 * Auto-configure Jellyseerr proxy mode when the Moonfin plugin is available.
+	 * Auto-configure Jellyseerr proxy mode when the Rinzler plugin is available.
 	 * Checks if Jellyseerr is enabled on the server and sets up proxy routing.
 	 */
-	private suspend fun autoConfigureMoonfinProxy(baseUrl: String, token: String) {
+	private suspend fun autoConfigureRinzlerProxy(baseUrl: String, token: String) {
 		try {
-			val result = jellyseerrRepository.configureWithMoonfin(baseUrl, token)
+			val result = jellyseerrRepository.configureWithRinzler(baseUrl, token)
 			result.onSuccess { status ->
 				if (status.authenticated) {
-					Timber.i("$TAG: Moonfin Jellyseerr proxy configured (authenticated)")
+					Timber.i("$TAG: Rinzler Jellyseerr proxy configured (authenticated)")
 				} else if (status.enabled) {
-					Timber.i("$TAG: Moonfin Jellyseerr proxy configured (not yet authenticated)")
+					Timber.i("$TAG: Rinzler Jellyseerr proxy configured (not yet authenticated)")
 				} else {
 					Timber.d("$TAG: Jellyseerr not enabled on server plugin")
 				}
 			}.onFailure { error ->
-				Timber.w(error, "$TAG: Failed to configure Moonfin Jellyseerr proxy")
+				Timber.w(error, "$TAG: Failed to configure Rinzler Jellyseerr proxy")
 			}
 		} catch (e: Exception) {
-			Timber.w(e, "$TAG: Error during Moonfin proxy auto-configure")
+			Timber.w(e, "$TAG: Error during Rinzler proxy auto-configure")
 		}
 	}
 
 	/**
 	 * Push settings to the server.
 	 *
-	 * For v1 servers: `POST {baseUrl}/Moonfin/Settings` with flat settings.
-	 * For v2 servers: `POST {baseUrl}/Moonfin/Settings/Profile/global` to
+	 * For v1 servers: `POST {baseUrl}/Rinzler/Settings` with flat settings.
+	 * For v2 servers: `POST {baseUrl}/Rinzler/Settings/Profile/global` to
 	 * save into the global profile so settings are visible on all devices.
 	 */
 	private fun pushSettings(baseUrl: String, token: String, settings: Map<String, Any?>) {

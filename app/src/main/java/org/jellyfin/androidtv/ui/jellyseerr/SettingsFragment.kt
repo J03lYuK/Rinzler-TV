@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.os.Bundle
 import android.view.View
@@ -7,13 +7,13 @@ import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.constant.JellyseerrFetchLimit
-import org.jellyfin.androidtv.databinding.FragmentJellyseerrSettingsBinding
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.base.BaseFragment
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.constant.JellyseerrFetchLimit
+import uk.rinzler.tv.databinding.FragmentJellyseerrSettingsBinding
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.base.BaseFragment
 import org.jellyfin.sdk.api.client.ApiClient
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel

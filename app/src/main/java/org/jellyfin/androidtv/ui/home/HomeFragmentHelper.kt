@@ -1,14 +1,14 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.constant.ChangeTriggerType
-import org.jellyfin.androidtv.constant.HomeSectionType
-import org.jellyfin.androidtv.data.repository.ItemRepository
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.browsing.BrowseRowDef
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.constant.ChangeTriggerType
+import uk.rinzler.tv.constant.HomeSectionType
+import uk.rinzler.tv.data.repository.ItemRepository
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.browsing.BrowseRowDef
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind

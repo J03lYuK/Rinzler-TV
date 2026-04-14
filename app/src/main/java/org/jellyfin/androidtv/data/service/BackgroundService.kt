@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.service
+package uk.rinzler.tv.data.service
 
 import android.content.Context
 import android.os.Build
@@ -14,14 +14,14 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.auth.model.Server
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.util.BitmapBlur
-import org.jellyfin.androidtv.util.apiclient.getUrl
-import org.jellyfin.androidtv.util.apiclient.itemBackdropImages
-import org.jellyfin.androidtv.util.apiclient.parentBackdropImages
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.util.BitmapBlur
+import uk.rinzler.tv.util.apiclient.getUrl
+import uk.rinzler.tv.util.apiclient.itemBackdropImages
+import uk.rinzler.tv.util.apiclient.parentBackdropImages
+import uk.rinzler.tv.util.sdk.ApiClientFactory
 import org.jellyfin.sdk.Jellyfin
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.imageApi

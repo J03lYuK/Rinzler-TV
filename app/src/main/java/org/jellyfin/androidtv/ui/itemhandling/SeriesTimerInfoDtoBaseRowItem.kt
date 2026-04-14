@@ -1,9 +1,9 @@
-package org.jellyfin.androidtv.ui.itemhandling
+package uk.rinzler.tv.ui.itemhandling
 
 import android.content.Context
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.constant.ImageType
-import org.jellyfin.androidtv.util.apiclient.getSeriesOverview
+import uk.rinzler.tv.R
+import uk.rinzler.tv.constant.ImageType
+import uk.rinzler.tv.util.apiclient.getSeriesOverview
 import org.jellyfin.sdk.model.api.SeriesTimerInfoDto
 import org.jellyfin.sdk.model.serializer.toUUIDOrNull
 

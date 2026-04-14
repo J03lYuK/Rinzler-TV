@@ -1,10 +1,10 @@
-package org.moonfin.server.emby.api
+package uk.rinzler.server.emby.api
 
-import org.moonfin.server.core.api.ServerSessionApi
-import org.moonfin.server.core.model.ClientCapabilities
-import org.moonfin.server.core.model.MediaType
-import org.moonfin.server.core.model.SessionInfo
-import org.moonfin.server.emby.EmbyApiClient
+import uk.rinzler.server.core.api.ServerSessionApi
+import uk.rinzler.server.core.model.ClientCapabilities
+import uk.rinzler.server.core.model.MediaType
+import uk.rinzler.server.core.model.SessionInfo
+import uk.rinzler.server.emby.EmbyApiClient
 
 class EmbySessionApi(private val apiClient: EmbyApiClient) : ServerSessionApi {
 

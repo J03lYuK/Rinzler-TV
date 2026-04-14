@@ -1,6 +1,6 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
-import org.moonfin.server.emby.EmbyApiException
+import uk.rinzler.server.emby.EmbyApiException
 import timber.log.Timber
 import java.io.IOException
 import java.net.SocketTimeoutException

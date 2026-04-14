@@ -1,6 +1,6 @@
-package org.moonfin.server.core.api
+package uk.rinzler.server.core.api
 
-import org.moonfin.server.core.model.ImageType
+import uk.rinzler.server.core.model.ImageType
 
 interface ServerImageApi {
     fun getItemImageUrl(itemId: String, imageType: ImageType, maxWidth: Int? = null, maxHeight: Int? = null, tag: String? = null): String

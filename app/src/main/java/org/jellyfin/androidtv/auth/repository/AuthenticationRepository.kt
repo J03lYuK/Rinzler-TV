@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.auth.repository
+package uk.rinzler.tv.auth.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -7,30 +7,30 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.auth.model.ApiClientErrorLoginState
-import org.jellyfin.androidtv.auth.model.AuthenticateMethod
-import org.jellyfin.androidtv.auth.model.AuthenticatedState
-import org.jellyfin.androidtv.auth.model.AuthenticatingState
-import org.jellyfin.androidtv.auth.model.AuthenticationStoreUser
-import org.jellyfin.androidtv.auth.model.AutomaticAuthenticateMethod
-import org.jellyfin.androidtv.auth.model.CredentialAuthenticateMethod
-import org.jellyfin.androidtv.auth.model.LoginState
-import org.jellyfin.androidtv.auth.model.PrivateUser
-import org.jellyfin.androidtv.auth.model.QuickConnectAuthenticateMethod
-import org.jellyfin.androidtv.auth.model.RequireSignInState
-import org.jellyfin.androidtv.auth.model.Server
-import org.jellyfin.androidtv.auth.model.ServerUnavailableState
-import org.jellyfin.androidtv.auth.model.ServerVersionNotSupported
-import org.jellyfin.androidtv.auth.model.User
-import org.jellyfin.androidtv.auth.store.AuthenticationPreferences
-import org.jellyfin.androidtv.auth.store.AuthenticationStore
-import org.jellyfin.androidtv.data.repository.JellyseerrRepository
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.util.apiclient.JellyfinImage
-import org.jellyfin.androidtv.util.apiclient.JellyfinImageSource
-import org.jellyfin.androidtv.util.apiclient.getUrl
-import org.jellyfin.androidtv.util.apiclient.primaryImage
-import org.jellyfin.androidtv.util.sdk.forUser
+import uk.rinzler.tv.auth.model.ApiClientErrorLoginState
+import uk.rinzler.tv.auth.model.AuthenticateMethod
+import uk.rinzler.tv.auth.model.AuthenticatedState
+import uk.rinzler.tv.auth.model.AuthenticatingState
+import uk.rinzler.tv.auth.model.AuthenticationStoreUser
+import uk.rinzler.tv.auth.model.AutomaticAuthenticateMethod
+import uk.rinzler.tv.auth.model.CredentialAuthenticateMethod
+import uk.rinzler.tv.auth.model.LoginState
+import uk.rinzler.tv.auth.model.PrivateUser
+import uk.rinzler.tv.auth.model.QuickConnectAuthenticateMethod
+import uk.rinzler.tv.auth.model.RequireSignInState
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.tv.auth.model.ServerUnavailableState
+import uk.rinzler.tv.auth.model.ServerVersionNotSupported
+import uk.rinzler.tv.auth.model.User
+import uk.rinzler.tv.auth.store.AuthenticationPreferences
+import uk.rinzler.tv.auth.store.AuthenticationStore
+import uk.rinzler.tv.data.repository.JellyseerrRepository
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.util.apiclient.JellyfinImage
+import uk.rinzler.tv.util.apiclient.JellyfinImageSource
+import uk.rinzler.tv.util.apiclient.getUrl
+import uk.rinzler.tv.util.apiclient.primaryImage
+import uk.rinzler.tv.util.sdk.forUser
 import org.jellyfin.sdk.Jellyfin
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.ApiClientException
@@ -42,9 +42,9 @@ import org.jellyfin.sdk.model.DeviceInfo
 import org.jellyfin.sdk.model.api.AuthenticationResult
 import org.jellyfin.sdk.model.api.ImageType
 import org.jellyfin.sdk.model.api.UserDto
-import org.moonfin.server.core.model.ServerType
+import uk.rinzler.server.core.model.ServerType
 import org.jellyfin.sdk.model.serializer.toUUID
-import org.moonfin.server.emby.EmbyApiClient
+import uk.rinzler.server.emby.EmbyApiClient
 import timber.log.Timber
 import java.time.Instant
 
@@ -205,7 +205,7 @@ class AuthenticationRepositoryImpl(
 
 	private suspend fun authenticateFinishEmby(
 		server: Server,
-		userInfo: org.moonfin.server.emby.EmbyUserInfo,
+		userInfo: uk.rinzler.server.emby.EmbyUserInfo,
 		accessToken: String,
 		userId: java.util.UUID,
 	) {
@@ -298,8 +298,8 @@ class AuthenticationRepositoryImpl(
 	 * to prevent excessive login attempts that can trigger rate limiting/lockouts on Jellyseerr.
 	 */
 	private fun tryJellyseerrAutoLogin(server: Server, username: String, password: String) {
-		if (jellyseerrRepository.isMoonfinMode.value) {
-			Timber.d("Jellyseerr auto-login skipped: using Moonfin proxy mode")
+		if (jellyseerrRepository.isRinzlerMode.value) {
+			Timber.d("Jellyseerr auto-login skipped: using Rinzler proxy mode")
 			return
 		}
 

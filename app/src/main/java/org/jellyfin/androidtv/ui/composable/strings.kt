@@ -1,10 +1,10 @@
-package org.jellyfin.androidtv.ui.composable
+package uk.rinzler.tv.ui.composable
 
 import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 
 /**
  * Get resolution name from video dimensions.

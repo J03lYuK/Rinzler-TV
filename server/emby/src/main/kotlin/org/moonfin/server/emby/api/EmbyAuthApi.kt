@@ -1,12 +1,12 @@
-package org.moonfin.server.emby.api
+package uk.rinzler.server.emby.api
 
-import org.moonfin.server.core.api.ServerAuthApi
-import org.moonfin.server.core.model.AuthResult
-import org.moonfin.server.core.model.QuickConnectInfo
-import org.moonfin.server.core.model.ServerUser
-import org.moonfin.server.emby.EmbyApiClient
-import org.moonfin.server.emby.EmbyUserInfo
-import org.moonfin.server.emby.mapper.toServerUser
+import uk.rinzler.server.core.api.ServerAuthApi
+import uk.rinzler.server.core.model.AuthResult
+import uk.rinzler.server.core.model.QuickConnectInfo
+import uk.rinzler.server.core.model.ServerUser
+import uk.rinzler.server.emby.EmbyApiClient
+import uk.rinzler.server.emby.EmbyUserInfo
+import uk.rinzler.server.emby.mapper.toServerUser
 
 class EmbyAuthApi(private val apiClient: EmbyApiClient) : ServerAuthApi {
 

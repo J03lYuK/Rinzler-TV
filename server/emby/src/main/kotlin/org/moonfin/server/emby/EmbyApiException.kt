@@ -1,4 +1,4 @@
-package org.moonfin.server.emby
+package uk.rinzler.server.emby
 
 class EmbyApiException(
 	val statusCode: Int,

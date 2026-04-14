@@ -1,10 +1,10 @@
-package org.jellyfin.androidtv.ui.navigation
+package uk.rinzler.tv.ui.navigation
 
 import android.content.Context
 import android.content.Intent
 import androidx.core.os.bundleOf
-import org.jellyfin.androidtv.ui.playback.ExternalPlayerActivity
-import org.jellyfin.androidtv.ui.startup.StartupActivity
+import uk.rinzler.tv.ui.playback.ExternalPlayerActivity
+import uk.rinzler.tv.ui.startup.StartupActivity
 import kotlin.time.Duration
 
 object ActivityDestinations {

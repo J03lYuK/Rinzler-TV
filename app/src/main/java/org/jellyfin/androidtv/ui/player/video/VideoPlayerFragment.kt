@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.player.video
+package uk.rinzler.tv.ui.player.video
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,9 +7,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.compose.content
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.playback.VideoQueueManager
-import org.jellyfin.androidtv.ui.playback.rewrite.RewriteMediaManager
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.playback.VideoQueueManager
+import uk.rinzler.tv.ui.playback.rewrite.RewriteMediaManager
 import org.jellyfin.playback.core.PlaybackManager
 import org.jellyfin.playback.core.queue.queue
 import org.jellyfin.sdk.api.client.ApiClient

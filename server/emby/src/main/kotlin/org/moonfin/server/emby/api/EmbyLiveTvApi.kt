@@ -1,18 +1,18 @@
-package org.moonfin.server.emby.api
+package uk.rinzler.server.emby.api
 
 import io.ktor.util.reflect.typeInfo
 import org.emby.client.model.QueryResultBaseItemDto
-import org.moonfin.server.core.api.ServerLiveTvApi
-import org.moonfin.server.core.model.ItemsResult
-import org.moonfin.server.core.model.LiveTvGuideInfo
-import org.moonfin.server.core.model.LiveTvSeriesTimerInfo
-import org.moonfin.server.core.model.LiveTvTimerInfo
-import org.moonfin.server.emby.EmbyApiClient
-import org.moonfin.server.emby.mapper.toCoreGuideInfo
-import org.moonfin.server.emby.mapper.toEmbyTimerInfoDto
-import org.moonfin.server.emby.mapper.toLiveTvSeriesTimerInfo
-import org.moonfin.server.emby.mapper.toLiveTvTimerInfo
-import org.moonfin.server.emby.mapper.toServerItem
+import uk.rinzler.server.core.api.ServerLiveTvApi
+import uk.rinzler.server.core.model.ItemsResult
+import uk.rinzler.server.core.model.LiveTvGuideInfo
+import uk.rinzler.server.core.model.LiveTvSeriesTimerInfo
+import uk.rinzler.server.core.model.LiveTvTimerInfo
+import uk.rinzler.server.emby.EmbyApiClient
+import uk.rinzler.server.emby.mapper.toCoreGuideInfo
+import uk.rinzler.server.emby.mapper.toEmbyTimerInfoDto
+import uk.rinzler.server.emby.mapper.toLiveTvSeriesTimerInfo
+import uk.rinzler.server.emby.mapper.toLiveTvTimerInfo
+import uk.rinzler.server.emby.mapper.toServerItem
 
 class EmbyLiveTvApi(private val apiClient: EmbyApiClient) : ServerLiveTvApi {
 

@@ -1,8 +1,8 @@
-package org.moonfin.server.core.api
+package uk.rinzler.server.core.api
 
-import org.moonfin.server.core.model.AuthResult
-import org.moonfin.server.core.model.QuickConnectInfo
-import org.moonfin.server.core.model.ServerUser
+import uk.rinzler.server.core.model.AuthResult
+import uk.rinzler.server.core.model.QuickConnectInfo
+import uk.rinzler.server.core.model.ServerUser
 
 interface ServerAuthApi {
     suspend fun authenticateByName(username: String, password: String): AuthResult

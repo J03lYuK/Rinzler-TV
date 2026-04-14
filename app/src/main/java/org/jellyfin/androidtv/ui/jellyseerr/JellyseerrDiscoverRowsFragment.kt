@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -21,17 +21,17 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.constant.JellyseerrRowType
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverItemDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrMediaInfoDto
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.itemhandling.JellyseerrMediaBaseRowItem
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.ui.presentation.PositionableListRowPresenter
+import uk.rinzler.tv.R
+import uk.rinzler.tv.constant.JellyseerrRowType
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverItemDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrMediaInfoDto
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.itemhandling.JellyseerrMediaBaseRowItem
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.ui.presentation.PositionableListRowPresenter
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
@@ -218,7 +218,7 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 				isReturningFromDetail = true
 				Timber.d("JellyseerrDiscoverRowsFragment: Item clicked - capturing position: row=$lastFocusedPosition, col=$lastFocusedSubPosition, currentSelectedPosition=${selectedPosition}")
 				onContentSelected(discoverItem)
-			} else if (item is org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrGenreDto) {
+			} else if (item is uk.rinzler.tv.data.service.jellyseerr.JellyseerrGenreDto) {
 				// Genre card clicked - navigate to browse by genre
 				// Determine media type based on row type
 				val rowType = indexToRowType[lastFocusedPosition]
@@ -229,11 +229,11 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 				}
 				isReturningFromDetail = true
 				onGenreSelected(item, mediaType)
-			} else if (item is org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrStudioDto) {
+			} else if (item is uk.rinzler.tv.data.service.jellyseerr.JellyseerrStudioDto) {
 				// Studio card clicked - navigate to browse by studio
 				isReturningFromDetail = true
 				onStudioSelected(item)
-			} else if (item is org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrNetworkDto) {
+			} else if (item is uk.rinzler.tv.data.service.jellyseerr.JellyseerrNetworkDto) {
 				// Network card clicked - navigate to browse by network
 				isReturningFromDetail = true
 				onNetworkSelected(item)
@@ -363,7 +363,7 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 	}
 
 	private fun setupObservers() {
-		// Observe availability — when Moonfin proxy finishes configuring after
+		// Observe availability — when Rinzler proxy finishes configuring after
 		// the session is published, isAvailable flips to true. If loadContent()
 		// already ran while it was still false (race condition), retry here.
 		lifecycleScope.launch {
@@ -604,17 +604,17 @@ class JellyseerrDiscoverRowsFragment : RowsSupportFragment() {
 		navigationRepository.navigate(Destinations.jellyseerrMediaDetails(itemJson))
 	}
 
-	private fun onGenreSelected(genre: org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrGenreDto, mediaType: String) {
+	private fun onGenreSelected(genre: uk.rinzler.tv.data.service.jellyseerr.JellyseerrGenreDto, mediaType: String) {
 		// Navigate to browse by genre fragment
 		navigationRepository.navigate(Destinations.jellyseerrBrowseByGenre(genre.id, genre.name, mediaType))
 	}
 
-	private fun onStudioSelected(studio: org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrStudioDto) {
+	private fun onStudioSelected(studio: uk.rinzler.tv.data.service.jellyseerr.JellyseerrStudioDto) {
 		// Navigate to browse by studio fragment (movies only)
 		navigationRepository.navigate(Destinations.jellyseerrBrowseByStudio(studio.id, studio.name))
 	}
 
-	private fun onNetworkSelected(network: org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrNetworkDto) {
+	private fun onNetworkSelected(network: uk.rinzler.tv.data.service.jellyseerr.JellyseerrNetworkDto) {
 		// Navigate to browse by network fragment (TV only)
 		navigationRepository.navigate(Destinations.jellyseerrBrowseByNetwork(network.id, network.name))
 	}

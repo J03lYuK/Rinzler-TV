@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.player.base.toast
+package uk.rinzler.tv.ui.player.base.toast
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -7,7 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
-import org.jellyfin.androidtv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Icon
 
 @Composable
 fun MediaToasts(mediaToastRegistry: MediaToastRegistry) {

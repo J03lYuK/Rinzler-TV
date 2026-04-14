@@ -1,6 +1,6 @@
-package org.jellyfin.androidtv.data.repository
+package uk.rinzler.tv.data.repository
 
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 
 object RatingIconProvider {
 
@@ -14,10 +14,10 @@ object RatingIconProvider {
 		val localIcon = getLocalFallbackIcon(source, scorePercent)
 		if (localIcon != null) return localIcon
 
-		// Fall back to server-hosted icon (requires Moonfin plugin)
+		// Fall back to server-hosted icon (requires Rinzler plugin)
 		if (baseUrl != null) {
 			getServerIconFile(source, scorePercent)?.let { file ->
-				return RatingIcon.ServerUrl("$baseUrl/Moonfin/Assets/$file")
+				return RatingIcon.ServerUrl("$baseUrl/Rinzler/Assets/$file")
 			}
 		}
 		return null

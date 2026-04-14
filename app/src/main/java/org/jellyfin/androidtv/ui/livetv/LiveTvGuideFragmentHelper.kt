@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.livetv
+package uk.rinzler.tv.ui.livetv
 
 import android.content.Context
 import android.view.View
@@ -10,17 +10,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.model.DataRefreshService
-import org.jellyfin.androidtv.data.repository.ItemMutationRepository
-import org.jellyfin.androidtv.databinding.LiveTvGuideBinding
-import org.jellyfin.androidtv.ui.GuideChannelHeader
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.navigation.ProvideRouter
-import org.jellyfin.androidtv.ui.settings.Routes
-import org.jellyfin.androidtv.ui.settings.composable.SettingsDialog
-import org.jellyfin.androidtv.ui.settings.composable.SettingsRouterContent
-import org.jellyfin.androidtv.ui.settings.routes
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.model.DataRefreshService
+import uk.rinzler.tv.data.repository.ItemMutationRepository
+import uk.rinzler.tv.databinding.LiveTvGuideBinding
+import uk.rinzler.tv.ui.GuideChannelHeader
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.navigation.ProvideRouter
+import uk.rinzler.tv.ui.settings.Routes
+import uk.rinzler.tv.ui.settings.composable.SettingsDialog
+import uk.rinzler.tv.ui.settings.composable.SettingsRouterContent
+import uk.rinzler.tv.ui.settings.routes
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.userLibraryApi
 import org.jellyfin.sdk.model.api.BaseItemDto

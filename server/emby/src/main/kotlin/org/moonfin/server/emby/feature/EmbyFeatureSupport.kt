@@ -1,7 +1,7 @@
-package org.moonfin.server.emby.feature
+package uk.rinzler.server.emby.feature
 
-import org.moonfin.server.core.feature.ServerFeature
-import org.moonfin.server.core.feature.ServerFeatureSupport
+import uk.rinzler.server.core.feature.ServerFeature
+import uk.rinzler.server.core.feature.ServerFeatureSupport
 
 object EmbyFeatureSupport : ServerFeatureSupport {
     override val supportedFeatures: Set<ServerFeature> = setOf(

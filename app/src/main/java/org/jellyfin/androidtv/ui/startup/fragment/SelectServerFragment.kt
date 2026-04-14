@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.startup.fragment
+package uk.rinzler.tv.ui.startup.fragment
 
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -32,25 +32,25 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.BuildConfig
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.model.ConnectedState
-import org.jellyfin.androidtv.auth.model.ConnectingState
-import org.jellyfin.androidtv.auth.model.Server
-import org.jellyfin.androidtv.auth.model.ServerAdditionState
-import org.jellyfin.androidtv.auth.model.UnableToConnectState
-import org.jellyfin.androidtv.data.repository.NotificationsRepository
-import org.jellyfin.androidtv.databinding.FragmentSelectServerBinding
-import org.jellyfin.androidtv.ui.SpacingItemDecoration
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.startup.StartupViewModel
-import org.jellyfin.androidtv.util.ListAdapter
-import org.jellyfin.androidtv.util.MenuBuilder
-import org.jellyfin.androidtv.util.getSummary
-import org.jellyfin.androidtv.util.popupMenu
-import org.jellyfin.androidtv.util.setServerTypeIcon
-import org.jellyfin.androidtv.util.showIfNotEmpty
+import uk.rinzler.tv.BuildConfig
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.model.ConnectedState
+import uk.rinzler.tv.auth.model.ConnectingState
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.tv.auth.model.ServerAdditionState
+import uk.rinzler.tv.auth.model.UnableToConnectState
+import uk.rinzler.tv.data.repository.NotificationsRepository
+import uk.rinzler.tv.databinding.FragmentSelectServerBinding
+import uk.rinzler.tv.ui.SpacingItemDecoration
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.startup.StartupViewModel
+import uk.rinzler.tv.util.ListAdapter
+import uk.rinzler.tv.util.MenuBuilder
+import uk.rinzler.tv.util.getSummary
+import uk.rinzler.tv.util.popupMenu
+import uk.rinzler.tv.util.setServerTypeIcon
+import uk.rinzler.tv.util.showIfNotEmpty
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.compose.koinInject
 
@@ -192,7 +192,7 @@ class SelectServerFragment : Fragment() {
 		}
 
 		@Suppress("SetTextI18n")
-		binding.appVersion.text = "Moonfin version ${BuildConfig.VERSION_NAME} ${BuildConfig.BUILD_TYPE}"
+		binding.appVersion.text = "Rinzler version ${BuildConfig.VERSION_NAME} ${BuildConfig.BUILD_TYPE}"
 
 		binding.enterServerAddress.requestFocus()
 

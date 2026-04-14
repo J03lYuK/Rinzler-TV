@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-	namespace = "org.moonfin.server.core"
+	namespace = "uk.rinzler.server.core"
 	compileSdk = libs.versions.android.compileSdk.get().toInt()
 
 	defaultConfig {

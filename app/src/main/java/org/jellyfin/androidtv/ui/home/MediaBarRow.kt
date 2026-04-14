@@ -1,7 +1,7 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import androidx.leanback.widget.Row
-import org.jellyfin.androidtv.ui.home.mediabar.MediaBarSlideItem
+import uk.rinzler.tv.ui.home.mediabar.MediaBarSlideItem
 
 /**
  * Custom Row for the Media Bar slideshow.

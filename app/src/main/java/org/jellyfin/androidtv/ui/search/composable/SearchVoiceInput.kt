@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.search.composable
+package uk.rinzler.tv.ui.search.composable
 
 import android.widget.Toast
 import androidx.compose.animation.core.LinearEasing
@@ -21,13 +21,13 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.base.button.IconButton
-import org.jellyfin.androidtv.ui.base.button.IconButtonDefaults
-import org.jellyfin.androidtv.util.speech.SpeechRecognizerStatus
-import org.jellyfin.androidtv.util.speech.rememberSpeechRecognizer
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.button.IconButton
+import uk.rinzler.tv.ui.base.button.IconButtonDefaults
+import uk.rinzler.tv.util.speech.SpeechRecognizerStatus
+import uk.rinzler.tv.util.speech.rememberSpeechRecognizer
 
 @Composable
 fun SearchVoiceInput(

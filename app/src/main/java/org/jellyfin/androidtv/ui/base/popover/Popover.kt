@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base.popover
+package uk.rinzler.tv.ui.base.popover
 
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.updateTransition
@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.JellyfinTheme
 
 object PopoverDefaults {
 	val Shape: Shape = RoundedCornerShape(4.dp)

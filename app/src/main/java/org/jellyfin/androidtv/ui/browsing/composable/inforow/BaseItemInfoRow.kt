@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing.composable.inforow
+package uk.rinzler.tv.ui.browsing.composable.inforow
 
 import android.content.Context
 import android.util.AttributeSet
@@ -22,13 +22,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.flow.MutableStateFlow
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.composable.getResolutionName
-import org.jellyfin.androidtv.util.TimeUtils
-import org.jellyfin.androidtv.util.sdk.getProgramSubText
-import org.jellyfin.androidtv.util.sdk.getSeasonEpisodeName
-import org.jellyfin.androidtv.util.sdk.isNew
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.composable.getResolutionName
+import uk.rinzler.tv.util.TimeUtils
+import uk.rinzler.tv.util.sdk.getProgramSubText
+import uk.rinzler.tv.util.sdk.getSeasonEpisodeName
+import uk.rinzler.tv.util.sdk.isNew
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind
 import org.jellyfin.sdk.model.api.MediaSourceInfo

@@ -1,12 +1,12 @@
-package org.jellyfin.androidtv.di
+package uk.rinzler.tv.di
 
-import org.jellyfin.androidtv.data.service.pluginsync.PluginSyncService
-import org.jellyfin.androidtv.preference.LiveTvPreferences
-import org.jellyfin.androidtv.preference.PreferencesRepository
-import org.jellyfin.androidtv.preference.SystemPreferences
-import org.jellyfin.androidtv.preference.TelemetryPreferences
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
+import uk.rinzler.tv.data.service.pluginsync.PluginSyncService
+import uk.rinzler.tv.preference.LiveTvPreferences
+import uk.rinzler.tv.preference.PreferencesRepository
+import uk.rinzler.tv.preference.SystemPreferences
+import uk.rinzler.tv.preference.TelemetryPreferences
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 

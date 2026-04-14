@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.syncplay
+package uk.rinzler.tv.data.syncplay
 
 import android.content.Context
 import android.widget.Toast
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserPreferences
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.syncPlayApi
 import org.jellyfin.sdk.model.api.BufferRequestDto

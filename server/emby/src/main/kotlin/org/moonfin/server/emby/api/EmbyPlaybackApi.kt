@@ -1,4 +1,4 @@
-package org.moonfin.server.emby.api
+package uk.rinzler.server.emby.api
 
 import org.emby.client.model.PlaybackInfoRequest as EmbyPlaybackInfoRequest
 import org.emby.client.model.PlaybackStartInfo
@@ -6,17 +6,17 @@ import org.emby.client.model.PlaybackProgressInfo
 import org.emby.client.model.PlaybackStopInfo
 import org.emby.client.model.PlayMethod as EmbyPlayMethod
 import org.emby.client.model.PlaybackErrorCode as EmbyPlaybackErrorCode
-import org.moonfin.server.core.api.ServerPlaybackApi
-import org.moonfin.server.core.model.PlaybackErrorCode
-import org.moonfin.server.core.model.PlaybackInfoRequest
-import org.moonfin.server.core.model.PlaybackInfoResult
-import org.moonfin.server.core.model.PlaybackProgressReport
-import org.moonfin.server.core.model.PlaybackStartReport
-import org.moonfin.server.core.model.PlaybackStopReport
-import org.moonfin.server.core.model.PlayMethod
-import org.moonfin.server.core.model.StreamParams
-import org.moonfin.server.emby.EmbyApiClient
-import org.moonfin.server.emby.mapper.toServerMediaSource
+import uk.rinzler.server.core.api.ServerPlaybackApi
+import uk.rinzler.server.core.model.PlaybackErrorCode
+import uk.rinzler.server.core.model.PlaybackInfoRequest
+import uk.rinzler.server.core.model.PlaybackInfoResult
+import uk.rinzler.server.core.model.PlaybackProgressReport
+import uk.rinzler.server.core.model.PlaybackStartReport
+import uk.rinzler.server.core.model.PlaybackStopReport
+import uk.rinzler.server.core.model.PlayMethod
+import uk.rinzler.server.core.model.StreamParams
+import uk.rinzler.server.emby.EmbyApiClient
+import uk.rinzler.server.emby.mapper.toServerMediaSource
 
 class EmbyPlaybackApi(private val apiClient: EmbyApiClient) : ServerPlaybackApi {
 

@@ -1,7 +1,7 @@
-package org.jellyfin.androidtv.data.repository
+package uk.rinzler.tv.data.repository
 
-import org.jellyfin.androidtv.data.model.DataRefreshService
-import org.jellyfin.androidtv.util.apiclient.ioCall
+import uk.rinzler.tv.data.model.DataRefreshService
+import uk.rinzler.tv.util.apiclient.ioCall
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.playStateApi
 import org.jellyfin.sdk.api.client.extensions.userLibraryApi

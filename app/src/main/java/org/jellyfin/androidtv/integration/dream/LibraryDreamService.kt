@@ -1,7 +1,7 @@
-package org.jellyfin.androidtv.integration.dream
+package uk.rinzler.tv.integration.dream
 
 import android.service.dreams.DreamService
-import org.jellyfin.androidtv.integration.dream.composable.DreamHost
+import uk.rinzler.tv.integration.dream.composable.DreamHost
 
 /**
  * An Android [DreamService] (screensaver) that shows TV series and movies from all libraries.

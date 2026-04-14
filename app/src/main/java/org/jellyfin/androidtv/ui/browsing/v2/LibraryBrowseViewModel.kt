@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing.v2
+package uk.rinzler.tv.ui.browsing.v2
 
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
@@ -11,16 +11,16 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.constant.GridDirection
-import org.jellyfin.androidtv.constant.ImageType
-import org.jellyfin.androidtv.constant.PosterSize
-import org.jellyfin.androidtv.data.repository.ItemRepository
-import org.jellyfin.androidtv.data.repository.MultiServerRepository
-import org.jellyfin.androidtv.preference.LibraryPreferences
-import org.jellyfin.androidtv.preference.PreferencesRepository
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.R
+import uk.rinzler.tv.constant.GridDirection
+import uk.rinzler.tv.constant.ImageType
+import uk.rinzler.tv.constant.PosterSize
+import uk.rinzler.tv.data.repository.ItemRepository
+import uk.rinzler.tv.data.repository.MultiServerRepository
+import uk.rinzler.tv.preference.LibraryPreferences
+import uk.rinzler.tv.preference.PreferencesRepository
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.util.sdk.ApiClientFactory
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.artistsApi
 import org.jellyfin.sdk.api.client.extensions.itemsApi

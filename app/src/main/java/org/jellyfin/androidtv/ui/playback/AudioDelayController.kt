@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 /**
  * Controller for managing audio delay/advance synchronization.

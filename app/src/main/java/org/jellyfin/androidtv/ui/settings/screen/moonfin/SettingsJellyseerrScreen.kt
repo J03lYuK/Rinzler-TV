@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen.moonfin
+package uk.rinzler.tv.ui.settings.screen.moonfin
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
@@ -24,21 +24,21 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.data.repository.JellyseerrRepository
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrHttpClient
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.form.Checkbox
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.navigation.LocalRouter
-import org.jellyfin.androidtv.ui.settings.Routes
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
-import org.jellyfin.androidtv.ui.settings.compat.rememberPreference
-import org.jellyfin.androidtv.preference.UserPreferences
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.data.repository.JellyseerrRepository
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrHttpClient
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.form.Checkbox
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.navigation.LocalRouter
+import uk.rinzler.tv.ui.settings.Routes
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.ui.settings.compat.rememberPreference
+import uk.rinzler.tv.preference.UserPreferences
 import org.jellyfin.sdk.api.client.ApiClient
 import org.koin.compose.koinInject
 import org.koin.core.qualifier.named
@@ -76,11 +76,11 @@ fun SettingsJellyseerrScreen() {
 	var apiKey by remember { mutableStateOf(userPrefs?.get(JellyseerrPreferences.apiKey) ?: "") }
 	var authMethod by remember { mutableStateOf(userPrefs?.get(JellyseerrPreferences.authMethod) ?: "") }
 
-	val isMoonfinMode by jellyseerrRepository.isMoonfinMode.collectAsState()
-	val moonfinDisplayName = remember(userPrefs, isMoonfinMode) {
+	val isRinzlerMode by jellyseerrRepository.isRinzlerMode.collectAsState()
+	val rinzlerDisplayName = remember(userPrefs, isRinzlerMode) {
 		userPrefs?.get(JellyseerrPreferences.moonfinDisplayName) ?: ""
 	}
-	var showMoonfinDisconnectDialog by remember { mutableStateOf(false) }
+	var showRinzlerDisconnectDialog by remember { mutableStateOf(false) }
 	
 	LaunchedEffect(userPrefs) {
 		apiKey = userPrefs?.get(JellyseerrPreferences.apiKey) ?: ""
@@ -97,25 +97,25 @@ fun SettingsJellyseerrScreen() {
 	var isReconnecting by remember { mutableStateOf(false) }
 
 	SettingsColumn {
-		if (isMoonfinMode) {
-			// Moonfin Proxy Status
+		if (isRinzlerMode) {
+			// Rinzler Proxy Status
 			item {
 				ListSection(
 					overlineContent = { Text(stringResource(R.string.jellyseerr_settings).uppercase()) },
-					headingContent = { Text(stringResource(R.string.jellyseerr_moonfin_proxy)) },
-					captionContent = { Text(stringResource(R.string.jellyseerr_moonfin_proxy_status)) },
+					headingContent = { Text(stringResource(R.string.jellyseerr_rinzler_proxy)) },
+					captionContent = { Text(stringResource(R.string.jellyseerr_rinzler_proxy_status)) },
 				)
 			}
 
 			item {
-				val statusCaption = if (moonfinDisplayName.isNotEmpty()) {
-					stringResource(R.string.jellyseerr_moonfin_connected, moonfinDisplayName)
+				val statusCaption = if (rinzlerDisplayName.isNotEmpty()) {
+					stringResource(R.string.jellyseerr_rinzler_connected, rinzlerDisplayName)
 				} else {
-					stringResource(R.string.jellyseerr_moonfin_not_authenticated)
+					stringResource(R.string.jellyseerr_rinzler_not_authenticated)
 				}
 				ListButton(
-					leadingContent = { Icon(painterResource(R.drawable.ic_moonfin), contentDescription = null) },
-					headingContent = { Text(stringResource(R.string.jellyseerr_moonfin_proxy)) },
+					leadingContent = { Icon(painterResource(R.drawable.app_icon_foreground), contentDescription = null) },
+					headingContent = { Text(stringResource(R.string.jellyseerr_rinzler_proxy)) },
 					captionContent = { Text(statusCaption) },
 					onClick = { }
 				)
@@ -124,19 +124,19 @@ fun SettingsJellyseerrScreen() {
 			item {
 				ListButton(
 					leadingContent = { Icon(painterResource(R.drawable.ic_logout), contentDescription = null) },
-					headingContent = { Text(stringResource(R.string.jellyseerr_moonfin_disconnect)) },
-					captionContent = { Text(stringResource(R.string.jellyseerr_moonfin_disconnect_description)) },
-					onClick = { showMoonfinDisconnectDialog = true }
+					headingContent = { Text(stringResource(R.string.jellyseerr_rinzler_disconnect)) },
+					captionContent = { Text(stringResource(R.string.jellyseerr_rinzler_disconnect_description)) },
+					onClick = { showRinzlerDisconnectDialog = true }
 				)
 			}
 		} else {
-			// Reconnect via Moonfin Plugin option (shown when plugin sync is enabled)
+			// Reconnect via Rinzler Plugin option (shown when plugin sync is enabled)
 			if (userPreferences[UserPreferences.pluginSyncEnabled]) {
 				item {
 					ListButton(
-						leadingContent = { Icon(painterResource(R.drawable.ic_moonfin), contentDescription = null) },
-						headingContent = { Text(stringResource(R.string.jellyseerr_moonfin_reconnect)) },
-						captionContent = { Text(stringResource(R.string.jellyseerr_moonfin_reconnect_description)) },
+						leadingContent = { Icon(painterResource(R.drawable.app_icon_foreground), contentDescription = null) },
+						headingContent = { Text(stringResource(R.string.jellyseerr_rinzler_reconnect)) },
+						captionContent = { Text(stringResource(R.string.jellyseerr_rinzler_reconnect_description)) },
 						onClick = {
 							if (!isReconnecting) {
 								isReconnecting = true
@@ -144,15 +144,15 @@ fun SettingsJellyseerrScreen() {
 									val baseUrl = apiClient.baseUrl
 									val token = apiClient.accessToken
 									if (!baseUrl.isNullOrBlank() && !token.isNullOrBlank()) {
-										val result = jellyseerrRepository.configureWithMoonfin(baseUrl, token)
+										val result = jellyseerrRepository.configureWithRinzler(baseUrl, token)
 										result.onSuccess { status ->
 											if (status.authenticated || status.enabled) {
-												Toast.makeText(context, context.getString(R.string.jellyseerr_moonfin_reconnect_success), Toast.LENGTH_SHORT).show()
+												Toast.makeText(context, context.getString(R.string.jellyseerr_rinzler_reconnect_success), Toast.LENGTH_SHORT).show()
 											} else {
-												Toast.makeText(context, context.getString(R.string.jellyseerr_moonfin_not_enabled), Toast.LENGTH_SHORT).show()
+												Toast.makeText(context, context.getString(R.string.jellyseerr_rinzler_not_enabled), Toast.LENGTH_SHORT).show()
 											}
 										}.onFailure {
-											Toast.makeText(context, context.getString(R.string.jellyseerr_moonfin_reconnect_failed), Toast.LENGTH_SHORT).show()
+											Toast.makeText(context, context.getString(R.string.jellyseerr_rinzler_reconnect_failed), Toast.LENGTH_SHORT).show()
 										}
 									}
 									isReconnecting = false
@@ -419,18 +419,18 @@ fun SettingsJellyseerrScreen() {
 		)
 	}
 
-	// Moonfin Disconnect Confirmation Dialog
-	if (showMoonfinDisconnectDialog) {
+	// Rinzler Disconnect Confirmation Dialog
+	if (showRinzlerDisconnectDialog) {
 		AlertDialog(
-			onDismissRequest = { showMoonfinDisconnectDialog = false },
-			title = { Text(stringResource(R.string.jellyseerr_moonfin_disconnect)) },
-			text = { Text(stringResource(R.string.jellyseerr_moonfin_disconnect_description)) },
+			onDismissRequest = { showRinzlerDisconnectDialog = false },
+			title = { Text(stringResource(R.string.jellyseerr_rinzler_disconnect)) },
+			text = { Text(stringResource(R.string.jellyseerr_rinzler_disconnect_description)) },
 			confirmButton = {
 				TextButton(
 					onClick = {
-						showMoonfinDisconnectDialog = false
+						showRinzlerDisconnectDialog = false
 						scope.launch {
-							jellyseerrRepository.logoutMoonfin()
+							jellyseerrRepository.logoutRinzler()
 							Toast.makeText(context, context.getString(R.string.jellyseerr_logout_success), Toast.LENGTH_SHORT).show()
 						}
 					}
@@ -439,7 +439,7 @@ fun SettingsJellyseerrScreen() {
 				}
 			},
 			dismissButton = {
-				TextButton(onClick = { showMoonfinDisconnectDialog = false }) {
+				TextButton(onClick = { showRinzlerDisconnectDialog = false }) {
 					Text("Cancel")
 				}
 			}

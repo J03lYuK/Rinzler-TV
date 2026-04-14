@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base.list
+package uk.rinzler.tv.ui.base.list
 
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource

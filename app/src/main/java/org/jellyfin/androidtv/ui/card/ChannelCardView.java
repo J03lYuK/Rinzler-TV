@@ -1,12 +1,12 @@
-package org.jellyfin.androidtv.ui.card;
+package uk.rinzler.tv.ui.card;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.databinding.ViewCardChannelBinding;
-import org.jellyfin.androidtv.util.DateTimeExtensionsKt;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.databinding.ViewCardChannelBinding;
+import uk.rinzler.tv.util.DateTimeExtensionsKt;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 
 import java.time.Duration;

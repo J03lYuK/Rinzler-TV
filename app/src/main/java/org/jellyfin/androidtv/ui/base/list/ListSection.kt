@@ -1,8 +1,8 @@
-package org.jellyfin.androidtv.ui.base.list
+package uk.rinzler.tv.ui.base.list
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.JellyfinTheme
 
 @Composable
 fun ListSection(

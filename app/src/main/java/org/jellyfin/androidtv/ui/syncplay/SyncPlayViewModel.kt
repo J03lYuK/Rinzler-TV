@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.syncplay
+package uk.rinzler.tv.ui.syncplay
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

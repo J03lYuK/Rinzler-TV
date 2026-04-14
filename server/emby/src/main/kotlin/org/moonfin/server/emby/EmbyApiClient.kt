@@ -1,4 +1,4 @@
-package org.moonfin.server.emby
+package uk.rinzler.server.emby
 
 import org.emby.client.api.DisplayPreferencesServiceApi
 import org.emby.client.api.InstantMixServiceApi

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.startup
+package uk.rinzler.tv.ui.startup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,16 +9,16 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import org.jellyfin.androidtv.auth.model.AuthenticationSortBy
-import org.jellyfin.androidtv.auth.model.AutomaticAuthenticateMethod
-import org.jellyfin.androidtv.auth.model.LoginState
-import org.jellyfin.androidtv.auth.model.PrivateUser
-import org.jellyfin.androidtv.auth.model.Server
-import org.jellyfin.androidtv.auth.model.User
-import org.jellyfin.androidtv.auth.repository.AuthenticationRepository
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.jellyfin.androidtv.auth.repository.ServerUserRepository
-import org.jellyfin.androidtv.auth.store.AuthenticationPreferences
+import uk.rinzler.tv.auth.model.AuthenticationSortBy
+import uk.rinzler.tv.auth.model.AutomaticAuthenticateMethod
+import uk.rinzler.tv.auth.model.LoginState
+import uk.rinzler.tv.auth.model.PrivateUser
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.tv.auth.model.User
+import uk.rinzler.tv.auth.repository.AuthenticationRepository
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.tv.auth.repository.ServerUserRepository
+import uk.rinzler.tv.auth.store.AuthenticationPreferences
 import java.util.UUID
 
 class StartupViewModel(

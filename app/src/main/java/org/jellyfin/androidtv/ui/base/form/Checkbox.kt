@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base.form
+package uk.rinzler.tv.ui.base.form
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -13,9 +13,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.JellyfinTheme
 
 @Composable
 fun Checkbox(

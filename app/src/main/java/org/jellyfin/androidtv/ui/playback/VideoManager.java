@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback;
+package uk.rinzler.tv.ui.playback;
 
 import android.app.Activity;
 import android.content.Context;
@@ -47,11 +47,11 @@ import androidx.media3.ui.CaptionStyleCompat;
 import androidx.media3.ui.PlayerView;
 import androidx.media3.ui.SubtitleView;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.data.compat.StreamInfo;
-import org.jellyfin.androidtv.data.syncplay.SyncPlayManager;
-import org.jellyfin.androidtv.preference.UserPreferences;
-import org.jellyfin.androidtv.preference.constant.ZoomMode;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.data.compat.StreamInfo;
+import uk.rinzler.tv.data.syncplay.SyncPlayManager;
+import uk.rinzler.tv.preference.UserPreferences;
+import uk.rinzler.tv.preference.constant.ZoomMode;
 import org.jellyfin.sdk.api.client.ApiClient;
 import org.jellyfin.sdk.model.api.MediaStream;
 import org.jellyfin.sdk.model.api.MediaStreamType;

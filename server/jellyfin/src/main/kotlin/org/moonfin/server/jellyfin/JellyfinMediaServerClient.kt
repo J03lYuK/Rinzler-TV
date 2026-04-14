@@ -1,21 +1,21 @@
-package org.moonfin.server.jellyfin
+package uk.rinzler.server.jellyfin
 
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.ClientInfo
-import org.moonfin.server.core.api.MediaServerClient
-import org.moonfin.server.core.api.ServerAuthApi
-import org.moonfin.server.core.api.ServerDisplayPreferencesApi
-import org.moonfin.server.core.api.ServerImageApi
-import org.moonfin.server.core.api.ServerInstantMixApi
-import org.moonfin.server.core.api.ServerItemsApi
-import org.moonfin.server.core.api.ServerLiveTvApi
-import org.moonfin.server.core.api.ServerPlaybackApi
-import org.moonfin.server.core.api.ServerSessionApi
-import org.moonfin.server.core.api.ServerSystemApi
-import org.moonfin.server.core.api.ServerUserLibraryApi
-import org.moonfin.server.core.api.ServerUserViewsApi
-import org.moonfin.server.core.model.DeviceInfo
-import org.moonfin.server.core.model.ServerType
+import uk.rinzler.server.core.api.MediaServerClient
+import uk.rinzler.server.core.api.ServerAuthApi
+import uk.rinzler.server.core.api.ServerDisplayPreferencesApi
+import uk.rinzler.server.core.api.ServerImageApi
+import uk.rinzler.server.core.api.ServerInstantMixApi
+import uk.rinzler.server.core.api.ServerItemsApi
+import uk.rinzler.server.core.api.ServerLiveTvApi
+import uk.rinzler.server.core.api.ServerPlaybackApi
+import uk.rinzler.server.core.api.ServerSessionApi
+import uk.rinzler.server.core.api.ServerSystemApi
+import uk.rinzler.server.core.api.ServerUserLibraryApi
+import uk.rinzler.server.core.api.ServerUserViewsApi
+import uk.rinzler.server.core.model.DeviceInfo
+import uk.rinzler.server.core.model.ServerType
 import org.jellyfin.sdk.model.DeviceInfo as JfDeviceInfo
 
 class JellyfinMediaServerClient(

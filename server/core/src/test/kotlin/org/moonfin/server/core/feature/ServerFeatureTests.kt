@@ -1,4 +1,4 @@
-package org.moonfin.server.core.feature
+package uk.rinzler.server.core.feature
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe

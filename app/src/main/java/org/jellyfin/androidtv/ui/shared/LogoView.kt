@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.shared
+package uk.rinzler.tv.ui.shared
 
 import android.graphics.Bitmap
 import android.os.Build
@@ -29,7 +29,7 @@ import coil3.request.allowHardware
 import coil3.toBitmap
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.util.isImagePrimarilyDark
+import uk.rinzler.tv.util.isImagePrimarilyDark
 
 /**
  * Displays a logo image with an adaptive shadow effect.

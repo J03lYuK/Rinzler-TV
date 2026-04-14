@@ -1,4 +1,4 @@
-package org.moonfin.playback.emby.mediastream
+package uk.rinzler.playback.emby.mediastream
 
 import org.emby.client.model.MediaStream
 import org.emby.client.model.MediaStreamType

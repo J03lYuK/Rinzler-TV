@@ -1,5 +1,7 @@
-package org.jellyfin.androidtv.ui.preference.category
+package uk.rinzler.tv.ui.preference.category
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -37,14 +39,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.Text
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.Text
 
 @Composable
 fun DonateDialog(onDismiss: () -> Unit) {
 	val closeFocusRequester = remember { FocusRequester() }
+	val context = LocalContext.current
+	val donationUrl = "https://buymeacoffee.com/rinzleruk"
 
 	Dialog(
 		onDismissRequest = onDismiss,
@@ -98,18 +103,19 @@ fun DonateDialog(onDismiss: () -> Unit) {
 
 				Spacer(modifier = Modifier.height(20.dp))
 
-				// QR Code
+				// Donation hero art
 				Box(
 					modifier = Modifier
 						.size(260.dp)
 						.clip(RoundedCornerShape(12.dp))
-						.background(Color.White)
-						.padding(12.dp),
+						.background(Color.Black)
+						.border(1.dp, Color(0xFF32D7FF).copy(alpha = 0.35f), RoundedCornerShape(12.dp))
+						.padding(10.dp),
 					contentAlignment = Alignment.Center,
 				) {
 					Image(
 						painter = painterResource(R.drawable.qr_code),
-						contentDescription = "Donation QR Code",
+						contentDescription = "Rinzler donation card",
 						contentScale = ContentScale.Fit,
 						modifier = Modifier.fillMaxSize(),
 					)
@@ -119,15 +125,31 @@ fun DonateDialog(onDismiss: () -> Unit) {
 
 				// URL
 				Text(
-					text = "buymeacoffee.com/moonfin",
+					text = donationUrl,
 					fontSize = 14.sp,
-					color = Color(0xFF00A4DC),
+					color = Color(0xFF32D7FF),
 					fontFamily = FontFamily.Monospace,
 					textAlign = TextAlign.Center,
 					modifier = Modifier.padding(horizontal = 24.dp),
 				)
 
 				Spacer(modifier = Modifier.height(16.dp))
+
+				GlassDialogButton(
+					text = stringResource(R.string.donate_dialog_open_link),
+					onClick = {
+						val intent = Intent(Intent.ACTION_VIEW, Uri.parse(donationUrl)).apply {
+							addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+						}
+						if (intent.resolveActivity(context.packageManager) != null) {
+							context.startActivity(intent)
+						}
+					},
+					modifier = Modifier.padding(horizontal = 24.dp),
+					isPrimary = true,
+				)
+
+				Spacer(modifier = Modifier.height(12.dp))
 
 				// Thanks
 				Text(
@@ -178,8 +200,8 @@ fun GlassDialogButton(
 	val isFocused by interactionSource.collectIsFocusedAsState()
 
 	val bgColor = when {
-		isFocused -> if (isPrimary) Color(0xFF00A4DC) else Color.White.copy(alpha = 0.15f)
-		isPrimary -> Color(0xFF00A4DC).copy(alpha = 0.8f)
+		isFocused -> if (isPrimary) Color(0xFF0EA5E9) else Color.White.copy(alpha = 0.15f)
+		isPrimary -> Color(0xFF0EA5E9).copy(alpha = 0.8f)
 		else -> Color.White.copy(alpha = 0.06f)
 	}
 	val textColor = when {

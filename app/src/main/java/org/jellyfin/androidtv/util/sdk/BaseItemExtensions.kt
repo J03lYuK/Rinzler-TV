@@ -1,13 +1,13 @@
-package org.jellyfin.androidtv.util.sdk
+package uk.rinzler.tv.util.sdk
 
 import android.content.Context
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.model.ChapterItemInfo
-import org.jellyfin.androidtv.ui.composable.getResolutionName
-import org.jellyfin.androidtv.util.TimeUtils
-import org.jellyfin.androidtv.util.apiclient.chapterImages
-import org.jellyfin.androidtv.util.getQuantityString
-import org.jellyfin.androidtv.util.getTimeFormatter
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.model.ChapterItemInfo
+import uk.rinzler.tv.ui.composable.getResolutionName
+import uk.rinzler.tv.util.TimeUtils
+import uk.rinzler.tv.util.apiclient.chapterImages
+import uk.rinzler.tv.util.getQuantityString
+import uk.rinzler.tv.util.getTimeFormatter
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind
 import org.jellyfin.sdk.model.api.LocationType

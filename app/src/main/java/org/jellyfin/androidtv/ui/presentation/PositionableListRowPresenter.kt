@@ -1,11 +1,11 @@
-package org.jellyfin.androidtv.ui.presentation
+package uk.rinzler.tv.ui.presentation
 
 import android.content.Context
 import android.view.View
 import androidx.leanback.widget.FocusHighlight
 import androidx.leanback.widget.RowHeaderPresenter
 import androidx.leanback.widget.RowPresenter
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import timber.log.Timber
 
 class PositionableListRowPresenter : CustomListRowPresenter {

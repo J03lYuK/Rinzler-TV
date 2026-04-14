@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.composable.item
+package uk.rinzler.tv.ui.composable.item
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -13,13 +13,13 @@ import androidx.media3.datasource.HttpDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.home.mediabar.ExoPlayerTrailerView
-import org.jellyfin.androidtv.ui.home.mediabar.TrailerPreviewInfo
-import org.jellyfin.androidtv.ui.home.mediabar.TrailerResolver
-import org.jellyfin.androidtv.util.UUIDUtils
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.home.mediabar.ExoPlayerTrailerView
+import uk.rinzler.tv.ui.home.mediabar.TrailerPreviewInfo
+import uk.rinzler.tv.ui.home.mediabar.TrailerResolver
+import uk.rinzler.tv.util.UUIDUtils
+import uk.rinzler.tv.util.sdk.ApiClientFactory
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind

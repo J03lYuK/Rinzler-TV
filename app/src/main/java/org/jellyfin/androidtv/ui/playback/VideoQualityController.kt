@@ -1,6 +1,6 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
-import org.jellyfin.androidtv.preference.UserPreferences;
+import uk.rinzler.tv.preference.UserPreferences;
 
 class VideoQualityController(
 	previousQualitySelection: String,

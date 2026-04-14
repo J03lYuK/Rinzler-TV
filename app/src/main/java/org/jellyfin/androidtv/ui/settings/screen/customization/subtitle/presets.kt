@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.screen.customization.subtitle
+package uk.rinzler.tv.ui.settings.screen.customization.subtitle
 
 import androidx.compose.ui.graphics.Color
 

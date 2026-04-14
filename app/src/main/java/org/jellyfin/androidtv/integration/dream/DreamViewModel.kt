@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.integration.dream
+package uk.rinzler.tv.integration.dream
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -21,11 +21,11 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.integration.dream.model.DreamContent
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.util.apiclient.getUrl
-import org.jellyfin.androidtv.util.apiclient.itemBackdropImages
-import org.jellyfin.androidtv.util.apiclient.itemImages
+import uk.rinzler.tv.integration.dream.model.DreamContent
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.util.apiclient.getUrl
+import uk.rinzler.tv.util.apiclient.itemBackdropImages
+import uk.rinzler.tv.util.apiclient.itemImages
 import org.jellyfin.playback.core.PlaybackManager
 import org.jellyfin.playback.core.queue.queue
 import org.jellyfin.playback.jellyfin.queue.baseItem

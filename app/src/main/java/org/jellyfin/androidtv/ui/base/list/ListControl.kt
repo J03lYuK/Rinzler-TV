@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base.list
+package uk.rinzler.tv.ui.base.list
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.InteractionSource
@@ -15,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.base.LocalShapes
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.LocalShapes
 
 object ListControlDefaults {
 	@ReadOnlyComposable

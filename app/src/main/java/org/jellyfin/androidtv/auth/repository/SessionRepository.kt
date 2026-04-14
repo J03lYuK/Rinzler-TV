@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.auth.repository
+package uk.rinzler.tv.auth.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.NonCancellable
@@ -8,26 +8,26 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.auth.model.Server
-import org.jellyfin.androidtv.auth.store.AuthenticationPreferences
-import org.jellyfin.androidtv.auth.store.AuthenticationStore
-import org.jellyfin.androidtv.preference.PreferencesRepository
-import org.jellyfin.androidtv.preference.TelemetryPreferences
-import org.jellyfin.androidtv.preference.constant.UserSelectBehavior.DISABLED
-import org.jellyfin.androidtv.preference.constant.UserSelectBehavior.LAST_USER
-import org.jellyfin.androidtv.preference.constant.UserSelectBehavior.SPECIFIC_USER
-import org.jellyfin.androidtv.telemetry.TelemetryService
-import org.jellyfin.androidtv.util.EmbyCompatInterceptor
-import org.jellyfin.androidtv.util.sdk.forUser
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.tv.auth.store.AuthenticationPreferences
+import uk.rinzler.tv.auth.store.AuthenticationStore
+import uk.rinzler.tv.preference.PreferencesRepository
+import uk.rinzler.tv.preference.TelemetryPreferences
+import uk.rinzler.tv.preference.constant.UserSelectBehavior.DISABLED
+import uk.rinzler.tv.preference.constant.UserSelectBehavior.LAST_USER
+import uk.rinzler.tv.preference.constant.UserSelectBehavior.SPECIFIC_USER
+import uk.rinzler.tv.telemetry.TelemetryService
+import uk.rinzler.tv.util.EmbyCompatInterceptor
+import uk.rinzler.tv.util.sdk.forUser
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.ApiClientException
 import org.jellyfin.sdk.api.client.extensions.clientLogApi
 import org.jellyfin.sdk.api.client.extensions.userApi
 import org.jellyfin.sdk.model.DeviceInfo
 import org.jellyfin.sdk.model.serializer.toUUIDOrNull
-import org.moonfin.server.core.model.ServerType
-import org.moonfin.server.emby.EmbyApiClient
-import org.moonfin.server.emby.socket.EmbyWebSocketClient
+import uk.rinzler.server.core.model.ServerType
+import uk.rinzler.server.emby.EmbyApiClient
+import uk.rinzler.server.emby.socket.EmbyWebSocketClient
 import timber.log.Timber
 import java.util.UUID
 

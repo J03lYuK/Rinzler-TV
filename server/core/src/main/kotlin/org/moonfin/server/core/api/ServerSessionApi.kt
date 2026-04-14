@@ -1,7 +1,7 @@
-package org.moonfin.server.core.api
+package uk.rinzler.server.core.api
 
-import org.moonfin.server.core.model.ClientCapabilities
-import org.moonfin.server.core.model.SessionInfo
+import uk.rinzler.server.core.model.ClientCapabilities
+import uk.rinzler.server.core.model.SessionInfo
 
 interface ServerSessionApi {
     suspend fun postCapabilities(capabilities: ClientCapabilities)

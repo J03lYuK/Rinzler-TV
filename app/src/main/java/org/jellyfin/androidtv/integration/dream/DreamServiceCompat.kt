@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.integration.dream
+package uk.rinzler.tv.integration.dream
 
 import android.service.dreams.DreamService
 import androidx.annotation.CallSuper

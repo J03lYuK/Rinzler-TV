@@ -1,11 +1,11 @@
-package org.jellyfin.androidtv.ui
+package uk.rinzler.tv.ui
 
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.data.repository.ItemRepository
+import uk.rinzler.tv.data.repository.ItemRepository
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.itemsApi
 import org.koin.java.KoinJavaComponent

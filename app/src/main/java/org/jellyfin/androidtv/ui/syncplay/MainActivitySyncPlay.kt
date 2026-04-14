@@ -1,9 +1,9 @@
-package org.jellyfin.androidtv.ui.syncplay
+package uk.rinzler.tv.ui.syncplay
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.JellyfinTheme
 import org.koin.compose.viewmodel.koinActivityViewModel
 
 @Composable

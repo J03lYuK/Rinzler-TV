@@ -1,6 +1,6 @@
 @file:JvmName("CoroutineUtils")
 
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
@@ -9,8 +9,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.constant.CustomMessage
-import org.jellyfin.androidtv.data.repository.CustomMessageRepository
+import uk.rinzler.tv.constant.CustomMessage
+import uk.rinzler.tv.data.repository.CustomMessageRepository
 
 fun <T : Any> runOnLifecycle(
 	lifecycle: Lifecycle,

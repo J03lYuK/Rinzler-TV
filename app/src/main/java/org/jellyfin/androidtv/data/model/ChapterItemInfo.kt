@@ -1,6 +1,6 @@
-package org.jellyfin.androidtv.data.model
+package uk.rinzler.tv.data.model
 
-import org.jellyfin.androidtv.util.apiclient.JellyfinImage
+import uk.rinzler.tv.util.apiclient.JellyfinImage
 import java.util.UUID
 
 data class ChapterItemInfo(

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
 import androidx.leanback.widget.ListRow
@@ -9,11 +9,11 @@ import androidx.leanback.widget.RowPresenter
 import androidx.lifecycle.LifecycleCoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import org.jellyfin.androidtv.data.model.AppNotification
-import org.jellyfin.androidtv.data.repository.NotificationsRepository
-import org.jellyfin.androidtv.ui.notification.AppNotificationPresenter
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter
+import uk.rinzler.tv.data.model.AppNotification
+import uk.rinzler.tv.data.repository.NotificationsRepository
+import uk.rinzler.tv.ui.notification.AppNotificationPresenter
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter
 
 class NotificationsHomeFragmentRow(
 	lifecycleScope: LifecycleCoroutineScope,

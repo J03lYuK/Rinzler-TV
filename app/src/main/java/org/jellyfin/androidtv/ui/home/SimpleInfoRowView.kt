@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
 import android.graphics.Typeface
@@ -16,13 +16,13 @@ import coil3.request.ImageRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.repository.MdbListRepository
-import org.jellyfin.androidtv.data.repository.RatingIconProvider
-import org.jellyfin.androidtv.data.repository.TmdbRepository
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.ui.composable.getResolutionName
-import org.jellyfin.androidtv.util.TimeUtils
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.repository.MdbListRepository
+import uk.rinzler.tv.data.repository.RatingIconProvider
+import uk.rinzler.tv.data.repository.TmdbRepository
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.ui.composable.getResolutionName
+import uk.rinzler.tv.util.TimeUtils
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind

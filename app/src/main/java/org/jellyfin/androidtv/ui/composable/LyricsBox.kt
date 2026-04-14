@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.composable
+package uk.rinzler.tv.ui.composable
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
@@ -24,8 +24,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import org.jellyfin.androidtv.ui.base.LocalTextStyle
-import org.jellyfin.androidtv.ui.base.Text
+import uk.rinzler.tv.ui.base.LocalTextStyle
+import uk.rinzler.tv.ui.base.Text
 import org.jellyfin.sdk.model.api.LyricDto
 import org.jellyfin.sdk.model.extensions.ticks
 import kotlin.time.Duration

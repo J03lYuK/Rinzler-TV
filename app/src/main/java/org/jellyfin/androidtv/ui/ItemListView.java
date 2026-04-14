@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui;
+package uk.rinzler.tv.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import org.jellyfin.androidtv.databinding.ItemListBinding;
+import uk.rinzler.tv.databinding.ItemListBinding;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 
 import java.util.ArrayList;

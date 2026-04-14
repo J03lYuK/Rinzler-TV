@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.auth.repository
+package uk.rinzler.tv.auth.repository
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

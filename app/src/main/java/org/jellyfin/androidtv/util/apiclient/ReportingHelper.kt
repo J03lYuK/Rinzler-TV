@@ -1,15 +1,15 @@
-package org.jellyfin.androidtv.util.apiclient
+package uk.rinzler.tv.util.apiclient
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.data.compat.StreamInfo
-import org.jellyfin.androidtv.data.model.DataRefreshService
-import org.jellyfin.androidtv.ui.playback.PlaybackController
-import org.jellyfin.androidtv.util.UUIDUtils
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.data.compat.StreamInfo
+import uk.rinzler.tv.data.model.DataRefreshService
+import uk.rinzler.tv.ui.playback.PlaybackController
+import uk.rinzler.tv.util.UUIDUtils
+import uk.rinzler.tv.util.sdk.ApiClientFactory
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.playStateApi
 import org.jellyfin.sdk.model.api.BaseItemDto

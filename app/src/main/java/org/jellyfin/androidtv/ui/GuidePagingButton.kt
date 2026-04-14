@@ -1,15 +1,15 @@
-package org.jellyfin.androidtv.ui
+package uk.rinzler.tv.ui
 
 import android.content.Context
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.databinding.ProgramGridCellBinding
-import org.jellyfin.androidtv.ui.livetv.LiveTvGuide
-import org.jellyfin.androidtv.ui.livetv.LiveTvGuideFragment
-import org.jellyfin.androidtv.util.Utils
+import uk.rinzler.tv.R
+import uk.rinzler.tv.databinding.ProgramGridCellBinding
+import uk.rinzler.tv.ui.livetv.LiveTvGuide
+import uk.rinzler.tv.ui.livetv.LiveTvGuideFragment
+import uk.rinzler.tv.util.Utils
 
 class GuidePagingButton : RelativeLayout {
 

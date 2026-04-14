@@ -1,7 +1,7 @@
-package org.jellyfin.androidtv.constant
+package uk.rinzler.tv.constant
 
 import android.content.Context
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 
 @Suppress("MagicNumber")
 private val qualityOptions = setOf(

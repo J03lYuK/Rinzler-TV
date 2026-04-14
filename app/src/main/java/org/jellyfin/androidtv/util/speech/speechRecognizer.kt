@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util.speech
+package uk.rinzler.tv.util.speech
 
 import android.content.Context
 import android.content.Intent
@@ -18,7 +18,7 @@ import androidx.compose.ui.platform.LocalContext
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.rememberPermissionState
-import org.jellyfin.androidtv.util.locale
+import uk.rinzler.tv.util.locale
 import timber.log.Timber
 
 @Composable

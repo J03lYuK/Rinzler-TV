@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.composable
+package uk.rinzler.tv.ui.settings.composable
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -15,12 +15,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.CircularProgressIndicator
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListControlColors
-import org.jellyfin.androidtv.ui.base.list.ListControlDefaults
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.CircularProgressIndicator
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListControlColors
+import uk.rinzler.tv.ui.base.list.ListControlDefaults
 import org.jellyfin.design.Tokens
 import timber.log.Timber
 

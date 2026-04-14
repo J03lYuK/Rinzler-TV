@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.settings.composable
+package uk.rinzler.tv.ui.settings.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -10,8 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.base.LocalShapes
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.LocalShapes
 import org.jellyfin.design.Tokens
 
 @Composable

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home.mediabar
+package uk.rinzler.tv.ui.home.mediabar
 
 import android.graphics.RenderEffect
 import android.graphics.Shader
@@ -56,19 +56,19 @@ import coil3.request.allowHardware
 import coil3.toBitmap
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.repository.MdbListRepository
-import org.jellyfin.androidtv.data.repository.RatingIconProvider
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.preference.constant.NavbarPosition
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.util.TimeUtils
-import org.jellyfin.androidtv.util.isImagePrimarilyDark
-import org.jellyfin.androidtv.util.toHtmlSpanned
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.repository.MdbListRepository
+import uk.rinzler.tv.data.repository.RatingIconProvider
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.preference.constant.NavbarPosition
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.util.TimeUtils
+import uk.rinzler.tv.util.isImagePrimarilyDark
+import uk.rinzler.tv.util.toHtmlSpanned
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.api.BaseItemKind
-import org.jellyfin.androidtv.ui.settings.compat.SettingsViewModel
+import uk.rinzler.tv.ui.settings.compat.SettingsViewModel
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinActivityViewModel
 import timber.log.Timber

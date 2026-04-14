@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing.v2
+package uk.rinzler.tv.ui.browsing.v2
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.util.TimeUtils
+import uk.rinzler.tv.util.TimeUtils
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.ApiClientException
 import org.jellyfin.sdk.api.client.extensions.liveTvApi

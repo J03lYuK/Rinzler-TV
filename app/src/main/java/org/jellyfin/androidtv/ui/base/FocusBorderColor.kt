@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base
+package uk.rinzler.tv.ui.base
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -6,8 +6,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import org.jellyfin.androidtv.auth.repository.UserRepository
-import org.jellyfin.androidtv.preference.UserSettingPreferences
+import uk.rinzler.tv.auth.repository.UserRepository
+import uk.rinzler.tv.preference.UserSettingPreferences
 import org.koin.compose.koinInject
 
 /**

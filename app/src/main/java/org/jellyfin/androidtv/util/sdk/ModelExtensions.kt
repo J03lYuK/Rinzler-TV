@@ -1,15 +1,15 @@
 @file:JvmName("ModelUtils")
 
-package org.jellyfin.androidtv.util.sdk
+package uk.rinzler.tv.util.sdk
 
-import org.jellyfin.androidtv.auth.model.PublicUser
-import org.jellyfin.androidtv.auth.model.Server
-import org.jellyfin.androidtv.util.apiclient.primaryImage
+import uk.rinzler.tv.auth.model.PublicUser
+import uk.rinzler.tv.auth.model.Server
+import uk.rinzler.tv.util.apiclient.primaryImage
 import org.jellyfin.sdk.model.api.ServerDiscoveryInfo
 import org.jellyfin.sdk.model.api.UserDto
 import org.jellyfin.sdk.model.serializer.toUUID
 import org.jellyfin.sdk.model.serializer.toUUIDOrNull
-import org.moonfin.server.core.model.ServerType
+import uk.rinzler.server.core.model.ServerType
 
 fun ServerDiscoveryInfo.toServer(serverType: ServerType = ServerType.JELLYFIN): Server = Server(
 	id = id.toUUID(),

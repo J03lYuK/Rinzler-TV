@@ -1,15 +1,15 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.data.compat.PlaybackException
-import org.jellyfin.androidtv.data.compat.StreamInfo
-import org.jellyfin.androidtv.data.compat.VideoOptions
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
-import org.jellyfin.androidtv.util.apiclient.Response
+import uk.rinzler.tv.data.compat.PlaybackException
+import uk.rinzler.tv.data.compat.StreamInfo
+import uk.rinzler.tv.data.compat.VideoOptions
+import uk.rinzler.tv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.util.apiclient.Response
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.hlsSegmentApi
 import org.jellyfin.sdk.api.client.extensions.mediaInfoApi

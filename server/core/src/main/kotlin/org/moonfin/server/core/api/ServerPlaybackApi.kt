@@ -1,11 +1,11 @@
-package org.moonfin.server.core.api
+package uk.rinzler.server.core.api
 
-import org.moonfin.server.core.model.PlaybackInfoRequest
-import org.moonfin.server.core.model.PlaybackInfoResult
-import org.moonfin.server.core.model.PlaybackProgressReport
-import org.moonfin.server.core.model.PlaybackStartReport
-import org.moonfin.server.core.model.PlaybackStopReport
-import org.moonfin.server.core.model.StreamParams
+import uk.rinzler.server.core.model.PlaybackInfoRequest
+import uk.rinzler.server.core.model.PlaybackInfoResult
+import uk.rinzler.server.core.model.PlaybackProgressReport
+import uk.rinzler.server.core.model.PlaybackStartReport
+import uk.rinzler.server.core.model.PlaybackStopReport
+import uk.rinzler.server.core.model.StreamParams
 
 interface ServerPlaybackApi {
     suspend fun getPlaybackInfo(itemId: String, request: PlaybackInfoRequest): PlaybackInfoResult

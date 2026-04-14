@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,22 +21,22 @@ import coil3.load
 import coil3.request.crossfade
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.preference.constant.NavbarPosition
-import org.jellyfin.androidtv.ui.InteractionTrackerViewModel
-import org.jellyfin.androidtv.ui.home.mediabar.MediaBarSlideshowViewModel
-import org.jellyfin.androidtv.ui.home.mediabar.TrailerPreviewState
-import org.jellyfin.androidtv.ui.home.mediabar.ExoPlayerTrailerView
-import org.jellyfin.androidtv.ui.shared.toolbar.LeftSidebarNavigation
-import org.jellyfin.androidtv.ui.shared.toolbar.Navbar
-import org.jellyfin.androidtv.ui.shared.toolbar.NavbarActiveButton
+import uk.rinzler.tv.R
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.preference.constant.NavbarPosition
+import uk.rinzler.tv.ui.InteractionTrackerViewModel
+import uk.rinzler.tv.ui.home.mediabar.MediaBarSlideshowViewModel
+import uk.rinzler.tv.ui.home.mediabar.TrailerPreviewState
+import uk.rinzler.tv.ui.home.mediabar.ExoPlayerTrailerView
+import uk.rinzler.tv.ui.shared.toolbar.LeftSidebarNavigation
+import uk.rinzler.tv.ui.shared.toolbar.Navbar
+import uk.rinzler.tv.ui.shared.toolbar.NavbarActiveButton
 import org.koin.android.ext.android.inject
 import org.koin.compose.koinInject
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import androidx.media3.datasource.HttpDataSource
-import org.jellyfin.androidtv.ui.settings.compat.SettingsViewModel
+import uk.rinzler.tv.ui.settings.compat.SettingsViewModel
 
 class HomeFragment : Fragment() {
 	private val mediaBarViewModel by inject<MediaBarSlideshowViewModel>()
@@ -223,7 +223,7 @@ class HomeFragment : Fragment() {
 		val state = mediaBarViewModel.state.value
 		val shouldShowMediaBar = shouldShowMediaBar()
 		
-		if (state is org.jellyfin.androidtv.ui.home.mediabar.MediaBarState.Ready && shouldShowMediaBar) {
+		if (state is uk.rinzler.tv.ui.home.mediabar.MediaBarState.Ready && shouldShowMediaBar) {
 			val playbackState = mediaBarViewModel.playbackState.value
 			val currentItem = state.items.getOrNull(playbackState.currentIndex)
 			val backdropUrl = currentItem?.backdropUrl

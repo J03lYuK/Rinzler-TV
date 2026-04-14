@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base
+package uk.rinzler.tv.ui.base
 
 import android.os.Bundle
 import android.view.View
@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.util.getUserFeedbackManager
+import uk.rinzler.tv.util.getUserFeedbackManager
 
 /**
  * Base Fragment class providing common functionality for all fragments.

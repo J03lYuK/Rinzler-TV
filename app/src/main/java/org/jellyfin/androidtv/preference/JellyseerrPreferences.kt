@@ -1,10 +1,10 @@
-package org.jellyfin.androidtv.preference
+package uk.rinzler.tv.preference
 
 import android.content.Context
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.jellyfin.androidtv.constant.JellyseerrFetchLimit
-import org.jellyfin.androidtv.constant.JellyseerrRowType
+import uk.rinzler.tv.constant.JellyseerrFetchLimit
+import uk.rinzler.tv.constant.JellyseerrRowType
 import org.jellyfin.preference.booleanPreference
 import org.jellyfin.preference.enumPreference
 import org.jellyfin.preference.store.SharedPreferenceStore
@@ -41,7 +41,7 @@ class JellyseerrPreferences(context: Context, userId: String? = null) : SharedPr
 		val lastVerifiedTime = stringPreference("jellyseerr_last_verified", "")
 		val lastConnectionSuccess = booleanPreference("jellyseerr_last_connection_success", false)
 
-		// Moonfin plugin proxy mode
+		// Rinzler plugin proxy mode
 		val moonfinMode = booleanPreference("jellyseerr_moonfin_mode", false)
 		val moonfinDisplayName = stringPreference("jellyseerr_moonfin_display_name", "")
 		val moonfinVariant = stringPreference("jellyseerr_moonfin_variant", "jellyseerr")

@@ -1,9 +1,9 @@
-package org.jellyfin.androidtv.ui.playback.stillwatching
+package uk.rinzler.tv.ui.playback.stillwatching
 
 import android.content.Context
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.InteractionTrackerViewModel
-import org.jellyfin.androidtv.ui.playback.common.PlaybackPromptViewModel
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.InteractionTrackerViewModel
+import uk.rinzler.tv.ui.playback.common.PlaybackPromptViewModel
 import org.jellyfin.sdk.api.client.ApiClient
 
 class StillWatchingViewModel(

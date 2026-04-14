@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.navigation
+package uk.rinzler.tv.ui.navigation
 
 /**
  * Emitted actions from the navigation repository.

@@ -1,14 +1,14 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.compose.ui.platform.ComposeView
 import androidx.leanback.widget.RowPresenter
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.home.mediabar.MediaBarSlideshowView
-import org.jellyfin.androidtv.ui.home.mediabar.MediaBarSlideshowViewModel
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.home.mediabar.MediaBarSlideshowView
+import uk.rinzler.tv.ui.home.mediabar.MediaBarSlideshowViewModel
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
 
 class MediaBarPresenter(
 	private val viewModel: MediaBarSlideshowViewModel,

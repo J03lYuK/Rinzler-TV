@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback.overlay;
+package uk.rinzler.tv.ui.playback.overlay;
 
 import static org.koin.java.KoinJavaComponent.inject;
 
@@ -9,14 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.leanback.app.PlaybackSupportFragment;
 
-import org.jellyfin.androidtv.preference.UserPreferences;
-import org.jellyfin.androidtv.preference.UserSettingPreferences;
-import org.jellyfin.androidtv.ui.playback.CustomPlaybackOverlayFragment;
-import org.jellyfin.androidtv.ui.playback.PlaybackController;
-import org.jellyfin.androidtv.ui.playback.PlaybackControllerContainer;
-import org.jellyfin.androidtv.auth.repository.ServerRepository;
-import org.jellyfin.androidtv.util.FeatureSupportKt;
-import org.moonfin.server.core.feature.ServerFeature;
+import uk.rinzler.tv.preference.UserPreferences;
+import uk.rinzler.tv.preference.UserSettingPreferences;
+import uk.rinzler.tv.ui.playback.CustomPlaybackOverlayFragment;
+import uk.rinzler.tv.ui.playback.PlaybackController;
+import uk.rinzler.tv.ui.playback.PlaybackControllerContainer;
+import uk.rinzler.tv.auth.repository.ServerRepository;
+import uk.rinzler.tv.util.FeatureSupportKt;
+import uk.rinzler.server.core.feature.ServerFeature;
 import org.jellyfin.sdk.api.client.ApiClient;
 
 import coil3.ImageLoader;

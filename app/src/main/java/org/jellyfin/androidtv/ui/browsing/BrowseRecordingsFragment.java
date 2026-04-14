@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing;
+package uk.rinzler.tv.ui.browsing;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,11 +12,11 @@ import androidx.leanback.widget.ListRow;
 import androidx.leanback.widget.Row;
 import androidx.lifecycle.Lifecycle;
 
-import org.jellyfin.androidtv.R;
-import org.jellyfin.androidtv.ui.GridButton;
-import org.jellyfin.androidtv.ui.itemhandling.ItemRowAdapter;
-import org.jellyfin.androidtv.ui.presentation.GridButtonPresenter;
-import org.jellyfin.androidtv.ui.presentation.MutableObjectAdapter;
+import uk.rinzler.tv.R;
+import uk.rinzler.tv.ui.GridButton;
+import uk.rinzler.tv.ui.itemhandling.ItemRowAdapter;
+import uk.rinzler.tv.ui.presentation.GridButtonPresenter;
+import uk.rinzler.tv.ui.presentation.MutableObjectAdapter;
 import org.jellyfin.sdk.model.api.BaseItemDto;
 import org.jellyfin.sdk.model.api.TimerInfoDto;
 

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util.sdk
+package uk.rinzler.tv.util.sdk
 
 import org.jellyfin.sdk.model.api.MediaSegmentDto
 import org.jellyfin.sdk.model.extensions.ticks

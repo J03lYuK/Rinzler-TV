@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.eventhandling
+package uk.rinzler.tv.data.eventhandling
 
 import android.content.Context
 import android.media.AudioManager
@@ -13,17 +13,17 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.jellyfin.androidtv.auth.repository.SessionRepository
-import org.jellyfin.androidtv.data.model.DataRefreshService
-import org.jellyfin.androidtv.data.syncplay.SyncPlayManager
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncher
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.playback.MediaManager
-import org.jellyfin.androidtv.ui.playback.PlaybackControllerContainer
-import org.jellyfin.androidtv.ui.playback.setSubtitleIndex
-import org.jellyfin.androidtv.util.PlaybackHelper
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.tv.auth.repository.SessionRepository
+import uk.rinzler.tv.data.model.DataRefreshService
+import uk.rinzler.tv.data.syncplay.SyncPlayManager
+import uk.rinzler.tv.ui.itemhandling.ItemLauncher
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.playback.MediaManager
+import uk.rinzler.tv.ui.playback.PlaybackControllerContainer
+import uk.rinzler.tv.ui.playback.setSubtitleIndex
+import uk.rinzler.tv.util.PlaybackHelper
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.ApiClientException
 import org.jellyfin.sdk.api.client.extensions.sessionApi
@@ -44,10 +44,10 @@ import org.jellyfin.sdk.model.api.SyncPlayGroupUpdateMessage
 import org.jellyfin.sdk.model.extensions.get
 import org.jellyfin.sdk.model.extensions.getValue
 import org.jellyfin.sdk.model.serializer.toUUIDOrNull
-import org.moonfin.server.core.model.EmbyConnectionState
-import org.moonfin.server.core.model.ServerType
-import org.moonfin.server.core.model.ServerWebSocketMessage
-import org.moonfin.server.emby.socket.EmbyWebSocketClient
+import uk.rinzler.server.core.model.EmbyConnectionState
+import uk.rinzler.server.core.model.ServerType
+import uk.rinzler.server.core.model.ServerWebSocketMessage
+import uk.rinzler.server.emby.socket.EmbyWebSocketClient
 import timber.log.Timber
 import java.time.Instant
 import java.util.UUID
@@ -374,7 +374,7 @@ class SocketHandler(
 					PlaystateCommand.NEXT_TRACK -> playbackController?.next()
 					PlaystateCommand.PREVIOUS_TRACK -> playbackController?.prev()
 					PlaystateCommand.SEEK -> playbackController?.seek(
-						org.jellyfin.androidtv.data.syncplay.SyncPlayUtils.ticksToMs(message.data?.seekPositionTicks ?: 0)
+						uk.rinzler.tv.data.syncplay.SyncPlayUtils.ticksToMs(message.data?.seekPositionTicks ?: 0)
 					)
 
 					PlaystateCommand.REWIND -> playbackController?.rewind()

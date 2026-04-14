@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 import androidx.annotation.OptIn
 import androidx.media3.common.C

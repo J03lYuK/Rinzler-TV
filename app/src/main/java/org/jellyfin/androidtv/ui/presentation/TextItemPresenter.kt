@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.presentation
+package uk.rinzler.tv.ui.presentation
 
 import android.graphics.Color
 import android.view.Gravity

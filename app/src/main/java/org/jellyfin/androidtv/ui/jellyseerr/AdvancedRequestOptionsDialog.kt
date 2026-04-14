@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.app.Dialog
 import android.content.Context
@@ -17,9 +17,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrQualityProfileDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrRootFolderDto
-import org.jellyfin.androidtv.util.dp
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrQualityProfileDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrRootFolderDto
+import uk.rinzler.tv.util.dp
 import timber.log.Timber
 
 /**

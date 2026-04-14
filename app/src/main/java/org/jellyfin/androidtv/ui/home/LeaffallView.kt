@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.home
+package uk.rinzler.tv.ui.home
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -13,7 +13,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
-import org.jellyfin.androidtv.R
+import uk.rinzler.tv.R
 import kotlin.random.Random
 
 /**

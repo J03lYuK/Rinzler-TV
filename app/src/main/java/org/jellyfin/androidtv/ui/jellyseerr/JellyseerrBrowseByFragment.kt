@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -20,16 +20,16 @@ import androidx.leanback.widget.VerticalGridPresenter
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverItemDto
-import org.jellyfin.androidtv.databinding.HorizontalGridBrowseBinding
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.itemhandling.JellyseerrMediaBaseRowItem
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.util.Utils
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverItemDto
+import uk.rinzler.tv.databinding.HorizontalGridBrowseBinding
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.itemhandling.JellyseerrMediaBaseRowItem
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.util.Utils
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -335,7 +335,7 @@ gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener {
 		// Update background with backdrop
 		item.backdropPath?.let { backdropPath ->
 			val backdropUrl = "https://image.tmdb.org/t/p/w1280$backdropPath"
-			backgroundService.setBackgroundUrl(backdropUrl, org.jellyfin.androidtv.data.service.BlurContext.BROWSING)
+			backgroundService.setBackgroundUrl(backdropUrl, uk.rinzler.tv.data.service.BlurContext.BROWSING)
 		}
 		
 		// Update title on the left to show selected item name (filterLogo stays centered)
@@ -513,7 +513,7 @@ gridPresenter.setOnItemViewSelectedListener(OnItemViewSelectedListener {
 		}
 	}
 	
-	private suspend fun fetchContent(page: Int): Result<org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverPageDto>? {
+	private suspend fun fetchContent(page: Int): Result<uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverPageDto>? {
 		return when (filterType) {
 			BrowseFilterType.GENRE -> {
 				if (mediaType == "movie") {

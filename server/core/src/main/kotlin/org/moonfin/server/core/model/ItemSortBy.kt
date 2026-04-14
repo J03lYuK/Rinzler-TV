@@ -1,4 +1,4 @@
-package org.moonfin.server.core.model
+package uk.rinzler.server.core.model
 
 enum class ItemSortBy {
     SORT_NAME, PREMIERE_DATE, DATE_CREATED, DATE_PLAYED,

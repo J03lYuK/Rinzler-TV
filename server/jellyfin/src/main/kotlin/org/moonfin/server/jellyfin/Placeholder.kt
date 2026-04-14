@@ -1,1 +1,1 @@
-package org.moonfin.server.jellyfin
+package uk.rinzler.server.jellyfin

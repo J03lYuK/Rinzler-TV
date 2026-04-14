@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback.rewrite
+package uk.rinzler.tv.ui.playback.rewrite
 
 import android.content.Context
 import androidx.lifecycle.ProcessLifecycleOwner
@@ -10,10 +10,10 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import org.jellyfin.androidtv.integration.dream.visibleInScreensaver
-import org.jellyfin.androidtv.ui.playback.AudioEventListener
-import org.jellyfin.androidtv.ui.playback.MediaManager
-import org.jellyfin.androidtv.ui.playback.PlaybackController
+import uk.rinzler.tv.integration.dream.visibleInScreensaver
+import uk.rinzler.tv.ui.playback.AudioEventListener
+import uk.rinzler.tv.ui.playback.MediaManager
+import uk.rinzler.tv.ui.playback.PlaybackController
 import org.jellyfin.playback.core.PlaybackManager
 import org.jellyfin.playback.core.model.PlayState
 import org.jellyfin.playback.core.model.PlaybackOrder

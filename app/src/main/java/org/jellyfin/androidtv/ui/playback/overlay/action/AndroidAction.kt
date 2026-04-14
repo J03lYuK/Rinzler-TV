@@ -1,6 +1,6 @@
-package org.jellyfin.androidtv.ui.playback.overlay.action
+package uk.rinzler.tv.ui.playback.overlay.action
 
-import org.jellyfin.androidtv.ui.playback.overlay.VideoPlayerAdapter
+import uk.rinzler.tv.ui.playback.overlay.VideoPlayerAdapter
 
 interface AndroidAction {
 	fun onActionClicked(

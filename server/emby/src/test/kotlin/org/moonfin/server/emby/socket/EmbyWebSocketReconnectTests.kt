@@ -1,4 +1,4 @@
-package org.moonfin.server.emby.socket
+package uk.rinzler.server.emby.socket
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.longs.shouldBeGreaterThanOrEqual

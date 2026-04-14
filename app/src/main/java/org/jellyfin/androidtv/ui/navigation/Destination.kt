@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.navigation
+package uk.rinzler.tv.ui.navigation
 
 import android.os.Bundle
 import androidx.core.os.bundleOf

@@ -1,6 +1,6 @@
-package org.moonfin.server.core.api
+package uk.rinzler.server.core.api
 
-import org.moonfin.server.core.model.ServerItem
+import uk.rinzler.server.core.model.ServerItem
 
 interface ServerUserViewsApi {
     suspend fun getUserViews(userId: String): List<ServerItem>

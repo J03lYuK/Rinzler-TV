@@ -1,11 +1,11 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.leanback.widget.Row
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverItemDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrMovieDetailsDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrTvDetailsDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverItemDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrMovieDetailsDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrTvDetailsDto
 
 class DetailsOverviewRow(
 	val item: JellyseerrDiscoverItemDto,

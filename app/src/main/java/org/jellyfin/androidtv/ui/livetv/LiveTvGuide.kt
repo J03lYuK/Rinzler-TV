@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.livetv
+package uk.rinzler.tv.ui.livetv
 
 import android.widget.RelativeLayout
 import java.time.LocalDateTime

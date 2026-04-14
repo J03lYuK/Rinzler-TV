@@ -1,10 +1,10 @@
-package org.moonfin.playback.emby
+package uk.rinzler.playback.emby
 
 import org.jellyfin.playback.core.plugin.playbackPlugin
 import org.jellyfin.sdk.model.api.DeviceProfile
-import org.moonfin.playback.emby.mediastream.EmbyMediaStreamResolver
-import org.moonfin.playback.emby.playsession.EmbyPlaySessionService
-import org.moonfin.server.emby.EmbyApiClient
+import uk.rinzler.playback.emby.mediastream.EmbyMediaStreamResolver
+import uk.rinzler.playback.emby.playsession.EmbyPlaySessionService
+import uk.rinzler.server.emby.EmbyApiClient
 
 fun embyPlugin(
 	api: EmbyApiClient,

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util.sdk
+package uk.rinzler.tv.util.sdk
 
 import org.jellyfin.sdk.model.DeviceInfo
 import org.jellyfin.sdk.model.UUID

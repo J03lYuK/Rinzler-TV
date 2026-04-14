@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing.v2
+package uk.rinzler.tv.ui.browsing.v2
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.constant.PosterSize
-import org.jellyfin.androidtv.data.repository.ItemRepository
-import org.jellyfin.androidtv.preference.UserPreferences
+import uk.rinzler.tv.constant.PosterSize
+import uk.rinzler.tv.data.repository.ItemRepository
+import uk.rinzler.tv.preference.UserPreferences
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.ApiClientException
 import org.jellyfin.sdk.api.client.extensions.itemsApi

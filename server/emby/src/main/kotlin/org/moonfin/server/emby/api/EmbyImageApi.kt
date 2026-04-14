@@ -1,8 +1,8 @@
-package org.moonfin.server.emby.api
+package uk.rinzler.server.emby.api
 
-import org.moonfin.server.core.api.ServerImageApi
-import org.moonfin.server.core.model.ImageType
-import org.moonfin.server.emby.EmbyApiClient
+import uk.rinzler.server.core.api.ServerImageApi
+import uk.rinzler.server.core.model.ImageType
+import uk.rinzler.server.emby.EmbyApiClient
 
 class EmbyImageApi(private val apiClient: EmbyApiClient) : ServerImageApi {
 

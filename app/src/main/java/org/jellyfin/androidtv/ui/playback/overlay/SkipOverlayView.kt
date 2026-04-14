@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback.overlay
+package uk.rinzler.tv.ui.playback.overlay
 
 import android.content.Context
 import android.util.AttributeSet
@@ -32,10 +32,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.playback.segment.MediaSegmentRepository
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.playback.segment.MediaSegmentRepository
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 

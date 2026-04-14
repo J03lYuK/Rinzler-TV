@@ -1,9 +1,9 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
-import org.moonfin.server.emby.EmbyApiException
+import uk.rinzler.server.emby.EmbyApiException
 import java.io.IOException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback.stillwatching
+package uk.rinzler.tv.ui.playback.stillwatching
 
 enum class StillWatchingState {
 	INITIALIZED,

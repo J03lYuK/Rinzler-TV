@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.constant
+package uk.rinzler.tv.constant
 
 object LiveTvOption {
 	const val LIVE_TV_GUIDE_OPTION_ID = 1000

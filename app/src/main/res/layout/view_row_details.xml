@@ -202,7 +202,7 @@
             tools:visibility="visible" />
 
         <!-- Description -->
-        <org.jellyfin.androidtv.ui.ExpandableTextView
+        <uk.rinzler.tv.ui.ExpandableTextView
             android:id="@+id/fdSummaryText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -423,7 +423,7 @@
             app:layout_constraintTop_toTopOf="@id/guide_top"
             app:layout_constraintVertical_bias="0">
 
-            <org.jellyfin.androidtv.ui.AsyncImageView
+            <uk.rinzler.tv.ui.AsyncImageView
                 android:id="@+id/mainImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

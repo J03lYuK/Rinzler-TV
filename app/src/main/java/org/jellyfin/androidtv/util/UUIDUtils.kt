@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 import java.util.UUID
 

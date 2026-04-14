@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.preference.constant
+package uk.rinzler.tv.preference.constant
 
 enum class UserSelectBehavior {
 	DISABLED,

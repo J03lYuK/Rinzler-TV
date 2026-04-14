@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.shared.toolbar
+package uk.rinzler.tv.ui.shared.toolbar
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,10 +11,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import org.jellyfin.androidtv.data.service.pluginsync.PluginSyncService
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.NavbarPosition
-import org.jellyfin.androidtv.ui.settings.compat.SettingsViewModel
+import uk.rinzler.tv.data.service.pluginsync.PluginSyncService
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.NavbarPosition
+import uk.rinzler.tv.ui.settings.compat.SettingsViewModel
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinActivityViewModel
 import java.util.UUID

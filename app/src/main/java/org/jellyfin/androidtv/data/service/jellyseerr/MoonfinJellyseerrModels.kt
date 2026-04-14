@@ -1,10 +1,10 @@
-package org.jellyfin.androidtv.data.service.jellyseerr
+package uk.rinzler.tv.data.service.jellyseerr
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MoonfinStatusResponse(
+data class RinzlerStatusResponse(
 	val enabled: Boolean = false,
 	val authenticated: Boolean = false,
 	val url: String? = null,
@@ -17,14 +17,14 @@ data class MoonfinStatusResponse(
 )
 
 @Serializable
-data class MoonfinLoginRequest(
+data class RinzlerLoginRequest(
 	@SerialName("username") val username: String,
 	@SerialName("password") val password: String,
 	@SerialName("authType") val authType: String = "jellyfin",
 )
 
 @Serializable
-data class MoonfinLoginResponse(
+data class RinzlerLoginResponse(
 	val success: Boolean = false,
 	val error: String? = null,
 	val jellyseerrUserId: Int? = null,
@@ -34,7 +34,7 @@ data class MoonfinLoginResponse(
 )
 
 @Serializable
-data class MoonfinValidateResponse(
+data class RinzlerValidateResponse(
 	val valid: Boolean = false,
 	val lastValidated: Long? = null,
 )

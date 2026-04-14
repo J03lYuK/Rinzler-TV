@@ -1,14 +1,14 @@
-package org.jellyfin.androidtv.ui.playback.overlay.action
+package uk.rinzler.tv.ui.playback.overlay.action
 
 import android.content.Context
 import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.leanback.widget.PlaybackControlsRow
-import org.jellyfin.androidtv.ui.playback.PlaybackController
-import org.jellyfin.androidtv.ui.playback.overlay.CustomPlaybackTransportControlGlue
-import org.jellyfin.androidtv.ui.playback.overlay.LeanbackOverlayFragment
-import org.jellyfin.androidtv.ui.playback.overlay.VideoPlayerAdapter
+import uk.rinzler.tv.ui.playback.PlaybackController
+import uk.rinzler.tv.ui.playback.overlay.CustomPlaybackTransportControlGlue
+import uk.rinzler.tv.ui.playback.overlay.LeanbackOverlayFragment
+import uk.rinzler.tv.ui.playback.overlay.VideoPlayerAdapter
 
 abstract class CustomAction(
 	private val context: Context,

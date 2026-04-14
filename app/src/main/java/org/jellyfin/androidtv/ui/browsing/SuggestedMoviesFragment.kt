@@ -1,12 +1,12 @@
-package org.jellyfin.androidtv.ui.browsing
+package uk.rinzler.tv.ui.browsing
 
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.constant.QueryDefaults
-import org.jellyfin.androidtv.constant.QueryType
-import org.jellyfin.androidtv.data.repository.ItemRepository
-import org.jellyfin.androidtv.util.apiclient.ioCallContent
+import uk.rinzler.tv.R
+import uk.rinzler.tv.constant.QueryDefaults
+import uk.rinzler.tv.constant.QueryType
+import uk.rinzler.tv.data.repository.ItemRepository
+import uk.rinzler.tv.util.apiclient.ioCallContent
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.itemsApi
 import org.jellyfin.sdk.model.api.BaseItemKind

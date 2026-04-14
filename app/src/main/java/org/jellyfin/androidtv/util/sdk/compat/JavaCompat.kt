@@ -1,8 +1,8 @@
 @file:JvmName("JavaCompat")
 
-package org.jellyfin.androidtv.util.sdk.compat
+package uk.rinzler.tv.util.sdk.compat
 
-import org.jellyfin.androidtv.util.UUIDUtils
+import uk.rinzler.tv.util.UUIDUtils
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.MediaSourceInfo
 import org.jellyfin.sdk.model.api.UserItemDataDto

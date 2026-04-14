@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.startup.fragment
+package uk.rinzler.tv.ui.startup.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,9 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.shared.toolbar.StartupToolbar
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.shared.toolbar.StartupToolbar
 
 class StartupToolbarFragment : Fragment() {
 	override fun onCreateView(

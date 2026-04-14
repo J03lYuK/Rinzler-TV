@@ -1,11 +1,11 @@
-package org.jellyfin.androidtv.ui.shuffle
+package uk.rinzler.tv.ui.shuffle
 
 import android.content.Context
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.navigation.NavigationRepository
 import org.koin.core.context.GlobalContext
 import java.util.UUID
 

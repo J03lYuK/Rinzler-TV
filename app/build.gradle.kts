@@ -12,7 +12,7 @@ import java.util.jar.JarFile
 import java.util.jar.JarOutputStream
 
 android {
-	namespace = "org.jellyfin.androidtv"
+	namespace = "uk.rinzler.tv"
 	compileSdk = libs.versions.android.compileSdk.get().toInt()
 
 	defaultConfig {
@@ -20,7 +20,7 @@ android {
 		targetSdk = libs.versions.android.targetSdk.get().toInt()
 
 		// Release version - custom applicationId to avoid conflict with official Jellyfin
-		applicationId = "org.moonfin.androidtv"
+		applicationId = "uk.rinzler.tv"
 		versionName = project.getVersionName()
 		versionCode = getVersionCode(versionName!!)
 	}
@@ -84,7 +84,7 @@ android {
 			resValue("string", "app_search_suggest_intent_data", "content://${defaultConfig.applicationId}.content/intent")
 
 			// Set flavored application name
-			resValue("string", "app_name", "Moonfin")
+			resValue("string", "app_name", "Rinzler")
 
 			buildConfigField("boolean", "DEVELOPMENT", "false")
 		}
@@ -103,7 +103,7 @@ android {
 			resValue("string", "app_search_suggest_intent_data", "content://${debugAppId}.content/intent")
 
 			// Set flavored application name
-			resValue("string", "app_name", "Moonfin Debug")
+			resValue("string", "app_name", "Rinzler Debug")
 
 			buildConfigField("boolean", "DEVELOPMENT", (defaultConfig.versionCode!! < 100).toString())
 		}
@@ -121,7 +121,7 @@ android {
 	}
 }
 
-base.archivesName.set("moonfin-androidtv-v${project.getVersionName()}")
+base.archivesName.set("rinzler-androidtv-v${project.getVersionName()}")
 
 tasks.register("versionTxt") {
 	val path = layout.buildDirectory.asFile.get().resolve("version.txt")

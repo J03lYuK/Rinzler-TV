@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.presentation;
+package uk.rinzler.tv.ui.presentation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +16,7 @@ import androidx.leanback.widget.Presenter;
 import androidx.leanback.widget.ShadowOverlayContainer;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.jellyfin.androidtv.databinding.HorizontalGridBinding;
+import uk.rinzler.tv.databinding.HorizontalGridBinding;
 
 import timber.log.Timber;
 

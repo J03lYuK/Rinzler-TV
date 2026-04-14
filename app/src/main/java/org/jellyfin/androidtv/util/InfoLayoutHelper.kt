@@ -1,9 +1,9 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 import android.content.Context
 import android.widget.LinearLayout
-import org.jellyfin.androidtv.ui.browsing.composable.inforow.BaseItemInfoRowView
-import org.jellyfin.androidtv.ui.browsing.composable.inforow.RatingsRowView
+import uk.rinzler.tv.ui.browsing.composable.inforow.BaseItemInfoRowView
+import uk.rinzler.tv.ui.browsing.composable.inforow.RatingsRowView
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.MediaSourceInfo
 

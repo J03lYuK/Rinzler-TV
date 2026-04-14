@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.syncplay
+package uk.rinzler.tv.data.syncplay
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

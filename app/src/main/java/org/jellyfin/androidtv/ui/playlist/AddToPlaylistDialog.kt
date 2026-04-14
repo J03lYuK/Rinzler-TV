@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playlist
+package uk.rinzler.tv.ui.playlist
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -44,10 +44,10 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.repository.ServerUserSession
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.shuffle.GlassDialogRow
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.repository.ServerUserSession
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.shuffle.GlassDialogRow
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.itemsApi
 import org.jellyfin.sdk.model.api.BaseItemDto

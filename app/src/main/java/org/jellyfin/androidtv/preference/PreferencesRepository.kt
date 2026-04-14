@@ -1,7 +1,7 @@
-package org.jellyfin.androidtv.preference
+package uk.rinzler.tv.preference
 
 import kotlinx.coroutines.runBlocking
-import org.jellyfin.androidtv.data.service.pluginsync.PluginSyncService
+import uk.rinzler.tv.data.service.pluginsync.PluginSyncService
 import org.jellyfin.sdk.api.client.ApiClient
 import kotlin.collections.set
 
@@ -42,9 +42,9 @@ class PreferencesRepository(
 	}
 
 	/**
-	 * Configure Jellyseerr proxy via Moonfin plugin.
+	 * Configure Jellyseerr proxy via Rinzler plugin.
 	 * Must be called AFTER [onSessionChanged] and after the current user is published,
-	 * because [configureWithMoonfin] needs the active user for cookie storage isolation.
+	 * because [configureWithRinzler] needs the active user for cookie storage isolation.
 	 */
 	suspend fun configureJellyseerr() {
 		pluginSyncService.configureJellyseerrProxy()

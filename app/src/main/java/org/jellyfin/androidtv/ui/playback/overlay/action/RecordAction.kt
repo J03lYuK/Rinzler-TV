@@ -1,13 +1,13 @@
-package org.jellyfin.androidtv.ui.playback.overlay.action
+package uk.rinzler.tv.ui.playback.overlay.action
 
 import android.content.Context
 import android.view.View
 import androidx.core.content.ContextCompat
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.playback.PlaybackController
-import org.jellyfin.androidtv.ui.playback.overlay.CustomPlaybackTransportControlGlue
-import org.jellyfin.androidtv.ui.playback.overlay.LeanbackOverlayFragment
-import org.jellyfin.androidtv.ui.playback.overlay.VideoPlayerAdapter
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.playback.PlaybackController
+import uk.rinzler.tv.ui.playback.overlay.CustomPlaybackTransportControlGlue
+import uk.rinzler.tv.ui.playback.overlay.LeanbackOverlayFragment
+import uk.rinzler.tv.ui.playback.overlay.VideoPlayerAdapter
 
 class RecordAction(
 	context: Context,

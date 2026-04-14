@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base
+package uk.rinzler.tv.ui.base
 
 import androidx.compose.foundation.LocalOverscrollFactory
 import androidx.compose.runtime.Composable

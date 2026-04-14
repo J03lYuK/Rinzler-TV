@@ -1,19 +1,19 @@
-package org.jellyfin.androidtv.preference
+package uk.rinzler.tv.preference
 
 import android.content.Context
 import androidx.preference.PreferenceManager
-import org.jellyfin.androidtv.preference.UserPreferences.Companion.screensaverInAppEnabled
-import org.jellyfin.androidtv.preference.constant.PosterSize
-import org.jellyfin.androidtv.preference.constant.AudioBehavior
-import org.jellyfin.androidtv.preference.constant.ClockBehavior
-import org.jellyfin.androidtv.preference.constant.MaxVideoResolution
-import org.jellyfin.androidtv.preference.constant.NextUpBehavior
-import org.jellyfin.androidtv.preference.constant.RefreshRateSwitchingBehavior
-import org.jellyfin.androidtv.preference.constant.StillWatchingBehavior
-import org.jellyfin.androidtv.preference.constant.WatchedIndicatorBehavior
-import org.jellyfin.androidtv.preference.constant.ZoomMode
-import org.jellyfin.androidtv.ui.playback.segment.MediaSegmentAction
-import org.jellyfin.androidtv.ui.playback.segment.toMediaSegmentActionsString
+import uk.rinzler.tv.preference.UserPreferences.Companion.screensaverInAppEnabled
+import uk.rinzler.tv.preference.constant.PosterSize
+import uk.rinzler.tv.preference.constant.AudioBehavior
+import uk.rinzler.tv.preference.constant.ClockBehavior
+import uk.rinzler.tv.preference.constant.MaxVideoResolution
+import uk.rinzler.tv.preference.constant.NextUpBehavior
+import uk.rinzler.tv.preference.constant.RefreshRateSwitchingBehavior
+import uk.rinzler.tv.preference.constant.StillWatchingBehavior
+import uk.rinzler.tv.preference.constant.WatchedIndicatorBehavior
+import uk.rinzler.tv.preference.constant.ZoomMode
+import uk.rinzler.tv.ui.playback.segment.MediaSegmentAction
+import uk.rinzler.tv.ui.playback.segment.toMediaSegmentActionsString
 import org.jellyfin.preference.booleanPreference
 import org.jellyfin.preference.enumPreference
 import org.jellyfin.preference.floatPreference
@@ -50,7 +50,7 @@ class UserPreferences(context: Context) : SharedPreferenceStore(
 
 		/* Plugin Sync */
 		/**
-		 * Enable syncing settings with the Moonfin server plugin
+		 * Enable syncing settings with the Rinzler server plugin
 		 */
 		var pluginSyncEnabled = booleanPreference("pref_plugin_sync_enabled", false)
 
@@ -76,7 +76,7 @@ class UserPreferences(context: Context) : SharedPreferenceStore(
 		 */
 		var showFavoritesButton = booleanPreference("pref_show_favorites_button", true)
 
-		var favoritesPosterSize = enumPreference("pref_favorites_poster_size", org.jellyfin.androidtv.constant.PosterSize.MED)
+		var favoritesPosterSize = enumPreference("pref_favorites_poster_size", uk.rinzler.tv.constant.PosterSize.MED)
 
 		/**
 		 * Show library buttons in toolbar
@@ -86,7 +86,7 @@ class UserPreferences(context: Context) : SharedPreferenceStore(
 		/**
 		 * Navbar position (top or left)
 		 */
-		var navbarPosition = enumPreference("pref_navbar_position", org.jellyfin.androidtv.preference.constant.NavbarPosition.TOP)
+		var navbarPosition = enumPreference("pref_navbar_position", uk.rinzler.tv.preference.constant.NavbarPosition.TOP)
 
 		var syncPlayEnabled = booleanPreference("pref_syncplay_enabled", false)
 

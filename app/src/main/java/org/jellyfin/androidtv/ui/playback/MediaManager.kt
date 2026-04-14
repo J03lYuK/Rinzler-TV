@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 import android.content.Context
 import org.jellyfin.playback.core.queue.QueueEntry

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.syncplay
+package uk.rinzler.tv.data.syncplay
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -8,7 +8,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.ui.itemhandling.ItemLauncherHelper
+import uk.rinzler.tv.ui.itemhandling.ItemLauncherHelper
 import org.jellyfin.sdk.model.api.BaseItemDto
 import timber.log.Timber
 import java.util.UUID

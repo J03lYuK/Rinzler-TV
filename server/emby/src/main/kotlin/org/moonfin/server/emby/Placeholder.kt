@@ -1,1 +1,1 @@
-package org.moonfin.server.emby
+package uk.rinzler.server.emby

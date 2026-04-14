@@ -118,7 +118,7 @@
 	<!-- Leanback Rows Fragment Container at 187dp from top (20% lower: 156 * 1.2 ≈ 187), fills remaining space -->
 	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/jellyseerr_browse"
-		android:name="org.jellyfin.androidtv.ui.jellyseerr.JellyseerrDiscoverRowsFragment"
+		android:name="uk.rinzler.tv.ui.jellyseerr.JellyseerrDiscoverRowsFragment"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_marginTop="187dp"

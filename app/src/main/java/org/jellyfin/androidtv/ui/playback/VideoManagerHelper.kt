@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.playback
+package uk.rinzler.tv.ui.playback
 
 import android.media.audiofx.AudioEffect
 import android.media.audiofx.DynamicsProcessing

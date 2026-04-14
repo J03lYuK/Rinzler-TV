@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.startup.fragment
+package uk.rinzler.tv.ui.startup.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,16 +12,16 @@ import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.model.ApiClientErrorLoginState
-import org.jellyfin.androidtv.auth.model.AuthenticatedState
-import org.jellyfin.androidtv.auth.model.AuthenticatingState
-import org.jellyfin.androidtv.auth.model.RequireSignInState
-import org.jellyfin.androidtv.auth.model.ServerUnavailableState
-import org.jellyfin.androidtv.auth.model.ServerVersionNotSupported
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.jellyfin.androidtv.databinding.FragmentUserLoginCredentialsBinding
-import org.jellyfin.androidtv.ui.startup.UserLoginViewModel
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.model.ApiClientErrorLoginState
+import uk.rinzler.tv.auth.model.AuthenticatedState
+import uk.rinzler.tv.auth.model.AuthenticatingState
+import uk.rinzler.tv.auth.model.RequireSignInState
+import uk.rinzler.tv.auth.model.ServerUnavailableState
+import uk.rinzler.tv.auth.model.ServerVersionNotSupported
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.tv.databinding.FragmentUserLoginCredentialsBinding
+import uk.rinzler.tv.ui.startup.UserLoginViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class UserLoginCredentialsFragment : Fragment() {

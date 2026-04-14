@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.util
+package uk.rinzler.tv.util
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job

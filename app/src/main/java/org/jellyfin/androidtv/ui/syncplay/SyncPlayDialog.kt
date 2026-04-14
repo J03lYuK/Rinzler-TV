@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.syncplay
+package uk.rinzler.tv.ui.syncplay
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -19,14 +19,14 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.syncplay.SyncPlayManager
-import org.jellyfin.androidtv.ui.base.Icon
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.list.ListButton
-import org.jellyfin.androidtv.ui.base.list.ListSection
-import org.jellyfin.androidtv.ui.settings.composable.SettingsColumn
-import org.jellyfin.androidtv.ui.settings.composable.SettingsDialog
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.syncplay.SyncPlayManager
+import uk.rinzler.tv.ui.base.Icon
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.list.ListButton
+import uk.rinzler.tv.ui.base.list.ListSection
+import uk.rinzler.tv.ui.settings.composable.SettingsColumn
+import uk.rinzler.tv.ui.settings.composable.SettingsDialog
 import org.koin.compose.koinInject
 import java.util.UUID
 
@@ -39,7 +39,7 @@ fun SyncPlayDialog(
     if (!visible) return
     
     val syncPlayManager = koinInject<SyncPlayManager>()
-    val userRepository = koinInject<org.jellyfin.androidtv.auth.repository.UserRepository>()
+    val userRepository = koinInject<uk.rinzler.tv.auth.repository.UserRepository>()
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
     

@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing
+package uk.rinzler.tv.ui.browsing
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -14,8 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.navigation.NavigationAction
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.navigation.NavigationAction
 import timber.log.Timber
 import java.util.Stack
 

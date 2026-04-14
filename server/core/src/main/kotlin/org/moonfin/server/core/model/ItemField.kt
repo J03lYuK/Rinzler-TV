@@ -1,4 +1,4 @@
-package org.moonfin.server.core.model
+package uk.rinzler.server.core.model
 
 enum class ItemField {
     OVERVIEW, GENRES, MEDIA_SOURCES, MEDIA_STREAMS,

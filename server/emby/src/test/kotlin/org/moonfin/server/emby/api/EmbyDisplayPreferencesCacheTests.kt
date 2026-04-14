@@ -1,4 +1,4 @@
-package org.moonfin.server.emby.api
+package uk.rinzler.server.emby.api
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldContainAll
@@ -15,7 +15,7 @@ class EmbyDisplayPreferencesCacheTests : FunSpec({
 
 	test("CacheKey data class has id, userId, client fields") {
 		val cacheKeyClass = Class.forName(
-			"org.moonfin.server.emby.api.EmbyDisplayPreferencesApi\$CacheKey"
+			"uk.rinzler.server.emby.api.EmbyDisplayPreferencesApi\$CacheKey"
 		)
 		val fields = cacheKeyClass.declaredFields.map { it.name }
 		fields shouldContainAll listOf("id", "userId", "client")
@@ -23,7 +23,7 @@ class EmbyDisplayPreferencesCacheTests : FunSpec({
 
 	test("CacheEntry data class has prefs and timestamp fields") {
 		val cacheEntryClass = Class.forName(
-			"org.moonfin.server.emby.api.EmbyDisplayPreferencesApi\$CacheEntry"
+			"uk.rinzler.server.emby.api.EmbyDisplayPreferencesApi\$CacheEntry"
 		)
 		val fieldNames = cacheEntryClass.declaredFields.map { it.name }
 		fieldNames shouldContainAll listOf("prefs", "timestamp")
@@ -36,7 +36,7 @@ class EmbyDisplayPreferencesCacheTests : FunSpec({
 
 	test("CacheEntry timestamp field is Long type") {
 		val cacheEntryClass = Class.forName(
-			"org.moonfin.server.emby.api.EmbyDisplayPreferencesApi\$CacheEntry"
+			"uk.rinzler.server.emby.api.EmbyDisplayPreferencesApi\$CacheEntry"
 		)
 		val timestampField = cacheEntryClass.getDeclaredField("timestamp")
 		timestampField.type shouldBe Long::class.java

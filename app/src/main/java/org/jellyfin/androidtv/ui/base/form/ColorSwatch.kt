@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.base.form
+package uk.rinzler.tv.ui.base.form
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box

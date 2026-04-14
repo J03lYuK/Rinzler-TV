@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.data.syncplay
+package uk.rinzler.tv.data.syncplay
 
 object SyncPlayUtils {
     const val TICKS_PER_MS = 10000L

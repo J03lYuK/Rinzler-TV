@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing.genre
+package uk.rinzler.tv.ui.browsing.genre
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,14 +20,14 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.constant.Extras
-import org.jellyfin.androidtv.data.repository.ItemRepository
-import org.jellyfin.androidtv.data.repository.MultiServerRepository
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.R
+import uk.rinzler.tv.constant.Extras
+import uk.rinzler.tv.data.repository.ItemRepository
+import uk.rinzler.tv.data.repository.MultiServerRepository
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.util.sdk.ApiClientFactory
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.genresApi
 import org.jellyfin.sdk.api.client.extensions.imageApi

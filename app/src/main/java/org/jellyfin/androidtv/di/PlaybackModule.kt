@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.di
+package uk.rinzler.tv.di
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -9,22 +9,22 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.media3.datasource.HttpDataSource
 import androidx.media3.datasource.okhttp.OkHttpDataSource
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.auth.repository.ServerRepository
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
-import org.jellyfin.androidtv.ui.browsing.MainActivity
-import org.jellyfin.androidtv.ui.playback.MediaManager
-import org.jellyfin.androidtv.ui.playback.PlaybackLauncher
-import org.jellyfin.androidtv.ui.playback.PrePlaybackTrackSelector
-import org.jellyfin.androidtv.ui.playback.VideoQueueManager
-import org.jellyfin.androidtv.ui.playback.rewrite.RewriteMediaManager
-import org.jellyfin.androidtv.util.profile.createDeviceProfile
-import org.jellyfin.androidtv.util.sdk.ApiClientFactory
+import uk.rinzler.tv.R
+import uk.rinzler.tv.auth.repository.ServerRepository
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
+import uk.rinzler.tv.ui.browsing.MainActivity
+import uk.rinzler.tv.ui.playback.MediaManager
+import uk.rinzler.tv.ui.playback.PlaybackLauncher
+import uk.rinzler.tv.ui.playback.PrePlaybackTrackSelector
+import uk.rinzler.tv.ui.playback.VideoQueueManager
+import uk.rinzler.tv.ui.playback.rewrite.RewriteMediaManager
+import uk.rinzler.tv.util.profile.createDeviceProfile
+import uk.rinzler.tv.util.sdk.ApiClientFactory
 import org.jellyfin.playback.core.playbackManager
 import org.jellyfin.playback.jellyfin.jellyfinPlugin
-import org.moonfin.playback.emby.embyPlugin
-import org.moonfin.server.core.model.ServerType
+import uk.rinzler.playback.emby.embyPlugin
+import uk.rinzler.server.core.model.ServerType
 import org.jellyfin.playback.media3.exoplayer.ExoPlayerOptions
 import org.jellyfin.playback.media3.exoplayer.exoPlayerPlugin
 import org.jellyfin.playback.media3.session.MediaSessionOptions
@@ -38,7 +38,7 @@ import org.koin.core.scope.Scope
 import org.koin.dsl.module
 import java.util.UUID
 import kotlin.time.Duration.Companion.milliseconds
-import org.jellyfin.androidtv.ui.playback.PlaybackManager as LegacyPlaybackManager
+import uk.rinzler.tv.ui.playback.PlaybackManager as LegacyPlaybackManager
 
 val playbackModule = module {
 	single<LegacyPlaybackManager> { LegacyPlaybackManager(get(), get()) }

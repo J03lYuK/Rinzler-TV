@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.preference
+package uk.rinzler.tv.preference
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
@@ -7,7 +7,7 @@ import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
-import org.jellyfin.androidtv.constant.HomeSectionType
+import uk.rinzler.tv.constant.HomeSectionType
 
 /**
  * Custom serializer for HomeSectionType enum.
@@ -44,7 +44,7 @@ data class HomeSectionConfig(
 	companion object {
 		/**
 		 * Default home sections configuration
-		 * Note: MEDIA_BAR is now controlled by a separate toggle in Moonfin settings
+		 * Note: MEDIA_BAR is now controlled by a separate toggle in Rinzler settings
 		 */
 		fun defaults(): List<HomeSectionConfig> = listOf(
 			HomeSectionConfig(HomeSectionType.RESUME, enabled = true, order = 0),

@@ -1,17 +1,17 @@
-package org.jellyfin.androidtv.data.service.pluginsync
+package uk.rinzler.tv.data.service.pluginsync
 
-import org.jellyfin.androidtv.preference.JellyseerrPreferences
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.UserSettingPreferences
+import uk.rinzler.tv.preference.JellyseerrPreferences
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.UserSettingPreferences
 import org.jellyfin.preference.Preference
 
 /**
  * Central registry of all preference keys that participate in plugin sync.
  *
  * Each [SyncablePreference] maps an Android [Preference] (with its local SharedPreferences key)
- * to a [serverKey] (the camelCase key used by the Moonfin server plugin and web client).
+ * to a [serverKey] (the camelCase key used by the Rinzler server plugin and web client).
  *
- * Only settings managed by the Moonfin server plugin are listed here.
+ * Only settings managed by the Rinzler server plugin are listed here.
  * Sensitive keys (passwords, auth tokens) are excluded.
  * [UserPreferences.pluginSyncEnabled] itself is never synced (device-local control).
  */
@@ -114,7 +114,7 @@ enum class SyncType {
  *
  * @property preference The Android preference (carries the local SharedPreferences key).
  * @property type The value type for serialization/deserialization.
- * @property serverKey The camelCase key used by the Moonfin server plugin and web client.
+ * @property serverKey The camelCase key used by the Rinzler server plugin and web client.
  */
 data class SyncablePreference<T : Any>(
 	val preference: Preference<T>,

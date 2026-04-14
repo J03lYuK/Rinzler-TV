@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.card
+package uk.rinzler.tv.ui.card
 
 import android.content.Context
 import android.graphics.Rect
@@ -37,15 +37,15 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.AbstractComposeView
 import androidx.compose.ui.unit.dp
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.base.LocalTextStyle
-import org.jellyfin.androidtv.ui.base.ProfilePicture
-import org.jellyfin.androidtv.ui.base.ProvideTextStyle
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.focusBorderColor
-import org.jellyfin.androidtv.util.MenuBuilder
-import org.jellyfin.androidtv.util.popupMenu
-import org.jellyfin.androidtv.util.showIfNotEmpty
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.base.LocalTextStyle
+import uk.rinzler.tv.ui.base.ProfilePicture
+import uk.rinzler.tv.ui.base.ProvideTextStyle
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.focusBorderColor
+import uk.rinzler.tv.util.MenuBuilder
+import uk.rinzler.tv.util.popupMenu
+import uk.rinzler.tv.util.showIfNotEmpty
 
 @Composable
 fun UserCard(

@@ -1,11 +1,11 @@
-package org.jellyfin.androidtv.ui.settings.screen.library
+package uk.rinzler.tv.ui.settings.screen.library
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import kotlinx.coroutines.flow.map
-import org.jellyfin.androidtv.data.repository.UserViewsRepository
+import uk.rinzler.tv.data.repository.UserViewsRepository
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.koin.compose.koinInject
 import java.util.UUID

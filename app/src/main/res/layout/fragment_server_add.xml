@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_login_gradient"
+    android:background="@android:color/black"
     tools:context=".ui.startup.StartupActivity">
 
     <LinearLayout
@@ -14,27 +14,15 @@
         android:paddingHorizontal="@dimen/overscan_horizontal"
         android:paddingBottom="@dimen/overscan_vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_moonfin" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/app_name"
-                android:textColor="@color/white"
-                android:textSize="28sp" />
-        </LinearLayout>
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="148dp"
+            android:layout_marginTop="6dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/rinzler_hero_logo" />
 
         <LinearLayout
             android:layout_width="600dp"

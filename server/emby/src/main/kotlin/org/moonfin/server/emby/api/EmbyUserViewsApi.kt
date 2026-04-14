@@ -1,9 +1,9 @@
-package org.moonfin.server.emby.api
+package uk.rinzler.server.emby.api
 
-import org.moonfin.server.core.api.ServerUserViewsApi
-import org.moonfin.server.core.model.ServerItem
-import org.moonfin.server.emby.EmbyApiClient
-import org.moonfin.server.emby.mapper.toServerItem
+import uk.rinzler.server.core.api.ServerUserViewsApi
+import uk.rinzler.server.core.model.ServerItem
+import uk.rinzler.server.emby.EmbyApiClient
+import uk.rinzler.server.emby.mapper.toServerItem
 
 class EmbyUserViewsApi(private val apiClient: EmbyApiClient) : ServerUserViewsApi {
 

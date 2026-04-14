@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.integration.dream.composable
+package uk.rinzler.tv.integration.dream.composable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -15,11 +15,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.jellyfin.androidtv.integration.dream.model.DreamContent
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.composable.ZoomBox
-import org.jellyfin.androidtv.ui.composable.modifier.overscan
-import org.jellyfin.androidtv.ui.shared.LogoView
+import uk.rinzler.tv.integration.dream.model.DreamContent
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.composable.ZoomBox
+import uk.rinzler.tv.ui.composable.modifier.overscan
+import uk.rinzler.tv.ui.shared.LogoView
 
 @Composable
 fun DreamContentLibraryShowcase(

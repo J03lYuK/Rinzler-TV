@@ -1,8 +1,8 @@
-package org.jellyfin.androidtv.auth.model
+package uk.rinzler.tv.auth.model
 
-import org.jellyfin.androidtv.auth.repository.ServerRepository
+import uk.rinzler.tv.auth.repository.ServerRepository
 import org.jellyfin.sdk.model.ServerVersion
-import org.moonfin.server.core.model.ServerType
+import uk.rinzler.server.core.model.ServerType
 import java.time.Instant
 import java.util.UUID
 

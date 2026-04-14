@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.browsing
+package uk.rinzler.tv.ui.browsing
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -32,9 +32,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.ui.base.Text
-import org.jellyfin.androidtv.ui.base.focusBorderColor
+import uk.rinzler.tv.R
+import uk.rinzler.tv.ui.base.Text
+import uk.rinzler.tv.ui.base.focusBorderColor
 
 @Composable
 fun ExitConfirmationDialog(

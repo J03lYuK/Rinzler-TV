@@ -1,11 +1,11 @@
-package org.jellyfin.androidtv.preference
+package uk.rinzler.tv.preference
 
-import org.jellyfin.androidtv.constant.GridDirection
-import org.jellyfin.androidtv.constant.ImageType
-import org.jellyfin.androidtv.constant.PosterSize
-import org.jellyfin.androidtv.preference.store.DisplayPreferencesStore
-import org.jellyfin.androidtv.ui.browsing.v2.PlayedStatusFilter
-import org.jellyfin.androidtv.ui.browsing.v2.SeriesStatusFilter
+import uk.rinzler.tv.constant.GridDirection
+import uk.rinzler.tv.constant.ImageType
+import uk.rinzler.tv.constant.PosterSize
+import uk.rinzler.tv.preference.store.DisplayPreferencesStore
+import uk.rinzler.tv.ui.browsing.v2.PlayedStatusFilter
+import uk.rinzler.tv.ui.browsing.v2.SeriesStatusFilter
 import org.jellyfin.preference.booleanPreference
 import org.jellyfin.preference.enumPreference
 import org.jellyfin.sdk.api.client.ApiClient

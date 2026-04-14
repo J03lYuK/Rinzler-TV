@@ -1,4 +1,4 @@
-package org.jellyfin.androidtv.ui.jellyseerr
+package uk.rinzler.tv.ui.jellyseerr
 
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -37,28 +37,28 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.Dispatchers
-import org.jellyfin.androidtv.util.toHtmlSpanned
-import org.jellyfin.androidtv.R
-import org.jellyfin.androidtv.data.service.BackgroundService
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrDiscoverItemDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrMovieDetailsDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrRequestDto
-import org.jellyfin.androidtv.data.service.jellyseerr.JellyseerrTvDetailsDto
-import org.jellyfin.androidtv.ui.base.JellyfinTheme
-import org.jellyfin.androidtv.ui.home.mediabar.SponsorBlockApi
-import org.jellyfin.androidtv.ui.itemdetail.v2.DetailActionButton
-import org.jellyfin.androidtv.ui.itemhandling.JellyseerrMediaBaseRowItem
-import org.jellyfin.androidtv.ui.itemhandling.JellyseerrPersonBaseRowItem
-import org.jellyfin.androidtv.ui.navigation.Destinations
-import org.jellyfin.androidtv.ui.navigation.NavigationRepository
-import org.jellyfin.androidtv.ui.presentation.CardPresenter
-import org.jellyfin.androidtv.preference.UserPreferences
-import org.jellyfin.androidtv.preference.constant.NavbarPosition
-import org.jellyfin.androidtv.ui.shared.toolbar.LeftSidebarNavigation
-import org.jellyfin.androidtv.ui.shared.toolbar.Navbar
-import org.jellyfin.androidtv.ui.shared.toolbar.NavbarActiveButton
-import org.jellyfin.androidtv.util.dp
-import org.jellyfin.androidtv.ui.settings.compat.SettingsViewModel
+import uk.rinzler.tv.util.toHtmlSpanned
+import uk.rinzler.tv.R
+import uk.rinzler.tv.data.service.BackgroundService
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrDiscoverItemDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrMovieDetailsDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrRequestDto
+import uk.rinzler.tv.data.service.jellyseerr.JellyseerrTvDetailsDto
+import uk.rinzler.tv.ui.base.JellyfinTheme
+import uk.rinzler.tv.ui.home.mediabar.SponsorBlockApi
+import uk.rinzler.tv.ui.itemdetail.v2.DetailActionButton
+import uk.rinzler.tv.ui.itemhandling.JellyseerrMediaBaseRowItem
+import uk.rinzler.tv.ui.itemhandling.JellyseerrPersonBaseRowItem
+import uk.rinzler.tv.ui.navigation.Destinations
+import uk.rinzler.tv.ui.navigation.NavigationRepository
+import uk.rinzler.tv.ui.presentation.CardPresenter
+import uk.rinzler.tv.preference.UserPreferences
+import uk.rinzler.tv.preference.constant.NavbarPosition
+import uk.rinzler.tv.ui.shared.toolbar.LeftSidebarNavigation
+import uk.rinzler.tv.ui.shared.toolbar.Navbar
+import uk.rinzler.tv.ui.shared.toolbar.NavbarActiveButton
+import uk.rinzler.tv.util.dp
+import uk.rinzler.tv.ui.settings.compat.SettingsViewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -826,7 +826,7 @@ class MediaDetailsFragment : Fragment() {
 							DetailActionButton(
 								label = "Play",
 								icon = ImageVector.vectorResource(R.drawable.ic_play),
-								onClick = { playInMoonfin() },
+								onClick = { playInRinzler() },
 							)
 						}
 					}
@@ -1962,7 +1962,7 @@ class MediaDetailsFragment : Fragment() {
 		}
 	}
 	
-	private fun playInMoonfin() {
+	private fun playInRinzler() {
 		lifecycleScope.launch {
 			try {
 				// Get external IDs from movie or TV details
@@ -1986,14 +1986,14 @@ class MediaDetailsFragment : Fragment() {
 				
 				if (jellyfinItem != null) {
 					Timber.d("Found item in Jellyfin library: ${jellyfinItem.name} (${jellyfinItem.id})")
-					// Navigate to Moonfin details page
+					// Navigate to Rinzler details page
 					navigationRepository.navigate(Destinations.itemDetails(jellyfinItem.id))
 				} else {
 					Timber.w("Item not found in Jellyfin library")
-					Toast.makeText(requireContext(), "Item not found in your Moonfin library", Toast.LENGTH_SHORT).show()
+					Toast.makeText(requireContext(), "Item not found in your Rinzler library", Toast.LENGTH_SHORT).show()
 				}
 			} catch (e: Exception) {
-				Timber.e(e, "Failed to search for item in Moonfin")
+				Timber.e(e, "Failed to search for item in Rinzler")
 				Toast.makeText(requireContext(), "Error searching library", Toast.LENGTH_SHORT).show()
 			}
 		}

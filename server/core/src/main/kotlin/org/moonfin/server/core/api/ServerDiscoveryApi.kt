@@ -1,8 +1,8 @@
-package org.moonfin.server.core.api
+package uk.rinzler.server.core.api
 
 import kotlinx.coroutines.flow.Flow
-import org.moonfin.server.core.model.DiscoveredServer
-import org.moonfin.server.core.model.ServerValidationResult
+import uk.rinzler.server.core.model.DiscoveredServer
+import uk.rinzler.server.core.model.ServerValidationResult
 
 interface ServerDiscoveryApi {
     fun discoverLocalServers(): Flow<DiscoveredServer>

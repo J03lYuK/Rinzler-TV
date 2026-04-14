@@ -324,7 +324,7 @@
             app:layout_constraintTop_toBottomOf="@id/fdMetadataGroup" />
 
 		<!-- Poster Image (right side) -->
-		<org.jellyfin.androidtv.ui.AsyncImageView
+		<uk.rinzler.tv.ui.AsyncImageView
 			android:id="@+id/mainImage"
 			android:layout_width="0dp"
 			android:layout_height="0dp"
